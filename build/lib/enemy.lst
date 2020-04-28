@@ -1,0 +1,288 @@
+                              1 
+                              2 ;;; gcc for m6809 : Feb 15 2016 21:40:10
+                              3 ;;; 4.3.6 (gcc6809)
+                              4 ;;; ABI version 1
+                              5 ;;; -mint8
+                              6 	.module	enemy.c
+                              7 	.globl _enemies
+                              8 	.area .data
+   0000                       9 _enemies:
+   0000 01                   10 	.byte	1
+   0001 00                   11 	.byte	0
+   0002 00                   12 	.byte	0
+   0003 00                   13 	.byte	0
+   0004 00                   14 	.byte	0
+                             15 	.globl _vectors_enemy
+                             16 	.area .text
+   0000                      17 _vectors_enemy:
+   0000 00                   18 	.byte	0
+   0001 10                   19 	.byte	16
+   0002 00                   20 	.byte	0
+   0003 FF                   21 	.byte	-1
+   0004 F0                   22 	.byte	-16
+   0005 00                   23 	.byte	0
+   0006 FF                   24 	.byte	-1
+   0007 F0                   25 	.byte	-16
+   0008 10                   26 	.byte	16
+   0009 FF                   27 	.byte	-1
+   000A F0                   28 	.byte	-16
+   000B 00                   29 	.byte	0
+   000C FF                   30 	.byte	-1
+   000D 00                   31 	.byte	0
+   000E 10                   32 	.byte	16
+   000F FF                   33 	.byte	-1
+   0010 F0                   34 	.byte	-16
+   0011 F0                   35 	.byte	-16
+   0012 FF                   36 	.byte	-1
+   0013 10                   37 	.byte	16
+   0014 F0                   38 	.byte	-16
+   0015 FF                   39 	.byte	-1
+   0016 F0                   40 	.byte	-16
+   0017 F0                   41 	.byte	-16
+   0018 FF                   42 	.byte	-1
+   0019 10                   43 	.byte	16
+   001A F0                   44 	.byte	-16
+   001B FF                   45 	.byte	-1
+   001C 00                   46 	.byte	0
+   001D 10                   47 	.byte	16
+   001E FF                   48 	.byte	-1
+   001F 10                   49 	.byte	16
+   0020 00                   50 	.byte	0
+   0021 FF                   51 	.byte	-1
+   0022 10                   52 	.byte	16
+   0023 10                   53 	.byte	16
+   0024 01                   54 	.byte	1
+   0025 00                   55 	.byte	0
+   0026 00                   56 	.byte	0
+                             57 	.globl _draw_enemy
+   0027                      58 _draw_enemy:
+   0027 32 7B         [ 5]   59 	leas	-5,s
+   0029 AF 61         [ 6]   60 	stx	1,s
+   002B BD 00 00      [ 8]   61 	jsr	___Reset0Ref
+   002E C6 7F         [ 2]   62 	ldb	#127
+   0030 D7 00         [ 4]   63 	stb	*_dp_VIA_t1_cnt_lo
+   0032 AE 61         [ 6]   64 	ldx	1,s
+   0034 E6 02         [ 5]   65 	ldb	2,x
+   0036 E7 E4         [ 4]   66 	stb	,s
+   0038 AE 61         [ 6]   67 	ldx	1,s
+   003A E6 01         [ 5]   68 	ldb	1,x
+   003C E7 64         [ 5]   69 	stb	4,s
+   003E E6 E4         [ 4]   70 	ldb	,s
+   0040 E7 63         [ 5]   71 	stb	3,s
+   0042 E6 64         [ 5]   72 	ldb	4,s
+   0044 E7 E2         [ 6]   73 	stb	,-s
+   0046 E6 64         [ 5]   74 	ldb	4,s
+   0048 BD 00 00      [ 8]   75 	jsr	__Moveto_d
+   004B 32 61         [ 5]   76 	leas	1,s
+   004D C6 22         [ 2]   77 	ldb	#34
+   004F D7 00         [ 4]   78 	stb	*_dp_VIA_t1_cnt_lo
+   0051 8E 00 00      [ 3]   79 	ldx	#_vectors_enemy
+   0054 BD 00 00      [ 8]   80 	jsr	___Draw_VLp
+   0057 32 65         [ 5]   81 	leas	5,s
+   0059 39            [ 5]   82 	rts
+                             83 	.globl _check_enemy
+   005A                      84 _check_enemy:
+   005A 32 7C         [ 5]   85 	leas	-4,s
+   005C AF 62         [ 6]   86 	stx	2,s
+                             87 	; ldx	2,s	; optimization 5
+   005E E6 02         [ 5]   88 	ldb	2,x
+   0060 E7 E4         [ 4]   89 	stb	,s
+   0062 AE 62         [ 6]   90 	ldx	2,s
+   0064 E6 01         [ 5]   91 	ldb	1,x
+   0066 E7 61         [ 5]   92 	stb	1,s
+   0068 C6 08         [ 2]   93 	ldb	#8
+   006A E7 E2         [ 6]   94 	stb	,-s
+   006C C6 08         [ 2]   95 	ldb	#8
+   006E E7 E2         [ 6]   96 	stb	,-s
+   0070 E6 62         [ 5]   97 	ldb	2,s
+   0072 34 04         [ 6]   98 	pshs	b
+   0074 E6 64         [ 5]   99 	ldb	4,s
+   0076 34 04         [ 6]  100 	pshs	b
+   0078 6F E2         [ 8]  101 	clr	,-s
+   007A 5F            [ 2]  102 	clrb
+   007B BD 00 00      [ 8]  103 	jsr	_check_collision
+   007E 32 65         [ 5]  104 	leas	5,s
+   0080 5D            [ 2]  105 	tstb
+   0081 27 09         [ 3]  106 	beq	L5
+   0083 8E 00 00      [ 3]  107 	ldx	#_bang
+   0086 BD 00 00      [ 8]  108 	jsr	_play_explosion
+   0089 7F 00 00      [ 7]  109 	clr	_tower
+   008C                     110 L5:
+   008C 32 64         [ 5]  111 	leas	4,s
+   008E 39            [ 5]  112 	rts
+                            113 	.globl _init_enemies
+   008F                     114 _init_enemies:
+   008F 32 7D         [ 5]  115 	leas	-3,s
+   0091 6F 62         [ 7]  116 	clr	2,s
+   0093 20 1E         [ 3]  117 	bra	L7
+   0095                     118 L8:
+   0095 E6 62         [ 5]  119 	ldb	2,s
+   0097 4F            [ 2]  120 	clra		;zero_extendqihi: R:b -> R:d
+   0098 1F 01         [ 6]  121 	tfr	d,x
+   009A AF E4         [ 5]  122 	stx	,s
+   009C EC E4         [ 5]  123 	ldd	,s
+   009E 58            [ 2]  124 	aslb
+   009F 49            [ 2]  125 	rola
+   00A0 58            [ 2]  126 	aslb
+   00A1 49            [ 2]  127 	rola
+   00A2 ED E4         [ 5]  128 	std	,s
+   00A4 1E 01         [ 8]  129 	exg	d,x
+   00A6 E3 E4         [ 6]  130 	addd	,s
+   00A8 1E 01         [ 8]  131 	exg	d,x
+   00AA 30 89 00 00   [ 8]  132 	leax	_enemies,x
+   00AE BD 00 00      [ 8]  133 	jsr	_init_object
+   00B1 6C 62         [ 7]  134 	inc	2,s
+   00B3                     135 L7:
+   00B3 6D 62         [ 7]  136 	tst	2,s
+   00B5 27 DE         [ 3]  137 	beq	L8
+   00B7 32 63         [ 5]  138 	leas	3,s
+   00B9 39            [ 5]  139 	rts
+                            140 	.globl _handle_enemies
+   00BA                     141 _handle_enemies:
+   00BA 34 40         [ 6]  142 	pshs	u
+   00BC 32 77         [ 5]  143 	leas	-9,s
+   00BE 6F 68         [ 7]  144 	clr	8,s
+   00C0 7E 01 36      [ 4]  145 	jmp	L11
+   00C3                     146 L13:
+   00C3 E6 68         [ 5]  147 	ldb	8,s
+   00C5 4F            [ 2]  148 	clra		;zero_extendqihi: R:b -> R:d
+   00C6 1F 01         [ 6]  149 	tfr	d,x
+   00C8 AF 66         [ 6]  150 	stx	6,s
+   00CA EC 66         [ 6]  151 	ldd	6,s
+   00CC 58            [ 2]  152 	aslb
+   00CD 49            [ 2]  153 	rola
+   00CE 58            [ 2]  154 	aslb
+   00CF 49            [ 2]  155 	rola
+   00D0 ED 66         [ 6]  156 	std	6,s
+                            157 	; ldd	6,s	; optimization 5
+   00D2 30 8B         [ 8]  158 	leax	d,x
+   00D4 AF 66         [ 6]  159 	stx	6,s
+   00D6 EE 66         [ 6]  160 	ldu	6,s
+   00D8 30 C9 00 00   [ 8]  161 	leax	_enemies,u
+   00DC E6 84         [ 4]  162 	ldb	,x
+                            163 	; tstb	; optimization 6
+   00DE 26 54         [ 3]  164 	bne	L12
+   00E0 E6 68         [ 5]  165 	ldb	8,s
+   00E2 4F            [ 2]  166 	clra		;zero_extendqihi: R:b -> R:d
+   00E3 1F 01         [ 6]  167 	tfr	d,x
+   00E5 AF 64         [ 6]  168 	stx	4,s
+   00E7 EC 64         [ 6]  169 	ldd	4,s
+   00E9 58            [ 2]  170 	aslb
+   00EA 49            [ 2]  171 	rola
+   00EB 58            [ 2]  172 	aslb
+   00EC 49            [ 2]  173 	rola
+   00ED ED 64         [ 6]  174 	std	4,s
+   00EF 1E 01         [ 8]  175 	exg	d,x
+   00F1 E3 64         [ 7]  176 	addd	4,s
+   00F3 1E 01         [ 8]  177 	exg	d,x
+   00F5 30 89 00 00   [ 8]  178 	leax	_enemies,x
+   00F9 BD 00 00      [ 8]  179 	jsr	_move_object
+   00FC E6 68         [ 5]  180 	ldb	8,s
+   00FE 4F            [ 2]  181 	clra		;zero_extendqihi: R:b -> R:d
+   00FF 1F 01         [ 6]  182 	tfr	d,x
+   0101 AF 62         [ 6]  183 	stx	2,s
+   0103 EC 62         [ 6]  184 	ldd	2,s
+   0105 58            [ 2]  185 	aslb
+   0106 49            [ 2]  186 	rola
+   0107 58            [ 2]  187 	aslb
+   0108 49            [ 2]  188 	rola
+   0109 ED 62         [ 6]  189 	std	2,s
+   010B 1E 01         [ 8]  190 	exg	d,x
+   010D E3 62         [ 7]  191 	addd	2,s
+   010F 1E 01         [ 8]  192 	exg	d,x
+   0111 30 89 00 00   [ 8]  193 	leax	_enemies,x
+   0115 BD 00 27      [ 8]  194 	jsr	_draw_enemy
+   0118 E6 68         [ 5]  195 	ldb	8,s
+   011A 4F            [ 2]  196 	clra		;zero_extendqihi: R:b -> R:d
+   011B 1F 01         [ 6]  197 	tfr	d,x
+   011D AF E4         [ 5]  198 	stx	,s
+   011F EC E4         [ 5]  199 	ldd	,s
+   0121 58            [ 2]  200 	aslb
+   0122 49            [ 2]  201 	rola
+   0123 58            [ 2]  202 	aslb
+   0124 49            [ 2]  203 	rola
+   0125 ED E4         [ 5]  204 	std	,s
+   0127 1E 01         [ 8]  205 	exg	d,x
+   0129 E3 E4         [ 6]  206 	addd	,s
+   012B 1E 01         [ 8]  207 	exg	d,x
+   012D 30 89 00 00   [ 8]  208 	leax	_enemies,x
+   0131 BD 00 5A      [ 8]  209 	jsr	_check_enemy
+   0134                     210 L12:
+   0134 6C 68         [ 7]  211 	inc	8,s
+   0136                     212 L11:
+   0136 6D 68         [ 7]  213 	tst	8,s
+   0138 10 27 FF 87   [ 6]  214 	lbeq	L13
+   013C 32 69         [ 5]  215 	leas	9,s
+   013E 35 C0         [ 7]  216 	puls	u,pc
+                            217 	.globl _check_AllEnemysDeath
+   0140                     218 _check_AllEnemysDeath:
+   0140 34 40         [ 6]  219 	pshs	u
+   0142 32 7D         [ 5]  220 	leas	-3,s
+   0144 6F 62         [ 7]  221 	clr	2,s
+   0146 20 1F         [ 3]  222 	bra	L16
+   0148                     223 L18:
+   0148 E6 62         [ 5]  224 	ldb	2,s
+   014A 4F            [ 2]  225 	clra		;zero_extendqihi: R:b -> R:d
+   014B 1F 01         [ 6]  226 	tfr	d,x
+   014D AF E4         [ 5]  227 	stx	,s
+   014F EC E4         [ 5]  228 	ldd	,s
+   0151 58            [ 2]  229 	aslb
+   0152 49            [ 2]  230 	rola
+   0153 58            [ 2]  231 	aslb
+   0154 49            [ 2]  232 	rola
+   0155 ED E4         [ 5]  233 	std	,s
+                            234 	; ldd	,s	; optimization 5
+   0157 30 8B         [ 8]  235 	leax	d,x
+   0159 AF E4         [ 5]  236 	stx	,s
+   015B EE E4         [ 5]  237 	ldu	,s
+   015D 30 C9 00 00   [ 8]  238 	leax	_enemies,u
+   0161 E6 84         [ 4]  239 	ldb	,x
+                            240 	; tstb	; optimization 6
+   0163 27 0B         [ 3]  241 	beq	L19
+   0165 6C 62         [ 7]  242 	inc	2,s
+   0167                     243 L16:
+   0167 6D 62         [ 7]  244 	tst	2,s
+   0169 27 DD         [ 3]  245 	beq	L18
+   016B C6 02         [ 2]  246 	ldb	#2
+   016D F7 00 00      [ 5]  247 	stb	_current_level
+   0170                     248 L19:
+   0170 32 63         [ 5]  249 	leas	3,s
+   0172 35 C0         [ 7]  250 	puls	u,pc
+                            251 	.area .bss
+                            252 	.globl	_bullets
+   0000                     253 _bullets:	.blkb	60
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+  3 L11                0136 R   |   3 L12                0134 R
+  3 L13                00C3 R   |   3 L16                0167 R
+  3 L18                0148 R   |   3 L19                0170 R
+  3 L5                 008C R   |   3 L7                 00B3 R
+  3 L8                 0095 R   |     __Moveto_d         **** GX
+    ___Draw_VLp        **** GX  |     ___Reset0Ref       **** GX
+    _bang              **** GX  |   4 _bullets           0000 GR
+  3 _check_AllEnem     0140 GR  |     _check_collisi     **** GX
+  3 _check_enemy       005A GR  |     _current_level     **** GX
+    _dp_VIA_t1_cnt     **** GX  |   3 _draw_enemy        0027 GR
+  2 _enemies           0000 GR  |   3 _handle_enemie     00BA GR
+  3 _init_enemies      008F GR  |     _init_object       **** GX
+    _move_object       **** GX  |     _play_explosio     **** GX
+    _tower             **** GX  |   3 _vectors_enemy     0000 GR
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size    0   flags C080
+   2 .data            size    5   flags  100
+   3 .text            size  174   flags  100
+   4 .bss             size   3C   flags    0
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+

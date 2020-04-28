@@ -1,0 +1,514 @@
+                              1 
+                              2 ;;; gcc for m6809 : Feb 15 2016 21:40:10
+                              3 ;;; 4.3.6 (gcc6809)
+                              4 ;;; ABI version 1
+                              5 ;;; -mint8
+                              6 	.module	tower.c
+                              7 	.globl _vectors_tower_lvl_1
+                              8 	.area .text
+   0000                       9 _vectors_tower_lvl_1:
+   0000 00                   10 	.byte	0
+   0001 28                   11 	.byte	40
+   0002 00                   12 	.byte	0
+   0003 FF                   13 	.byte	-1
+   0004 F8                   14 	.byte	-8
+   0005 10                   15 	.byte	16
+   0006 FF                   16 	.byte	-1
+   0007 F0                   17 	.byte	-16
+   0008 10                   18 	.byte	16
+   0009 FF                   19 	.byte	-1
+   000A F0                   20 	.byte	-16
+   000B 08                   21 	.byte	8
+   000C FF                   22 	.byte	-1
+   000D F0                   23 	.byte	-16
+   000E F8                   24 	.byte	-8
+   000F FF                   25 	.byte	-1
+   0010 F0                   26 	.byte	-16
+   0011 F0                   27 	.byte	-16
+   0012 FF                   28 	.byte	-1
+   0013 F8                   29 	.byte	-8
+   0014 F0                   30 	.byte	-16
+   0015 FF                   31 	.byte	-1
+   0016 08                   32 	.byte	8
+   0017 F0                   33 	.byte	-16
+   0018 FF                   34 	.byte	-1
+   0019 10                   35 	.byte	16
+   001A F0                   36 	.byte	-16
+   001B FF                   37 	.byte	-1
+   001C 10                   38 	.byte	16
+   001D F8                   39 	.byte	-8
+   001E FF                   40 	.byte	-1
+   001F 10                   41 	.byte	16
+   0020 08                   42 	.byte	8
+   0021 FF                   43 	.byte	-1
+   0022 10                   44 	.byte	16
+   0023 10                   45 	.byte	16
+   0024 FF                   46 	.byte	-1
+   0025 08                   47 	.byte	8
+   0026 10                   48 	.byte	16
+   0027 01                   49 	.byte	1
+   0028 00                   50 	.byte	0
+   0029 00                   51 	.byte	0
+                             52 	.globl _vectors_tower_lvl_2
+   002A                      53 _vectors_tower_lvl_2:
+   002A 00                   54 	.byte	0
+   002B 50                   55 	.byte	80
+   002C 00                   56 	.byte	0
+   002D FF                   57 	.byte	-1
+   002E F0                   58 	.byte	-16
+   002F 20                   59 	.byte	32
+   0030 FF                   60 	.byte	-1
+   0031 E0                   61 	.byte	-32
+   0032 20                   62 	.byte	32
+   0033 FF                   63 	.byte	-1
+   0034 E0                   64 	.byte	-32
+   0035 10                   65 	.byte	16
+   0036 FF                   66 	.byte	-1
+   0037 E0                   67 	.byte	-32
+   0038 F0                   68 	.byte	-16
+   0039 FF                   69 	.byte	-1
+   003A E0                   70 	.byte	-32
+   003B E0                   71 	.byte	-32
+   003C FF                   72 	.byte	-1
+   003D F0                   73 	.byte	-16
+   003E E0                   74 	.byte	-32
+   003F FF                   75 	.byte	-1
+   0040 10                   76 	.byte	16
+   0041 E0                   77 	.byte	-32
+   0042 FF                   78 	.byte	-1
+   0043 20                   79 	.byte	32
+   0044 E0                   80 	.byte	-32
+   0045 FF                   81 	.byte	-1
+   0046 20                   82 	.byte	32
+   0047 F0                   83 	.byte	-16
+   0048 FF                   84 	.byte	-1
+   0049 20                   85 	.byte	32
+   004A 10                   86 	.byte	16
+   004B FF                   87 	.byte	-1
+   004C 20                   88 	.byte	32
+   004D 20                   89 	.byte	32
+   004E FF                   90 	.byte	-1
+   004F 10                   91 	.byte	16
+   0050 20                   92 	.byte	32
+   0051 01                   93 	.byte	1
+   0052 00                   94 	.byte	0
+   0053 00                   95 	.byte	0
+                             96 	.globl _vectors_tower_lvl_3
+   0054                      97 _vectors_tower_lvl_3:
+   0054 00                   98 	.byte	0
+   0055 20                   99 	.byte	32
+   0056 00                  100 	.byte	0
+   0057 FF                  101 	.byte	-1
+   0058 C0                  102 	.byte	-64
+   0059 18                  103 	.byte	24
+   005A FF                  104 	.byte	-1
+   005B 00                  105 	.byte	0
+   005C D0                  106 	.byte	-48
+   005D FF                  107 	.byte	-1
+   005E 40                  108 	.byte	64
+   005F 18                  109 	.byte	24
+   0060 01                  110 	.byte	1
+   0061 00                  111 	.byte	0
+   0062 00                  112 	.byte	0
+                            113 	.globl _vectors_tower_lvl_4
+   0063                     114 _vectors_tower_lvl_4:
+   0063 00                  115 	.byte	0
+   0064 20                  116 	.byte	32
+   0065 00                  117 	.byte	0
+   0066 FF                  118 	.byte	-1
+   0067 00                  119 	.byte	0
+   0068 20                  120 	.byte	32
+   0069 FF                  121 	.byte	-1
+   006A C0                  122 	.byte	-64
+   006B 00                  123 	.byte	0
+   006C FF                  124 	.byte	-1
+   006D 00                  125 	.byte	0
+   006E C0                  126 	.byte	-64
+   006F FF                  127 	.byte	-1
+   0070 40                  128 	.byte	64
+   0071 00                  129 	.byte	0
+   0072 FF                  130 	.byte	-1
+   0073 00                  131 	.byte	0
+   0074 20                  132 	.byte	32
+   0075 01                  133 	.byte	1
+   0076 00                  134 	.byte	0
+   0077 00                  135 	.byte	0
+                            136 	.globl _vectors_tower_lvl_5
+   0078                     137 _vectors_tower_lvl_5:
+   0078 00                  138 	.byte	0
+   0079 28                  139 	.byte	40
+   007A 00                  140 	.byte	0
+   007B FF                  141 	.byte	-1
+   007C 00                  142 	.byte	0
+   007D 18                  143 	.byte	24
+   007E FF                  144 	.byte	-1
+   007F D8                  145 	.byte	-40
+   0080 18                  146 	.byte	24
+   0081 FF                  147 	.byte	-1
+   0082 D8                  148 	.byte	-40
+   0083 E8                  149 	.byte	-24
+   0084 FF                  150 	.byte	-1
+   0085 00                  151 	.byte	0
+   0086 D0                  152 	.byte	-48
+   0087 FF                  153 	.byte	-1
+   0088 28                  154 	.byte	40
+   0089 E8                  155 	.byte	-24
+   008A FF                  156 	.byte	-1
+   008B 28                  157 	.byte	40
+   008C 18                  158 	.byte	24
+   008D FF                  159 	.byte	-1
+   008E 00                  160 	.byte	0
+   008F 18                  161 	.byte	24
+   0090 01                  162 	.byte	1
+   0091 00                  163 	.byte	0
+   0092 00                  164 	.byte	0
+                            165 	.globl _vectors_tower_lvl_6
+   0093                     166 _vectors_tower_lvl_6:
+   0093 00                  167 	.byte	0
+   0094 50                  168 	.byte	80
+   0095 00                  169 	.byte	0
+   0096 FF                  170 	.byte	-1
+   0097 00                  171 	.byte	0
+   0098 30                  172 	.byte	48
+   0099 FF                  173 	.byte	-1
+   009A B0                  174 	.byte	-80
+   009B 30                  175 	.byte	48
+   009C FF                  176 	.byte	-1
+   009D B0                  177 	.byte	-80
+   009E D0                  178 	.byte	-48
+   009F FF                  179 	.byte	-1
+   00A0 00                  180 	.byte	0
+   00A1 A0                  181 	.byte	-96
+   00A2 FF                  182 	.byte	-1
+   00A3 50                  183 	.byte	80
+   00A4 D0                  184 	.byte	-48
+   00A5 FF                  185 	.byte	-1
+   00A6 50                  186 	.byte	80
+   00A7 30                  187 	.byte	48
+   00A8 FF                  188 	.byte	-1
+   00A9 00                  189 	.byte	0
+   00AA 30                  190 	.byte	48
+   00AB 01                  191 	.byte	1
+   00AC 00                  192 	.byte	0
+   00AD 00                  193 	.byte	0
+                            194 	.globl _towerBullet_1
+                            195 	.area .data
+   0000                     196 _towerBullet_1:
+   0000 00                  197 	.byte	0	;skip space
+                            198 	.globl _towerBullet_2
+   0001                     199 _towerBullet_2:
+   0001 00                  200 	.byte	0	;skip space
+                            201 	.globl _towerBullet_3
+   0002                     202 _towerBullet_3:
+   0002 00                  203 	.byte	0	;skip space
+                            204 	.globl _towerBullet_4
+   0003                     205 _towerBullet_4:
+   0003 00                  206 	.byte	0	;skip space
+                            207 	.globl _towerBullet_5
+   0004                     208 _towerBullet_5:
+   0004 00                  209 	.byte	0	;skip space
+                            210 	.globl _towerBullet_6
+   0005                     211 _towerBullet_6:
+   0005 00                  212 	.byte	0	;skip space
+                            213 	.globl _tower
+   0006                     214 _tower:
+   0006 00 00               215 	.word	0	;skip space 4
+   0008 00 00               216 	.word	0	;skip space 2
+                            217 	.globl _cnt
+   000A                     218 _cnt:
+   000A 00                  219 	.byte	0	;skip space
+                            220 	.area .text
+                            221 	.globl _draw_tower
+   00AE                     222 _draw_tower:
+   00AE 34 40         [ 6]  223 	pshs	u
+   00B0 32 70         [ 5]  224 	leas	-16,s
+   00B2 BD 00 00      [ 8]  225 	jsr	___Reset0Ref
+   00B5 C6 7F         [ 2]  226 	ldb	#127
+   00B7 D7 00         [ 4]  227 	stb	*_dp_VIA_t1_cnt_lo
+   00B9 6F E2         [ 8]  228 	clr	,-s
+   00BB 5F            [ 2]  229 	clrb
+   00BC BD 00 00      [ 8]  230 	jsr	__Moveto_d
+   00BF 32 61         [ 5]  231 	leas	1,s
+   00C1 C6 22         [ 2]  232 	ldb	#34
+   00C3 D7 00         [ 4]  233 	stb	*_dp_VIA_t1_cnt_lo
+   00C5 F6 00 07      [ 5]  234 	ldb	_tower+1
+   00C8 E7 62         [ 5]  235 	stb	2,s
+                            236 	; ldb	2,s	; optimization 5
+   00CA C1 05         [ 2]  237 	cmpb	#5	;cmpqi:
+   00CC 10 22 00 C8   [ 6]  238 	lbhi	L2
+   00D0 E6 62         [ 5]  239 	ldb	2,s
+   00D2 4F            [ 2]  240 	clra		;zero_extendqihi: R:b -> R:d
+   00D3 ED E4         [ 5]  241 	std	,s
+                            242 	; ldd	,s	; optimization 5
+   00D5 58            [ 2]  243 	aslb
+   00D6 49            [ 2]  244 	rola
+   00D7 CE 00 E0      [ 3]  245 	ldu	#L9
+   00DA 30 CB         [ 8]  246 	leax	d,u
+   00DC AE 84         [ 5]  247 	ldx	,x
+   00DE 6E 84         [ 3]  248 	jmp	,x
+   00E0                     249 L9:
+   00E0 00 EC               250 	.word L3
+   00E2 01 09               251 	.word L4
+   00E4 01 26               252 	.word L5
+   00E6 01 43               253 	.word L6
+   00E8 01 5F               254 	.word L7
+   00EA 01 7B               255 	.word L8
+   00EC                     256 L3:
+   00EC F6 00 09      [ 5]  257 	ldb	_tower+3
+   00EF E7 69         [ 5]  258 	stb	9,s
+   00F1 8E 00 3C      [ 3]  259 	ldx	#_rotated_tower1
+   00F4 34 10         [ 6]  260 	pshs	x
+   00F6 8E 00 00      [ 3]  261 	ldx	#_vectors_tower_lvl_1
+   00F9 E6 6B         [ 5]  262 	ldb	11,s
+   00FB BD 00 00      [ 8]  263 	jsr	__Rot_VL_Mode
+   00FE 32 62         [ 5]  264 	leas	2,s
+   0100 8E 00 3C      [ 3]  265 	ldx	#_rotated_tower1
+   0103 BD 00 00      [ 8]  266 	jsr	___Draw_VLp
+   0106 7E 01 B3      [ 4]  267 	jmp	L10
+   0109                     268 L4:
+   0109 F6 00 09      [ 5]  269 	ldb	_tower+3
+   010C E7 6A         [ 5]  270 	stb	10,s
+   010E 8E 00 66      [ 3]  271 	ldx	#_rotated_tower2
+   0111 34 10         [ 6]  272 	pshs	x
+   0113 8E 00 2A      [ 3]  273 	ldx	#_vectors_tower_lvl_2
+   0116 E6 6C         [ 5]  274 	ldb	12,s
+   0118 BD 00 00      [ 8]  275 	jsr	__Rot_VL_Mode
+   011B 32 62         [ 5]  276 	leas	2,s
+   011D 8E 00 66      [ 3]  277 	ldx	#_rotated_tower2
+   0120 BD 00 00      [ 8]  278 	jsr	___Draw_VLp
+   0123 7E 01 B3      [ 4]  279 	jmp	L10
+   0126                     280 L5:
+   0126 F6 00 09      [ 5]  281 	ldb	_tower+3
+   0129 E7 6B         [ 5]  282 	stb	11,s
+   012B 8E 00 90      [ 3]  283 	ldx	#_rotated_tower3
+   012E 34 10         [ 6]  284 	pshs	x
+   0130 8E 00 54      [ 3]  285 	ldx	#_vectors_tower_lvl_3
+   0133 E6 6D         [ 5]  286 	ldb	13,s
+   0135 BD 00 00      [ 8]  287 	jsr	__Rot_VL_Mode
+   0138 32 62         [ 5]  288 	leas	2,s
+   013A 8E 00 90      [ 3]  289 	ldx	#_rotated_tower3
+   013D BD 00 00      [ 8]  290 	jsr	___Draw_VLp
+   0140 7E 01 B3      [ 4]  291 	jmp	L10
+   0143                     292 L6:
+   0143 F6 00 09      [ 5]  293 	ldb	_tower+3
+   0146 E7 6C         [ 5]  294 	stb	12,s
+   0148 8E 00 9F      [ 3]  295 	ldx	#_rotated_tower4
+   014B 34 10         [ 6]  296 	pshs	x
+   014D 8E 00 63      [ 3]  297 	ldx	#_vectors_tower_lvl_4
+   0150 E6 6E         [ 5]  298 	ldb	14,s
+   0152 BD 00 00      [ 8]  299 	jsr	__Rot_VL_Mode
+   0155 32 62         [ 5]  300 	leas	2,s
+   0157 8E 00 9F      [ 3]  301 	ldx	#_rotated_tower4
+   015A BD 00 00      [ 8]  302 	jsr	___Draw_VLp
+   015D 20 54         [ 3]  303 	bra	L10
+   015F                     304 L7:
+   015F F6 00 09      [ 5]  305 	ldb	_tower+3
+   0162 E7 6D         [ 5]  306 	stb	13,s
+   0164 8E 00 B4      [ 3]  307 	ldx	#_rotated_tower5
+   0167 34 10         [ 6]  308 	pshs	x
+   0169 8E 00 78      [ 3]  309 	ldx	#_vectors_tower_lvl_5
+   016C E6 6F         [ 5]  310 	ldb	15,s
+   016E BD 00 00      [ 8]  311 	jsr	__Rot_VL_Mode
+   0171 32 62         [ 5]  312 	leas	2,s
+   0173 8E 00 B4      [ 3]  313 	ldx	#_rotated_tower5
+   0176 BD 00 00      [ 8]  314 	jsr	___Draw_VLp
+   0179 20 38         [ 3]  315 	bra	L10
+   017B                     316 L8:
+   017B F6 00 09      [ 5]  317 	ldb	_tower+3
+   017E E7 6E         [ 5]  318 	stb	14,s
+   0180 8E 00 CF      [ 3]  319 	ldx	#_rotated_tower6
+   0183 34 10         [ 6]  320 	pshs	x
+   0185 8E 00 93      [ 3]  321 	ldx	#_vectors_tower_lvl_6
+   0188 E6 E8 10      [ 5]  322 	ldb	16,s
+   018B BD 00 00      [ 8]  323 	jsr	__Rot_VL_Mode
+   018E 32 62         [ 5]  324 	leas	2,s
+   0190 8E 00 CF      [ 3]  325 	ldx	#_rotated_tower6
+   0193 BD 00 00      [ 8]  326 	jsr	___Draw_VLp
+   0196 20 1B         [ 3]  327 	bra	L10
+   0198                     328 L2:
+   0198 F6 00 09      [ 5]  329 	ldb	_tower+3
+   019B E7 6F         [ 5]  330 	stb	15,s
+   019D 8E 00 3C      [ 3]  331 	ldx	#_rotated_tower1
+   01A0 34 10         [ 6]  332 	pshs	x
+   01A2 8E 00 00      [ 3]  333 	ldx	#_vectors_tower_lvl_1
+   01A5 E6 E8 11      [ 5]  334 	ldb	17,s
+   01A8 BD 00 00      [ 8]  335 	jsr	__Rot_VL_Mode
+   01AB 32 62         [ 5]  336 	leas	2,s
+   01AD 8E 00 3C      [ 3]  337 	ldx	#_rotated_tower1
+   01B0 BD 00 00      [ 8]  338 	jsr	___Draw_VLp
+   01B3                     339 L10:
+   01B3 F6 00 0A      [ 5]  340 	ldb	_cnt
+   01B6 C1 32         [ 2]  341 	cmpb	#50	;cmpqi:
+   01B8 10 26 00 56   [ 6]  342 	lbne	L11
+   01BC 7F 00 0A      [ 7]  343 	clr	_cnt
+   01BF F6 00 09      [ 5]  344 	ldb	_tower+3
+   01C2 CB 02         [ 2]  345 	addb	#2
+   01C4 F7 00 09      [ 5]  346 	stb	_tower+3
+                            347 	; ldb	_tower+3	; optimization 5
+   01C7 E7 63         [ 5]  348 	stb	3,s
+   01C9 F6 00 00      [ 5]  349 	ldb	_towerBullet_1
+   01CC EB 63         [ 5]  350 	addb	3,s
+   01CE F7 00 00      [ 5]  351 	stb	_towerBullet_1
+   01D1 F6 00 09      [ 5]  352 	ldb	_tower+3
+   01D4 E7 64         [ 5]  353 	stb	4,s
+   01D6 F6 00 01      [ 5]  354 	ldb	_towerBullet_2
+   01D9 EB 64         [ 5]  355 	addb	4,s
+   01DB F7 00 01      [ 5]  356 	stb	_towerBullet_2
+   01DE F6 00 09      [ 5]  357 	ldb	_tower+3
+   01E1 E7 65         [ 5]  358 	stb	5,s
+   01E3 F6 00 02      [ 5]  359 	ldb	_towerBullet_3
+   01E6 EB 65         [ 5]  360 	addb	5,s
+   01E8 F7 00 02      [ 5]  361 	stb	_towerBullet_3
+   01EB F6 00 09      [ 5]  362 	ldb	_tower+3
+   01EE E7 66         [ 5]  363 	stb	6,s
+   01F0 F6 00 03      [ 5]  364 	ldb	_towerBullet_4
+   01F3 EB 66         [ 5]  365 	addb	6,s
+   01F5 F7 00 03      [ 5]  366 	stb	_towerBullet_4
+   01F8 F6 00 09      [ 5]  367 	ldb	_tower+3
+   01FB E7 67         [ 5]  368 	stb	7,s
+   01FD F6 00 04      [ 5]  369 	ldb	_towerBullet_5
+   0200 EB 67         [ 5]  370 	addb	7,s
+   0202 F7 00 04      [ 5]  371 	stb	_towerBullet_5
+   0205 F6 00 09      [ 5]  372 	ldb	_tower+3
+   0208 E7 68         [ 5]  373 	stb	8,s
+   020A F6 00 05      [ 5]  374 	ldb	_towerBullet_6
+   020D EB 68         [ 5]  375 	addb	8,s
+   020F F7 00 05      [ 5]  376 	stb	_towerBullet_6
+   0212                     377 L11:
+   0212 F6 00 0A      [ 5]  378 	ldb	_cnt
+   0215 5C            [ 2]  379 	incb
+   0216 F7 00 0A      [ 5]  380 	stb	_cnt
+   0219 32 E8 10      [ 5]  381 	leas	16,s
+   021C 35 C0         [ 7]  382 	puls	u,pc
+                            383 	.globl _init_tower
+   021E                     384 _init_tower:
+   021E C6 01         [ 2]  385 	ldb	#1
+   0220 F7 00 06      [ 5]  386 	stb	_tower
+   0223 7F 00 07      [ 7]  387 	clr	_tower+1
+   0226 F6 00 09      [ 5]  388 	ldb	_tower+3
+   0229 F7 00 00      [ 5]  389 	stb	_towerBullet_1
+   022C F6 00 09      [ 5]  390 	ldb	_tower+3
+   022F CB 0B         [ 2]  391 	addb	#11
+   0231 F7 00 01      [ 5]  392 	stb	_towerBullet_2
+   0234 F6 00 09      [ 5]  393 	ldb	_tower+3
+   0237 CB 15         [ 2]  394 	addb	#21
+   0239 F7 00 02      [ 5]  395 	stb	_towerBullet_3
+   023C F6 00 09      [ 5]  396 	ldb	_tower+3
+   023F CB 20         [ 2]  397 	addb	#32
+   0241 F7 00 03      [ 5]  398 	stb	_towerBullet_4
+   0244 F6 00 09      [ 5]  399 	ldb	_tower+3
+   0247 CB 2B         [ 2]  400 	addb	#43
+   0249 F7 00 04      [ 5]  401 	stb	_towerBullet_5
+   024C F6 00 09      [ 5]  402 	ldb	_tower+3
+   024F CB 35         [ 2]  403 	addb	#53
+   0251 F7 00 05      [ 5]  404 	stb	_towerBullet_6
+   0254 39            [ 5]  405 	rts
+                            406 	.area .data
+   000B                     407 _rate.3351:
+   000B C8                  408 	.byte	-56
+                            409 	.area .text
+                            410 	.globl _tower_shot
+   0255                     411 _tower_shot:
+   0255 32 7E         [ 5]  412 	leas	-2,s
+   0257 F6 00 08      [ 5]  413 	ldb	_tower+2
+                            414 	; tstb	; optimization 6
+   025A 26 07         [ 3]  415 	bne	L16
+   025C F6 00 0B      [ 5]  416 	ldb	_rate.3351
+   025F 5A            [ 2]  417 	decb
+   0260 F7 00 0B      [ 5]  418 	stb	_rate.3351
+   0263                     419 L16:
+   0263 F6 00 08      [ 5]  420 	ldb	_tower+2
+   0266 C1 01         [ 2]  421 	cmpb	#1	;cmpqi:
+   0268 26 08         [ 3]  422 	bne	L17
+   026A F6 00 0B      [ 5]  423 	ldb	_rate.3351
+   026D CB FE         [ 2]  424 	addb	#-2
+   026F F7 00 0B      [ 5]  425 	stb	_rate.3351
+   0272                     426 L17:
+   0272 F6 00 08      [ 5]  427 	ldb	_tower+2
+   0275 C1 02         [ 2]  428 	cmpb	#2	;cmpqi:
+   0277 26 08         [ 3]  429 	bne	L18
+   0279 F6 00 0B      [ 5]  430 	ldb	_rate.3351
+   027C CB FB         [ 2]  431 	addb	#-5
+   027E F7 00 0B      [ 5]  432 	stb	_rate.3351
+   0281                     433 L18:
+   0281 6F E4         [ 6]  434 	clr	,s
+   0283 6F 61         [ 7]  435 	clr	1,s
+   0285 F6 00 0B      [ 5]  436 	ldb	_rate.3351
+                            437 	; tstb	; optimization 6
+   0288 26 05         [ 3]  438 	bne	L20
+   028A C6 C8         [ 2]  439 	ldb	#-56
+   028C F7 00 0B      [ 5]  440 	stb	_rate.3351
+   028F                     441 L20:
+   028F 32 62         [ 5]  442 	leas	2,s
+   0291 39            [ 5]  443 	rts
+                            444 	.globl _handle_tower
+   0292                     445 _handle_tower:
+   0292 BD 02 55      [ 8]  446 	jsr	_tower_shot
+   0295 BD 00 AE      [ 8]  447 	jsr	_draw_tower
+   0298 F6 00 06      [ 5]  448 	ldb	_tower
+                            449 	; tstb	; optimization 6
+   029B 26 05         [ 3]  450 	bne	L23
+   029D C6 01         [ 2]  451 	ldb	#1
+   029F F7 00 00      [ 5]  452 	stb	_current_level
+   02A2                     453 L23:
+   02A2 39            [ 5]  454 	rts
+                            455 	.area .bss
+                            456 	.globl	_bullets
+   0000                     457 _bullets:	.blkb	60
+                            458 	.globl	_rotated_tower1
+   003C                     459 _rotated_tower1:	.blkb	42
+                            460 	.globl	_rotated_tower2
+   0066                     461 _rotated_tower2:	.blkb	42
+                            462 	.globl	_rotated_tower3
+   0090                     463 _rotated_tower3:	.blkb	15
+                            464 	.globl	_rotated_tower4
+   009F                     465 _rotated_tower4:	.blkb	21
+                            466 	.globl	_rotated_tower5
+   00B4                     467 _rotated_tower5:	.blkb	27
+                            468 	.globl	_rotated_tower6
+   00CF                     469 _rotated_tower6:	.blkb	27
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+  2 L10                01B3 R   |   2 L11                0212 R
+  2 L16                0263 R   |   2 L17                0272 R
+  2 L18                0281 R   |   2 L2                 0198 R
+  2 L20                028F R   |   2 L23                02A2 R
+  2 L3                 00EC R   |   2 L4                 0109 R
+  2 L5                 0126 R   |   2 L6                 0143 R
+  2 L7                 015F R   |   2 L8                 017B R
+  2 L9                 00E0 R   |     __Moveto_d         **** GX
+    __Rot_VL_Mode      **** GX  |     ___Draw_VLp        **** GX
+    ___Reset0Ref       **** GX  |   4 _bullets           0000 GR
+  3 _cnt               000A GR  |     _current_level     **** GX
+    _dp_VIA_t1_cnt     **** GX  |   2 _draw_tower        00AE GR
+  2 _handle_tower      0292 GR  |   2 _init_tower        021E GR
+  3 _rate.3351         000B R   |   4 _rotated_tower     003C GR
+  4 _rotated_tower     0066 GR  |   4 _rotated_tower     0090 GR
+  4 _rotated_tower     009F GR  |   4 _rotated_tower     00B4 GR
+  4 _rotated_tower     00CF GR  |   3 _tower             0006 GR
+  3 _towerBullet_1     0000 GR  |   3 _towerBullet_2     0001 GR
+  3 _towerBullet_3     0002 GR  |   3 _towerBullet_4     0003 GR
+  3 _towerBullet_5     0004 GR  |   3 _towerBullet_6     0005 GR
+  2 _tower_shot        0255 GR  |   2 _vectors_tower     0000 GR
+  2 _vectors_tower     002A GR  |   2 _vectors_tower     0054 GR
+  2 _vectors_tower     0063 GR  |   2 _vectors_tower     0078 GR
+  2 _vectors_tower     0093 GR
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size    0   flags C080
+   2 .text            size  2A3   flags  100
+   3 .data            size    C   flags  100
+   4 .bss             size   EA   flags    0
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+

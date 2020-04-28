@@ -1,0 +1,183 @@
+                              1 
+                              2 ;;; gcc for m6809 : Feb 15 2016 21:40:10
+                              3 ;;; 4.3.6 (gcc6809)
+                              4 ;;; ABI version 1
+                              5 ;;; -mint8
+                              6 	.module	player.c
+                              7 	.globl _vectors_player
+                              8 	.area .text
+   0000                       9 _vectors_player:
+   0000 FF                   10 	.byte	-1
+   0001 04                   11 	.byte	4
+   0002 00                   12 	.byte	0
+   0003 FF                   13 	.byte	-1
+   0004 00                   14 	.byte	0
+   0005 0C                   15 	.byte	12
+   0006 FF                   16 	.byte	-1
+   0007 04                   17 	.byte	4
+   0008 00                   18 	.byte	0
+   0009 FF                   19 	.byte	-1
+   000A F8                   20 	.byte	-8
+   000B 28                   21 	.byte	40
+   000C FF                   22 	.byte	-1
+   000D F8                   23 	.byte	-8
+   000E D8                   24 	.byte	-40
+   000F FF                   25 	.byte	-1
+   0010 04                   26 	.byte	4
+   0011 00                   27 	.byte	0
+   0012 FF                   28 	.byte	-1
+   0013 00                   29 	.byte	0
+   0014 F4                   30 	.byte	-12
+   0015 FF                   31 	.byte	-1
+   0016 04                   32 	.byte	4
+   0017 00                   33 	.byte	0
+   0018 01                   34 	.byte	1
+   0019 00                   35 	.byte	0
+   001A 00                   36 	.byte	0
+                             37 	.globl _player
+                             38 	.area .data
+   0000                      39 _player:
+   0000 00 00                40 	.word	0	;skip space 2
+                             41 	.area .text
+                             42 	.globl _draw_player
+   001B                      43 _draw_player:
+   001B 32 E8 E4      [ 5]   44 	leas	-28,s
+   001E BD 00 00      [ 8]   45 	jsr	___Reset0Ref
+   0021 C6 7F         [ 2]   46 	ldb	#127
+   0023 D7 00         [ 4]   47 	stb	*_dp_VIA_t1_cnt_lo
+   0025 6F E2         [ 8]   48 	clr	,-s
+   0027 5F            [ 2]   49 	clrb
+   0028 BD 00 00      [ 8]   50 	jsr	__Moveto_d
+   002B 32 61         [ 5]   51 	leas	1,s
+   002D C6 22         [ 2]   52 	ldb	#34
+   002F D7 00         [ 4]   53 	stb	*_dp_VIA_t1_cnt_lo
+   0031 F6 00 01      [ 5]   54 	ldb	_player+1
+   0034 E7 E8 1B      [ 5]   55 	stb	27,s
+   0037 30 E4         [ 4]   56 	leax	,s
+   0039 34 10         [ 6]   57 	pshs	x
+   003B 8E 00 00      [ 3]   58 	ldx	#_vectors_player
+   003E E6 E8 1D      [ 5]   59 	ldb	29,s
+   0041 BD 00 00      [ 8]   60 	jsr	__Rot_VL_Mode
+   0044 32 62         [ 5]   61 	leas	2,s
+   0046 30 E4         [ 4]   62 	leax	,s
+   0048 BD 00 00      [ 8]   63 	jsr	___Draw_VLp
+   004B 32 E8 1C      [ 5]   64 	leas	28,s
+   004E 39            [ 5]   65 	rts
+                             66 	.globl _init_player
+   004F                      67 _init_player:
+   004F 7F 00 00      [ 7]   68 	clr	_player
+   0052 7F 00 01      [ 7]   69 	clr	_player+1
+   0055 39            [ 5]   70 	rts
+                             71 	.globl _rotate_player
+   0056                      72 _rotate_player:
+   0056 32 7D         [ 5]   73 	leas	-3,s
+   0058 C6 01         [ 2]   74 	ldb	#1
+   005A E7 62         [ 5]   75 	stb	2,s
+   005C BD 00 00      [ 8]   76 	jsr	___Joy_Digital
+   005F F6 00 00      [ 5]   77 	ldb	_Vec_Joy_1_X
+   0062 6F E4         [ 6]   78 	clr	,s
+   0064 5D            [ 2]   79 	tstb
+   0065 2C 04         [ 3]   80 	bge	L6
+   0067 C6 01         [ 2]   81 	ldb	#1
+   0069 E7 E4         [ 4]   82 	stb	,s
+   006B                      83 L6:
+   006B E6 E4         [ 4]   84 	ldb	,s
+                             85 	; tstb	; optimization 6
+   006D 27 11         [ 3]   86 	beq	L7
+   006F F6 00 01      [ 5]   87 	ldb	_player+1
+   0072 EB 62         [ 5]   88 	addb	2,s
+   0074 F7 00 01      [ 5]   89 	stb	_player+1
+                             90 	; ldb	_player+1	; optimization 5
+   0077 C1 3E         [ 2]   91 	cmpb	#62	;cmpqi:
+   0079 23 26         [ 3]   92 	bls	L11
+   007B 7F 00 01      [ 7]   93 	clr	_player+1
+   007E 20 21         [ 3]   94 	bra	L11
+   0080                      95 L7:
+   0080 F6 00 00      [ 5]   96 	ldb	_Vec_Joy_1_X
+   0083 6F 61         [ 7]   97 	clr	1,s
+   0085 5D            [ 2]   98 	tstb
+   0086 2F 04         [ 3]   99 	ble	L10
+   0088 C6 01         [ 2]  100 	ldb	#1
+   008A E7 61         [ 5]  101 	stb	1,s
+   008C                     102 L10:
+   008C E6 61         [ 5]  103 	ldb	1,s
+                            104 	; tstb	; optimization 6
+   008E 27 11         [ 3]  105 	beq	L11
+   0090 F6 00 01      [ 5]  106 	ldb	_player+1
+   0093 E0 62         [ 5]  107 	subb	2,s
+   0095 F7 00 01      [ 5]  108 	stb	_player+1
+                            109 	; ldb	_player+1	; optimization 5
+   0098 C1 40         [ 2]  110 	cmpb	#64	;cmpqi:
+   009A 23 05         [ 3]  111 	bls	L11
+   009C C6 3F         [ 2]  112 	ldb	#63
+   009E F7 00 01      [ 5]  113 	stb	_player+1
+   00A1                     114 L11:
+   00A1 32 63         [ 5]  115 	leas	3,s
+   00A3 39            [ 5]  116 	rts
+                            117 	.globl _shot_player
+   00A4                     118 _shot_player:
+   00A4 32 7D         [ 5]  119 	leas	-3,s
+   00A6 BD 00 00      [ 8]  120 	jsr	___Joy_Digital
+   00A9 6F 61         [ 7]  121 	clr	1,s
+   00AB 6F 62         [ 7]  122 	clr	2,s
+   00AD F6 00 00      [ 5]  123 	ldb	_Vec_Joy_1_Y
+   00B0 6F E4         [ 6]  124 	clr	,s
+   00B2 5D            [ 2]  125 	tstb
+   00B3 2F 04         [ 3]  126 	ble	L13
+   00B5 C6 01         [ 2]  127 	ldb	#1
+   00B7 E7 E4         [ 4]  128 	stb	,s
+   00B9                     129 L13:
+   00B9 E6 E4         [ 4]  130 	ldb	,s
+                            131 	; tstb	; optimization 6
+   00BB 27 0E         [ 3]  132 	beq	L15
+   00BD F6 00 01      [ 5]  133 	ldb	_player+1
+   00C0 34 04         [ 6]  134 	pshs	b
+   00C2 C6 03         [ 2]  135 	ldb	#3
+   00C4 AE 62         [ 6]  136 	ldx	2,s
+   00C6 BD 00 00      [ 8]  137 	jsr	_fire_bullet
+   00C9 32 61         [ 5]  138 	leas	1,s
+   00CB                     139 L15:
+   00CB 32 63         [ 5]  140 	leas	3,s
+   00CD 39            [ 5]  141 	rts
+                            142 	.globl _handle_player
+   00CE                     143 _handle_player:
+   00CE BD 00 56      [ 8]  144 	jsr	_rotate_player
+   00D1 BD 00 1B      [ 8]  145 	jsr	_draw_player
+   00D4 BD 00 A4      [ 8]  146 	jsr	_shot_player
+   00D7 39            [ 5]  147 	rts
+                            148 	.area .bss
+                            149 	.globl	_bullets
+   0000                     150 _bullets:	.blkb	60
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+  2 L10                008C R   |   2 L11                00A1 R
+  2 L13                00B9 R   |   2 L15                00CB R
+  2 L6                 006B R   |   2 L7                 0080 R
+    _Vec_Joy_1_X       **** GX  |     _Vec_Joy_1_Y       **** GX
+    __Moveto_d         **** GX  |     __Rot_VL_Mode      **** GX
+    ___Draw_VLp        **** GX  |     ___Joy_Digital     **** GX
+    ___Reset0Ref       **** GX  |   4 _bullets           0000 GR
+    _dp_VIA_t1_cnt     **** GX  |   2 _draw_player       001B GR
+    _fire_bullet       **** GX  |   2 _handle_player     00CE GR
+  2 _init_player       004F GR  |   3 _player            0000 GR
+  2 _rotate_player     0056 GR  |   2 _shot_player       00A4 GR
+  2 _vectors_playe     0000 GR
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size    0   flags C080
+   2 .text            size   D8   flags  100
+   3 .data            size    2   flags  100
+   4 .bss             size   3C   flags    0
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+

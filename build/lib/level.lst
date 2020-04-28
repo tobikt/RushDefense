@@ -1,0 +1,193 @@
+                              1 
+                              2 ;;; gcc for m6809 : Feb 15 2016 21:40:10
+                              3 ;;; 4.3.6 (gcc6809)
+                              4 ;;; ABI version 1
+                              5 ;;; -mint8
+                              6 	.module	level.c
+                              7 	.globl _current_level
+                              8 	.area .data
+   0000                       9 _current_level:
+   0000 01                   10 	.byte	1
+   0001 00                   11 	.byte	0
+   0002 00                   12 	.byte	0
+                             13 	.area .text
+   0000                      14 LC0:
+   0000 4C                   15 	.byte	0x4C
+   0001 45                   16 	.byte	0x45
+   0002 56                   17 	.byte	0x56
+   0003 45                   18 	.byte	0x45
+   0004 4C                   19 	.byte	0x4C
+   0005 80                   20 	.byte	0x80
+   0006 00                   21 	.byte	0x00
+   0007                      22 LC1:
+   0007 50                   23 	.byte	0x50
+   0008 4C                   24 	.byte	0x4C
+   0009 41                   25 	.byte	0x41
+   000A 59                   26 	.byte	0x59
+   000B 45                   27 	.byte	0x45
+   000C 52                   28 	.byte	0x52
+   000D 80                   29 	.byte	0x80
+   000E 00                   30 	.byte	0x00
+                             31 	.globl _level_init
+   000F                      32 _level_init:
+   000F 32 7E         [ 5]   33 	leas	-2,s
+   0011 BD 00 00      [ 8]   34 	jsr	_init_enemies
+   0014 BD 00 00      [ 8]   35 	jsr	_init_bullets
+   0017 C6 64         [ 2]   36 	ldb	#100
+   0019 E7 E4         [ 4]   37 	stb	,s
+   001B                      38 L3:
+   001B BD 00 00      [ 8]   39 	jsr	_Sync
+   001E BD 00 00      [ 8]   40 	jsr	___Read_Btns
+   0021 BD 00 00      [ 8]   41 	jsr	___Intensity_5F
+   0024 C6 9C         [ 2]   42 	ldb	#-100
+   0026 E7 E2         [ 6]   43 	stb	,-s
+   0028 8E 00 00      [ 3]   44 	ldx	#LC0
+   002B C6 3C         [ 2]   45 	ldb	#60
+   002D BD 00 00      [ 8]   46 	jsr	_print_string
+   0030 32 61         [ 5]   47 	leas	1,s
+   0032 F6 00 09      [ 5]   48 	ldb	_current_game+9
+   0035 4F            [ 2]   49 	clra		;zero_extendqihi: R:b -> R:d
+   0036 1F 01         [ 6]   50 	tfr	d,x
+   0038 E6 89 00 05   [ 8]   51 	ldb	_current_game+5,x
+   003C 34 04         [ 6]   52 	pshs	b
+   003E C6 28         [ 2]   53 	ldb	#40
+   0040 E7 E2         [ 6]   54 	stb	,-s
+   0042 C6 3C         [ 2]   55 	ldb	#60
+   0044 BD 00 00      [ 8]   56 	jsr	_print_unsigned_int
+   0047 32 62         [ 5]   57 	leas	2,s
+   0049 C6 9C         [ 2]   58 	ldb	#-100
+   004B E7 E2         [ 6]   59 	stb	,-s
+   004D 8E 00 07      [ 3]   60 	ldx	#LC1
+   0050 C6 14         [ 2]   61 	ldb	#20
+   0052 BD 00 00      [ 8]   62 	jsr	_print_string
+   0055 32 61         [ 5]   63 	leas	1,s
+   0057 F6 00 09      [ 5]   64 	ldb	_current_game+9
+   005A 5C            [ 2]   65 	incb
+   005B 34 04         [ 6]   66 	pshs	b
+   005D C6 28         [ 2]   67 	ldb	#40
+   005F E7 E2         [ 6]   68 	stb	,-s
+   0061 C6 14         [ 2]   69 	ldb	#20
+   0063 BD 00 00      [ 8]   70 	jsr	_print_unsigned_int
+   0066 32 62         [ 5]   71 	leas	2,s
+   0068 F6 00 09      [ 5]   72 	ldb	_current_game+9
+   006B 4F            [ 2]   73 	clra		;zero_extendqihi: R:b -> R:d
+   006C 1F 01         [ 6]   74 	tfr	d,x
+   006E E6 89 00 03   [ 8]   75 	ldb	_current_game+3,x
+   0072 E7 61         [ 5]   76 	stb	1,s
+   0074 C6 69         [ 2]   77 	ldb	#105
+   0076 E7 E2         [ 6]   78 	stb	,-s
+   0078 8E C0 E2      [ 3]   79 	ldx	#-16158
+   007B E6 62         [ 5]   80 	ldb	2,s
+   007D BD 00 00      [ 8]   81 	jsr	__Print_Ships
+   0080 32 61         [ 5]   82 	leas	1,s
+   0082 6A E4         [ 6]   83 	dec	,s
+                             84 	; tst	,s	; optimization 1
+   0084 27 0A         [ 3]   85 	beq	L2
+   0086 F6 00 00      [ 5]   86 	ldb	_Vec_Buttons
+   0089 C4 08         [ 2]   87 	andb	#8
+   008B 5D            [ 2]   88 	tstb
+   008C 10 27 FF 8B   [ 6]   89 	lbeq	L3
+   0090                      90 L2:
+   0090 7F 00 00      [ 7]   91 	clr	_current_level
+   0093 7F 00 02      [ 7]   92 	clr	_current_level+2
+   0096 32 62         [ 5]   93 	leas	2,s
+   0098 39            [ 5]   94 	rts
+                             95 	.globl _level_play
+   0099                      96 _level_play:
+   0099 32 7B         [ 5]   97 	leas	-5,s
+   009B 7E 01 04      [ 4]   98 	jmp	L6
+   009E                      99 L9:
+   009E BD 00 00      [ 8]  100 	jsr	___DP_to_C8
+   00A1 BE 00 00      [ 6]  101 	ldx	_current_explosion
+   00A4 AF 61         [ 6]  102 	stx	1,s
+                            103 	; ldx	1,s	; optimization 5
+   00A6 BD 00 00      [ 8]  104 	jsr	__Explosion_Snd
+   00A9 BE 00 00      [ 6]  105 	ldx	_current_music
+   00AC AF 63         [ 6]  106 	stx	3,s
+                            107 	; ldx	3,s	; optimization 5
+   00AE BD 00 00      [ 8]  108 	jsr	__Init_Music_chk
+   00B1 BD 00 00      [ 8]  109 	jsr	___Wait_Recal
+   00B4 BD 00 00      [ 8]  110 	jsr	__Do_Sound
+   00B7 BD 00 00      [ 8]  111 	jsr	___Intensity_5F
+   00BA F6 00 09      [ 5]  112 	ldb	_current_game+9
+   00BD 4F            [ 2]  113 	clra		;zero_extendqihi: R:b -> R:d
+   00BE 1F 01         [ 6]  114 	tfr	d,x
+   00C0 E6 89 00 07   [ 8]  115 	ldb	_current_game+7,x
+   00C4 34 04         [ 6]  116 	pshs	b
+   00C6 C6 9C         [ 2]  117 	ldb	#-100
+   00C8 E7 E2         [ 6]  118 	stb	,-s
+   00CA C6 78         [ 2]  119 	ldb	#120
+   00CC BD 00 00      [ 8]  120 	jsr	_print_unsigned_int
+   00CF 32 62         [ 5]  121 	leas	2,s
+   00D1 BD 00 00      [ 8]  122 	jsr	_handle_enemies
+   00D4 BD 00 00      [ 8]  123 	jsr	_handle_player
+   00D7 BD 00 00      [ 8]  124 	jsr	_handle_tower
+   00DA BD 00 00      [ 8]  125 	jsr	_draw_bullets
+   00DD F6 00 02      [ 5]  126 	ldb	_current_level+2
+   00E0 5C            [ 2]  127 	incb
+   00E1 F7 00 02      [ 5]  128 	stb	_current_level+2
+                            129 	; ldb	_current_level+2	; optimization 5
+   00E4 E7 E4         [ 4]  130 	stb	,s
+   00E6 F6 00 09      [ 5]  131 	ldb	_current_game+9
+   00E9 4F            [ 2]  132 	clra		;zero_extendqihi: R:b -> R:d
+   00EA 1F 01         [ 6]  133 	tfr	d,x
+   00EC E6 89 00 05   [ 8]  134 	ldb	_current_game+5,x
+   00F0 E1 E4         [ 4]  135 	cmpb	,s	;cmpqi:(R)
+   00F2 26 03         [ 3]  136 	bne	L7
+   00F4 7F 00 02      [ 7]  137 	clr	_current_level+2
+   00F7                     138 L7:
+   00F7 F6 00 00      [ 5]  139 	ldb	_tower
+                            140 	; tstb	; optimization 6
+   00FA 26 05         [ 3]  141 	bne	L8
+   00FC C6 01         [ 2]  142 	ldb	#1
+   00FE F7 00 00      [ 5]  143 	stb	_current_level
+   0101                     144 L8:
+   0101 BD 00 00      [ 8]  145 	jsr	_check_AllEnemysDeath
+   0104                     146 L6:
+   0104 F6 00 00      [ 5]  147 	ldb	_current_level
+                            148 	; tstb	; optimization 6
+   0107 10 27 FF 93   [ 6]  149 	lbeq	L9
+   010B 32 65         [ 5]  150 	leas	5,s
+   010D 39            [ 5]  151 	rts
+                            152 	.area .bss
+                            153 	.globl	_bullets
+   0000                     154 _bullets:	.blkb	60
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+  3 L2                 0090 R   |   3 L3                 001B R
+  3 L6                 0104 R   |   3 L7                 00F7 R
+  3 L8                 0101 R   |   3 L9                 009E R
+  3 LC0                0000 R   |   3 LC1                0007 R
+    _Sync              **** GX  |     _Vec_Buttons       **** GX
+    __Do_Sound         **** GX  |     __Explosion_Sn     **** GX
+    __Init_Music_c     **** GX  |     __Print_Ships      **** GX
+    ___DP_to_C8        **** GX  |     ___Intensity_5     **** GX
+    ___Read_Btns       **** GX  |     ___Wait_Recal      **** GX
+  4 _bullets           0000 GR  |     _check_AllEnem     **** GX
+    _current_explo     **** GX  |     _current_game      **** GX
+  2 _current_level     0000 GR  |     _current_music     **** GX
+    _draw_bullets      **** GX  |     _handle_enemie     **** GX
+    _handle_player     **** GX  |     _handle_tower      **** GX
+    _init_bullets      **** GX  |     _init_enemies      **** GX
+  3 _level_init        000F GR  |   3 _level_play        0099 GR
+    _print_string      **** GX  |     _print_unsigne     **** GX
+    _tower             **** GX
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size    0   flags C080
+   2 .data            size    3   flags  100
+   3 .text            size  10E   flags  100
+   4 .bss             size   3C   flags    0
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+
