@@ -37,6 +37,7 @@ _vectors_player:
 	.globl _player
 	.area .data
 _player:
+	.word	0	;skip space 4
 	.word	0	;skip space 2
 	.area .text
 	.globl _draw_player
@@ -67,6 +68,9 @@ _draw_player:
 _init_player:
 	clr	_player
 	clr	_player+1
+	clr	_player+2
+	ldb	#1
+	stb	_player+3
 	rts
 	.globl _rotate_player
 _rotate_player:
@@ -114,30 +118,50 @@ L10:
 L11:
 	leas	3,s
 	rts
+	.area .data
+_timerFireRate.3281:
+	.byte	20
+	.area .text
 	.globl _shot_player
 _shot_player:
-	leas	-3,s
+	leas	-6,s
 	jsr	___Joy_Digital
-	clr	1,s
-	clr	2,s
-	ldb	_Vec_Joy_1_Y
-	clr	,s
-	tstb
-	ble	L13
-	ldb	#1
+	clr	4,s
+	clr	5,s
+	ldb	_player+3
+	stb	1,s
+	ldb	_timerFireRate.3281
+	cmpb	1,s	;cmpqi:(R)
+	bls	L13
+	ldb	_timerFireRate.3281
 	stb	,s
-L13:
+	ldb	_player+3
+	stb	2,s
 	ldb	,s
+	subb	2,s
+	stb	_timerFireRate.3281
+	bra	L16
+L13:
+	ldb	_Vec_Joy_1_Y
+	clr	3,s
+	tstb
+	ble	L15
+	ldb	#1
+	stb	3,s
+L15:
+	ldb	3,s
 	; tstb	; optimization 6
-	beq	L15
+	beq	L16
 	ldb	_player+1
 	pshs	b
 	ldb	#3
-	ldx	2,s
+	ldx	5,s
 	jsr	_fire_bullet
 	leas	1,s
-L15:
-	leas	3,s
+	ldb	#20
+	stb	_timerFireRate.3281
+L16:
+	leas	6,s
 	rts
 	.globl _handle_player
 _handle_player:

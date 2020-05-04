@@ -1651,7 +1651,7 @@ static inline __attribute__((always_inline)) void Wait_Bound(void)
 # 45 "..\\..\\gcc6809\\vectrex\\include/vec_rum.h" 2
 # 44 "..\\..\\gcc6809\\vectrex\\include/vectrex.h" 2
 # 6 "source\\object.c" 2
-# 1 "source\\/level.h" 1
+# 1 "source\\/wave.h" 1
 
 
 
@@ -1660,30 +1660,35 @@ static inline __attribute__((always_inline)) void Wait_Bound(void)
 
 
 
-enum level_status_t
+enum wave_status_t
 {
- LEVEL_PLAY,
- LEVEL_LOST,
- LEVEL_WON,
+ WAVE_PLAY,
+ WAVE_LOST,
+ WAVE_WON,
+ PHASE_WON,
 };
 
 
 
-struct level_t
+struct wave_t
 {
- enum level_status_t status;
+ unsigned int wave_lvl;
+ unsigned int phase;
+ unsigned int maxPhase;
+
+ enum wave_status_t status;
  unsigned int count;
  unsigned int frame;
 };
 
 
 
-extern struct level_t current_level;
+extern struct wave_t current_wave;
 
 
 
-void level_init(void);
-void level_play(void);
+void wave_init(void);
+void wave_play(void);
 # 7 "source\\object.c" 2
 # 1 "source\\/object.h" 1
 
@@ -1710,6 +1715,8 @@ struct object_t
  int x;
  int dy;
  int dx;
+ unsigned int damage;
+
 };
 
 
@@ -1821,37 +1828,62 @@ struct vector2 LookUpAngle[] =
      { - 1 , 10 },
 };
 # 9 "source\\object.c" 2
+# 1 "source\\/game.h" 1
+
+
+
+
+       
+
+
+
+enum gamePhase_state_t
+{
+ GAMEPHASE_ATTACK,
+ GAMEPHASE_MENUE,
+};
+
+
+
+struct game_t
+{
+ enum gamePhase_state_t gamePhase;
+ unsigned int option_mode;
+ unsigned int lives;
+ unsigned int level;
+ unsigned int score;
+};
+
+
+
+extern struct game_t current_game;
+
+
+
+int game(void);
+
+void game_init(void);
+void game_play(void);
+void game_over(void);
+void game_win(void);
+# 10 "source\\object.c" 2
 
 
 
 void init_object(struct object_t* p)
 {
- p->status = ACTIVE;
-
- p->y = 64 + (int) (Random() & 0b01111110);
- p->x = 64 + (int) (Random() & 0b01111110);
 
 
-
-
-
-
-
- p->dy = (int) (Random() & 0b00000011) - 2;
- p->dx = (int) (Random() & 0b00000011) - 1;
-
-
-
-
-
+ p->damage = 10;
+# 29 "source\\object.c"
 }
 
 
 void move_object(struct object_t* p)
 {
- if (current_level.frame != 0)
+ if (current_wave.frame != 0)
  {
-  p->y -= p->dy;
-  p->x -= p->dx;
+  p->y += p->dy;
+  p->x += p->dx;
  }
 }

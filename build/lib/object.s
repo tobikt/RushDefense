@@ -140,34 +140,16 @@ _LookUpAngle:
 _init_object:
 	leas	-2,s
 	stx	,s
-	clr	[,s]
-	jsr	__Random
-	andb	#126
-	addb	#64
-	ldx	,s
-	stb	1,x
-	jsr	__Random
-	andb	#126
-	addb	#64
-	ldx	,s
-	stb	2,x
-	jsr	__Random
-	andb	#3
-	addb	#-2
-	ldx	,s
-	stb	3,x
-	jsr	__Random
-	andb	#3
-	decb
-	ldx	,s
-	stb	4,x
+	; ldx	,s	; optimization 5
+	ldb	#10
+	stb	5,x
 	leas	2,s
 	rts
 	.globl _move_object
 _move_object:
 	leas	-4,s
 	stx	2,s
-	ldb	_current_level+2
+	ldb	_current_wave+5
 	; tstb	; optimization 6
 	beq	L5
 	ldx	2,s
@@ -175,8 +157,7 @@ _move_object:
 	stb	,s
 	ldx	2,s
 	ldb	3,x
-	subb	,s
-	negb
+	addb	,s
 	ldx	2,s
 	stb	1,x
 	ldx	2,s
@@ -184,8 +165,7 @@ _move_object:
 	stb	1,s
 	ldx	2,s
 	ldb	4,x
-	subb	1,s
-	negb
+	addb	1,s
 	ldx	2,s
 	stb	2,x
 L5:

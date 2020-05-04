@@ -22,7 +22,7 @@ _game_header:
 	.byte	-8
 	.byte	80
 	.byte	24
-	.byte	-64
+	.byte	-75
 	.byte	0x52
 	.byte	0x55
 	.byte	0x53

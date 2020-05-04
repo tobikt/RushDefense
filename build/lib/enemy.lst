@@ -4,253 +4,1259 @@
                               4 ;;; ABI version 1
                               5 ;;; -mint8
                               6 	.module	enemy.c
-                              7 	.globl _enemies
-                              8 	.area .data
-   0000                       9 _enemies:
-   0000 01                   10 	.byte	1
-   0001 00                   11 	.byte	0
-   0002 00                   12 	.byte	0
-   0003 00                   13 	.byte	0
-   0004 00                   14 	.byte	0
-                             15 	.globl _vectors_enemy
-                             16 	.area .text
-   0000                      17 _vectors_enemy:
-   0000 00                   18 	.byte	0
-   0001 10                   19 	.byte	16
-   0002 00                   20 	.byte	0
-   0003 FF                   21 	.byte	-1
-   0004 F0                   22 	.byte	-16
-   0005 00                   23 	.byte	0
-   0006 FF                   24 	.byte	-1
-   0007 F0                   25 	.byte	-16
-   0008 10                   26 	.byte	16
-   0009 FF                   27 	.byte	-1
-   000A F0                   28 	.byte	-16
-   000B 00                   29 	.byte	0
-   000C FF                   30 	.byte	-1
-   000D 00                   31 	.byte	0
-   000E 10                   32 	.byte	16
-   000F FF                   33 	.byte	-1
-   0010 F0                   34 	.byte	-16
-   0011 F0                   35 	.byte	-16
-   0012 FF                   36 	.byte	-1
-   0013 10                   37 	.byte	16
-   0014 F0                   38 	.byte	-16
-   0015 FF                   39 	.byte	-1
-   0016 F0                   40 	.byte	-16
-   0017 F0                   41 	.byte	-16
-   0018 FF                   42 	.byte	-1
-   0019 10                   43 	.byte	16
-   001A F0                   44 	.byte	-16
-   001B FF                   45 	.byte	-1
-   001C 00                   46 	.byte	0
-   001D 10                   47 	.byte	16
-   001E FF                   48 	.byte	-1
-   001F 10                   49 	.byte	16
-   0020 00                   50 	.byte	0
-   0021 FF                   51 	.byte	-1
-   0022 10                   52 	.byte	16
-   0023 10                   53 	.byte	16
-   0024 01                   54 	.byte	1
-   0025 00                   55 	.byte	0
-   0026 00                   56 	.byte	0
-                             57 	.globl _draw_enemy
-   0027                      58 _draw_enemy:
-   0027 32 7B         [ 5]   59 	leas	-5,s
-   0029 AF 61         [ 6]   60 	stx	1,s
-   002B BD 00 00      [ 8]   61 	jsr	___Reset0Ref
-   002E C6 7F         [ 2]   62 	ldb	#127
-   0030 D7 00         [ 4]   63 	stb	*_dp_VIA_t1_cnt_lo
-   0032 AE 61         [ 6]   64 	ldx	1,s
-   0034 E6 02         [ 5]   65 	ldb	2,x
-   0036 E7 E4         [ 4]   66 	stb	,s
-   0038 AE 61         [ 6]   67 	ldx	1,s
-   003A E6 01         [ 5]   68 	ldb	1,x
-   003C E7 64         [ 5]   69 	stb	4,s
-   003E E6 E4         [ 4]   70 	ldb	,s
-   0040 E7 63         [ 5]   71 	stb	3,s
-   0042 E6 64         [ 5]   72 	ldb	4,s
-   0044 E7 E2         [ 6]   73 	stb	,-s
-   0046 E6 64         [ 5]   74 	ldb	4,s
-   0048 BD 00 00      [ 8]   75 	jsr	__Moveto_d
-   004B 32 61         [ 5]   76 	leas	1,s
-   004D C6 22         [ 2]   77 	ldb	#34
-   004F D7 00         [ 4]   78 	stb	*_dp_VIA_t1_cnt_lo
-   0051 8E 00 00      [ 3]   79 	ldx	#_vectors_enemy
-   0054 BD 00 00      [ 8]   80 	jsr	___Draw_VLp
-   0057 32 65         [ 5]   81 	leas	5,s
-   0059 39            [ 5]   82 	rts
-                             83 	.globl _check_enemy
-   005A                      84 _check_enemy:
-   005A 32 7C         [ 5]   85 	leas	-4,s
-   005C AF 62         [ 6]   86 	stx	2,s
-                             87 	; ldx	2,s	; optimization 5
-   005E E6 02         [ 5]   88 	ldb	2,x
-   0060 E7 E4         [ 4]   89 	stb	,s
-   0062 AE 62         [ 6]   90 	ldx	2,s
-   0064 E6 01         [ 5]   91 	ldb	1,x
-   0066 E7 61         [ 5]   92 	stb	1,s
-   0068 C6 08         [ 2]   93 	ldb	#8
-   006A E7 E2         [ 6]   94 	stb	,-s
-   006C C6 08         [ 2]   95 	ldb	#8
-   006E E7 E2         [ 6]   96 	stb	,-s
-   0070 E6 62         [ 5]   97 	ldb	2,s
-   0072 34 04         [ 6]   98 	pshs	b
-   0074 E6 64         [ 5]   99 	ldb	4,s
-   0076 34 04         [ 6]  100 	pshs	b
-   0078 6F E2         [ 8]  101 	clr	,-s
-   007A 5F            [ 2]  102 	clrb
-   007B BD 00 00      [ 8]  103 	jsr	_check_collision
-   007E 32 65         [ 5]  104 	leas	5,s
-   0080 5D            [ 2]  105 	tstb
-   0081 27 09         [ 3]  106 	beq	L5
-   0083 8E 00 00      [ 3]  107 	ldx	#_bang
-   0086 BD 00 00      [ 8]  108 	jsr	_play_explosion
-   0089 7F 00 00      [ 7]  109 	clr	_tower
-   008C                     110 L5:
-   008C 32 64         [ 5]  111 	leas	4,s
-   008E 39            [ 5]  112 	rts
-                            113 	.globl _init_enemies
-   008F                     114 _init_enemies:
-   008F 32 7D         [ 5]  115 	leas	-3,s
-   0091 6F 62         [ 7]  116 	clr	2,s
-   0093 20 1E         [ 3]  117 	bra	L7
-   0095                     118 L8:
-   0095 E6 62         [ 5]  119 	ldb	2,s
-   0097 4F            [ 2]  120 	clra		;zero_extendqihi: R:b -> R:d
-   0098 1F 01         [ 6]  121 	tfr	d,x
-   009A AF E4         [ 5]  122 	stx	,s
-   009C EC E4         [ 5]  123 	ldd	,s
-   009E 58            [ 2]  124 	aslb
-   009F 49            [ 2]  125 	rola
-   00A0 58            [ 2]  126 	aslb
-   00A1 49            [ 2]  127 	rola
-   00A2 ED E4         [ 5]  128 	std	,s
-   00A4 1E 01         [ 8]  129 	exg	d,x
-   00A6 E3 E4         [ 6]  130 	addd	,s
-   00A8 1E 01         [ 8]  131 	exg	d,x
-   00AA 30 89 00 00   [ 8]  132 	leax	_enemies,x
-   00AE BD 00 00      [ 8]  133 	jsr	_init_object
-   00B1 6C 62         [ 7]  134 	inc	2,s
-   00B3                     135 L7:
-   00B3 6D 62         [ 7]  136 	tst	2,s
-   00B5 27 DE         [ 3]  137 	beq	L8
-   00B7 32 63         [ 5]  138 	leas	3,s
-   00B9 39            [ 5]  139 	rts
-                            140 	.globl _handle_enemies
-   00BA                     141 _handle_enemies:
-   00BA 34 40         [ 6]  142 	pshs	u
-   00BC 32 77         [ 5]  143 	leas	-9,s
-   00BE 6F 68         [ 7]  144 	clr	8,s
-   00C0 7E 01 36      [ 4]  145 	jmp	L11
-   00C3                     146 L13:
-   00C3 E6 68         [ 5]  147 	ldb	8,s
-   00C5 4F            [ 2]  148 	clra		;zero_extendqihi: R:b -> R:d
-   00C6 1F 01         [ 6]  149 	tfr	d,x
-   00C8 AF 66         [ 6]  150 	stx	6,s
-   00CA EC 66         [ 6]  151 	ldd	6,s
-   00CC 58            [ 2]  152 	aslb
-   00CD 49            [ 2]  153 	rola
-   00CE 58            [ 2]  154 	aslb
-   00CF 49            [ 2]  155 	rola
-   00D0 ED 66         [ 6]  156 	std	6,s
-                            157 	; ldd	6,s	; optimization 5
-   00D2 30 8B         [ 8]  158 	leax	d,x
-   00D4 AF 66         [ 6]  159 	stx	6,s
-   00D6 EE 66         [ 6]  160 	ldu	6,s
-   00D8 30 C9 00 00   [ 8]  161 	leax	_enemies,u
-   00DC E6 84         [ 4]  162 	ldb	,x
-                            163 	; tstb	; optimization 6
-   00DE 26 54         [ 3]  164 	bne	L12
-   00E0 E6 68         [ 5]  165 	ldb	8,s
-   00E2 4F            [ 2]  166 	clra		;zero_extendqihi: R:b -> R:d
-   00E3 1F 01         [ 6]  167 	tfr	d,x
-   00E5 AF 64         [ 6]  168 	stx	4,s
-   00E7 EC 64         [ 6]  169 	ldd	4,s
-   00E9 58            [ 2]  170 	aslb
-   00EA 49            [ 2]  171 	rola
-   00EB 58            [ 2]  172 	aslb
-   00EC 49            [ 2]  173 	rola
-   00ED ED 64         [ 6]  174 	std	4,s
-   00EF 1E 01         [ 8]  175 	exg	d,x
-   00F1 E3 64         [ 7]  176 	addd	4,s
-   00F3 1E 01         [ 8]  177 	exg	d,x
-   00F5 30 89 00 00   [ 8]  178 	leax	_enemies,x
-   00F9 BD 00 00      [ 8]  179 	jsr	_move_object
-   00FC E6 68         [ 5]  180 	ldb	8,s
-   00FE 4F            [ 2]  181 	clra		;zero_extendqihi: R:b -> R:d
-   00FF 1F 01         [ 6]  182 	tfr	d,x
-   0101 AF 62         [ 6]  183 	stx	2,s
-   0103 EC 62         [ 6]  184 	ldd	2,s
-   0105 58            [ 2]  185 	aslb
-   0106 49            [ 2]  186 	rola
-   0107 58            [ 2]  187 	aslb
-   0108 49            [ 2]  188 	rola
-   0109 ED 62         [ 6]  189 	std	2,s
-   010B 1E 01         [ 8]  190 	exg	d,x
-   010D E3 62         [ 7]  191 	addd	2,s
-   010F 1E 01         [ 8]  192 	exg	d,x
-   0111 30 89 00 00   [ 8]  193 	leax	_enemies,x
-   0115 BD 00 27      [ 8]  194 	jsr	_draw_enemy
-   0118 E6 68         [ 5]  195 	ldb	8,s
-   011A 4F            [ 2]  196 	clra		;zero_extendqihi: R:b -> R:d
-   011B 1F 01         [ 6]  197 	tfr	d,x
-   011D AF E4         [ 5]  198 	stx	,s
-   011F EC E4         [ 5]  199 	ldd	,s
-   0121 58            [ 2]  200 	aslb
-   0122 49            [ 2]  201 	rola
-   0123 58            [ 2]  202 	aslb
-   0124 49            [ 2]  203 	rola
-   0125 ED E4         [ 5]  204 	std	,s
-   0127 1E 01         [ 8]  205 	exg	d,x
-   0129 E3 E4         [ 6]  206 	addd	,s
-   012B 1E 01         [ 8]  207 	exg	d,x
-   012D 30 89 00 00   [ 8]  208 	leax	_enemies,x
-   0131 BD 00 5A      [ 8]  209 	jsr	_check_enemy
-   0134                     210 L12:
-   0134 6C 68         [ 7]  211 	inc	8,s
-   0136                     212 L11:
-   0136 6D 68         [ 7]  213 	tst	8,s
-   0138 10 27 FF 87   [ 6]  214 	lbeq	L13
-   013C 32 69         [ 5]  215 	leas	9,s
-   013E 35 C0         [ 7]  216 	puls	u,pc
-                            217 	.globl _check_AllEnemysDeath
-   0140                     218 _check_AllEnemysDeath:
-   0140 34 40         [ 6]  219 	pshs	u
-   0142 32 7D         [ 5]  220 	leas	-3,s
-   0144 6F 62         [ 7]  221 	clr	2,s
-   0146 20 1F         [ 3]  222 	bra	L16
-   0148                     223 L18:
-   0148 E6 62         [ 5]  224 	ldb	2,s
-   014A 4F            [ 2]  225 	clra		;zero_extendqihi: R:b -> R:d
-   014B 1F 01         [ 6]  226 	tfr	d,x
-   014D AF E4         [ 5]  227 	stx	,s
-   014F EC E4         [ 5]  228 	ldd	,s
-   0151 58            [ 2]  229 	aslb
-   0152 49            [ 2]  230 	rola
-   0153 58            [ 2]  231 	aslb
-   0154 49            [ 2]  232 	rola
-   0155 ED E4         [ 5]  233 	std	,s
-                            234 	; ldd	,s	; optimization 5
-   0157 30 8B         [ 8]  235 	leax	d,x
-   0159 AF E4         [ 5]  236 	stx	,s
-   015B EE E4         [ 5]  237 	ldu	,s
-   015D 30 C9 00 00   [ 8]  238 	leax	_enemies,u
-   0161 E6 84         [ 4]  239 	ldb	,x
-                            240 	; tstb	; optimization 6
-   0163 27 0B         [ 3]  241 	beq	L19
-   0165 6C 62         [ 7]  242 	inc	2,s
-   0167                     243 L16:
-   0167 6D 62         [ 7]  244 	tst	2,s
-   0169 27 DD         [ 3]  245 	beq	L18
-   016B C6 02         [ 2]  246 	ldb	#2
-   016D F7 00 00      [ 5]  247 	stb	_current_level
-   0170                     248 L19:
-   0170 32 63         [ 5]  249 	leas	3,s
-   0172 35 C0         [ 7]  250 	puls	u,pc
-                            251 	.area .bss
-                            252 	.globl	_bullets
-   0000                     253 _bullets:	.blkb	60
+                              7 	.globl _MAX_LEVELS
+                              8 	.area .text
+   0000                       9 _MAX_LEVELS:
+   0000 05                   10 	.byte	5
+                             11 	.globl _waveData
+   0001                      12 _waveData:
+   0001 01                   13 	.byte	1
+   0002 01                   14 	.byte	1
+   0003 01                   15 	.byte	1
+   0004 00                   16 	.byte	0
+   0005 00                   17 	.byte	0
+   0006 64                   18 	.byte	100
+   0007 00                   19 	.byte	0
+   0008 FF                   20 	.byte	-1
+   0009 0A                   21 	.byte	10
+   000A 00 00                22 	.word	0	;skip space 24
+   000C 00 00                23 	.word	0	;skip space 22
+   000E 00 00                24 	.word	0	;skip space 20
+   0010 00 00                25 	.word	0	;skip space 18
+   0012 00 00                26 	.word	0	;skip space 16
+   0014 00 00                27 	.word	0	;skip space 14
+   0016 00 00                28 	.word	0	;skip space 12
+   0018 00 00                29 	.word	0	;skip space 10
+   001A 00 00                30 	.word	0	;skip space 8
+   001C 00 00                31 	.word	0	;skip space 6
+   001E 00 00                32 	.word	0	;skip space 4
+   0020 00 00                33 	.word	0	;skip space 2
+   0022 00 00                34 	.word	0	;skip space 62
+   0024 00 00                35 	.word	0	;skip space 60
+   0026 00 00                36 	.word	0	;skip space 58
+   0028 00 00                37 	.word	0	;skip space 56
+   002A 00 00                38 	.word	0	;skip space 54
+   002C 00 00                39 	.word	0	;skip space 52
+   002E 00 00                40 	.word	0	;skip space 50
+   0030 00 00                41 	.word	0	;skip space 48
+   0032 00 00                42 	.word	0	;skip space 46
+   0034 00 00                43 	.word	0	;skip space 44
+   0036 00 00                44 	.word	0	;skip space 42
+   0038 00 00                45 	.word	0	;skip space 40
+   003A 00 00                46 	.word	0	;skip space 38
+   003C 00 00                47 	.word	0	;skip space 36
+   003E 00 00                48 	.word	0	;skip space 34
+   0040 00 00                49 	.word	0	;skip space 32
+   0042 00 00                50 	.word	0	;skip space 30
+   0044 00 00                51 	.word	0	;skip space 28
+   0046 00 00                52 	.word	0	;skip space 26
+   0048 00 00                53 	.word	0	;skip space 24
+   004A 00 00                54 	.word	0	;skip space 22
+   004C 00 00                55 	.word	0	;skip space 20
+   004E 00 00                56 	.word	0	;skip space 18
+   0050 00 00                57 	.word	0	;skip space 16
+   0052 00 00                58 	.word	0	;skip space 14
+   0054 00 00                59 	.word	0	;skip space 12
+   0056 00 00                60 	.word	0	;skip space 10
+   0058 00 00                61 	.word	0	;skip space 8
+   005A 00 00                62 	.word	0	;skip space 6
+   005C 00 00                63 	.word	0	;skip space 4
+   005E 00 00                64 	.word	0	;skip space 2
+   0060 02                   65 	.byte	2
+   0061 02                   66 	.byte	2
+   0062 01                   67 	.byte	1
+   0063 00                   68 	.byte	0
+   0064 00                   69 	.byte	0
+   0065 64                   70 	.byte	100
+   0066 00                   71 	.byte	0
+   0067 FF                   72 	.byte	-1
+   0068 0A                   73 	.byte	10
+   0069 00 00                74 	.word	0	;skip space 24
+   006B 00 00                75 	.word	0	;skip space 22
+   006D 00 00                76 	.word	0	;skip space 20
+   006F 00 00                77 	.word	0	;skip space 18
+   0071 00 00                78 	.word	0	;skip space 16
+   0073 00 00                79 	.word	0	;skip space 14
+   0075 00 00                80 	.word	0	;skip space 12
+   0077 00 00                81 	.word	0	;skip space 10
+   0079 00 00                82 	.word	0	;skip space 8
+   007B 00 00                83 	.word	0	;skip space 6
+   007D 00 00                84 	.word	0	;skip space 4
+   007F 00 00                85 	.word	0	;skip space 2
+   0081 02                   86 	.byte	2
+   0082 00                   87 	.byte	0
+   0083 64                   88 	.byte	100
+   0084 64                   89 	.byte	100
+   0085 FF                   90 	.byte	-1
+   0086 FF                   91 	.byte	-1
+   0087 0A                   92 	.byte	10
+   0088 00                   93 	.byte	0
+   0089 9C                   94 	.byte	-100
+   008A 9C                   95 	.byte	-100
+   008B 02                   96 	.byte	2
+   008C 02                   97 	.byte	2
+   008D 0A                   98 	.byte	10
+   008E 00 00                99 	.word	0	;skip space 18
+   0090 00 00               100 	.word	0	;skip space 16
+   0092 00 00               101 	.word	0	;skip space 14
+   0094 00 00               102 	.word	0	;skip space 12
+   0096 00 00               103 	.word	0	;skip space 10
+   0098 00 00               104 	.word	0	;skip space 8
+   009A 00 00               105 	.word	0	;skip space 6
+   009C 00 00               106 	.word	0	;skip space 4
+   009E 00 00               107 	.word	0	;skip space 2
+   00A0 00 00               108 	.word	0	;skip space 31
+   00A2 00 00               109 	.word	0	;skip space 29
+   00A4 00 00               110 	.word	0	;skip space 27
+   00A6 00 00               111 	.word	0	;skip space 25
+   00A8 00 00               112 	.word	0	;skip space 23
+   00AA 00 00               113 	.word	0	;skip space 21
+   00AC 00 00               114 	.word	0	;skip space 19
+   00AE 00 00               115 	.word	0	;skip space 17
+   00B0 00 00               116 	.word	0	;skip space 15
+   00B2 00 00               117 	.word	0	;skip space 13
+   00B4 00 00               118 	.word	0	;skip space 11
+   00B6 00 00               119 	.word	0	;skip space 9
+   00B8 00 00               120 	.word	0	;skip space 7
+   00BA 00 00               121 	.word	0	;skip space 5
+   00BC 00 00               122 	.word	0	;skip space 3
+   00BE 00                  123 	.byte	0	;skip space
+   00BF 03                  124 	.byte	3
+   00C0 03                  125 	.byte	3
+   00C1 03                  126 	.byte	3
+   00C2 00                  127 	.byte	0
+   00C3 64                  128 	.byte	100
+   00C4 64                  129 	.byte	100
+   00C5 FF                  130 	.byte	-1
+   00C6 FF                  131 	.byte	-1
+   00C7 0A                  132 	.byte	10
+   00C8 00                  133 	.byte	0
+   00C9 00                  134 	.byte	0
+   00CA 64                  135 	.byte	100
+   00CB 00                  136 	.byte	0
+   00CC FF                  137 	.byte	-1
+   00CD 0A                  138 	.byte	10
+   00CE 00                  139 	.byte	0
+   00CF 64                  140 	.byte	100
+   00D0 00                  141 	.byte	0
+   00D1 FF                  142 	.byte	-1
+   00D2 00                  143 	.byte	0
+   00D3 0A                  144 	.byte	10
+   00D4 00 00               145 	.word	0	;skip space 12
+   00D6 00 00               146 	.word	0	;skip space 10
+   00D8 00 00               147 	.word	0	;skip space 8
+   00DA 00 00               148 	.word	0	;skip space 6
+   00DC 00 00               149 	.word	0	;skip space 4
+   00DE 00 00               150 	.word	0	;skip space 2
+   00E0 01                  151 	.byte	1
+   00E1 00                  152 	.byte	0
+   00E2 64                  153 	.byte	100
+   00E3 64                  154 	.byte	100
+   00E4 FF                  155 	.byte	-1
+   00E5 FF                  156 	.byte	-1
+   00E6 0A                  157 	.byte	10
+   00E7 00 00               158 	.word	0	;skip space 24
+   00E9 00 00               159 	.word	0	;skip space 22
+   00EB 00 00               160 	.word	0	;skip space 20
+   00ED 00 00               161 	.word	0	;skip space 18
+   00EF 00 00               162 	.word	0	;skip space 16
+   00F1 00 00               163 	.word	0	;skip space 14
+   00F3 00 00               164 	.word	0	;skip space 12
+   00F5 00 00               165 	.word	0	;skip space 10
+   00F7 00 00               166 	.word	0	;skip space 8
+   00F9 00 00               167 	.word	0	;skip space 6
+   00FB 00 00               168 	.word	0	;skip space 4
+   00FD 00 00               169 	.word	0	;skip space 2
+   00FF 03                  170 	.byte	3
+   0100 00                  171 	.byte	0
+   0101 9C                  172 	.byte	-100
+   0102 32                  173 	.byte	50
+   0103 02                  174 	.byte	2
+   0104 FF                  175 	.byte	-1
+   0105 32                  176 	.byte	50
+   0106 00                  177 	.byte	0
+   0107 64                  178 	.byte	100
+   0108 00                  179 	.byte	0
+   0109 FF                  180 	.byte	-1
+   010A 00                  181 	.byte	0
+   010B 32                  182 	.byte	50
+   010C 00                  183 	.byte	0
+   010D 9C                  184 	.byte	-100
+   010E 00                  185 	.byte	0
+   010F 01                  186 	.byte	1
+   0110 00                  187 	.byte	0
+   0111 32                  188 	.byte	50
+   0112 00 00               189 	.word	0	;skip space 12
+   0114 00 00               190 	.word	0	;skip space 10
+   0116 00 00               191 	.word	0	;skip space 8
+   0118 00 00               192 	.word	0	;skip space 6
+   011A 00 00               193 	.word	0	;skip space 4
+   011C 00 00               194 	.word	0	;skip space 2
+   011E 04                  195 	.byte	4
+   011F 03                  196 	.byte	3
+   0120 03                  197 	.byte	3
+   0121 00                  198 	.byte	0
+   0122 64                  199 	.byte	100
+   0123 64                  200 	.byte	100
+   0124 FF                  201 	.byte	-1
+   0125 FF                  202 	.byte	-1
+   0126 0A                  203 	.byte	10
+   0127 00                  204 	.byte	0
+   0128 00                  205 	.byte	0
+   0129 64                  206 	.byte	100
+   012A 00                  207 	.byte	0
+   012B FF                  208 	.byte	-1
+   012C 0A                  209 	.byte	10
+   012D 00                  210 	.byte	0
+   012E 64                  211 	.byte	100
+   012F 00                  212 	.byte	0
+   0130 FF                  213 	.byte	-1
+   0131 00                  214 	.byte	0
+   0132 0A                  215 	.byte	10
+   0133 00 00               216 	.word	0	;skip space 12
+   0135 00 00               217 	.word	0	;skip space 10
+   0137 00 00               218 	.word	0	;skip space 8
+   0139 00 00               219 	.word	0	;skip space 6
+   013B 00 00               220 	.word	0	;skip space 4
+   013D 00 00               221 	.word	0	;skip space 2
+   013F 04                  222 	.byte	4
+   0140 00                  223 	.byte	0
+   0141 64                  224 	.byte	100
+   0142 64                  225 	.byte	100
+   0143 FF                  226 	.byte	-1
+   0144 FF                  227 	.byte	-1
+   0145 0A                  228 	.byte	10
+   0146 00                  229 	.byte	0
+   0147 32                  230 	.byte	50
+   0148 64                  231 	.byte	100
+   0149 FF                  232 	.byte	-1
+   014A FE                  233 	.byte	-2
+   014B 0A                  234 	.byte	10
+   014C 00                  235 	.byte	0
+   014D 00                  236 	.byte	0
+   014E 64                  237 	.byte	100
+   014F 00                  238 	.byte	0
+   0150 FF                  239 	.byte	-1
+   0151 0A                  240 	.byte	10
+   0152 00                  241 	.byte	0
+   0153 64                  242 	.byte	100
+   0154 00                  243 	.byte	0
+   0155 FF                  244 	.byte	-1
+   0156 00                  245 	.byte	0
+   0157 0A                  246 	.byte	10
+   0158 00 00               247 	.word	0	;skip space 6
+   015A 00 00               248 	.word	0	;skip space 4
+   015C 00 00               249 	.word	0	;skip space 2
+   015E 05                  250 	.byte	5
+   015F 00                  251 	.byte	0
+   0160 9C                  252 	.byte	-100
+   0161 32                  253 	.byte	50
+   0162 02                  254 	.byte	2
+   0163 FF                  255 	.byte	-1
+   0164 32                  256 	.byte	50
+   0165 00                  257 	.byte	0
+   0166 64                  258 	.byte	100
+   0167 00                  259 	.byte	0
+   0168 FF                  260 	.byte	-1
+   0169 00                  261 	.byte	0
+   016A 32                  262 	.byte	50
+   016B 00                  263 	.byte	0
+   016C 9C                  264 	.byte	-100
+   016D 00                  265 	.byte	0
+   016E 01                  266 	.byte	1
+   016F 00                  267 	.byte	0
+   0170 32                  268 	.byte	50
+   0171 00                  269 	.byte	0
+   0172 64                  270 	.byte	100
+   0173 00                  271 	.byte	0
+   0174 FE                  272 	.byte	-2
+   0175 00                  273 	.byte	0
+   0176 32                  274 	.byte	50
+   0177 00                  275 	.byte	0
+   0178 CE                  276 	.byte	-50
+   0179 9C                  277 	.byte	-100
+   017A 01                  278 	.byte	1
+   017B 02                  279 	.byte	2
+   017C 32                  280 	.byte	50
+   017D 05                  281 	.byte	5
+   017E 03                  282 	.byte	3
+   017F 04                  283 	.byte	4
+   0180 00                  284 	.byte	0
+   0181 9C                  285 	.byte	-100
+   0182 9C                  286 	.byte	-100
+   0183 01                  287 	.byte	1
+   0184 01                  288 	.byte	1
+   0185 0A                  289 	.byte	10
+   0186 00                  290 	.byte	0
+   0187 9C                  291 	.byte	-100
+   0188 64                  292 	.byte	100
+   0189 01                  293 	.byte	1
+   018A FF                  294 	.byte	-1
+   018B 0A                  295 	.byte	10
+   018C 00                  296 	.byte	0
+   018D 64                  297 	.byte	100
+   018E 9C                  298 	.byte	-100
+   018F FF                  299 	.byte	-1
+   0190 01                  300 	.byte	1
+   0191 0A                  301 	.byte	10
+   0192 00                  302 	.byte	0
+   0193 64                  303 	.byte	100
+   0194 64                  304 	.byte	100
+   0195 FF                  305 	.byte	-1
+   0196 FF                  306 	.byte	-1
+   0197 0A                  307 	.byte	10
+   0198 00 00               308 	.word	0	;skip space 6
+   019A 00 00               309 	.word	0	;skip space 4
+   019C 00 00               310 	.word	0	;skip space 2
+   019E 04                  311 	.byte	4
+   019F 00                  312 	.byte	0
+   01A0 00                  313 	.byte	0
+   01A1 64                  314 	.byte	100
+   01A2 00                  315 	.byte	0
+   01A3 FF                  316 	.byte	-1
+   01A4 0A                  317 	.byte	10
+   01A5 00                  318 	.byte	0
+   01A6 00                  319 	.byte	0
+   01A7 9C                  320 	.byte	-100
+   01A8 00                  321 	.byte	0
+   01A9 01                  322 	.byte	1
+   01AA 0A                  323 	.byte	10
+   01AB 00                  324 	.byte	0
+   01AC 64                  325 	.byte	100
+   01AD 00                  326 	.byte	0
+   01AE FF                  327 	.byte	-1
+   01AF 00                  328 	.byte	0
+   01B0 0A                  329 	.byte	10
+   01B1 00                  330 	.byte	0
+   01B2 9C                  331 	.byte	-100
+   01B3 00                  332 	.byte	0
+   01B4 01                  333 	.byte	1
+   01B5 00                  334 	.byte	0
+   01B6 0A                  335 	.byte	10
+   01B7 00 00               336 	.word	0	;skip space 6
+   01B9 00 00               337 	.word	0	;skip space 4
+   01BB 00 00               338 	.word	0	;skip space 2
+   01BD 04                  339 	.byte	4
+   01BE 00                  340 	.byte	0
+   01BF CE                  341 	.byte	-50
+   01C0 9C                  342 	.byte	-100
+   01C1 01                  343 	.byte	1
+   01C2 02                  344 	.byte	2
+   01C3 32                  345 	.byte	50
+   01C4 00                  346 	.byte	0
+   01C5 CE                  347 	.byte	-50
+   01C6 64                  348 	.byte	100
+   01C7 01                  349 	.byte	1
+   01C8 FE                  350 	.byte	-2
+   01C9 32                  351 	.byte	50
+   01CA 00                  352 	.byte	0
+   01CB 32                  353 	.byte	50
+   01CC 9C                  354 	.byte	-100
+   01CD FF                  355 	.byte	-1
+   01CE 02                  356 	.byte	2
+   01CF 32                  357 	.byte	50
+   01D0 00                  358 	.byte	0
+   01D1 32                  359 	.byte	50
+   01D2 64                  360 	.byte	100
+   01D3 FF                  361 	.byte	-1
+   01D4 FE                  362 	.byte	-2
+   01D5 32                  363 	.byte	50
+   01D6 00 00               364 	.word	0	;skip space 6
+   01D8 00 00               365 	.word	0	;skip space 4
+   01DA 00 00               366 	.word	0	;skip space 2
+                            367 	.globl _enemies
+                            368 	.area .data
+   0000                     369 _enemies:
+   0000 01                  370 	.byte	1
+   0001 00                  371 	.byte	0
+   0002 00                  372 	.byte	0
+   0003 00                  373 	.byte	0
+   0004 00                  374 	.byte	0
+   0005 00                  375 	.byte	0
+   0006 01                  376 	.byte	1
+   0007 00                  377 	.byte	0
+   0008 00                  378 	.byte	0
+   0009 00                  379 	.byte	0
+   000A 00                  380 	.byte	0
+   000B 00                  381 	.byte	0
+   000C 01                  382 	.byte	1
+   000D 00                  383 	.byte	0
+   000E 00                  384 	.byte	0
+   000F 00                  385 	.byte	0
+   0010 00                  386 	.byte	0
+   0011 00                  387 	.byte	0
+   0012 01                  388 	.byte	1
+   0013 00                  389 	.byte	0
+   0014 00                  390 	.byte	0
+   0015 00                  391 	.byte	0
+   0016 00                  392 	.byte	0
+   0017 00                  393 	.byte	0
+   0018 01                  394 	.byte	1
+   0019 00                  395 	.byte	0
+   001A 00                  396 	.byte	0
+   001B 00                  397 	.byte	0
+   001C 00                  398 	.byte	0
+   001D 00                  399 	.byte	0
+                            400 	.globl _vectors_enemy
+                            401 	.area .text
+   01DC                     402 _vectors_enemy:
+   01DC 00                  403 	.byte	0
+   01DD 10                  404 	.byte	16
+   01DE 00                  405 	.byte	0
+   01DF FF                  406 	.byte	-1
+   01E0 F0                  407 	.byte	-16
+   01E1 00                  408 	.byte	0
+   01E2 FF                  409 	.byte	-1
+   01E3 F0                  410 	.byte	-16
+   01E4 10                  411 	.byte	16
+   01E5 FF                  412 	.byte	-1
+   01E6 F0                  413 	.byte	-16
+   01E7 00                  414 	.byte	0
+   01E8 FF                  415 	.byte	-1
+   01E9 00                  416 	.byte	0
+   01EA 10                  417 	.byte	16
+   01EB FF                  418 	.byte	-1
+   01EC F0                  419 	.byte	-16
+   01ED F0                  420 	.byte	-16
+   01EE FF                  421 	.byte	-1
+   01EF 10                  422 	.byte	16
+   01F0 F0                  423 	.byte	-16
+   01F1 FF                  424 	.byte	-1
+   01F2 F0                  425 	.byte	-16
+   01F3 F0                  426 	.byte	-16
+   01F4 FF                  427 	.byte	-1
+   01F5 10                  428 	.byte	16
+   01F6 F0                  429 	.byte	-16
+   01F7 FF                  430 	.byte	-1
+   01F8 00                  431 	.byte	0
+   01F9 10                  432 	.byte	16
+   01FA FF                  433 	.byte	-1
+   01FB 10                  434 	.byte	16
+   01FC 00                  435 	.byte	0
+   01FD FF                  436 	.byte	-1
+   01FE 10                  437 	.byte	16
+   01FF 10                  438 	.byte	16
+   0200 01                  439 	.byte	1
+   0201 00                  440 	.byte	0
+   0202 00                  441 	.byte	0
+                            442 	.globl _draw_enemy
+   0203                     443 _draw_enemy:
+   0203 32 7B         [ 5]  444 	leas	-5,s
+   0205 AF 61         [ 6]  445 	stx	1,s
+   0207 BD 00 00      [ 8]  446 	jsr	___Reset0Ref
+   020A C6 7F         [ 2]  447 	ldb	#127
+   020C D7 00         [ 4]  448 	stb	*_dp_VIA_t1_cnt_lo
+   020E AE 61         [ 6]  449 	ldx	1,s
+   0210 E6 02         [ 5]  450 	ldb	2,x
+   0212 E7 E4         [ 4]  451 	stb	,s
+   0214 AE 61         [ 6]  452 	ldx	1,s
+   0216 E6 01         [ 5]  453 	ldb	1,x
+   0218 E7 64         [ 5]  454 	stb	4,s
+   021A E6 E4         [ 4]  455 	ldb	,s
+   021C E7 63         [ 5]  456 	stb	3,s
+   021E E6 64         [ 5]  457 	ldb	4,s
+   0220 E7 E2         [ 6]  458 	stb	,-s
+   0222 E6 64         [ 5]  459 	ldb	4,s
+   0224 BD 00 00      [ 8]  460 	jsr	__Moveto_d
+   0227 32 61         [ 5]  461 	leas	1,s
+   0229 C6 22         [ 2]  462 	ldb	#34
+   022B D7 00         [ 4]  463 	stb	*_dp_VIA_t1_cnt_lo
+   022D 8E 01 DC      [ 3]  464 	ldx	#_vectors_enemy
+   0230 BD 00 00      [ 8]  465 	jsr	___Draw_VLp
+   0233 32 65         [ 5]  466 	leas	5,s
+   0235 39            [ 5]  467 	rts
+                            468 	.globl _check_enemy
+   0236                     469 _check_enemy:
+   0236 32 7A         [ 5]  470 	leas	-6,s
+   0238 AF 64         [ 6]  471 	stx	4,s
+                            472 	; ldx	4,s	; optimization 5
+   023A E6 02         [ 5]  473 	ldb	2,x
+   023C E7 E4         [ 4]  474 	stb	,s
+   023E AE 64         [ 6]  475 	ldx	4,s
+   0240 E6 01         [ 5]  476 	ldb	1,x
+   0242 E7 61         [ 5]  477 	stb	1,s
+   0244 C6 08         [ 2]  478 	ldb	#8
+   0246 E7 E2         [ 6]  479 	stb	,-s
+   0248 C6 08         [ 2]  480 	ldb	#8
+   024A E7 E2         [ 6]  481 	stb	,-s
+   024C E6 62         [ 5]  482 	ldb	2,s
+   024E 34 04         [ 6]  483 	pshs	b
+   0250 E6 64         [ 5]  484 	ldb	4,s
+   0252 34 04         [ 6]  485 	pshs	b
+   0254 6F E2         [ 8]  486 	clr	,-s
+   0256 5F            [ 2]  487 	clrb
+   0257 BD 00 00      [ 8]  488 	jsr	_check_collision
+   025A 32 65         [ 5]  489 	leas	5,s
+   025C 5D            [ 2]  490 	tstb
+   025D 27 30         [ 3]  491 	beq	L6
+   025F 8E 00 00      [ 3]  492 	ldx	#_bang
+   0262 BD 00 00      [ 8]  493 	jsr	_play_explosion
+   0265 F6 00 04      [ 5]  494 	ldb	_tower+4
+   0268 E7 E4         [ 4]  495 	stb	,s
+   026A AE 64         [ 6]  496 	ldx	4,s
+   026C E6 05         [ 5]  497 	ldb	5,x
+   026E E7 62         [ 5]  498 	stb	2,s
+   0270 E6 E4         [ 4]  499 	ldb	,s
+   0272 E1 62         [ 5]  500 	cmpb	2,s	;cmpqi:
+   0274 23 16         [ 3]  501 	bls	L5
+   0276 F6 00 04      [ 5]  502 	ldb	_tower+4
+   0279 E7 63         [ 5]  503 	stb	3,s
+   027B AE 64         [ 6]  504 	ldx	4,s
+   027D E6 05         [ 5]  505 	ldb	5,x
+   027F E0 63         [ 5]  506 	subb	3,s
+   0281 50            [ 2]  507 	negb
+   0282 F7 00 04      [ 5]  508 	stb	_tower+4
+   0285 C6 01         [ 2]  509 	ldb	#1
+   0287 E7 F8 04      [ 8]  510 	stb	[4,s]
+   028A 20 03         [ 3]  511 	bra	L6
+   028C                     512 L5:
+   028C 7F 00 00      [ 7]  513 	clr	_tower
+   028F                     514 L6:
+   028F 32 66         [ 5]  515 	leas	6,s
+   0291 39            [ 5]  516 	rts
+                            517 	.globl _init_enemies
+   0292                     518 _init_enemies:
+   0292 34 60         [ 7]  519 	pshs	y,u
+   0294 32 E8 AC      [ 5]  520 	leas	-84,s
+   0297 F6 00 00      [ 5]  521 	ldb	_current_wave
+   029A E7 E8 3C      [ 5]  522 	stb	60,s
+   029D F6 00 01      [ 5]  523 	ldb	_current_wave+1
+   02A0 4F            [ 2]  524 	clra		;zero_extendqihi: R:b -> R:d
+   02A1 1F 01         [ 6]  525 	tfr	d,x
+   02A3 E6 E8 3C      [ 5]  526 	ldb	60,s
+   02A6 4F            [ 2]  527 	clra		;zero_extendqihi: R:b -> R:d
+   02A7 1F 02         [ 6]  528 	tfr	d,y
+   02A9 AF E8 3A      [ 6]  529 	stx	58,s
+   02AC EC E8 3A      [ 6]  530 	ldd	58,s
+   02AF 58            [ 2]  531 	aslb
+   02B0 49            [ 2]  532 	rola
+   02B1 58            [ 2]  533 	aslb
+   02B2 49            [ 2]  534 	rola
+   02B3 58            [ 2]  535 	aslb
+   02B4 49            [ 2]  536 	rola
+   02B5 58            [ 2]  537 	aslb
+   02B6 49            [ 2]  538 	rola
+   02B7 58            [ 2]  539 	aslb
+   02B8 49            [ 2]  540 	rola
+   02B9 ED E8 3A      [ 6]  541 	std	58,s
+                            542 	; ldd	58,s	; optimization 5
+   02BC 34 10         [ 6]  543 	pshs	x	;subhi: R:d -= R:x
+   02BE A3 E1         [ 9]  544 	subd	,s++
+   02C0 ED E8 3A      [ 6]  545 	std	58,s
+   02C3 10 AF E8 38   [ 7]  546 	sty	56,s
+   02C7 EC E8 38      [ 6]  547 	ldd	56,s
+   02CA 58            [ 2]  548 	aslb
+   02CB 49            [ 2]  549 	rola
+   02CC ED E8 38      [ 6]  550 	std	56,s
+                            551 	; ldd	56,s	; optimization 5
+   02CF 30 AB         [ 8]  552 	leax	d,y
+   02D1 AF E8 38      [ 6]  553 	stx	56,s
+   02D4 EC E8 38      [ 6]  554 	ldd	56,s
+   02D7 58            [ 2]  555 	aslb
+   02D8 49            [ 2]  556 	rola
+   02D9 58            [ 2]  557 	aslb
+   02DA 49            [ 2]  558 	rola
+   02DB 58            [ 2]  559 	aslb
+   02DC 49            [ 2]  560 	rola
+   02DD 58            [ 2]  561 	aslb
+   02DE 49            [ 2]  562 	rola
+   02DF 58            [ 2]  563 	aslb
+   02E0 49            [ 2]  564 	rola
+   02E1 ED E8 38      [ 6]  565 	std	56,s
+                            566 	; ldd	56,s	; optimization 5
+   02E4 34 20         [ 6]  567 	pshs	y	;subhi: R:d -= R:y
+   02E6 A3 E1         [ 9]  568 	subd	,s++
+   02E8 ED E8 38      [ 6]  569 	std	56,s
+   02EB EC E8 3A      [ 6]  570 	ldd	58,s
+   02EE EE E8 38      [ 6]  571 	ldu	56,s
+   02F1 30 CB         [ 8]  572 	leax	d,u
+   02F3 30 89 00 03   [ 8]  573 	leax	_waveData+2,x
+   02F7 E6 84         [ 4]  574 	ldb	,x
+   02F9 E7 E8 51      [ 5]  575 	stb	81,s
+   02FC 6F E8 52      [ 7]  576 	clr	82,s
+   02FF 7E 06 D5      [ 4]  577 	jmp	L8
+   0302                     578 L9:
+   0302 E6 E8 52      [ 5]  579 	ldb	82,s
+   0305 4F            [ 2]  580 	clra		;zero_extendqihi: R:b -> R:d
+   0306 1F 01         [ 6]  581 	tfr	d,x
+   0308 AF E8 36      [ 6]  582 	stx	54,s
+   030B EC E8 36      [ 6]  583 	ldd	54,s
+   030E 58            [ 2]  584 	aslb
+   030F 49            [ 2]  585 	rola
+   0310 ED E8 36      [ 6]  586 	std	54,s
+                            587 	; ldd	54,s	; optimization 5
+   0313 30 8B         [ 8]  588 	leax	d,x
+   0315 AF E8 36      [ 6]  589 	stx	54,s
+   0318 EC E8 36      [ 6]  590 	ldd	54,s
+   031B 58            [ 2]  591 	aslb
+   031C 49            [ 2]  592 	rola
+   031D ED E8 36      [ 6]  593 	std	54,s
+   0320 EE E8 36      [ 6]  594 	ldu	54,s
+   0323 30 C9 00 00   [ 8]  595 	leax	_enemies,u
+   0327 6F 84         [ 6]  596 	clr	,x
+   0329 E6 E8 52      [ 5]  597 	ldb	82,s
+   032C E7 E8 3D      [ 5]  598 	stb	61,s
+   032F F6 00 00      [ 5]  599 	ldb	_current_wave
+   0332 E7 E8 3E      [ 5]  600 	stb	62,s
+   0335 F6 00 01      [ 5]  601 	ldb	_current_wave+1
+   0338 E7 E8 3F      [ 5]  602 	stb	63,s
+   033B E6 E8 52      [ 5]  603 	ldb	82,s
+   033E 4F            [ 2]  604 	clra		;zero_extendqihi: R:b -> R:d
+   033F 1F 01         [ 6]  605 	tfr	d,x
+   0341 AF E8 34      [ 6]  606 	stx	52,s
+   0344 EC E8 34      [ 6]  607 	ldd	52,s
+   0347 58            [ 2]  608 	aslb
+   0348 49            [ 2]  609 	rola
+   0349 ED E8 34      [ 6]  610 	std	52,s
+                            611 	; ldd	52,s	; optimization 5
+   034C 30 8B         [ 8]  612 	leax	d,x
+   034E AF E8 34      [ 6]  613 	stx	52,s
+   0351 EC E8 34      [ 6]  614 	ldd	52,s
+   0354 C3 00 01      [ 4]  615 	addd	#1
+   0357 ED E4         [ 5]  616 	std	,s
+   0359 E6 E8 3F      [ 5]  617 	ldb	63,s
+   035C 4F            [ 2]  618 	clra		;zero_extendqihi: R:b -> R:d
+   035D 1F 02         [ 6]  619 	tfr	d,y
+   035F E6 E8 3E      [ 5]  620 	ldb	62,s
+   0362 4F            [ 2]  621 	clra		;zero_extendqihi: R:b -> R:d
+   0363 1F 01         [ 6]  622 	tfr	d,x
+   0365 EC E4         [ 5]  623 	ldd	,s
+   0367 58            [ 2]  624 	aslb
+   0368 49            [ 2]  625 	rola
+   0369 ED E8 32      [ 6]  626 	std	50,s
+   036C 10 AF E8 30   [ 7]  627 	sty	48,s
+   0370 EC E8 30      [ 6]  628 	ldd	48,s
+   0373 58            [ 2]  629 	aslb
+   0374 49            [ 2]  630 	rola
+   0375 58            [ 2]  631 	aslb
+   0376 49            [ 2]  632 	rola
+   0377 58            [ 2]  633 	aslb
+   0378 49            [ 2]  634 	rola
+   0379 58            [ 2]  635 	aslb
+   037A 49            [ 2]  636 	rola
+   037B 58            [ 2]  637 	aslb
+   037C 49            [ 2]  638 	rola
+   037D ED E8 30      [ 6]  639 	std	48,s
+                            640 	; ldd	48,s	; optimization 5
+   0380 34 20         [ 6]  641 	pshs	y	;subhi: R:d -= R:y
+   0382 A3 E1         [ 9]  642 	subd	,s++
+   0384 ED E8 30      [ 6]  643 	std	48,s
+   0387 EC E8 32      [ 6]  644 	ldd	50,s
+   038A EE E8 30      [ 6]  645 	ldu	48,s
+   038D 31 CB         [ 8]  646 	leay	d,u
+   038F AF E8 2E      [ 6]  647 	stx	46,s
+   0392 EC E8 2E      [ 6]  648 	ldd	46,s
+   0395 58            [ 2]  649 	aslb
+   0396 49            [ 2]  650 	rola
+   0397 ED E8 2E      [ 6]  651 	std	46,s
+                            652 	; ldd	46,s	; optimization 5
+   039A 33 8B         [ 8]  653 	leau	d,x
+   039C EF E8 2E      [ 6]  654 	stu	46,s
+   039F EC E8 2E      [ 6]  655 	ldd	46,s
+   03A2 58            [ 2]  656 	aslb
+   03A3 49            [ 2]  657 	rola
+   03A4 58            [ 2]  658 	aslb
+   03A5 49            [ 2]  659 	rola
+   03A6 58            [ 2]  660 	aslb
+   03A7 49            [ 2]  661 	rola
+   03A8 58            [ 2]  662 	aslb
+   03A9 49            [ 2]  663 	rola
+   03AA 58            [ 2]  664 	aslb
+   03AB 49            [ 2]  665 	rola
+   03AC ED E8 2E      [ 6]  666 	std	46,s
+                            667 	; ldd	46,s	; optimization 5
+   03AF 34 10         [ 6]  668 	pshs	x	;subhi: R:d -= R:x
+   03B1 A3 E1         [ 9]  669 	subd	,s++
+   03B3 ED E8 2E      [ 6]  670 	std	46,s
+                            671 	; ldd	46,s	; optimization 5
+   03B6 30 AB         [ 8]  672 	leax	d,y
+   03B8 30 89 00 03   [ 8]  673 	leax	_waveData+2,x
+   03BC E6 84         [ 4]  674 	ldb	,x
+   03BE E7 E8 40      [ 5]  675 	stb	64,s
+   03C1 E6 E8 3D      [ 5]  676 	ldb	61,s
+   03C4 4F            [ 2]  677 	clra		;zero_extendqihi: R:b -> R:d
+   03C5 1F 01         [ 6]  678 	tfr	d,x
+   03C7 AF E8 2C      [ 6]  679 	stx	44,s
+   03CA EC E8 2C      [ 6]  680 	ldd	44,s
+   03CD 58            [ 2]  681 	aslb
+   03CE 49            [ 2]  682 	rola
+   03CF ED E8 2C      [ 6]  683 	std	44,s
+                            684 	; ldd	44,s	; optimization 5
+   03D2 30 8B         [ 8]  685 	leax	d,x
+   03D4 AF E8 2C      [ 6]  686 	stx	44,s
+   03D7 EC E8 2C      [ 6]  687 	ldd	44,s
+   03DA 58            [ 2]  688 	aslb
+   03DB 49            [ 2]  689 	rola
+   03DC ED E8 2C      [ 6]  690 	std	44,s
+   03DF EE E8 2C      [ 6]  691 	ldu	44,s
+   03E2 30 C9 00 01   [ 8]  692 	leax	_enemies+1,u
+   03E6 E6 E8 40      [ 5]  693 	ldb	64,s
+   03E9 E7 84         [ 4]  694 	stb	,x
+   03EB E6 E8 52      [ 5]  695 	ldb	82,s
+   03EE E7 E8 41      [ 5]  696 	stb	65,s
+   03F1 F6 00 00      [ 5]  697 	ldb	_current_wave
+   03F4 E7 E8 42      [ 5]  698 	stb	66,s
+   03F7 F6 00 01      [ 5]  699 	ldb	_current_wave+1
+   03FA E7 E8 43      [ 5]  700 	stb	67,s
+   03FD E6 E8 52      [ 5]  701 	ldb	82,s
+   0400 4F            [ 2]  702 	clra		;zero_extendqihi: R:b -> R:d
+   0401 1F 01         [ 6]  703 	tfr	d,x
+   0403 AF E8 2A      [ 6]  704 	stx	42,s
+   0406 EC E8 2A      [ 6]  705 	ldd	42,s
+   0409 58            [ 2]  706 	aslb
+   040A 49            [ 2]  707 	rola
+   040B ED E8 2A      [ 6]  708 	std	42,s
+                            709 	; ldd	42,s	; optimization 5
+   040E 30 8B         [ 8]  710 	leax	d,x
+   0410 AF E8 2A      [ 6]  711 	stx	42,s
+   0413 EC E8 2A      [ 6]  712 	ldd	42,s
+   0416 C3 00 01      [ 4]  713 	addd	#1
+   0419 ED E4         [ 5]  714 	std	,s
+   041B E6 E8 43      [ 5]  715 	ldb	67,s
+   041E 4F            [ 2]  716 	clra		;zero_extendqihi: R:b -> R:d
+   041F 1F 02         [ 6]  717 	tfr	d,y
+   0421 E6 E8 42      [ 5]  718 	ldb	66,s
+   0424 4F            [ 2]  719 	clra		;zero_extendqihi: R:b -> R:d
+   0425 1F 01         [ 6]  720 	tfr	d,x
+   0427 EC E4         [ 5]  721 	ldd	,s
+   0429 58            [ 2]  722 	aslb
+   042A 49            [ 2]  723 	rola
+   042B ED E8 28      [ 6]  724 	std	40,s
+   042E 10 AF E8 26   [ 7]  725 	sty	38,s
+   0432 EC E8 26      [ 6]  726 	ldd	38,s
+   0435 58            [ 2]  727 	aslb
+   0436 49            [ 2]  728 	rola
+   0437 58            [ 2]  729 	aslb
+   0438 49            [ 2]  730 	rola
+   0439 58            [ 2]  731 	aslb
+   043A 49            [ 2]  732 	rola
+   043B 58            [ 2]  733 	aslb
+   043C 49            [ 2]  734 	rola
+   043D 58            [ 2]  735 	aslb
+   043E 49            [ 2]  736 	rola
+   043F ED E8 26      [ 6]  737 	std	38,s
+                            738 	; ldd	38,s	; optimization 5
+   0442 34 20         [ 6]  739 	pshs	y	;subhi: R:d -= R:y
+   0444 A3 E1         [ 9]  740 	subd	,s++
+   0446 ED E8 26      [ 6]  741 	std	38,s
+   0449 EC E8 28      [ 6]  742 	ldd	40,s
+   044C EE E8 26      [ 6]  743 	ldu	38,s
+   044F 31 CB         [ 8]  744 	leay	d,u
+   0451 AF E8 24      [ 6]  745 	stx	36,s
+   0454 EC E8 24      [ 6]  746 	ldd	36,s
+   0457 58            [ 2]  747 	aslb
+   0458 49            [ 2]  748 	rola
+   0459 ED E8 24      [ 6]  749 	std	36,s
+                            750 	; ldd	36,s	; optimization 5
+   045C 33 8B         [ 8]  751 	leau	d,x
+   045E EF E8 24      [ 6]  752 	stu	36,s
+   0461 EC E8 24      [ 6]  753 	ldd	36,s
+   0464 58            [ 2]  754 	aslb
+   0465 49            [ 2]  755 	rola
+   0466 58            [ 2]  756 	aslb
+   0467 49            [ 2]  757 	rola
+   0468 58            [ 2]  758 	aslb
+   0469 49            [ 2]  759 	rola
+   046A 58            [ 2]  760 	aslb
+   046B 49            [ 2]  761 	rola
+   046C 58            [ 2]  762 	aslb
+   046D 49            [ 2]  763 	rola
+   046E ED E8 24      [ 6]  764 	std	36,s
+                            765 	; ldd	36,s	; optimization 5
+   0471 34 10         [ 6]  766 	pshs	x	;subhi: R:d -= R:x
+   0473 A3 E1         [ 9]  767 	subd	,s++
+   0475 ED E8 24      [ 6]  768 	std	36,s
+                            769 	; ldd	36,s	; optimization 5
+   0478 30 AB         [ 8]  770 	leax	d,y
+   047A 30 89 00 04   [ 8]  771 	leax	_waveData+3,x
+   047E E6 84         [ 4]  772 	ldb	,x
+   0480 E7 E8 44      [ 5]  773 	stb	68,s
+   0483 E6 E8 41      [ 5]  774 	ldb	65,s
+   0486 4F            [ 2]  775 	clra		;zero_extendqihi: R:b -> R:d
+   0487 1F 01         [ 6]  776 	tfr	d,x
+   0489 AF E8 22      [ 6]  777 	stx	34,s
+   048C EC E8 22      [ 6]  778 	ldd	34,s
+   048F 58            [ 2]  779 	aslb
+   0490 49            [ 2]  780 	rola
+   0491 ED E8 22      [ 6]  781 	std	34,s
+                            782 	; ldd	34,s	; optimization 5
+   0494 30 8B         [ 8]  783 	leax	d,x
+   0496 AF E8 22      [ 6]  784 	stx	34,s
+   0499 EC E8 22      [ 6]  785 	ldd	34,s
+   049C C3 00 01      [ 4]  786 	addd	#1
+   049F 58            [ 2]  787 	aslb
+   04A0 49            [ 2]  788 	rola
+   04A1 CE 00 00      [ 3]  789 	ldu	#_enemies
+   04A4 30 CB         [ 8]  790 	leax	d,u
+   04A6 E6 E8 44      [ 5]  791 	ldb	68,s
+   04A9 E7 84         [ 4]  792 	stb	,x
+   04AB E6 E8 52      [ 5]  793 	ldb	82,s
+   04AE E7 E8 45      [ 5]  794 	stb	69,s
+   04B1 F6 00 00      [ 5]  795 	ldb	_current_wave
+   04B4 E7 E8 46      [ 5]  796 	stb	70,s
+   04B7 F6 00 01      [ 5]  797 	ldb	_current_wave+1
+   04BA E7 E8 47      [ 5]  798 	stb	71,s
+   04BD E6 E8 52      [ 5]  799 	ldb	82,s
+   04C0 4F            [ 2]  800 	clra		;zero_extendqihi: R:b -> R:d
+   04C1 1F 01         [ 6]  801 	tfr	d,x
+   04C3 E6 E8 47      [ 5]  802 	ldb	71,s
+   04C6 4F            [ 2]  803 	clra		;zero_extendqihi: R:b -> R:d
+   04C7 ED E8 20      [ 6]  804 	std	32,s
+   04CA E6 E8 46      [ 5]  805 	ldb	70,s
+   04CD 4F            [ 2]  806 	clra		;zero_extendqihi: R:b -> R:d
+   04CE 1F 02         [ 6]  807 	tfr	d,y
+   04D0 AF E8 1E      [ 6]  808 	stx	30,s
+   04D3 EC E8 1E      [ 6]  809 	ldd	30,s
+   04D6 58            [ 2]  810 	aslb
+   04D7 49            [ 2]  811 	rola
+   04D8 ED E8 1E      [ 6]  812 	std	30,s
+                            813 	; ldd	30,s	; optimization 5
+   04DB 30 8B         [ 8]  814 	leax	d,x
+   04DD AF E8 1E      [ 6]  815 	stx	30,s
+   04E0 EC E8 1E      [ 6]  816 	ldd	30,s
+   04E3 58            [ 2]  817 	aslb
+   04E4 49            [ 2]  818 	rola
+   04E5 ED E8 1E      [ 6]  819 	std	30,s
+   04E8 AE E8 20      [ 6]  820 	ldx	32,s
+   04EB AF E8 1C      [ 6]  821 	stx	28,s
+   04EE EC E8 1C      [ 6]  822 	ldd	28,s
+   04F1 58            [ 2]  823 	aslb
+   04F2 49            [ 2]  824 	rola
+   04F3 58            [ 2]  825 	aslb
+   04F4 49            [ 2]  826 	rola
+   04F5 58            [ 2]  827 	aslb
+   04F6 49            [ 2]  828 	rola
+   04F7 58            [ 2]  829 	aslb
+   04F8 49            [ 2]  830 	rola
+   04F9 58            [ 2]  831 	aslb
+   04FA 49            [ 2]  832 	rola
+   04FB ED E8 1C      [ 6]  833 	std	28,s
+                            834 	; ldd	28,s	; optimization 5
+   04FE A3 E8 20      [ 7]  835 	subd	32,s	;subhi: R:d -= 32,s
+   0501 ED E8 1C      [ 6]  836 	std	28,s
+   0504 EC E8 1E      [ 6]  837 	ldd	30,s
+   0507 EE E8 1C      [ 6]  838 	ldu	28,s
+   050A 30 CB         [ 8]  839 	leax	d,u
+   050C 10 AF E8 1A   [ 7]  840 	sty	26,s
+   0510 EC E8 1A      [ 6]  841 	ldd	26,s
+   0513 58            [ 2]  842 	aslb
+   0514 49            [ 2]  843 	rola
+   0515 ED E8 1A      [ 6]  844 	std	26,s
+                            845 	; ldd	26,s	; optimization 5
+   0518 33 AB         [ 8]  846 	leau	d,y
+   051A EF E8 1A      [ 6]  847 	stu	26,s
+   051D EC E8 1A      [ 6]  848 	ldd	26,s
+   0520 58            [ 2]  849 	aslb
+   0521 49            [ 2]  850 	rola
+   0522 58            [ 2]  851 	aslb
+   0523 49            [ 2]  852 	rola
+   0524 58            [ 2]  853 	aslb
+   0525 49            [ 2]  854 	rola
+   0526 58            [ 2]  855 	aslb
+   0527 49            [ 2]  856 	rola
+   0528 58            [ 2]  857 	aslb
+   0529 49            [ 2]  858 	rola
+   052A ED E8 1A      [ 6]  859 	std	26,s
+                            860 	; ldd	26,s	; optimization 5
+   052D 34 20         [ 6]  861 	pshs	y	;subhi: R:d -= R:y
+   052F A3 E1         [ 9]  862 	subd	,s++
+   0531 ED E8 1A      [ 6]  863 	std	26,s
+   0534 1E 01         [ 8]  864 	exg	d,x
+   0536 E3 E8 1A      [ 7]  865 	addd	26,s
+   0539 1E 01         [ 8]  866 	exg	d,x
+   053B 30 89 00 07   [ 8]  867 	leax	_waveData+6,x
+   053F E6 84         [ 4]  868 	ldb	,x
+   0541 E7 E8 48      [ 5]  869 	stb	72,s
+   0544 E6 E8 45      [ 5]  870 	ldb	69,s
+   0547 4F            [ 2]  871 	clra		;zero_extendqihi: R:b -> R:d
+   0548 1F 01         [ 6]  872 	tfr	d,x
+   054A AF E8 18      [ 6]  873 	stx	24,s
+   054D EC E8 18      [ 6]  874 	ldd	24,s
+   0550 58            [ 2]  875 	aslb
+   0551 49            [ 2]  876 	rola
+   0552 ED E8 18      [ 6]  877 	std	24,s
+                            878 	; ldd	24,s	; optimization 5
+   0555 30 8B         [ 8]  879 	leax	d,x
+   0557 AF E8 18      [ 6]  880 	stx	24,s
+   055A EC E8 18      [ 6]  881 	ldd	24,s
+   055D 58            [ 2]  882 	aslb
+   055E 49            [ 2]  883 	rola
+   055F ED E8 18      [ 6]  884 	std	24,s
+   0562 EE E8 18      [ 6]  885 	ldu	24,s
+   0565 30 C9 00 03   [ 8]  886 	leax	_enemies+3,u
+   0569 E6 E8 48      [ 5]  887 	ldb	72,s
+   056C E7 84         [ 4]  888 	stb	,x
+   056E E6 E8 52      [ 5]  889 	ldb	82,s
+   0571 E7 E8 49      [ 5]  890 	stb	73,s
+   0574 F6 00 00      [ 5]  891 	ldb	_current_wave
+   0577 E7 E8 4A      [ 5]  892 	stb	74,s
+   057A F6 00 01      [ 5]  893 	ldb	_current_wave+1
+   057D E7 E8 4B      [ 5]  894 	stb	75,s
+   0580 E6 E8 52      [ 5]  895 	ldb	82,s
+   0583 4F            [ 2]  896 	clra		;zero_extendqihi: R:b -> R:d
+   0584 1F 01         [ 6]  897 	tfr	d,x
+   0586 E6 E8 4B      [ 5]  898 	ldb	75,s
+   0589 4F            [ 2]  899 	clra		;zero_extendqihi: R:b -> R:d
+   058A ED E8 16      [ 6]  900 	std	22,s
+   058D E6 E8 4A      [ 5]  901 	ldb	74,s
+   0590 4F            [ 2]  902 	clra		;zero_extendqihi: R:b -> R:d
+   0591 1F 02         [ 6]  903 	tfr	d,y
+   0593 AF E8 14      [ 6]  904 	stx	20,s
+   0596 EC E8 14      [ 6]  905 	ldd	20,s
+   0599 58            [ 2]  906 	aslb
+   059A 49            [ 2]  907 	rola
+   059B ED E8 14      [ 6]  908 	std	20,s
+                            909 	; ldd	20,s	; optimization 5
+   059E 30 8B         [ 8]  910 	leax	d,x
+   05A0 AF E8 14      [ 6]  911 	stx	20,s
+   05A3 EC E8 14      [ 6]  912 	ldd	20,s
+   05A6 58            [ 2]  913 	aslb
+   05A7 49            [ 2]  914 	rola
+   05A8 ED E8 14      [ 6]  915 	std	20,s
+   05AB AE E8 16      [ 6]  916 	ldx	22,s
+   05AE AF E8 12      [ 6]  917 	stx	18,s
+   05B1 EC E8 12      [ 6]  918 	ldd	18,s
+   05B4 58            [ 2]  919 	aslb
+   05B5 49            [ 2]  920 	rola
+   05B6 58            [ 2]  921 	aslb
+   05B7 49            [ 2]  922 	rola
+   05B8 58            [ 2]  923 	aslb
+   05B9 49            [ 2]  924 	rola
+   05BA 58            [ 2]  925 	aslb
+   05BB 49            [ 2]  926 	rola
+   05BC 58            [ 2]  927 	aslb
+   05BD 49            [ 2]  928 	rola
+   05BE ED E8 12      [ 6]  929 	std	18,s
+                            930 	; ldd	18,s	; optimization 5
+   05C1 A3 E8 16      [ 7]  931 	subd	22,s	;subhi: R:d -= 22,s
+   05C4 ED E8 12      [ 6]  932 	std	18,s
+   05C7 EC E8 14      [ 6]  933 	ldd	20,s
+   05CA EE E8 12      [ 6]  934 	ldu	18,s
+   05CD 30 CB         [ 8]  935 	leax	d,u
+   05CF 10 AF E8 10   [ 7]  936 	sty	16,s
+   05D3 EC E8 10      [ 6]  937 	ldd	16,s
+   05D6 58            [ 2]  938 	aslb
+   05D7 49            [ 2]  939 	rola
+   05D8 ED E8 10      [ 6]  940 	std	16,s
+                            941 	; ldd	16,s	; optimization 5
+   05DB 33 AB         [ 8]  942 	leau	d,y
+   05DD EF E8 10      [ 6]  943 	stu	16,s
+   05E0 EC E8 10      [ 6]  944 	ldd	16,s
+   05E3 58            [ 2]  945 	aslb
+   05E4 49            [ 2]  946 	rola
+   05E5 58            [ 2]  947 	aslb
+   05E6 49            [ 2]  948 	rola
+   05E7 58            [ 2]  949 	aslb
+   05E8 49            [ 2]  950 	rola
+   05E9 58            [ 2]  951 	aslb
+   05EA 49            [ 2]  952 	rola
+   05EB 58            [ 2]  953 	aslb
+   05EC 49            [ 2]  954 	rola
+   05ED ED E8 10      [ 6]  955 	std	16,s
+                            956 	; ldd	16,s	; optimization 5
+   05F0 34 20         [ 6]  957 	pshs	y	;subhi: R:d -= R:y
+   05F2 A3 E1         [ 9]  958 	subd	,s++
+   05F4 ED E8 10      [ 6]  959 	std	16,s
+   05F7 1E 01         [ 8]  960 	exg	d,x
+   05F9 E3 E8 10      [ 7]  961 	addd	16,s
+   05FC 1E 01         [ 8]  962 	exg	d,x
+   05FE 30 89 00 08   [ 8]  963 	leax	_waveData+7,x
+   0602 E6 84         [ 4]  964 	ldb	,x
+   0604 E7 E8 4C      [ 5]  965 	stb	76,s
+   0607 E6 E8 49      [ 5]  966 	ldb	73,s
+   060A 4F            [ 2]  967 	clra		;zero_extendqihi: R:b -> R:d
+   060B 1F 01         [ 6]  968 	tfr	d,x
+   060D AF 6E         [ 6]  969 	stx	14,s
+   060F EC 6E         [ 6]  970 	ldd	14,s
+   0611 58            [ 2]  971 	aslb
+   0612 49            [ 2]  972 	rola
+   0613 ED 6E         [ 6]  973 	std	14,s
+                            974 	; ldd	14,s	; optimization 5
+   0615 30 8B         [ 8]  975 	leax	d,x
+   0617 AF 6E         [ 6]  976 	stx	14,s
+   0619 EC 6E         [ 6]  977 	ldd	14,s
+   061B 58            [ 2]  978 	aslb
+   061C 49            [ 2]  979 	rola
+   061D ED 6E         [ 6]  980 	std	14,s
+   061F EE 6E         [ 6]  981 	ldu	14,s
+   0621 30 C9 00 04   [ 8]  982 	leax	_enemies+4,u
+   0625 E6 E8 4C      [ 5]  983 	ldb	76,s
+   0628 E7 84         [ 4]  984 	stb	,x
+   062A E6 E8 52      [ 5]  985 	ldb	82,s
+   062D E7 E8 4D      [ 5]  986 	stb	77,s
+   0630 F6 00 00      [ 5]  987 	ldb	_current_wave
+   0633 E7 E8 4E      [ 5]  988 	stb	78,s
+   0636 F6 00 01      [ 5]  989 	ldb	_current_wave+1
+   0639 E7 E8 4F      [ 5]  990 	stb	79,s
+   063C E6 E8 52      [ 5]  991 	ldb	82,s
+   063F 4F            [ 2]  992 	clra		;zero_extendqihi: R:b -> R:d
+   0640 CE 00 01      [ 3]  993 	ldu	#1
+   0643 30 CB         [ 8]  994 	leax	d,u
+   0645 E6 E8 4F      [ 5]  995 	ldb	79,s
+   0648 4F            [ 2]  996 	clra		;zero_extendqihi: R:b -> R:d
+   0649 ED 6C         [ 6]  997 	std	12,s
+   064B E6 E8 4E      [ 5]  998 	ldb	78,s
+   064E 4F            [ 2]  999 	clra		;zero_extendqihi: R:b -> R:d
+   064F 1F 02         [ 6] 1000 	tfr	d,y
+   0651 AF 6A         [ 6] 1001 	stx	10,s
+   0653 EC 6A         [ 6] 1002 	ldd	10,s
+   0655 58            [ 2] 1003 	aslb
+   0656 49            [ 2] 1004 	rola
+   0657 ED 6A         [ 6] 1005 	std	10,s
+                           1006 	; ldd	10,s	; optimization 5
+   0659 30 8B         [ 8] 1007 	leax	d,x
+   065B AF 6A         [ 6] 1008 	stx	10,s
+   065D EC 6A         [ 6] 1009 	ldd	10,s
+   065F 58            [ 2] 1010 	aslb
+   0660 49            [ 2] 1011 	rola
+   0661 ED 6A         [ 6] 1012 	std	10,s
+   0663 AE 6C         [ 6] 1013 	ldx	12,s
+   0665 AF 68         [ 6] 1014 	stx	8,s
+   0667 EC 68         [ 6] 1015 	ldd	8,s
+   0669 58            [ 2] 1016 	aslb
+   066A 49            [ 2] 1017 	rola
+   066B 58            [ 2] 1018 	aslb
+   066C 49            [ 2] 1019 	rola
+   066D 58            [ 2] 1020 	aslb
+   066E 49            [ 2] 1021 	rola
+   066F 58            [ 2] 1022 	aslb
+   0670 49            [ 2] 1023 	rola
+   0671 58            [ 2] 1024 	aslb
+   0672 49            [ 2] 1025 	rola
+   0673 ED 68         [ 6] 1026 	std	8,s
+                           1027 	; ldd	8,s	; optimization 5
+   0675 A3 6C         [ 7] 1028 	subd	12,s	;subhi: R:d -= 12,s
+   0677 ED 68         [ 6] 1029 	std	8,s
+   0679 EC 6A         [ 6] 1030 	ldd	10,s
+   067B EE 68         [ 6] 1031 	ldu	8,s
+   067D 30 CB         [ 8] 1032 	leax	d,u
+   067F 10 AF 66      [ 7] 1033 	sty	6,s
+   0682 EC 66         [ 6] 1034 	ldd	6,s
+   0684 58            [ 2] 1035 	aslb
+   0685 49            [ 2] 1036 	rola
+   0686 ED 66         [ 6] 1037 	std	6,s
+                           1038 	; ldd	6,s	; optimization 5
+   0688 33 AB         [ 8] 1039 	leau	d,y
+   068A EF 66         [ 6] 1040 	stu	6,s
+   068C EC 66         [ 6] 1041 	ldd	6,s
+   068E 58            [ 2] 1042 	aslb
+   068F 49            [ 2] 1043 	rola
+   0690 58            [ 2] 1044 	aslb
+   0691 49            [ 2] 1045 	rola
+   0692 58            [ 2] 1046 	aslb
+   0693 49            [ 2] 1047 	rola
+   0694 58            [ 2] 1048 	aslb
+   0695 49            [ 2] 1049 	rola
+   0696 58            [ 2] 1050 	aslb
+   0697 49            [ 2] 1051 	rola
+   0698 ED 66         [ 6] 1052 	std	6,s
+                           1053 	; ldd	6,s	; optimization 5
+   069A 34 20         [ 6] 1054 	pshs	y	;subhi: R:d -= R:y
+   069C A3 E1         [ 9] 1055 	subd	,s++
+   069E ED 66         [ 6] 1056 	std	6,s
+   06A0 1E 01         [ 8] 1057 	exg	d,x
+   06A2 E3 66         [ 7] 1058 	addd	6,s
+   06A4 1E 01         [ 8] 1059 	exg	d,x
+   06A6 30 89 00 03   [ 8] 1060 	leax	_waveData+2,x
+   06AA E6 84         [ 4] 1061 	ldb	,x
+   06AC E7 E8 50      [ 5] 1062 	stb	80,s
+   06AF E6 E8 4D      [ 5] 1063 	ldb	77,s
+   06B2 4F            [ 2] 1064 	clra		;zero_extendqihi: R:b -> R:d
+   06B3 1F 01         [ 6] 1065 	tfr	d,x
+   06B5 AF 64         [ 6] 1066 	stx	4,s
+   06B7 EC 64         [ 6] 1067 	ldd	4,s
+   06B9 58            [ 2] 1068 	aslb
+   06BA 49            [ 2] 1069 	rola
+   06BB ED 64         [ 6] 1070 	std	4,s
+                           1071 	; ldd	4,s	; optimization 5
+   06BD 30 8B         [ 8] 1072 	leax	d,x
+   06BF AF 64         [ 6] 1073 	stx	4,s
+   06C1 EC 64         [ 6] 1074 	ldd	4,s
+   06C3 58            [ 2] 1075 	aslb
+   06C4 49            [ 2] 1076 	rola
+   06C5 ED 64         [ 6] 1077 	std	4,s
+   06C7 EE 64         [ 6] 1078 	ldu	4,s
+   06C9 30 C9 00 05   [ 8] 1079 	leax	_enemies+5,u
+   06CD E6 E8 50      [ 5] 1080 	ldb	80,s
+   06D0 E7 84         [ 4] 1081 	stb	,x
+   06D2 6C E8 52      [ 7] 1082 	inc	82,s
+   06D5                    1083 L8:
+   06D5 E6 E8 52      [ 5] 1084 	ldb	82,s
+   06D8 E1 E8 51      [ 5] 1085 	cmpb	81,s	;cmpqi:
+   06DB 10 25 FC 23   [ 6] 1086 	lblo	L9
+   06DF E6 E8 51      [ 5] 1087 	ldb	81,s
+   06E2 E7 E8 53      [ 5] 1088 	stb	83,s
+   06E5 20 25         [ 3] 1089 	bra	L10
+   06E7                    1090 L11:
+   06E7 E6 E8 53      [ 5] 1091 	ldb	83,s
+   06EA 4F            [ 2] 1092 	clra		;zero_extendqihi: R:b -> R:d
+   06EB 1F 01         [ 6] 1093 	tfr	d,x
+   06ED AF 62         [ 6] 1094 	stx	2,s
+   06EF EC 62         [ 6] 1095 	ldd	2,s
+   06F1 58            [ 2] 1096 	aslb
+   06F2 49            [ 2] 1097 	rola
+   06F3 ED 62         [ 6] 1098 	std	2,s
+                           1099 	; ldd	2,s	; optimization 5
+   06F5 30 8B         [ 8] 1100 	leax	d,x
+   06F7 AF 62         [ 6] 1101 	stx	2,s
+   06F9 EC 62         [ 6] 1102 	ldd	2,s
+   06FB 58            [ 2] 1103 	aslb
+   06FC 49            [ 2] 1104 	rola
+   06FD ED 62         [ 6] 1105 	std	2,s
+   06FF EE 62         [ 6] 1106 	ldu	2,s
+   0701 30 C9 00 00   [ 8] 1107 	leax	_enemies,u
+   0705 C6 01         [ 2] 1108 	ldb	#1
+   0707 E7 84         [ 4] 1109 	stb	,x
+   0709 6C E8 53      [ 7] 1110 	inc	83,s
+   070C                    1111 L10:
+   070C E6 E8 53      [ 5] 1112 	ldb	83,s
+   070F C1 04         [ 2] 1113 	cmpb	#4	;cmpqi:
+   0711 23 D4         [ 3] 1114 	bls	L11
+   0713 32 E8 54      [ 5] 1115 	leas	84,s
+   0716 35 E0         [ 8] 1116 	puls	y,u,pc
+                           1117 	.globl _handle_enemies
+   0718                    1118 _handle_enemies:
+   0718 34 40         [ 6] 1119 	pshs	u
+   071A 32 77         [ 5] 1120 	leas	-9,s
+   071C 6F 68         [ 7] 1121 	clr	8,s
+   071E 7E 07 A6      [ 4] 1122 	jmp	L14
+   0721                    1123 L16:
+   0721 E6 68         [ 5] 1124 	ldb	8,s
+   0723 4F            [ 2] 1125 	clra		;zero_extendqihi: R:b -> R:d
+   0724 1F 01         [ 6] 1126 	tfr	d,x
+   0726 AF 66         [ 6] 1127 	stx	6,s
+   0728 EC 66         [ 6] 1128 	ldd	6,s
+   072A 58            [ 2] 1129 	aslb
+   072B 49            [ 2] 1130 	rola
+   072C ED 66         [ 6] 1131 	std	6,s
+                           1132 	; ldd	6,s	; optimization 5
+   072E 30 8B         [ 8] 1133 	leax	d,x
+   0730 AF 66         [ 6] 1134 	stx	6,s
+   0732 EC 66         [ 6] 1135 	ldd	6,s
+   0734 58            [ 2] 1136 	aslb
+   0735 49            [ 2] 1137 	rola
+   0736 ED 66         [ 6] 1138 	std	6,s
+   0738 EE 66         [ 6] 1139 	ldu	6,s
+   073A 30 C9 00 00   [ 8] 1140 	leax	_enemies,u
+   073E E6 84         [ 4] 1141 	ldb	,x
+                           1142 	; tstb	; optimization 6
+   0740 10 26 00 60   [ 6] 1143 	lbne	L15
+   0744 E6 68         [ 5] 1144 	ldb	8,s
+   0746 4F            [ 2] 1145 	clra		;zero_extendqihi: R:b -> R:d
+   0747 1F 01         [ 6] 1146 	tfr	d,x
+   0749 AF 64         [ 6] 1147 	stx	4,s
+   074B EC 64         [ 6] 1148 	ldd	4,s
+   074D 58            [ 2] 1149 	aslb
+   074E 49            [ 2] 1150 	rola
+   074F ED 64         [ 6] 1151 	std	4,s
+                           1152 	; ldd	4,s	; optimization 5
+   0751 30 8B         [ 8] 1153 	leax	d,x
+   0753 AF 64         [ 6] 1154 	stx	4,s
+   0755 EC 64         [ 6] 1155 	ldd	4,s
+   0757 58            [ 2] 1156 	aslb
+   0758 49            [ 2] 1157 	rola
+   0759 ED 64         [ 6] 1158 	std	4,s
+   075B AE 64         [ 6] 1159 	ldx	4,s
+   075D 30 89 00 00   [ 8] 1160 	leax	_enemies,x
+   0761 BD 00 00      [ 8] 1161 	jsr	_move_object
+   0764 E6 68         [ 5] 1162 	ldb	8,s
+   0766 4F            [ 2] 1163 	clra		;zero_extendqihi: R:b -> R:d
+   0767 1F 01         [ 6] 1164 	tfr	d,x
+   0769 AF 62         [ 6] 1165 	stx	2,s
+   076B EC 62         [ 6] 1166 	ldd	2,s
+   076D 58            [ 2] 1167 	aslb
+   076E 49            [ 2] 1168 	rola
+   076F ED 62         [ 6] 1169 	std	2,s
+                           1170 	; ldd	2,s	; optimization 5
+   0771 30 8B         [ 8] 1171 	leax	d,x
+   0773 AF 62         [ 6] 1172 	stx	2,s
+   0775 EC 62         [ 6] 1173 	ldd	2,s
+   0777 58            [ 2] 1174 	aslb
+   0778 49            [ 2] 1175 	rola
+   0779 ED 62         [ 6] 1176 	std	2,s
+   077B AE 62         [ 6] 1177 	ldx	2,s
+   077D 30 89 00 00   [ 8] 1178 	leax	_enemies,x
+   0781 BD 02 03      [ 8] 1179 	jsr	_draw_enemy
+   0784 E6 68         [ 5] 1180 	ldb	8,s
+   0786 4F            [ 2] 1181 	clra		;zero_extendqihi: R:b -> R:d
+   0787 1F 01         [ 6] 1182 	tfr	d,x
+   0789 AF E4         [ 5] 1183 	stx	,s
+   078B EC E4         [ 5] 1184 	ldd	,s
+   078D 58            [ 2] 1185 	aslb
+   078E 49            [ 2] 1186 	rola
+   078F ED E4         [ 5] 1187 	std	,s
+                           1188 	; ldd	,s	; optimization 5
+   0791 30 8B         [ 8] 1189 	leax	d,x
+   0793 AF E4         [ 5] 1190 	stx	,s
+   0795 EC E4         [ 5] 1191 	ldd	,s
+   0797 58            [ 2] 1192 	aslb
+   0798 49            [ 2] 1193 	rola
+   0799 ED E4         [ 5] 1194 	std	,s
+   079B AE E4         [ 5] 1195 	ldx	,s
+   079D 30 89 00 00   [ 8] 1196 	leax	_enemies,x
+   07A1 BD 02 36      [ 8] 1197 	jsr	_check_enemy
+   07A4                    1198 L15:
+   07A4 6C 68         [ 7] 1199 	inc	8,s
+   07A6                    1200 L14:
+   07A6 E6 68         [ 5] 1201 	ldb	8,s
+   07A8 C1 04         [ 2] 1202 	cmpb	#4	;cmpqi:
+   07AA 10 23 FF 73   [ 6] 1203 	lbls	L16
+   07AE 32 69         [ 5] 1204 	leas	9,s
+   07B0 35 C0         [ 7] 1205 	puls	u,pc
+                           1206 	.globl _check_AllEnemysDeath
+   07B2                    1207 _check_AllEnemysDeath:
+   07B2 34 40         [ 6] 1208 	pshs	u
+   07B4 32 7A         [ 5] 1209 	leas	-6,s
+   07B6 6F 65         [ 7] 1210 	clr	5,s
+   07B8 20 23         [ 3] 1211 	bra	L19
+   07BA                    1212 L21:
+   07BA E6 65         [ 5] 1213 	ldb	5,s
+   07BC 4F            [ 2] 1214 	clra		;zero_extendqihi: R:b -> R:d
+   07BD 1F 01         [ 6] 1215 	tfr	d,x
+   07BF AF 61         [ 6] 1216 	stx	1,s
+   07C1 EC 61         [ 6] 1217 	ldd	1,s
+   07C3 58            [ 2] 1218 	aslb
+   07C4 49            [ 2] 1219 	rola
+   07C5 ED 61         [ 6] 1220 	std	1,s
+                           1221 	; ldd	1,s	; optimization 5
+   07C7 30 8B         [ 8] 1222 	leax	d,x
+   07C9 AF 61         [ 6] 1223 	stx	1,s
+   07CB EC 61         [ 6] 1224 	ldd	1,s
+   07CD 58            [ 2] 1225 	aslb
+   07CE 49            [ 2] 1226 	rola
+   07CF ED 61         [ 6] 1227 	std	1,s
+   07D1 EE 61         [ 6] 1228 	ldu	1,s
+   07D3 30 C9 00 00   [ 8] 1229 	leax	_enemies,u
+   07D7 E6 84         [ 4] 1230 	ldb	,x
+                           1231 	; tstb	; optimization 6
+   07D9 27 27         [ 3] 1232 	beq	L23
+   07DB 6C 65         [ 7] 1233 	inc	5,s
+   07DD                    1234 L19:
+   07DD E6 65         [ 5] 1235 	ldb	5,s
+   07DF C1 04         [ 2] 1236 	cmpb	#4	;cmpqi:
+   07E1 23 D7         [ 3] 1237 	bls	L21
+   07E3 F6 00 01      [ 5] 1238 	ldb	_current_wave+1
+   07E6 E7 E4         [ 4] 1239 	stb	,s
+   07E8 F6 00 02      [ 5] 1240 	ldb	_current_wave+2
+   07EB E7 63         [ 5] 1241 	stb	3,s
+                           1242 	; ldb	3,s	; optimization 5
+   07ED 5A            [ 2] 1243 	decb
+   07EE E7 64         [ 5] 1244 	stb	4,s
+   07F0 E6 E4         [ 4] 1245 	ldb	,s
+   07F2 E1 64         [ 5] 1246 	cmpb	4,s	;cmpqi:
+   07F4 26 07         [ 3] 1247 	bne	L22
+   07F6 C6 02         [ 2] 1248 	ldb	#2
+   07F8 F7 00 03      [ 5] 1249 	stb	_current_wave+3
+   07FB 20 05         [ 3] 1250 	bra	L23
+   07FD                    1251 L22:
+   07FD C6 03         [ 2] 1252 	ldb	#3
+   07FF F7 00 03      [ 5] 1253 	stb	_current_wave+3
+   0802                    1254 L23:
+   0802 32 66         [ 5] 1255 	leas	6,s
+   0804 35 C0         [ 7] 1256 	puls	u,pc
+                           1257 	.area .bss
+                           1258 	.globl	_bullets
+   0000                    1259 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -258,20 +1264,23 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  3 L11                0136 R   |   3 L12                0134 R
-  3 L13                00C3 R   |   3 L16                0167 R
-  3 L18                0148 R   |   3 L19                0170 R
-  3 L5                 008C R   |   3 L7                 00B3 R
-  3 L8                 0095 R   |     __Moveto_d         **** GX
-    ___Draw_VLp        **** GX  |     ___Reset0Ref       **** GX
-    _bang              **** GX  |   4 _bullets           0000 GR
-  3 _check_AllEnem     0140 GR  |     _check_collisi     **** GX
-  3 _check_enemy       005A GR  |     _current_level     **** GX
-    _dp_VIA_t1_cnt     **** GX  |   3 _draw_enemy        0027 GR
-  2 _enemies           0000 GR  |   3 _handle_enemie     00BA GR
-  3 _init_enemies      008F GR  |     _init_object       **** GX
+  2 L10                070C R   |   2 L11                06E7 R
+  2 L14                07A6 R   |   2 L15                07A4 R
+  2 L16                0721 R   |   2 L19                07DD R
+  2 L21                07BA R   |   2 L22                07FD R
+  2 L23                0802 R   |   2 L5                 028C R
+  2 L6                 028F R   |   2 L8                 06D5 R
+  2 L9                 0302 R   |   2 _MAX_LEVELS        0000 GR
+    __Moveto_d         **** GX  |     ___Draw_VLp        **** GX
+    ___Reset0Ref       **** GX  |     _bang              **** GX
+  4 _bullets           0000 GR  |   2 _check_AllEnem     07B2 GR
+    _check_collisi     **** GX  |   2 _check_enemy       0236 GR
+    _current_wave      **** GX  |     _dp_VIA_t1_cnt     **** GX
+  2 _draw_enemy        0203 GR  |   3 _enemies           0000 GR
+  2 _handle_enemie     0718 GR  |   2 _init_enemies      0292 GR
     _move_object       **** GX  |     _play_explosio     **** GX
-    _tower             **** GX  |   3 _vectors_enemy     0000 GR
+    _tower             **** GX  |   2 _vectors_enemy     01DC GR
+  2 _waveData          0001 GR
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -280,8 +1289,8 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .data            size    5   flags  100
-   3 .text            size  174   flags  100
+   2 .text            size  806   flags  100
+   3 .data            size   1E   flags  100
    4 .bss             size   3C   flags    0
 [_DSEG]
    1 _DATA            size    0   flags C0C0

@@ -7,7 +7,6 @@
 #include "utils/utils.h"
 #include "utils/vector.h"
 #include "game.h"
-#include "level.h"
 #include "player.h"
 #include "player_lvl.h"
 #include "bullet.h"
@@ -18,6 +17,8 @@ struct player_t player =
 {
 	.lvl = P_LEVEL_1,
 	.angle = 0,
+	.money = 0,
+	.firerate = 0,
 };
 
 // ---------------------------------------------------------------------------
@@ -44,6 +45,8 @@ void init_player(void)
 {
 	player.lvl = P_LEVEL_1;
 	player.angle = 0;
+	player.money = 0;
+	player.firerate = 1;
 }
 
 // ---------------------------------------------------------------------------
@@ -73,15 +76,25 @@ void rotate_player(void)
 
 void shot_player(void)
 {
+	static unsigned int timerFireRate = 20;
 	check_joysticks();
 	
 	struct vector2 vec;
 	vec.Y = 0;
 	vec.X = 0;
 	
-	if (joystick_1_up())
+
+	if(timerFireRate > player.firerate)
 	{
-		fire_bullet(vec,3,player.angle);
+		timerFireRate -= player.firerate;
+	}
+	else
+	{
+		if (joystick_1_up())
+		{
+			fire_bullet(vec,3,player.angle);
+			timerFireRate = 20;
+		}
 	}
 }
 

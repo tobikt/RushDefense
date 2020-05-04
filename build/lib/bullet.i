@@ -2339,6 +2339,8 @@ struct object_t
  int x;
  int dy;
  int dx;
+ unsigned int damage;
+
 };
 
 
@@ -2353,7 +2355,7 @@ void move_object(struct object_t* p);
 
 
 
-extern struct object_t enemies[1];
+extern struct object_t enemies[5];
 
 
 
@@ -2380,27 +2382,15 @@ void init_bullets()
 
 void draw_bullets()
 {
- static int limit = 20;
  for(unsigned int i = 0; i < 10; ++i)
  {
   if(bullets[i].state == BULLET_SHOT)
   {
    draw_bullet(i);
+   move_bullet(i);
   }
  }
 
- if(limit < 0)
- {
-  for(unsigned int i = 0; i < 10; ++i)
-  {
-   if(bullets[i].state == BULLET_SHOT)
-   {
-    move_bullet(i);
-   }
-  }
-  limit = 50;
- }
- --limit;
  check_bulletCollision();
 };
 
@@ -2422,12 +2412,17 @@ void draw_bullet(unsigned int i)
 
 void move_bullet(unsigned int i)
 {
- bullets[i].coor.Y += bullets[i].angle.Y * bullets[i].speed;
- bullets[i].coor.X += bullets[i].angle.X * bullets[i].speed;
+ bullets[i].coor.Y += bullets[i].angle.Y;
+ bullets[i].coor.X += bullets[i].angle.X;
 
  if(bullets[i].coor.Y > 100 || bullets[i].coor.Y < -100 || bullets[i].coor.X > 100 || bullets[i].coor.X < -100)
  {
   bullets[i].state = BULLET_UNSHOT;
+  bullets[i].coor.Y = 0;
+  bullets[i].coor.X = 0;
+  bullets[i].speed = 0;
+  bullets[i].angle.X = 0;
+  bullets[i].angle.Y = 0;
  }
 };
 
@@ -2435,6 +2430,8 @@ void move_bullet(unsigned int i)
 
 void fire_bullet(struct vector2 coor, int speed, unsigned int angle)
 {
+ if(angle > 64) return;
+
  for(unsigned int i = 0; i < 10; ++i)
  {
   if(bullets[i].state == BULLET_UNSHOT)
@@ -2453,16 +2450,19 @@ void fire_bullet(struct vector2 coor, int speed, unsigned int angle)
 
 void check_bulletCollision(void)
 {
- for(unsigned int i = 0; i < 10; i++)
+ for(unsigned int i = 0; i < 10; ++i)
  {
   if(bullets[i].state == BULLET_SHOT)
   {
-   for(unsigned int j = 0; i < 1; ++i)
+   for(unsigned int j = 0; j < 5; ++j)
    {
-    if(check_collision(bullets[i].coor.Y, bullets[i].coor.X, enemies[j].y, enemies[j].x, 8, 8))
+    if(enemies[j].status == ACTIVE)
     {
-     play_explosion(&bang);
-     enemies[j].status = INACTIVE;
+     if(check_collision(bullets[i].coor.Y, bullets[i].coor.X, enemies[j].y, enemies[j].x, 8, 8))
+     {
+      play_explosion(&bang);
+      enemies[j].status = INACTIVE;
+     }
     }
    }
   }

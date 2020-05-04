@@ -259,52 +259,14 @@ L2:
 	lbls	L3
 	leas	13,s
 	puls	u,pc
-	.area .data
-_limit.3250:
-	.byte	20
-	.area .text
 	.globl _draw_bullets
 _draw_bullets:
 	pshs	u
-	leas	-6,s
-	clr	4,s
+	leas	-3,s
+	clr	2,s
 	bra	L6
 L8:
-	ldb	4,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	stx	2,s
-	ldd	2,s
-	aslb
-	rola
-	std	2,s
-	; ldd	2,s	; optimization 5
-	leax	d,x
-	stx	2,s
-	ldd	2,s
-	aslb
-	rola
-	std	2,s
-	ldu	2,s
-	leax	_bullets,u
-	ldb	,x
-	; tstb	; optimization 6
-	bne	L7
-	ldb	4,s
-	jsr	_draw_bullet
-L7:
-	inc	4,s
-L6:
-	ldb	4,s
-	cmpb	#9	;cmpqi:
-	bls	L8
-	ldb	_limit.3250
-	; tstb	; optimization 6
-	bge	L9
-	clr	5,s
-	bra	L10
-L12:
-	ldb	5,s
+	ldb	2,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	,s
@@ -323,23 +285,19 @@ L12:
 	leax	_bullets,u
 	ldb	,x
 	; tstb	; optimization 6
-	bne	L11
-	ldb	5,s
+	bne	L7
+	ldb	2,s
+	jsr	_draw_bullet
+	ldb	2,s
 	jsr	_move_bullet
-L11:
-	inc	5,s
-L10:
-	ldb	5,s
+L7:
+	inc	2,s
+L6:
+	ldb	2,s
 	cmpb	#9	;cmpqi:
-	bls	L12
-	ldb	#50
-	stb	_limit.3250
-L9:
-	ldb	_limit.3250
-	decb
-	stb	_limit.3250
+	bls	L8
 	jsr	_check_bulletCollision
-	leas	6,s
+	leas	3,s
 	puls	u,pc
 	.globl _draw_bullet
 _draw_bullet:
@@ -403,11 +361,73 @@ _draw_bullet:
 	.globl _move_bullet
 _move_bullet:
 	pshs	u
-	leas	-36,s
+	leas	-40,s
+	stb	39,s
+	; ldb	39,s	; optimization 5
+	stb	33,s
+	ldb	39,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	31,s
+	ldd	31,s
+	aslb
+	rola
+	std	31,s
+	; ldd	31,s	; optimization 5
+	leax	d,x
+	stx	31,s
+	ldd	31,s
+	aslb
+	rola
+	std	31,s
+	ldu	31,s
+	leax	_bullets+1,u
+	ldb	,x
+	stb	34,s
+	ldb	39,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	29,s
+	ldd	29,s
+	aslb
+	rola
+	std	29,s
+	; ldd	29,s	; optimization 5
+	leax	d,x
+	stx	29,s
+	ldd	29,s
+	aslb
+	rola
+	std	29,s
+	ldu	29,s
+	leax	_bullets+3,u
+	ldb	,x
+	stb	,s
+	; ldb	,s	; optimization 5
+	addb	34,s
 	stb	35,s
-	; ldb	35,s	; optimization 5
-	stb	27,s
+	ldb	33,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	27,s
+	ldd	27,s
+	aslb
+	rola
+	std	27,s
+	; ldd	27,s	; optimization 5
+	leax	d,x
+	stx	27,s
+	ldd	27,s
+	aslb
+	rola
+	std	27,s
+	ldu	27,s
+	leax	_bullets+1,u
 	ldb	35,s
+	stb	,x
+	ldb	39,s
+	stb	36,s
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	25,s
@@ -419,14 +439,14 @@ _move_bullet:
 	leax	d,x
 	stx	25,s
 	ldd	25,s
+	addd	#1
 	aslb
 	rola
-	std	25,s
-	ldu	25,s
-	leax	_bullets+1,u
+	ldu	#_bullets
+	leax	d,u
 	ldb	,x
-	stb	28,s
-	ldb	35,s
+	stb	37,s
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	23,s
@@ -442,10 +462,13 @@ _move_bullet:
 	rola
 	std	23,s
 	ldu	23,s
-	leax	_bullets+3,u
+	leax	_bullets+4,u
 	ldb	,x
-	stb	29,s
-	ldb	35,s
+	stb	,s
+	; ldb	,s	; optimization 5
+	addb	37,s
+	stb	38,s
+	ldb	36,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	21,s
@@ -457,19 +480,14 @@ _move_bullet:
 	leax	d,x
 	stx	21,s
 	ldd	21,s
+	addd	#1
 	aslb
 	rola
-	std	21,s
-	ldu	21,s
-	leax	_bullets+5,u
-	ldb	,x
-	lda	29,s	;mulqihi3
-	mul
-	stb	,s	;movlsbqihi: R:d -> ,s
-	ldb	,s
-	addb	28,s
-	stb	30,s
-	ldb	27,s
+	ldu	#_bullets
+	leax	d,u
+	ldb	38,s
+	stb	,x
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	19,s
@@ -486,11 +504,10 @@ _move_bullet:
 	std	19,s
 	ldu	19,s
 	leax	_bullets+1,u
-	ldb	30,s
-	stb	,x
-	ldb	35,s
-	stb	31,s
-	ldb	35,s
+	ldb	,x
+	cmpb	#100	;cmpqi:
+	lbgt	L13
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	17,s
@@ -502,14 +519,15 @@ _move_bullet:
 	leax	d,x
 	stx	17,s
 	ldd	17,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_bullets
-	leax	d,u
+	std	17,s
+	ldu	17,s
+	leax	_bullets+1,u
 	ldb	,x
-	stb	32,s
-	ldb	35,s
+	cmpb	#-100	;cmpqi:
+	blt	L13
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	15,s
@@ -521,14 +539,15 @@ _move_bullet:
 	leax	d,x
 	stx	15,s
 	ldd	15,s
+	addd	#1
 	aslb
 	rola
-	std	15,s
-	ldu	15,s
-	leax	_bullets+4,u
+	ldu	#_bullets
+	leax	d,u
 	ldb	,x
-	stb	33,s
-	ldb	35,s
+	cmpb	#100	;cmpqi:
+	bgt	L13
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	13,s
@@ -540,19 +559,16 @@ _move_bullet:
 	leax	d,x
 	stx	13,s
 	ldd	13,s
+	addd	#1
 	aslb
 	rola
-	std	13,s
-	ldu	13,s
-	leax	_bullets+5,u
+	ldu	#_bullets
+	leax	d,u
 	ldb	,x
-	lda	33,s	;mulqihi3
-	mul
-	stb	,s	;movlsbqihi: R:d -> ,s
-	ldb	,s
-	addb	32,s
-	stb	34,s
-	ldb	31,s
+	cmpb	#-100	;cmpqi:
+	lbge	L15
+L13:
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	11,s
@@ -564,14 +580,14 @@ _move_bullet:
 	leax	d,x
 	stx	11,s
 	ldd	11,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_bullets
-	leax	d,u
-	ldb	34,s
+	std	11,s
+	ldu	11,s
+	leax	_bullets,u
+	ldb	#1
 	stb	,x
-	ldb	35,s
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	9,s
@@ -588,10 +604,8 @@ _move_bullet:
 	std	9,s
 	ldu	9,s
 	leax	_bullets+1,u
-	ldb	,x
-	cmpb	#100	;cmpqi:
-	lbgt	L17
-	ldb	35,s
+	clr	,x
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	7,s
@@ -603,15 +617,13 @@ _move_bullet:
 	leax	d,x
 	stx	7,s
 	ldd	7,s
+	addd	#1
 	aslb
 	rola
-	std	7,s
-	ldu	7,s
-	leax	_bullets+1,u
-	ldb	,x
-	cmpb	#-100	;cmpqi:
-	blt	L17
-	ldb	35,s
+	ldu	#_bullets
+	leax	d,u
+	clr	,x
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	5,s
@@ -623,15 +635,13 @@ _move_bullet:
 	leax	d,x
 	stx	5,s
 	ldd	5,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_bullets
-	leax	d,u
-	ldb	,x
-	cmpb	#100	;cmpqi:
-	bgt	L17
-	ldb	35,s
+	std	5,s
+	ldu	5,s
+	leax	_bullets+5,u
+	clr	,x
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	3,s
@@ -643,16 +653,13 @@ _move_bullet:
 	leax	d,x
 	stx	3,s
 	ldd	3,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_bullets
-	leax	d,u
-	ldb	,x
-	cmpb	#-100	;cmpqi:
-	bge	L19
-L17:
-	ldb	35,s
+	std	3,s
+	ldu	3,s
+	leax	_bullets+4,u
+	clr	,x
+	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	1,s
@@ -668,11 +675,10 @@ L17:
 	rola
 	std	1,s
 	ldu	1,s
-	leax	_bullets,u
-	ldb	#1
-	stb	,x
-L19:
-	leas	36,s
+	leax	_bullets+3,u
+	clr	,x
+L15:
+	leas	40,s
 	puls	u,pc
 	.globl _fire_bullet
 _fire_bullet:
@@ -680,9 +686,12 @@ _fire_bullet:
 	leas	-15,s
 	stx	12,s
 	stb	11,s
+	ldb	21,s
+	cmpb	#64	;cmpqi:
+	lbhi	L21
 	clr	14,s
-	jmp	L21
-L24:
+	jmp	L18
+L20:
 	ldb	14,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
@@ -702,7 +711,7 @@ L24:
 	leax	_bullets,u
 	ldb	,x
 	cmpb	#1	;cmpqi:
-	lbne	L22
+	lbne	L19
 	ldb	14,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
@@ -786,24 +795,47 @@ L24:
 	ldu	,s
 	leax	_bullets+3,u
 	sty	,x
-	bra	L25
-L22:
+	bra	L21
+L19:
 	inc	14,s
-L21:
+L18:
 	ldb	14,s
 	cmpb	#9	;cmpqi:
-	lbls	L24
-L25:
+	lbls	L20
+L21:
 	leas	15,s
 	puls	y,u,pc
 	.globl _check_bulletCollision
 _check_bulletCollision:
 	pshs	u
-	leas	-18,s
-	clr	16,s
-	jmp	L27
-L32:
-	ldb	16,s
+	leas	-20,s
+	clr	18,s
+	jmp	L23
+L28:
+	ldb	18,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	13,s
+	ldd	13,s
+	aslb
+	rola
+	std	13,s
+	; ldd	13,s	; optimization 5
+	leax	d,x
+	stx	13,s
+	ldd	13,s
+	aslb
+	rola
+	std	13,s
+	ldu	13,s
+	leax	_bullets,u
+	ldb	,x
+	; tstb	; optimization 6
+	lbne	L24
+	clr	19,s
+	jmp	L25
+L27:
+	ldb	19,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	11,s
@@ -819,48 +851,49 @@ L32:
 	rola
 	std	11,s
 	ldu	11,s
-	leax	_bullets,u
+	leax	_enemies,u
 	ldb	,x
 	; tstb	; optimization 6
-	lbne	L28
-	clr	17,s
-	jmp	L29
-L31:
-	ldb	17,s
+	lbne	L26
+	ldb	19,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	9,s
 	ldd	9,s
 	aslb
 	rola
-	aslb
-	rola
 	std	9,s
 	; ldd	9,s	; optimization 5
 	leax	d,x
 	stx	9,s
-	ldu	9,s
-	leax	_enemies+2,u
+	ldd	9,s
+	addd	#1
+	aslb
+	rola
+	ldu	#_enemies
+	leax	d,u
 	ldb	,x
-	stb	13,s
-	ldb	17,s
+	stb	15,s
+	ldb	19,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	7,s
 	ldd	7,s
 	aslb
 	rola
-	aslb
-	rola
 	std	7,s
 	; ldd	7,s	; optimization 5
 	leax	d,x
 	stx	7,s
+	ldd	7,s
+	aslb
+	rola
+	std	7,s
 	ldu	7,s
 	leax	_enemies+1,u
 	ldb	,x
-	stb	14,s
-	ldb	16,s
+	stb	16,s
+	ldb	18,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	5,s
@@ -878,8 +911,8 @@ L31:
 	ldu	#_bullets
 	leax	d,u
 	ldb	,x
-	stb	15,s
-	ldb	16,s
+	stb	17,s
+	ldb	18,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	3,s
@@ -902,48 +935,51 @@ L31:
 	stb	,-s
 	ldb	#8
 	stb	,-s
-	ldb	15,s
-	pshs	b
 	ldb	17,s
 	pshs	b
 	ldb	19,s
+	pshs	b
+	ldb	21,s
 	pshs	b
 	ldb	5,s
 	jsr	_check_collision
 	leas	5,s
 	tstb
-	beq	L30
+	beq	L26
 	ldx	#_bang
 	jsr	_play_explosion
-	ldb	17,s
+	ldb	19,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	1,s
 	ldd	1,s
 	aslb
 	rola
-	aslb
-	rola
 	std	1,s
 	; ldd	1,s	; optimization 5
 	leax	d,x
 	stx	1,s
+	ldd	1,s
+	aslb
+	rola
+	std	1,s
 	ldu	1,s
 	leax	_enemies,u
 	ldb	#1
 	stb	,x
-L30:
-	inc	16,s
-L29:
-	tst	16,s
-	lbeq	L31
-L28:
-	inc	16,s
-L27:
-	ldb	16,s
+L26:
+	inc	19,s
+L25:
+	ldb	19,s
+	cmpb	#4	;cmpqi:
+	lbls	L27
+L24:
+	inc	18,s
+L23:
+	ldb	18,s
 	cmpb	#9	;cmpqi:
-	lbls	L32
-	leas	18,s
+	lbls	L28
+	leas	20,s
 	puls	u,pc
 	.area .bss
 	.globl	_bullets

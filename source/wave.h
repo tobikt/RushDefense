@@ -1,35 +1,40 @@
 // ***************************************************************************
-// level
+// wave
 // ***************************************************************************
 
 #pragma once
 
 // ---------------------------------------------------------------------------
 
-enum level_status_t
+enum wave_status_t
 {
-	LEVEL_PLAY,
-	LEVEL_LOST,
-	LEVEL_WON,
+	WAVE_PLAY,
+	WAVE_LOST,
+	WAVE_WON,
+	PHASE_WON,
 };
 
 // ---------------------------------------------------------------------------
 
-struct level_t
+struct wave_t
 {
-	enum level_status_t status;
+	unsigned int wave_lvl;
+	unsigned int phase;
+	unsigned int maxPhase;
+	
+	enum wave_status_t status;
 	unsigned int count;
 	unsigned int frame;
 };
 
 // ---------------------------------------------------------------------------
 
-extern struct level_t current_level;
+extern struct wave_t current_wave;
 
 // ---------------------------------------------------------------------------
 
-void level_init(void);
-void level_play(void);
+void wave_init(void);
+void wave_play(void);
 
 // ***************************************************************************
 // end of file

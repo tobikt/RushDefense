@@ -3,7 +3,7 @@
                               3 ;;; 4.3.6 (gcc6809)
                               4 ;;; ABI version 1
                               5 ;;; -mint8
-                              6 	.module	game.c
+                              6 	.module	wave.c
                               7 	.globl _MAX_LEVELS
                               8 	.area .text
    0000                       9 _MAX_LEVELS:
@@ -364,219 +364,182 @@
    01D6 00 00               364 	.word	0	;skip space 6
    01D8 00 00               365 	.word	0	;skip space 4
    01DA 00 00               366 	.word	0	;skip space 2
-                            367 	.globl _current_game
+                            367 	.globl _current_wave
                             368 	.area .data
-   0000                     369 _current_game:
-   0000 00 00               370 	.word	0	;skip space 5
-   0002 00 00               371 	.word	0	;skip space 3
-   0004 00                  372 	.byte	0	;skip space
-                            373 	.area .text
-                            374 	.globl _game_init
-   01DC                     375 _game_init:
-   01DC C6 01         [ 2]  376 	ldb	#1
-   01DE F7 00 00      [ 5]  377 	stb	_Vec_Joy_Mux_1_X
-   01E1 C6 03         [ 2]  378 	ldb	#3
-   01E3 F7 00 00      [ 5]  379 	stb	_Vec_Joy_Mux_1_Y
-   01E6 7F 00 00      [ 7]  380 	clr	_Vec_Joy_Mux_2_X
-   01E9 7F 00 00      [ 7]  381 	clr	_Vec_Joy_Mux_2_Y
-   01EC C6 03         [ 2]  382 	ldb	#3
-   01EE F7 00 02      [ 5]  383 	stb	_current_game+2
-   01F1 C6 02         [ 2]  384 	ldb	#2
-   01F3 F7 00 03      [ 5]  385 	stb	_current_game+3
-   01F6 7F 00 04      [ 7]  386 	clr	_current_game+4
-   01F9 7F 00 00      [ 7]  387 	clr	_current_wave
-   01FC 7F 00 01      [ 7]  388 	clr	_current_wave+1
-   01FF 7F 00 00      [ 7]  389 	clr	_current_game
-   0202 39            [ 5]  390 	rts
-                            391 	.globl _game_play
-   0203                     392 _game_play:
-   0203 32 7F         [ 5]  393 	leas	-1,s
-   0205 BD 00 00      [ 8]  394 	jsr	_init_player
-   0208 BD 00 00      [ 8]  395 	jsr	_init_tower
-   020B BD 00 00      [ 8]  396 	jsr	_wave_init
-   020E BD 00 00      [ 8]  397 	jsr	_menu_init
-   0211 7E 02 78      [ 4]  398 	jmp	L4
-   0214                     399 L10:
-   0214 F6 00 00      [ 5]  400 	ldb	_current_game
-                            401 	; tstb	; optimization 6
-   0217 26 4C         [ 3]  402 	bne	L5
-   0219 BD 00 00      [ 8]  403 	jsr	_wave_play
-   021C F6 00 03      [ 5]  404 	ldb	_current_wave+3
-   021F C1 02         [ 2]  405 	cmpb	#2	;cmpqi:
-   0221 26 20         [ 3]  406 	bne	L6
-   0223 F6 00 00      [ 5]  407 	ldb	_current_wave
-   0226 5C            [ 2]  408 	incb
-   0227 F7 00 00      [ 5]  409 	stb	_current_wave
-   022A 7F 00 01      [ 7]  410 	clr	_current_wave+1
-   022D C6 01         [ 2]  411 	ldb	#1
-   022F F7 00 00      [ 5]  412 	stb	_current_game
-   0232 F6 00 00      [ 5]  413 	ldb	_current_wave
-   0235 E7 E4         [ 4]  414 	stb	,s
-   0237 F6 00 00      [ 5]  415 	ldb	_MAX_LEVELS
-   023A E1 E4         [ 4]  416 	cmpb	,s	;cmpqi:(R)
-   023C 22 3A         [ 3]  417 	bhi	L4
-   023E BD 02 E3      [ 8]  418 	jsr	_game_win
-   0241 20 35         [ 3]  419 	bra	L4
-   0243                     420 L6:
-   0243 F6 00 03      [ 5]  421 	ldb	_current_wave+3
-   0246 C1 03         [ 2]  422 	cmpb	#3	;cmpqi:
-   0248 26 0C         [ 3]  423 	bne	L9
-   024A F6 00 01      [ 5]  424 	ldb	_current_wave+1
-   024D 5C            [ 2]  425 	incb
-   024E F7 00 01      [ 5]  426 	stb	_current_wave+1
-   0251 BD 00 00      [ 8]  427 	jsr	_wave_init
-   0254 20 22         [ 3]  428 	bra	L4
-   0256                     429 L9:
-   0256 F6 00 02      [ 5]  430 	ldb	_current_game+2
-   0259 5A            [ 2]  431 	decb
-   025A F7 00 02      [ 5]  432 	stb	_current_game+2
-                            433 	; ldb	_current_game+2	; optimization 5
-   025D 5D            [ 2]  434 	tstb
-   025E 26 18         [ 3]  435 	bne	L4
-   0260 BD 02 8D      [ 8]  436 	jsr	_game_over
-   0263 20 13         [ 3]  437 	bra	L4
-   0265                     438 L5:
-   0265 F6 00 00      [ 5]  439 	ldb	_current_game
-   0268 C1 01         [ 2]  440 	cmpb	#1	;cmpqi:
-   026A 26 0C         [ 3]  441 	bne	L4
-   026C 7F 00 00      [ 7]  442 	clr	_Menu
-   026F BD 00 00      [ 8]  443 	jsr	_menu_open
-   0272 7F 00 00      [ 7]  444 	clr	_current_game
-   0275 BD 00 00      [ 8]  445 	jsr	_wave_init
-   0278                     446 L4:
-   0278 F6 00 02      [ 5]  447 	ldb	_current_game+2
-                            448 	; tstb	; optimization 6
-   027B 10 26 FF 95   [ 6]  449 	lbne	L10
-   027F 32 61         [ 5]  450 	leas	1,s
-   0281 39            [ 5]  451 	rts
-   0282                     452 LC0:
-   0282 47                  453 	.byte	0x47
-   0283 41                  454 	.byte	0x41
-   0284 4D                  455 	.byte	0x4D
-   0285 45                  456 	.byte	0x45
-   0286 20                  457 	.byte	0x20
-   0287 4F                  458 	.byte	0x4F
-   0288 56                  459 	.byte	0x56
-   0289 45                  460 	.byte	0x45
-   028A 52                  461 	.byte	0x52
-   028B 80                  462 	.byte	0x80
-   028C 00                  463 	.byte	0x00
-                            464 	.globl _game_over
-   028D                     465 _game_over:
-   028D 34 20         [ 6]  466 	pshs	y
-   028F 32 77         [ 5]  467 	leas	-9,s
-   0291 30 E4         [ 4]  468 	leax	,s
-   0293 BD 00 00      [ 8]  469 	jsr	___Clear_Score
-   0296 F6 00 04      [ 5]  470 	ldb	_current_game+4
-   0299 E7 68         [ 5]  471 	stb	8,s
-   029B 30 E4         [ 4]  472 	leax	,s
-   029D E6 68         [ 5]  473 	ldb	8,s
-   029F BD 00 00      [ 8]  474 	jsr	__Add_Score_a
-   02A2 31 E4         [ 4]  475 	leay	,s
-   02A4 8E 00 00      [ 3]  476 	ldx	#_Vec_High_Score
-   02A7 34 10         [ 6]  477 	pshs	x
-   02A9 30 A4         [ 4]  478 	leax	,y
-   02AB BD 00 00      [ 8]  479 	jsr	__New_High_Score
-   02AE 32 62         [ 5]  480 	leas	2,s
-   02B0 C6 96         [ 2]  481 	ldb	#-106
-   02B2 E7 67         [ 5]  482 	stb	7,s
-   02B4                     483 L14:
-   02B4 BD 00 00      [ 8]  484 	jsr	_Sync
-   02B7 BD 00 00      [ 8]  485 	jsr	___Intensity_5F
-   02BA C6 C0         [ 2]  486 	ldb	#-64
-   02BC E7 E2         [ 6]  487 	stb	,-s
-   02BE 8E 02 82      [ 3]  488 	ldx	#LC0
-   02C1 5F            [ 2]  489 	clrb
-   02C2 BD 00 00      [ 8]  490 	jsr	_print_string
-   02C5 32 61         [ 5]  491 	leas	1,s
-   02C7 BD 00 00      [ 8]  492 	jsr	___Read_Btns
-   02CA 6A 67         [ 7]  493 	dec	7,s
-                            494 	; tst	7,s	; optimization 1
-   02CC 27 08         [ 3]  495 	beq	L15
-   02CE F6 00 00      [ 5]  496 	ldb	_Vec_Buttons
-   02D1 C4 08         [ 2]  497 	andb	#8
-   02D3 5D            [ 2]  498 	tstb
-   02D4 27 DE         [ 3]  499 	beq	L14
-   02D6                     500 L15:
-   02D6 32 69         [ 5]  501 	leas	9,s
-   02D8 35 A0         [ 7]  502 	puls	y,pc
-   02DA                     503 LC1:
-   02DA 59                  504 	.byte	0x59
-   02DB 4F                  505 	.byte	0x4F
-   02DC 55                  506 	.byte	0x55
-   02DD 20                  507 	.byte	0x20
-   02DE 57                  508 	.byte	0x57
-   02DF 49                  509 	.byte	0x49
-   02E0 4E                  510 	.byte	0x4E
-   02E1 80                  511 	.byte	0x80
-   02E2 00                  512 	.byte	0x00
-                            513 	.globl _game_win
-   02E3                     514 _game_win:
-   02E3 34 20         [ 6]  515 	pshs	y
-   02E5 32 77         [ 5]  516 	leas	-9,s
-   02E7 30 E4         [ 4]  517 	leax	,s
-   02E9 BD 00 00      [ 8]  518 	jsr	___Clear_Score
-   02EC F6 00 04      [ 5]  519 	ldb	_current_game+4
-   02EF E7 68         [ 5]  520 	stb	8,s
-   02F1 30 E4         [ 4]  521 	leax	,s
-   02F3 E6 68         [ 5]  522 	ldb	8,s
-   02F5 BD 00 00      [ 8]  523 	jsr	__Add_Score_a
-   02F8 31 E4         [ 4]  524 	leay	,s
-   02FA 8E 00 00      [ 3]  525 	ldx	#_Vec_High_Score
-   02FD 34 10         [ 6]  526 	pshs	x
-   02FF 30 A4         [ 4]  527 	leax	,y
-   0301 BD 00 00      [ 8]  528 	jsr	__New_High_Score
-   0304 32 62         [ 5]  529 	leas	2,s
-   0306 C6 96         [ 2]  530 	ldb	#-106
-   0308 E7 67         [ 5]  531 	stb	7,s
-   030A                     532 L18:
-   030A BD 00 00      [ 8]  533 	jsr	_Sync
-   030D BD 00 00      [ 8]  534 	jsr	___Intensity_5F
-   0310 C6 C0         [ 2]  535 	ldb	#-64
-   0312 E7 E2         [ 6]  536 	stb	,-s
-   0314 8E 02 DA      [ 3]  537 	ldx	#LC1
-   0317 5F            [ 2]  538 	clrb
-   0318 BD 00 00      [ 8]  539 	jsr	_print_string
-   031B 32 61         [ 5]  540 	leas	1,s
-   031D BD 00 00      [ 8]  541 	jsr	___Read_Btns
-   0320 6A 67         [ 7]  542 	dec	7,s
-                            543 	; tst	7,s	; optimization 1
-   0322 27 08         [ 3]  544 	beq	L19
-   0324 F6 00 00      [ 5]  545 	ldb	_Vec_Buttons
-   0327 C4 08         [ 2]  546 	andb	#8
-   0329 5D            [ 2]  547 	tstb
-   032A 27 DE         [ 3]  548 	beq	L18
-   032C                     549 L19:
-   032C 32 69         [ 5]  550 	leas	9,s
-   032E 35 A0         [ 7]  551 	puls	y,pc
-                            552 	.globl _game
-   0330                     553 _game:
-   0330 32 7F         [ 5]  554 	leas	-1,s
-   0332 C6 01         [ 2]  555 	ldb	#1
-   0334 E7 E2         [ 6]  556 	stb	,-s
-   0336 C6 02         [ 2]  557 	ldb	#2
-   0338 BD 00 00      [ 8]  558 	jsr	__Select_Game
-   033B 32 61         [ 5]  559 	leas	1,s
-   033D F6 00 00      [ 5]  560 	ldb	_Vec_Num_Game
-   0340 F7 00 01      [ 5]  561 	stb	_current_game+1
-   0343 F6 00 00      [ 5]  562 	ldb	_Vec_Btn_State
-   0346 C4 08         [ 2]  563 	andb	#8
-   0348 5D            [ 2]  564 	tstb
-   0349 27 0A         [ 3]  565 	beq	L21
-   034B BD 01 DC      [ 8]  566 	jsr	_game_init
-   034E BD 02 03      [ 8]  567 	jsr	_game_play
-   0351 6F E4         [ 6]  568 	clr	,s
-   0353 20 04         [ 3]  569 	bra	L22
-   0355                     570 L21:
-   0355 C6 FF         [ 2]  571 	ldb	#-1
-   0357 E7 E4         [ 4]  572 	stb	,s
-   0359                     573 L22:
-   0359 E6 E4         [ 4]  574 	ldb	,s
-   035B 32 61         [ 5]  575 	leas	1,s
-   035D 39            [ 5]  576 	rts
-                            577 	.area .bss
-                            578 	.globl	_bullets
-   0000                     579 _bullets:	.blkb	60
+   0000                     369 _current_wave:
+   0000 00                  370 	.byte	0
+   0001 00                  371 	.byte	0
+   0002 00                  372 	.byte	0
+   0003 01                  373 	.byte	1
+   0004 00                  374 	.byte	0
+   0005 00                  375 	.byte	0
+                            376 	.area .text
+   01DC                     377 LC0:
+   01DC 57                  378 	.byte	0x57
+   01DD 41                  379 	.byte	0x41
+   01DE 56                  380 	.byte	0x56
+   01DF 45                  381 	.byte	0x45
+   01E0 80                  382 	.byte	0x80
+   01E1 00                  383 	.byte	0x00
+   01E2                     384 LC1:
+   01E2 50                  385 	.byte	0x50
+   01E3 48                  386 	.byte	0x48
+   01E4 41                  387 	.byte	0x41
+   01E5 53                  388 	.byte	0x53
+   01E6 45                  389 	.byte	0x45
+   01E7 80                  390 	.byte	0x80
+   01E8 00                  391 	.byte	0x00
+                            392 	.globl _wave_init
+   01E9                     393 _wave_init:
+   01E9 34 40         [ 6]  394 	pshs	u
+   01EB 32 7D         [ 5]  395 	leas	-3,s
+   01ED F6 00 00      [ 5]  396 	ldb	_current_wave
+   01F0 4F            [ 2]  397 	clra		;zero_extendqihi: R:b -> R:d
+   01F1 1F 01         [ 6]  398 	tfr	d,x
+   01F3 AF E4         [ 5]  399 	stx	,s
+   01F5 EC E4         [ 5]  400 	ldd	,s
+   01F7 58            [ 2]  401 	aslb
+   01F8 49            [ 2]  402 	rola
+   01F9 ED E4         [ 5]  403 	std	,s
+                            404 	; ldd	,s	; optimization 5
+   01FB 33 8B         [ 8]  405 	leau	d,x
+   01FD EF E4         [ 5]  406 	stu	,s
+   01FF EC E4         [ 5]  407 	ldd	,s
+   0201 58            [ 2]  408 	aslb
+   0202 49            [ 2]  409 	rola
+   0203 58            [ 2]  410 	aslb
+   0204 49            [ 2]  411 	rola
+   0205 58            [ 2]  412 	aslb
+   0206 49            [ 2]  413 	rola
+   0207 58            [ 2]  414 	aslb
+   0208 49            [ 2]  415 	rola
+   0209 58            [ 2]  416 	aslb
+   020A 49            [ 2]  417 	rola
+   020B ED E4         [ 5]  418 	std	,s
+                            419 	; ldd	,s	; optimization 5
+   020D 34 10         [ 6]  420 	pshs	x	;subhi: R:d -= R:x
+   020F A3 E1         [ 9]  421 	subd	,s++
+   0211 ED E4         [ 5]  422 	std	,s
+   0213 EE E4         [ 5]  423 	ldu	,s
+   0215 30 C9 00 02   [ 8]  424 	leax	_waveData+1,u
+   0219 E6 84         [ 4]  425 	ldb	,x
+   021B F7 00 02      [ 5]  426 	stb	_current_wave+2
+   021E BD 00 00      [ 8]  427 	jsr	_init_enemies
+   0221 BD 00 00      [ 8]  428 	jsr	_init_bullets
+   0224 C6 64         [ 2]  429 	ldb	#100
+   0226 E7 62         [ 5]  430 	stb	2,s
+   0228                     431 L3:
+   0228 BD 00 00      [ 8]  432 	jsr	_Sync
+   022B BD 00 00      [ 8]  433 	jsr	___Read_Btns
+   022E BD 00 00      [ 8]  434 	jsr	___Intensity_5F
+   0231 C6 9C         [ 2]  435 	ldb	#-100
+   0233 E7 E2         [ 6]  436 	stb	,-s
+   0235 8E 01 DC      [ 3]  437 	ldx	#LC0
+   0238 C6 3C         [ 2]  438 	ldb	#60
+   023A BD 00 00      [ 8]  439 	jsr	_print_string
+   023D 32 61         [ 5]  440 	leas	1,s
+   023F F6 00 00      [ 5]  441 	ldb	_current_wave
+   0242 5C            [ 2]  442 	incb
+   0243 34 04         [ 6]  443 	pshs	b
+   0245 C6 28         [ 2]  444 	ldb	#40
+   0247 E7 E2         [ 6]  445 	stb	,-s
+   0249 C6 3C         [ 2]  446 	ldb	#60
+   024B BD 00 00      [ 8]  447 	jsr	_print_unsigned_int
+   024E 32 62         [ 5]  448 	leas	2,s
+   0250 C6 9C         [ 2]  449 	ldb	#-100
+   0252 E7 E2         [ 6]  450 	stb	,-s
+   0254 8E 01 E2      [ 3]  451 	ldx	#LC1
+   0257 C6 14         [ 2]  452 	ldb	#20
+   0259 BD 00 00      [ 8]  453 	jsr	_print_string
+   025C 32 61         [ 5]  454 	leas	1,s
+   025E F6 00 01      [ 5]  455 	ldb	_current_wave+1
+   0261 5C            [ 2]  456 	incb
+   0262 34 04         [ 6]  457 	pshs	b
+   0264 C6 28         [ 2]  458 	ldb	#40
+   0266 E7 E2         [ 6]  459 	stb	,-s
+   0268 C6 14         [ 2]  460 	ldb	#20
+   026A BD 00 00      [ 8]  461 	jsr	_print_unsigned_int
+   026D 32 62         [ 5]  462 	leas	2,s
+   026F 6A 62         [ 7]  463 	dec	2,s
+                            464 	; tst	2,s	; optimization 1
+   0271 27 08         [ 3]  465 	beq	L2
+   0273 F6 00 00      [ 5]  466 	ldb	_Vec_Buttons
+   0276 C4 08         [ 2]  467 	andb	#8
+   0278 5D            [ 2]  468 	tstb
+   0279 27 AD         [ 3]  469 	beq	L3
+   027B                     470 L2:
+   027B 7F 00 03      [ 7]  471 	clr	_current_wave+3
+   027E 7F 00 05      [ 7]  472 	clr	_current_wave+5
+   0281 32 63         [ 5]  473 	leas	3,s
+   0283 35 C0         [ 7]  474 	puls	u,pc
+                            475 	.globl _wave_play
+   0285                     476 _wave_play:
+   0285 32 7B         [ 5]  477 	leas	-5,s
+   0287 7E 03 02      [ 4]  478 	jmp	L6
+   028A                     479 L9:
+   028A BD 00 00      [ 8]  480 	jsr	___DP_to_C8
+   028D BE 00 00      [ 6]  481 	ldx	_current_explosion
+   0290 AF 61         [ 6]  482 	stx	1,s
+                            483 	; ldx	1,s	; optimization 5
+   0292 BD 00 00      [ 8]  484 	jsr	__Explosion_Snd
+   0295 BE 00 00      [ 6]  485 	ldx	_current_music
+   0298 AF 63         [ 6]  486 	stx	3,s
+                            487 	; ldx	3,s	; optimization 5
+   029A BD 00 00      [ 8]  488 	jsr	__Init_Music_chk
+   029D BD 00 00      [ 8]  489 	jsr	___Wait_Recal
+   02A0 BD 00 00      [ 8]  490 	jsr	__Do_Sound
+   02A3 BD 00 00      [ 8]  491 	jsr	___Intensity_5F
+   02A6 F6 00 04      [ 5]  492 	ldb	_current_game+4
+   02A9 34 04         [ 6]  493 	pshs	b
+   02AB C6 9C         [ 2]  494 	ldb	#-100
+   02AD E7 E2         [ 6]  495 	stb	,-s
+   02AF C6 78         [ 2]  496 	ldb	#120
+   02B1 BD 00 00      [ 8]  497 	jsr	_print_unsigned_int
+   02B4 32 62         [ 5]  498 	leas	2,s
+   02B6 F6 00 02      [ 5]  499 	ldb	_player+2
+   02B9 34 04         [ 6]  500 	pshs	b
+   02BB C6 3C         [ 2]  501 	ldb	#60
+   02BD E7 E2         [ 6]  502 	stb	,-s
+   02BF C6 78         [ 2]  503 	ldb	#120
+   02C1 BD 00 00      [ 8]  504 	jsr	_print_unsigned_int
+   02C4 32 62         [ 5]  505 	leas	2,s
+   02C6 F6 00 04      [ 5]  506 	ldb	_tower+4
+   02C9 34 04         [ 6]  507 	pshs	b
+   02CB C6 9C         [ 2]  508 	ldb	#-100
+   02CD E7 E2         [ 6]  509 	stb	,-s
+   02CF C6 88         [ 2]  510 	ldb	#-120
+   02D1 BD 00 00      [ 8]  511 	jsr	_print_unsigned_int
+   02D4 32 62         [ 5]  512 	leas	2,s
+   02D6 BD 00 00      [ 8]  513 	jsr	_handle_enemies
+   02D9 BD 00 00      [ 8]  514 	jsr	_handle_player
+   02DC BD 00 00      [ 8]  515 	jsr	_handle_tower
+   02DF BD 00 00      [ 8]  516 	jsr	_draw_bullets
+   02E2 F6 00 05      [ 5]  517 	ldb	_current_wave+5
+   02E5 5C            [ 2]  518 	incb
+   02E6 F7 00 05      [ 5]  519 	stb	_current_wave+5
+                            520 	; ldb	_current_wave+5	; optimization 5
+   02E9 E7 E4         [ 4]  521 	stb	,s
+   02EB F6 00 03      [ 5]  522 	ldb	_current_game+3
+   02EE E1 E4         [ 4]  523 	cmpb	,s	;cmpqi:(R)
+   02F0 26 03         [ 3]  524 	bne	L7
+   02F2 7F 00 05      [ 7]  525 	clr	_current_wave+5
+   02F5                     526 L7:
+   02F5 F6 00 00      [ 5]  527 	ldb	_tower
+                            528 	; tstb	; optimization 6
+   02F8 26 05         [ 3]  529 	bne	L8
+   02FA C6 01         [ 2]  530 	ldb	#1
+   02FC F7 00 03      [ 5]  531 	stb	_current_wave+3
+   02FF                     532 L8:
+   02FF BD 00 00      [ 8]  533 	jsr	_check_AllEnemysDeath
+   0302                     534 L6:
+   0302 F6 00 03      [ 5]  535 	ldb	_current_wave+3
+                            536 	; tstb	; optimization 6
+   0305 10 27 FF 81   [ 6]  537 	lbeq	L9
+   0309 32 65         [ 5]  538 	leas	5,s
+   030B 39            [ 5]  539 	rts
+                            540 	.area .bss
+                            541 	.globl	_bullets
+   0000                     542 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -584,29 +547,25 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  2 L10                0214 R   |   2 L14                02B4 R
-  2 L15                02D6 R   |   2 L18                030A R
-  2 L19                032C R   |   2 L21                0355 R
-  2 L22                0359 R   |   2 L4                 0278 R
-  2 L5                 0265 R   |   2 L6                 0243 R
-  2 L9                 0256 R   |   2 LC0                0282 R
-  2 LC1                02DA R   |   2 _MAX_LEVELS        0000 GR
-    _Menu              **** GX  |     _Sync              **** GX
-    _Vec_Btn_State     **** GX  |     _Vec_Buttons       **** GX
-    _Vec_High_Scor     **** GX  |     _Vec_Joy_Mux_1     **** GX
-    _Vec_Joy_Mux_1     **** GX  |     _Vec_Joy_Mux_2     **** GX
-    _Vec_Joy_Mux_2     **** GX  |     _Vec_Num_Game      **** GX
-    __Add_Score_a      **** GX  |     __New_High_Sco     **** GX
-    __Select_Game      **** GX  |     ___Clear_Score     **** GX
-    ___Intensity_5     **** GX  |     ___Read_Btns       **** GX
-  4 _bullets           0000 GR  |   3 _current_game      0000 GR
-    _current_wave      **** GX  |   2 _game              0330 GR
-  2 _game_init         01DC GR  |   2 _game_over         028D GR
-  2 _game_play         0203 GR  |   2 _game_win          02E3 GR
-    _init_player       **** GX  |     _init_tower        **** GX
-    _menu_init         **** GX  |     _menu_open         **** GX
-    _print_string      **** GX  |   2 _waveData          0001 GR
-    _wave_init         **** GX  |     _wave_play         **** GX
+  2 L2                 027B R   |   2 L3                 0228 R
+  2 L6                 0302 R   |   2 L7                 02F5 R
+  2 L8                 02FF R   |   2 L9                 028A R
+  2 LC0                01DC R   |   2 LC1                01E2 R
+  2 _MAX_LEVELS        0000 GR  |     _Sync              **** GX
+    _Vec_Buttons       **** GX  |     __Do_Sound         **** GX
+    __Explosion_Sn     **** GX  |     __Init_Music_c     **** GX
+    ___DP_to_C8        **** GX  |     ___Intensity_5     **** GX
+    ___Read_Btns       **** GX  |     ___Wait_Recal      **** GX
+  4 _bullets           0000 GR  |     _check_AllEnem     **** GX
+    _current_explo     **** GX  |     _current_game      **** GX
+    _current_music     **** GX  |   3 _current_wave      0000 GR
+    _draw_bullets      **** GX  |     _handle_enemie     **** GX
+    _handle_player     **** GX  |     _handle_tower      **** GX
+    _init_bullets      **** GX  |     _init_enemies      **** GX
+    _player            **** GX  |     _print_string      **** GX
+    _print_unsigne     **** GX  |     _tower             **** GX
+  2 _waveData          0001 GR  |   2 _wave_init         01E9 GR
+  2 _wave_play         0285 GR
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -615,8 +574,8 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .text            size  35E   flags  100
-   3 .data            size    5   flags  100
+   2 .text            size  30C   flags  100
+   3 .data            size    6   flags  100
    4 .bss             size   3C   flags    0
 [_DSEG]
    1 _DATA            size    0   flags C0C0

@@ -38,6 +38,8 @@ struct tower_t
 	enum tower_lvl_t lvl;			
 	enum tower_firerate_t firerate; 
 	unsigned int angle;
+	unsigned int healtPoints;
+	unsigned int towerBullets[];
 };
 
 // ---------------------------------------------------------------------------
@@ -46,8 +48,10 @@ extern struct tower_t tower;
 
 // ---------------------------------------------------------------------------
 
+void set_tower(enum tower_lvl_t lvl);
 void init_tower(void);
 void handle_tower(void);
+
 
 // ***************************************************************************
 // end of file

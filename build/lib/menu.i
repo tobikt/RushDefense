@@ -2178,6 +2178,8 @@ struct player_t
 {
  enum player_lvl_t lvl;
  unsigned int angle;
+ unsigned int money;
+ unsigned int firerate;
 };
 
 
@@ -2230,6 +2232,8 @@ struct tower_t
  enum tower_lvl_t lvl;
  enum tower_firerate_t firerate;
  unsigned int angle;
+ unsigned int healtPoints;
+ unsigned int towerBullets[];
 };
 
 
@@ -2238,6 +2242,7 @@ extern struct tower_t tower;
 
 
 
+void set_tower(enum tower_lvl_t lvl);
 void init_tower(void);
 void handle_tower(void);
 # 12 "source\\menu.c" 2
@@ -2260,6 +2265,16 @@ void menu_init(void)
 
 void menu_handle(void)
 {
+ static int limit = 5;
+ if(limit != 0)
+ {
+  --limit;
+  return;
+ }
+ else
+ {
+  limit = 5;
+ }
  check_joysticks();
 
  if (joystick_1_left())
@@ -2277,13 +2292,19 @@ void menu_handle(void)
    {
     case P_LEVEL_1:
      player.lvl = P_LEVEL_2;
+     player.firerate = 2;
      break;
     case P_LEVEL_2:
      player.lvl = P_LEVEL_3;
+     player.firerate = 5;
      break;
     case P_LEVEL_3:
+     player.lvl = P_LEVEL_3;
+     player.firerate = 5;
      break;
     default:
+     player.lvl = P_LEVEL_1;
+     player.firerate = 1;
      break;
    };
   }
@@ -2293,19 +2314,19 @@ void menu_handle(void)
    switch(tower.lvl)
    {
     case LEVEL_1:
-     tower.lvl = LEVEL_2;
+     set_tower(LEVEL_2);
      break;
     case LEVEL_2:
-     tower.lvl = LEVEL_3;
+     set_tower(LEVEL_3);
      break;
     case LEVEL_3:
-     tower.lvl = LEVEL_4;
+     set_tower(LEVEL_4);
      break;
     case LEVEL_4:
-     tower.lvl = LEVEL_5;
+     set_tower(LEVEL_5);
      break;
     case LEVEL_5:
-     tower.lvl = LEVEL_6;
+     set_tower(LEVEL_6);
      break;
     case LEVEL_6:
      break;

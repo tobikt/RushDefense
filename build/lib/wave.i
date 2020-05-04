@@ -1,7 +1,7 @@
-# 1 "source\\level.c"
+# 1 "source\\wave.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "source\\level.c"
+# 1 "source\\wave.c"
 
 
 
@@ -1650,7 +1650,7 @@ static inline __attribute__((always_inline)) void Wait_Bound(void)
 # 41 "..\\..\\gcc6809\\vectrex\\include/vec_rum_fct.h" 2
 # 45 "..\\..\\gcc6809\\vectrex\\include/vec_rum.h" 2
 # 44 "..\\..\\gcc6809\\vectrex\\include/vectrex.h" 2
-# 6 "source\\level.c" 2
+# 6 "source\\wave.c" 2
 # 1 "source\\/utils/utils.h" 1
 
 
@@ -1834,7 +1834,7 @@ int divs(int dividend, int divisor)
 {
  return (int) ((long int) dividend / (long int) divisor);
 }
-# 7 "source\\level.c" 2
+# 7 "source\\wave.c" 2
 # 1 "source\\/utils/controller.h" 1
 
 
@@ -2103,7 +2103,7 @@ int joystick_2_up()
 {
  return (joystick_2_y() > 0);
 }
-# 8 "source\\level.c" 2
+# 8 "source\\wave.c" 2
 # 1 "source\\/utils/print.h" 1
 
 
@@ -2117,7 +2117,7 @@ void print_signed_int(int y, int x, int z);
 void print_long_unsigned_int(int y, int x, long unsigned int z);
 void print_long_signed_int(int y, int x, long signed int z);
 void print_binary(int y, int x, unsigned int z);
-# 9 "source\\level.c" 2
+# 9 "source\\wave.c" 2
 # 1 "source\\/game.h" 1
 
 
@@ -2138,12 +2138,10 @@ enum gamePhase_state_t
 struct game_t
 {
  enum gamePhase_state_t gamePhase;
- unsigned int option_players;
  unsigned int option_mode;
- unsigned int lives[2];
- unsigned int level[2];
- unsigned int score[2];
- unsigned int player;
+ unsigned int lives;
+ unsigned int level;
+ unsigned int score;
 };
 
 
@@ -2157,8 +2155,9 @@ int game(void);
 void game_init(void);
 void game_play(void);
 void game_over(void);
-# 10 "source\\level.c" 2
-# 1 "source\\/level.h" 1
+void game_win(void);
+# 10 "source\\wave.c" 2
+# 1 "source\\/wave.h" 1
 
 
 
@@ -2167,31 +2166,36 @@ void game_over(void);
 
 
 
-enum level_status_t
+enum wave_status_t
 {
- LEVEL_PLAY,
- LEVEL_LOST,
- LEVEL_WON,
+ WAVE_PLAY,
+ WAVE_LOST,
+ WAVE_WON,
+ PHASE_WON,
 };
 
 
 
-struct level_t
+struct wave_t
 {
- enum level_status_t status;
+ unsigned int wave_lvl;
+ unsigned int phase;
+ unsigned int maxPhase;
+
+ enum wave_status_t status;
  unsigned int count;
  unsigned int frame;
 };
 
 
 
-extern struct level_t current_level;
+extern struct wave_t current_wave;
 
 
 
-void level_init(void);
-void level_play(void);
-# 11 "source\\level.c" 2
+void wave_init(void);
+void wave_play(void);
+# 11 "source\\wave.c" 2
 # 1 "source\\/enemy.h" 1
 
 
@@ -2223,6 +2227,8 @@ struct object_t
  int x;
  int dy;
  int dx;
+ unsigned int damage;
+
 };
 
 
@@ -2237,14 +2243,14 @@ void move_object(struct object_t* p);
 
 
 
-extern struct object_t enemies[1];
+extern struct object_t enemies[5];
 
 
 
 void init_enemies(void);
 void handle_enemies(void);
 void check_AllEnemysDeath(void);
-# 12 "source\\level.c" 2
+# 12 "source\\wave.c" 2
 # 1 "source\\/tower.h" 1
 
 
@@ -2286,6 +2292,8 @@ struct tower_t
  enum tower_lvl_t lvl;
  enum tower_firerate_t firerate;
  unsigned int angle;
+ unsigned int healtPoints;
+ unsigned int towerBullets[];
 };
 
 
@@ -2294,9 +2302,10 @@ extern struct tower_t tower;
 
 
 
+void set_tower(enum tower_lvl_t lvl);
 void init_tower(void);
 void handle_tower(void);
-# 13 "source\\level.c" 2
+# 13 "source\\wave.c" 2
 # 1 "source\\/player.h" 1
 
 
@@ -2319,6 +2328,8 @@ struct player_t
 {
  enum player_lvl_t lvl;
  unsigned int angle;
+ unsigned int money;
+ unsigned int firerate;
 };
 
 
@@ -2329,7 +2340,7 @@ extern struct player_t player;
 
 void init_player(void);
 void handle_player(void);
-# 14 "source\\level.c" 2
+# 14 "source\\wave.c" 2
 # 1 "source\\/bullet.h" 1
 
 
@@ -2392,21 +2403,174 @@ void move_bullet(unsigned int i);
 
 void fire_bullet(struct vector2 coor, int speed, unsigned int angle);
 void check_bulletCollision(void);
-# 15 "source\\level.c" 2
+# 15 "source\\wave.c" 2
+# 1 "source\\/waves_data.h" 1
+
+
+const unsigned int MAX_LEVELS = 5;
 
 
 
-struct level_t current_level =
+struct phase_data_t
 {
- .status = LEVEL_LOST,
+ unsigned int enemies_cnt;
+ struct object_t enemies[5];
+};
+
+struct wave_data_t
+{
+ unsigned int wave_lvl;
+ unsigned int phases_cnt;
+ struct phase_data_t phases[3];
+};
+
+const struct wave_data_t waveData[] =
+{
+ {
+  .wave_lvl = 1,
+  .phases_cnt = 1,
+  {
+   {
+    .enemies_cnt = 1,
+    {
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 2,
+  .phases_cnt = 2,
+  {
+   {
+    .enemies_cnt = 1,
+    {
+     { .status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 2,
+    {
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = -100, .x = -100 ,.dy = 2, .dx = 2, .damage = 10},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 3,
+  .phases_cnt = 3,
+  {
+   {
+    .enemies_cnt = 3,
+    {
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 1,
+    {
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 3,
+    {
+     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 2, .dx = -1, .damage = 50},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 50},
+     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 50},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 4,
+  .phases_cnt = 3,
+  {
+   {
+    .enemies_cnt = 3,
+    {
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 4,
+    {
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 50, .x = 100 ,.dy = -1, .dx = -2, .damage = 10},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 5,
+    {
+     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 2, .dx = -1, .damage = 50},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 50},
+     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 50},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -2, .dx = 0, .damage = 50},
+     {.status = ACTIVE, .y = -50, .x = -100 ,.dy = 1, .dx = 2, .damage = 50},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 5,
+  .phases_cnt = 3,
+  {
+   {
+    .enemies_cnt = 4,
+    {
+     {.status = ACTIVE, .y = -100, .x = -100 ,.dy = 1, .dx = 1, .damage = 10},
+     {.status = ACTIVE, .y = -100, .x = 100 ,.dy = 1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = -100 ,.dy = -1, .dx = 1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 4,
+    {
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 0, .x = -100 ,.dy = 0, .dx = 1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 10},
+    },
+   },
+   {
+    .enemies_cnt = 4,
+    {
+     {.status = ACTIVE, .y = -50, .x = -100 ,.dy = 1, .dx = 2, .damage = 50},
+     {.status = ACTIVE, .y = -50, .x = 100 ,.dy = 1, .dx = -2, .damage = 50},
+     {.status = ACTIVE, .y = 50, .x = -100 ,.dy = -1, .dx = 2, .damage = 50},
+     {.status = ACTIVE, .y = 50, .x = 100 ,.dy = -1, .dx = -2, .damage = 50},
+    },
+   },
+  },
+ }
+};
+# 16 "source\\wave.c" 2
+
+
+
+struct wave_t current_wave =
+{
+ .status = WAVE_LOST,
  .count = 0,
  .frame = 0,
+ .wave_lvl = 0,
+ .phase = 0,
+ .maxPhase = 0,
 };
 
 
 
-void level_init()
+void wave_init()
 {
+ current_wave.maxPhase = waveData[current_wave.wave_lvl].phases_cnt;
 
  init_enemies();
  init_bullets();
@@ -2418,23 +2582,22 @@ void level_init()
   Sync();
   check_buttons();
   Intensity_5F();
-  print_string(60, -100, "LEVEL\x80");
-  print_unsigned_int(60, 40, current_game.level[current_game.player]);
-  print_string(20, -100, "PLAYER\x80");
-  print_unsigned_int(20, 40, current_game.player + 1);
-  Print_Ships(0x69, current_game.lives[current_game.player], 0xC0E2);
+  print_string(60, -100, "WAVE\x80");
+  print_unsigned_int(60, 40, current_wave.wave_lvl + 1);
+  print_string(20, -100, "PHASE\x80");
+  print_unsigned_int(20, 40, current_wave.phase + 1);
  }
  while((--delay) && !button_1_4_pressed());
 
- current_level.status = LEVEL_PLAY;
- current_level.frame = 0;
+ current_wave.status = WAVE_PLAY;
+ current_wave.frame = 0;
 }
 
 
 
-void level_play(void)
+void wave_play(void)
 {
- while(current_level.status == LEVEL_PLAY)
+ while(current_wave.status == WAVE_PLAY)
  {
 
   DP_to_C8();
@@ -2447,8 +2610,9 @@ void level_play(void)
 
 
 
-  print_unsigned_int(120, -100, current_game.score[current_game.player]);
-
+  print_unsigned_int(120, -100, current_game.score);
+  print_unsigned_int(120, 60, player.money);
+  print_unsigned_int(-120, -100, tower.healtPoints);
 
   handle_enemies();
   handle_player();
@@ -2457,15 +2621,16 @@ void level_play(void)
   draw_bullets();
 
 
-  ++current_level.frame;
-  if (current_level.frame == current_game.level[current_game.player])
+  ++current_wave.frame;
+  if (current_wave.frame == current_game.level)
   {
-   current_level.frame = 0;
+   current_wave.frame = 0;
   }
 
 
   if(tower.status == DEAD)
-   current_level.status = LEVEL_LOST;
+   current_wave.status = WAVE_LOST;
   check_AllEnemysDeath();
+
  }
 }

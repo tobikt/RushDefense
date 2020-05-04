@@ -7,7 +7,7 @@
 #include "utils/utils.h"
 #include "utils/vector.h"
 #include "game.h"
-#include "level.h"
+#include "wave.h"
 #include "tower.h"
 #include "tower_lvl.h"
 #include "vector2.h"
@@ -15,19 +15,14 @@
 
 // ---------------------------------------------------------------------------
 
-unsigned int towerBullet_1 = 0;
-unsigned int towerBullet_2 = 0;
-unsigned int towerBullet_3 = 0;
-unsigned int towerBullet_4 = 0;
-unsigned int towerBullet_5 = 0;
-unsigned int towerBullet_6 = 0;
-
-
 struct tower_t tower =
 {
 	.status = DEAD,
 	.lvl = LEVEL_1,
 	.angle = 0,
+	.firerate = FIRERATE_1,
+	.healtPoints = 0,
+	.towerBullets = {0,0,0,0,0,0},
 };
 
 // ---------------------------------------------------------------------------
@@ -39,8 +34,8 @@ struct packet_t rotated_tower1[sizeof (vectors_tower_lvl_1) / sizeof(struct pack
 struct packet_t rotated_tower2[sizeof (vectors_tower_lvl_2) / sizeof(struct packet_t)];
 struct packet_t rotated_tower3[sizeof (vectors_tower_lvl_3) / sizeof(struct packet_t)];
 struct packet_t rotated_tower4[sizeof (vectors_tower_lvl_4) / sizeof(struct packet_t)];
-struct packet_t rotated_tower5[sizeof (vectors_tower_lvl_5) / sizeof(struct packet_t)];
-struct packet_t rotated_tower6[sizeof (vectors_tower_lvl_6) / sizeof(struct packet_t)];
+//struct packet_t rotated_tower5[sizeof (vectors_tower_lvl_5) / sizeof(struct packet_t)];
+//struct packet_t rotated_tower6[sizeof (vectors_tower_lvl_6) / sizeof(struct packet_t)];
 
 void draw_tower(void)
 {
@@ -69,12 +64,12 @@ void draw_tower(void)
 			Draw_VLp(&rotated_tower4);		// draw vector list
 		break;
 		case LEVEL_5:			
-			Rot_VL_Mode(tower.angle,&vectors_tower_lvl_5,rotated_tower5);
-			Draw_VLp(&rotated_tower5);		// draw vector list
+			//Rot_VL_Mode(tower.angle,&vectors_tower_lvl_5,rotated_tower5);
+			//Draw_VLp(&rotated_tower5);		// draw vector list
 		break;
 		case LEVEL_6:			
-			Rot_VL_Mode(tower.angle,&vectors_tower_lvl_6,rotated_tower6);
-			Draw_VLp(&rotated_tower6);		// draw vector list
+			//Rot_VL_Mode(tower.angle,&vectors_tower_lvl_6,rotated_tower6);
+			//Draw_VLp(&rotated_tower6);		// draw vector list
 		break;
 		default:			
 			Rot_VL_Mode(tower.angle,&vectors_tower_lvl_1,rotated_tower1);
@@ -88,12 +83,12 @@ void draw_tower(void)
 		cnt = 0;
 		tower.angle += 2;
 		
-		towerBullet_1 += tower.angle;
-		towerBullet_2 += tower.angle;
-		towerBullet_3 += tower.angle;
-		towerBullet_4 += tower.angle;
-		towerBullet_5 += tower.angle;
-		towerBullet_6 += tower.angle;
+		tower.towerBullets[0] += tower.angle;
+		tower.towerBullets[1] += tower.angle;
+		tower.towerBullets[2] += tower.angle;
+		tower.towerBullets[3] += tower.angle;
+		tower.towerBullets[4] += tower.angle;
+		tower.towerBullets[5] += tower.angle;
 	}
 	++cnt;
 	
@@ -105,27 +100,82 @@ void draw_tower(void)
 void init_tower(void)
 {
 	tower.status = ALIVE;
-	tower.lvl = LEVEL_1;
-	
-	
-	towerBullet_1 = tower.angle;
-	towerBullet_2 = tower.angle + 11;
-	towerBullet_3 = tower.angle + 21;
-	towerBullet_4 = tower.angle + 32;
-	towerBullet_5 = tower.angle + 43;
-	towerBullet_6 = tower.angle + 53;
+	set_tower(LEVEL_1);
+	tower.angle = 0;
+	tower.healtPoints = 100;
 }
 
 // ---------------------------------------------------------------------------
-
-
+void set_tower(enum tower_lvl_t lvl)
+{
+	tower.lvl = lvl;
+	switch(tower.lvl)
+	{
+		case LEVEL_1:
+			tower.firerate = FIRERATE_1;
+			tower.towerBullets[0] = tower.angle;
+			tower.towerBullets[1] = 100;
+			tower.towerBullets[2] = 100;
+			tower.towerBullets[3] = 100;
+			tower.towerBullets[4] = 100;
+			tower.towerBullets[5] = 100;
+			break;
+		case LEVEL_2:
+			tower.firerate = FIRERATE_1;
+			tower.towerBullets[0] = tower.angle;
+			tower.towerBullets[1] = tower.angle + 32;
+			tower.towerBullets[2] = 100;
+			tower.towerBullets[3] = 100;
+			tower.towerBullets[4] = 100;
+			tower.towerBullets[5] = 100;
+			break;
+		case LEVEL_3:
+			tower.firerate = FIRERATE_2;
+			tower.towerBullets[0] = tower.angle;
+			tower.towerBullets[1] = tower.angle + 16;
+			tower.towerBullets[2] = tower.angle + 32;
+			tower.towerBullets[3] = 100;
+			tower.towerBullets[4] = 100;
+			tower.towerBullets[5] = 100;
+			break;
+		case LEVEL_4:
+			tower.firerate = FIRERATE_2;
+			tower.towerBullets[0] = tower.angle;
+			tower.towerBullets[1] = tower.angle + 16;
+			tower.towerBullets[2] = tower.angle + 32;
+			tower.towerBullets[3] = tower.angle + 48;
+			tower.towerBullets[4] = 100;
+			tower.towerBullets[5] = 100;
+			break;
+		case LEVEL_5:
+			tower.firerate = FIRERATE_3;
+			tower.towerBullets[0] = tower.angle;
+			tower.towerBullets[1] = tower.angle + 11;
+			tower.towerBullets[2] = tower.angle + 21;
+			tower.towerBullets[3] = tower.angle + 32;
+			tower.towerBullets[4] = tower.angle + 43;
+			tower.towerBullets[5] = 100;
+			break;
+		case LEVEL_6:
+			tower.firerate = FIRERATE_3;
+			tower.towerBullets[0] = tower.angle;
+			tower.towerBullets[1] = tower.angle + 11;
+			tower.towerBullets[2] = tower.angle + 21;
+			tower.towerBullets[3] = tower.angle + 32;
+			tower.towerBullets[4] = tower.angle + 43;
+			tower.towerBullets[5] = tower.angle + 53;
+			break;
+		default:
+			break;
+	};
+}
 
 void tower_shot(void)
 {
-	static unsigned int rate = 200;
+	static unsigned int rate = 50;
 	if(tower.firerate == FIRERATE_1) rate -= 1;
-	if(tower.firerate == FIRERATE_2) rate -= 2;
-	if(tower.firerate == FIRERATE_3) rate -= 5;
+	else if(tower.firerate == FIRERATE_2) rate -= 2;
+	else if(tower.firerate == FIRERATE_3) rate -= 5;
 	
 	struct vector2 vec;
 	vec.Y = 0;
@@ -133,31 +183,14 @@ void tower_shot(void)
 	
 	if(rate <= 0)
 	{
-		//fire_bullet(vec,1,towerBullet_1);
-		//fire_bullet(vec,1,towerBullet_2);
-		//fire_bullet(vec,1,towerBullet_3);
-		//fire_bullet(vec,1,towerBullet_4);
-		//fire_bullet(vec,1,towerBullet_5);
-		//fire_bullet(vec,1,towerBullet_6);
+		fire_bullet(vec,1,tower.towerBullets[0]);
+		fire_bullet(vec,1,tower.towerBullets[1]);
+		fire_bullet(vec,1,tower.towerBullets[2]);
+		fire_bullet(vec,1,tower.towerBullets[3]);
+		fire_bullet(vec,1,tower.towerBullets[4]);
+		fire_bullet(vec,1,tower.towerBullets[5]);
 		
-		//fire_bullet(vec,1,0);
-		//fire_bullet(vec,1,8);
-		//fire_bullet(vec,1,16);
-		//fire_bullet(vec,1,24);
-		//fire_bullet(vec,1,32);
-		//fire_bullet(vec,1,40);
-		//fire_bullet(vec,1,48);
-		//fire_bullet(vec,1,56);
-		
-		//fire_bullet(vec,1,4);
-		//fire_bullet(vec,1,12);
-		//fire_bullet(vec,1,20);
-		//fire_bullet(vec,1,28);
-		//fire_bullet(vec,1,36);
-		//fire_bullet(vec,1,44);
-		//fire_bullet(vec,1,52);
-		//fire_bullet(vec,1,60);
-		rate = 200;
+		rate = 50;
 	}
 	
 }
@@ -171,7 +204,7 @@ void handle_tower(void)
 
 	if (tower.status == DEAD)
 	{
-		current_level.status = LEVEL_LOST;
+		current_wave.status = WAVE_LOST;
 	}
 }
 

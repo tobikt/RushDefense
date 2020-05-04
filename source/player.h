@@ -19,6 +19,8 @@ struct player_t
 {
 	enum player_lvl_t lvl;
 	unsigned int angle;
+	unsigned int money;
+	unsigned int firerate;
 };
 
 // ---------------------------------------------------------------------------

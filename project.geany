@@ -28,28 +28,9 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=3
-FILE_NAME_0=241;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cbullet.h;0;4
-FILE_NAME_1=2014;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cbullet.c;0;4
-FILE_NAME_2=604;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Clevel.h;0;4
-FILE_NAME_3=716;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Clevel.c;0;4
-FILE_NAME_4=1855;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cgame.c;0;4
-FILE_NAME_5=437;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cgame.h;0;4
-FILE_NAME_6=491;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cmenu.h;0;4
-FILE_NAME_7=1404;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cmenu.c;0;4
-FILE_NAME_8=616;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cenemy.h;0;4
-FILE_NAME_9=582;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cenemy.c;0;4
-FILE_NAME_10=986;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cobject.c;0;4
-FILE_NAME_11=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cobject.h;0;4
-FILE_NAME_12=355;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Ctower.h;0;4
-FILE_NAME_13=405;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cplayer.h;0;4
-FILE_NAME_14=506;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cplayer.c;0;4
-FILE_NAME_15=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cutils%5Ccollision.h;0;4
-FILE_NAME_16=0;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cutils%5Ccollision.c;0;4
-FILE_NAME_17=2750;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Ctower.c;0;4
-FILE_NAME_18=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Cplayer_lvl.h;0;4
-FILE_NAME_19=1851;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5Ctower_lvl.h;0;4
-FILE_NAME_20=247;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5Cgame_demo%5Csource%5ClookupAngle.h;0;4
+current_page=1
+FILE_NAME_0=0;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cbullet.c;0;4
+FILE_NAME_1=136;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ccartridge.c;0;4
 
 [build-menu]
 NF_00_LB=_Make

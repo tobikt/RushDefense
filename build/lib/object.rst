@@ -6,191 +6,171 @@
                               6 	.module	object.c
                               7 	.globl _LookUpAngle
                               8 	.area .data
-   C915                       9 _LookUpAngle:
-   C915 00                   10 	.byte	0
-   C916 0A                   11 	.byte	10
-   C917 01                   12 	.byte	1
-   C918 0A                   13 	.byte	10
-   C919 02                   14 	.byte	2
-   C91A 0A                   15 	.byte	10
-   C91B 03                   16 	.byte	3
-   C91C 09                   17 	.byte	9
-   C91D 04                   18 	.byte	4
-   C91E 09                   19 	.byte	9
-   C91F 05                   20 	.byte	5
-   C920 09                   21 	.byte	9
-   C921 05                   22 	.byte	5
-   C922 08                   23 	.byte	8
-   C923 06                   24 	.byte	6
-   C924 08                   25 	.byte	8
-   C925 07                   26 	.byte	7
-   C926 07                   27 	.byte	7
-   C927 08                   28 	.byte	8
-   C928 06                   29 	.byte	6
-   C929 08                   30 	.byte	8
-   C92A 05                   31 	.byte	5
-   C92B 09                   32 	.byte	9
-   C92C 05                   33 	.byte	5
-   C92D 09                   34 	.byte	9
-   C92E 04                   35 	.byte	4
-   C92F 09                   36 	.byte	9
-   C930 03                   37 	.byte	3
-   C931 0A                   38 	.byte	10
-   C932 02                   39 	.byte	2
-   C933 0A                   40 	.byte	10
-   C934 01                   41 	.byte	1
-   C935 0A                   42 	.byte	10
-   C936 00                   43 	.byte	0
-   C937 0A                   44 	.byte	10
-   C938 FF                   45 	.byte	-1
-   C939 0A                   46 	.byte	10
-   C93A FE                   47 	.byte	-2
-   C93B 09                   48 	.byte	9
-   C93C FD                   49 	.byte	-3
-   C93D 09                   50 	.byte	9
-   C93E FC                   51 	.byte	-4
-   C93F 09                   52 	.byte	9
-   C940 FB                   53 	.byte	-5
-   C941 08                   54 	.byte	8
-   C942 FB                   55 	.byte	-5
-   C943 08                   56 	.byte	8
-   C944 FA                   57 	.byte	-6
-   C945 07                   58 	.byte	7
-   C946 F9                   59 	.byte	-7
-   C947 06                   60 	.byte	6
-   C948 F8                   61 	.byte	-8
-   C949 05                   62 	.byte	5
-   C94A F8                   63 	.byte	-8
-   C94B 05                   64 	.byte	5
-   C94C F7                   65 	.byte	-9
-   C94D 04                   66 	.byte	4
-   C94E F7                   67 	.byte	-9
-   C94F 03                   68 	.byte	3
-   C950 F7                   69 	.byte	-9
-   C951 02                   70 	.byte	2
-   C952 F6                   71 	.byte	-10
-   C953 01                   72 	.byte	1
-   C954 F6                   73 	.byte	-10
-   C955 00                   74 	.byte	0
-   C956 F6                   75 	.byte	-10
-   C957 FF                   76 	.byte	-1
-   C958 F6                   77 	.byte	-10
-   C959 FE                   78 	.byte	-2
-   C95A F6                   79 	.byte	-10
-   C95B FD                   80 	.byte	-3
-   C95C F7                   81 	.byte	-9
-   C95D FC                   82 	.byte	-4
-   C95E F7                   83 	.byte	-9
-   C95F FB                   84 	.byte	-5
-   C960 F7                   85 	.byte	-9
-   C961 FB                   86 	.byte	-5
-   C962 F8                   87 	.byte	-8
-   C963 FA                   88 	.byte	-6
-   C964 F8                   89 	.byte	-8
-   C965 F9                   90 	.byte	-7
-   C966 F9                   91 	.byte	-7
-   C967 F8                   92 	.byte	-8
-   C968 FA                   93 	.byte	-6
-   C969 F8                   94 	.byte	-8
-   C96A FB                   95 	.byte	-5
-   C96B F7                   96 	.byte	-9
-   C96C FB                   97 	.byte	-5
-   C96D F7                   98 	.byte	-9
-   C96E FC                   99 	.byte	-4
-   C96F F7                  100 	.byte	-9
-   C970 FD                  101 	.byte	-3
-   C971 F6                  102 	.byte	-10
-   C972 FE                  103 	.byte	-2
-   C973 F6                  104 	.byte	-10
-   C974 FF                  105 	.byte	-1
-   C975 F6                  106 	.byte	-10
-   C976 00                  107 	.byte	0
-   C977 F6                  108 	.byte	-10
-   C978 01                  109 	.byte	1
-   C979 F6                  110 	.byte	-10
-   C97A 02                  111 	.byte	2
-   C97B F7                  112 	.byte	-9
-   C97C 03                  113 	.byte	3
-   C97D F7                  114 	.byte	-9
-   C97E 04                  115 	.byte	4
-   C97F F7                  116 	.byte	-9
-   C980 05                  117 	.byte	5
-   C981 F8                  118 	.byte	-8
-   C982 05                  119 	.byte	5
-   C983 F8                  120 	.byte	-8
-   C984 06                  121 	.byte	6
-   C985 F9                  122 	.byte	-7
-   C986 07                  123 	.byte	7
-   C987 FA                  124 	.byte	-6
-   C988 08                  125 	.byte	8
-   C989 FB                  126 	.byte	-5
-   C98A 08                  127 	.byte	8
-   C98B FB                  128 	.byte	-5
-   C98C 09                  129 	.byte	9
-   C98D FC                  130 	.byte	-4
-   C98E 09                  131 	.byte	9
-   C98F FD                  132 	.byte	-3
-   C990 09                  133 	.byte	9
-   C991 FE                  134 	.byte	-2
-   C992 0A                  135 	.byte	10
-   C993 FF                  136 	.byte	-1
-   C994 0A                  137 	.byte	10
+   C926                       9 _LookUpAngle:
+   C926 00                   10 	.byte	0
+   C927 0A                   11 	.byte	10
+   C928 01                   12 	.byte	1
+   C929 0A                   13 	.byte	10
+   C92A 02                   14 	.byte	2
+   C92B 0A                   15 	.byte	10
+   C92C 03                   16 	.byte	3
+   C92D 09                   17 	.byte	9
+   C92E 04                   18 	.byte	4
+   C92F 09                   19 	.byte	9
+   C930 05                   20 	.byte	5
+   C931 09                   21 	.byte	9
+   C932 05                   22 	.byte	5
+   C933 08                   23 	.byte	8
+   C934 06                   24 	.byte	6
+   C935 08                   25 	.byte	8
+   C936 07                   26 	.byte	7
+   C937 07                   27 	.byte	7
+   C938 08                   28 	.byte	8
+   C939 06                   29 	.byte	6
+   C93A 08                   30 	.byte	8
+   C93B 05                   31 	.byte	5
+   C93C 09                   32 	.byte	9
+   C93D 05                   33 	.byte	5
+   C93E 09                   34 	.byte	9
+   C93F 04                   35 	.byte	4
+   C940 09                   36 	.byte	9
+   C941 03                   37 	.byte	3
+   C942 0A                   38 	.byte	10
+   C943 02                   39 	.byte	2
+   C944 0A                   40 	.byte	10
+   C945 01                   41 	.byte	1
+   C946 0A                   42 	.byte	10
+   C947 00                   43 	.byte	0
+   C948 0A                   44 	.byte	10
+   C949 FF                   45 	.byte	-1
+   C94A 0A                   46 	.byte	10
+   C94B FE                   47 	.byte	-2
+   C94C 09                   48 	.byte	9
+   C94D FD                   49 	.byte	-3
+   C94E 09                   50 	.byte	9
+   C94F FC                   51 	.byte	-4
+   C950 09                   52 	.byte	9
+   C951 FB                   53 	.byte	-5
+   C952 08                   54 	.byte	8
+   C953 FB                   55 	.byte	-5
+   C954 08                   56 	.byte	8
+   C955 FA                   57 	.byte	-6
+   C956 07                   58 	.byte	7
+   C957 F9                   59 	.byte	-7
+   C958 06                   60 	.byte	6
+   C959 F8                   61 	.byte	-8
+   C95A 05                   62 	.byte	5
+   C95B F8                   63 	.byte	-8
+   C95C 05                   64 	.byte	5
+   C95D F7                   65 	.byte	-9
+   C95E 04                   66 	.byte	4
+   C95F F7                   67 	.byte	-9
+   C960 03                   68 	.byte	3
+   C961 F7                   69 	.byte	-9
+   C962 02                   70 	.byte	2
+   C963 F6                   71 	.byte	-10
+   C964 01                   72 	.byte	1
+   C965 F6                   73 	.byte	-10
+   C966 00                   74 	.byte	0
+   C967 F6                   75 	.byte	-10
+   C968 FF                   76 	.byte	-1
+   C969 F6                   77 	.byte	-10
+   C96A FE                   78 	.byte	-2
+   C96B F6                   79 	.byte	-10
+   C96C FD                   80 	.byte	-3
+   C96D F7                   81 	.byte	-9
+   C96E FC                   82 	.byte	-4
+   C96F F7                   83 	.byte	-9
+   C970 FB                   84 	.byte	-5
+   C971 F7                   85 	.byte	-9
+   C972 FB                   86 	.byte	-5
+   C973 F8                   87 	.byte	-8
+   C974 FA                   88 	.byte	-6
+   C975 F8                   89 	.byte	-8
+   C976 F9                   90 	.byte	-7
+   C977 F9                   91 	.byte	-7
+   C978 F8                   92 	.byte	-8
+   C979 FA                   93 	.byte	-6
+   C97A F8                   94 	.byte	-8
+   C97B FB                   95 	.byte	-5
+   C97C F7                   96 	.byte	-9
+   C97D FB                   97 	.byte	-5
+   C97E F7                   98 	.byte	-9
+   C97F FC                   99 	.byte	-4
+   C980 F7                  100 	.byte	-9
+   C981 FD                  101 	.byte	-3
+   C982 F6                  102 	.byte	-10
+   C983 FE                  103 	.byte	-2
+   C984 F6                  104 	.byte	-10
+   C985 FF                  105 	.byte	-1
+   C986 F6                  106 	.byte	-10
+   C987 00                  107 	.byte	0
+   C988 F6                  108 	.byte	-10
+   C989 01                  109 	.byte	1
+   C98A F6                  110 	.byte	-10
+   C98B 02                  111 	.byte	2
+   C98C F7                  112 	.byte	-9
+   C98D 03                  113 	.byte	3
+   C98E F7                  114 	.byte	-9
+   C98F 04                  115 	.byte	4
+   C990 F7                  116 	.byte	-9
+   C991 05                  117 	.byte	5
+   C992 F8                  118 	.byte	-8
+   C993 05                  119 	.byte	5
+   C994 F8                  120 	.byte	-8
+   C995 06                  121 	.byte	6
+   C996 F9                  122 	.byte	-7
+   C997 07                  123 	.byte	7
+   C998 FA                  124 	.byte	-6
+   C999 08                  125 	.byte	8
+   C99A FB                  126 	.byte	-5
+   C99B 08                  127 	.byte	8
+   C99C FB                  128 	.byte	-5
+   C99D 09                  129 	.byte	9
+   C99E FC                  130 	.byte	-4
+   C99F 09                  131 	.byte	9
+   C9A0 FD                  132 	.byte	-3
+   C9A1 09                  133 	.byte	9
+   C9A2 FE                  134 	.byte	-2
+   C9A3 0A                  135 	.byte	10
+   C9A4 FF                  136 	.byte	-1
+   C9A5 0A                  137 	.byte	10
                             138 	.area .text
                             139 	.globl _init_object
-   1553                     140 _init_object:
-   1553 32 7E         [ 5]  141 	leas	-2,s
-   1555 AF E4         [ 5]  142 	stx	,s
-   1557 6F F4         [ 9]  143 	clr	[,s]
-   1559 BD 02 0C      [ 8]  144 	jsr	__Random
-   155C C4 7E         [ 2]  145 	andb	#126
-   155E CB 40         [ 2]  146 	addb	#64
-   1560 AE E4         [ 5]  147 	ldx	,s
-   1562 E7 01         [ 5]  148 	stb	1,x
-   1564 BD 02 0C      [ 8]  149 	jsr	__Random
-   1567 C4 7E         [ 2]  150 	andb	#126
-   1569 CB 40         [ 2]  151 	addb	#64
-   156B AE E4         [ 5]  152 	ldx	,s
-   156D E7 02         [ 5]  153 	stb	2,x
-   156F BD 02 0C      [ 8]  154 	jsr	__Random
-   1572 C4 03         [ 2]  155 	andb	#3
-   1574 CB FE         [ 2]  156 	addb	#-2
-   1576 AE E4         [ 5]  157 	ldx	,s
-   1578 E7 03         [ 5]  158 	stb	3,x
-   157A BD 02 0C      [ 8]  159 	jsr	__Random
-   157D C4 03         [ 2]  160 	andb	#3
-   157F 5A            [ 2]  161 	decb
-   1580 AE E4         [ 5]  162 	ldx	,s
-   1582 E7 04         [ 5]  163 	stb	4,x
-   1584 32 62         [ 5]  164 	leas	2,s
-   1586 39            [ 5]  165 	rts
-                            166 	.globl _move_object
-   1587                     167 _move_object:
-   1587 32 7C         [ 5]  168 	leas	-4,s
-   1589 AF 62         [ 6]  169 	stx	2,s
-   158B F6 C9 12      [ 5]  170 	ldb	_current_level+2
-                            171 	; tstb	; optimization 6
-   158E 27 22         [ 3]  172 	beq	L5
-   1590 AE 62         [ 6]  173 	ldx	2,s
-   1592 E6 01         [ 5]  174 	ldb	1,x
-   1594 E7 E4         [ 4]  175 	stb	,s
-   1596 AE 62         [ 6]  176 	ldx	2,s
-   1598 E6 03         [ 5]  177 	ldb	3,x
-   159A E0 E4         [ 4]  178 	subb	,s
-   159C 50            [ 2]  179 	negb
-   159D AE 62         [ 6]  180 	ldx	2,s
-   159F E7 01         [ 5]  181 	stb	1,x
-   15A1 AE 62         [ 6]  182 	ldx	2,s
-   15A3 E6 02         [ 5]  183 	ldb	2,x
-   15A5 E7 61         [ 5]  184 	stb	1,s
-   15A7 AE 62         [ 6]  185 	ldx	2,s
-   15A9 E6 04         [ 5]  186 	ldb	4,x
-   15AB E0 61         [ 5]  187 	subb	1,s
-   15AD 50            [ 2]  188 	negb
-   15AE AE 62         [ 6]  189 	ldx	2,s
-   15B0 E7 02         [ 5]  190 	stb	2,x
-   15B2                     191 L5:
-   15B2 32 64         [ 5]  192 	leas	4,s
-   15B4 39            [ 5]  193 	rts
+   1D10                     140 _init_object:
+   1D10 32 7E         [ 5]  141 	leas	-2,s
+   1D12 AF E4         [ 5]  142 	stx	,s
+                            143 	; ldx	,s	; optimization 5
+   1D14 C6 0A         [ 2]  144 	ldb	#10
+   1D16 E7 05         [ 5]  145 	stb	5,x
+   1D18 32 62         [ 5]  146 	leas	2,s
+   1D1A 39            [ 5]  147 	rts
+                            148 	.globl _move_object
+   1D1B                     149 _move_object:
+   1D1B 32 7C         [ 5]  150 	leas	-4,s
+   1D1D AF 62         [ 6]  151 	stx	2,s
+   1D1F F6 C9 C1      [ 5]  152 	ldb	_current_wave+5
+                            153 	; tstb	; optimization 6
+   1D22 27 20         [ 3]  154 	beq	L5
+   1D24 AE 62         [ 6]  155 	ldx	2,s
+   1D26 E6 01         [ 5]  156 	ldb	1,x
+   1D28 E7 E4         [ 4]  157 	stb	,s
+   1D2A AE 62         [ 6]  158 	ldx	2,s
+   1D2C E6 03         [ 5]  159 	ldb	3,x
+   1D2E EB E4         [ 4]  160 	addb	,s
+   1D30 AE 62         [ 6]  161 	ldx	2,s
+   1D32 E7 01         [ 5]  162 	stb	1,x
+   1D34 AE 62         [ 6]  163 	ldx	2,s
+   1D36 E6 02         [ 5]  164 	ldb	2,x
+   1D38 E7 61         [ 5]  165 	stb	1,s
+   1D3A AE 62         [ 6]  166 	ldx	2,s
+   1D3C E6 04         [ 5]  167 	ldb	4,x
+   1D3E EB 61         [ 5]  168 	addb	1,s
+   1D40 AE 62         [ 6]  169 	ldx	2,s
+   1D42 E7 02         [ 5]  170 	stb	2,x
+   1D44                     171 L5:
+   1D44 32 64         [ 5]  172 	leas	4,s
+   1D46 39            [ 5]  173 	rts
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -198,9 +178,9 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  3 L5                 005F R   |   2 _LookUpAngle       0000 GR
-    __Random           **** GX  |     _current_level     **** GX
-  3 _init_object       0000 GR  |   3 _move_object       0034 GR
+  3 L5                 0034 R   |   2 _LookUpAngle       0000 GR
+    _current_wave      **** GX  |   3 _init_object       0000 GR
+  3 _move_object       000B GR
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -210,7 +190,7 @@ Area Table
 [_CSEG]
    0 _CODE            size    0   flags C080
    2 .data            size   80   flags  100
-   3 .text            size   62   flags  100
+   3 .text            size   37   flags  100
 [_DSEG]
    1 _DATA            size    0   flags C0C0
 

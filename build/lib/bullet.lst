@@ -259,695 +259,731 @@
    00CB 10 23 FF 3A   [ 6]  259 	lbls	L3
    00CF 32 6D         [ 5]  260 	leas	13,s
    00D1 35 C0         [ 7]  261 	puls	u,pc
-                            262 	.area .data
-   0080                     263 _limit.3250:
-   0080 14                  264 	.byte	20
-                            265 	.area .text
-                            266 	.globl _draw_bullets
-   00D3                     267 _draw_bullets:
-   00D3 34 40         [ 6]  268 	pshs	u
-   00D5 32 7A         [ 5]  269 	leas	-6,s
-   00D7 6F 64         [ 7]  270 	clr	4,s
-   00D9 20 28         [ 3]  271 	bra	L6
-   00DB                     272 L8:
-   00DB E6 64         [ 5]  273 	ldb	4,s
-   00DD 4F            [ 2]  274 	clra		;zero_extendqihi: R:b -> R:d
-   00DE 1F 01         [ 6]  275 	tfr	d,x
-   00E0 AF 62         [ 6]  276 	stx	2,s
-   00E2 EC 62         [ 6]  277 	ldd	2,s
-   00E4 58            [ 2]  278 	aslb
-   00E5 49            [ 2]  279 	rola
-   00E6 ED 62         [ 6]  280 	std	2,s
-                            281 	; ldd	2,s	; optimization 5
-   00E8 30 8B         [ 8]  282 	leax	d,x
-   00EA AF 62         [ 6]  283 	stx	2,s
-   00EC EC 62         [ 6]  284 	ldd	2,s
-   00EE 58            [ 2]  285 	aslb
-   00EF 49            [ 2]  286 	rola
-   00F0 ED 62         [ 6]  287 	std	2,s
-   00F2 EE 62         [ 6]  288 	ldu	2,s
-   00F4 30 C9 00 00   [ 8]  289 	leax	_bullets,u
-   00F8 E6 84         [ 4]  290 	ldb	,x
-                            291 	; tstb	; optimization 6
-   00FA 26 05         [ 3]  292 	bne	L7
-   00FC E6 64         [ 5]  293 	ldb	4,s
-   00FE BD 01 53      [ 8]  294 	jsr	_draw_bullet
-   0101                     295 L7:
-   0101 6C 64         [ 7]  296 	inc	4,s
-   0103                     297 L6:
-   0103 E6 64         [ 5]  298 	ldb	4,s
-   0105 C1 09         [ 2]  299 	cmpb	#9	;cmpqi:
-   0107 23 D2         [ 3]  300 	bls	L8
-   0109 F6 00 80      [ 5]  301 	ldb	_limit.3250
-                            302 	; tstb	; optimization 6
-   010C 2C 37         [ 3]  303 	bge	L9
-   010E 6F 65         [ 7]  304 	clr	5,s
-   0110 20 28         [ 3]  305 	bra	L10
-   0112                     306 L12:
-   0112 E6 65         [ 5]  307 	ldb	5,s
-   0114 4F            [ 2]  308 	clra		;zero_extendqihi: R:b -> R:d
-   0115 1F 01         [ 6]  309 	tfr	d,x
-   0117 AF E4         [ 5]  310 	stx	,s
-   0119 EC E4         [ 5]  311 	ldd	,s
-   011B 58            [ 2]  312 	aslb
-   011C 49            [ 2]  313 	rola
-   011D ED E4         [ 5]  314 	std	,s
-                            315 	; ldd	,s	; optimization 5
-   011F 30 8B         [ 8]  316 	leax	d,x
-   0121 AF E4         [ 5]  317 	stx	,s
-   0123 EC E4         [ 5]  318 	ldd	,s
-   0125 58            [ 2]  319 	aslb
-   0126 49            [ 2]  320 	rola
-   0127 ED E4         [ 5]  321 	std	,s
-   0129 EE E4         [ 5]  322 	ldu	,s
-   012B 30 C9 00 00   [ 8]  323 	leax	_bullets,u
-   012F E6 84         [ 4]  324 	ldb	,x
-                            325 	; tstb	; optimization 6
-   0131 26 05         [ 3]  326 	bne	L11
-   0133 E6 65         [ 5]  327 	ldb	5,s
-   0135 BD 01 BF      [ 8]  328 	jsr	_move_bullet
-   0138                     329 L11:
-   0138 6C 65         [ 7]  330 	inc	5,s
-   013A                     331 L10:
-   013A E6 65         [ 5]  332 	ldb	5,s
-   013C C1 09         [ 2]  333 	cmpb	#9	;cmpqi:
-   013E 23 D2         [ 3]  334 	bls	L12
-   0140 C6 32         [ 2]  335 	ldb	#50
-   0142 F7 00 80      [ 5]  336 	stb	_limit.3250
-   0145                     337 L9:
-   0145 F6 00 80      [ 5]  338 	ldb	_limit.3250
-   0148 5A            [ 2]  339 	decb
-   0149 F7 00 80      [ 5]  340 	stb	_limit.3250
-   014C BD 04 AD      [ 8]  341 	jsr	_check_bulletCollision
-   014F 32 66         [ 5]  342 	leas	6,s
-   0151 35 C0         [ 7]  343 	puls	u,pc
-                            344 	.globl _draw_bullet
-   0153                     345 _draw_bullet:
-   0153 34 40         [ 6]  346 	pshs	u
-   0155 32 78         [ 5]  347 	leas	-8,s
-   0157 E7 65         [ 5]  348 	stb	5,s
-   0159 BD 00 00      [ 8]  349 	jsr	___Reset0Ref
-   015C C6 7F         [ 2]  350 	ldb	#127
-   015E D7 00         [ 4]  351 	stb	*_dp_VIA_t1_cnt_lo
-   0160 E6 65         [ 5]  352 	ldb	5,s
-   0162 4F            [ 2]  353 	clra		;zero_extendqihi: R:b -> R:d
-   0163 1F 01         [ 6]  354 	tfr	d,x
-   0165 AF 62         [ 6]  355 	stx	2,s
-   0167 EC 62         [ 6]  356 	ldd	2,s
-   0169 58            [ 2]  357 	aslb
-   016A 49            [ 2]  358 	rola
-   016B ED 62         [ 6]  359 	std	2,s
-                            360 	; ldd	2,s	; optimization 5
-   016D 30 8B         [ 8]  361 	leax	d,x
-   016F AF 62         [ 6]  362 	stx	2,s
-   0171 EC 62         [ 6]  363 	ldd	2,s
-   0173 C3 00 01      [ 4]  364 	addd	#1
-   0176 58            [ 2]  365 	aslb
-   0177 49            [ 2]  366 	rola
-   0178 CE 00 00      [ 3]  367 	ldu	#_bullets
-   017B 30 CB         [ 8]  368 	leax	d,u
-   017D E6 84         [ 4]  369 	ldb	,x
-   017F E7 64         [ 5]  370 	stb	4,s
-   0181 E6 65         [ 5]  371 	ldb	5,s
-   0183 4F            [ 2]  372 	clra		;zero_extendqihi: R:b -> R:d
-   0184 1F 01         [ 6]  373 	tfr	d,x
-   0186 AF E4         [ 5]  374 	stx	,s
-   0188 EC E4         [ 5]  375 	ldd	,s
-   018A 58            [ 2]  376 	aslb
-   018B 49            [ 2]  377 	rola
-   018C ED E4         [ 5]  378 	std	,s
-                            379 	; ldd	,s	; optimization 5
-   018E 30 8B         [ 8]  380 	leax	d,x
-   0190 AF E4         [ 5]  381 	stx	,s
-   0192 EC E4         [ 5]  382 	ldd	,s
-   0194 58            [ 2]  383 	aslb
-   0195 49            [ 2]  384 	rola
-   0196 ED E4         [ 5]  385 	std	,s
-   0198 EE E4         [ 5]  386 	ldu	,s
-   019A 30 C9 00 01   [ 8]  387 	leax	_bullets+1,u
-   019E E6 84         [ 4]  388 	ldb	,x
-   01A0 E7 67         [ 5]  389 	stb	7,s
-   01A2 E6 64         [ 5]  390 	ldb	4,s
-   01A4 E7 66         [ 5]  391 	stb	6,s
-   01A6 E6 67         [ 5]  392 	ldb	7,s
-   01A8 E7 E2         [ 6]  393 	stb	,-s
-   01AA E6 67         [ 5]  394 	ldb	7,s
-   01AC BD 00 00      [ 8]  395 	jsr	__Moveto_d
-   01AF 32 61         [ 5]  396 	leas	1,s
-   01B1 C6 22         [ 2]  397 	ldb	#34
-   01B3 D7 00         [ 4]  398 	stb	*_dp_VIA_t1_cnt_lo
-   01B5 BD 00 00      [ 8]  399 	jsr	___Intensity_5F
-   01B8 BD 00 00      [ 8]  400 	jsr	___Dot_here
-   01BB 32 68         [ 5]  401 	leas	8,s
-   01BD 35 C0         [ 7]  402 	puls	u,pc
-                            403 	.globl _move_bullet
-   01BF                     404 _move_bullet:
-   01BF 34 40         [ 6]  405 	pshs	u
-   01C1 32 E8 DC      [ 5]  406 	leas	-36,s
-   01C4 E7 E8 23      [ 5]  407 	stb	35,s
-                            408 	; ldb	35,s	; optimization 5
-   01C7 E7 E8 1B      [ 5]  409 	stb	27,s
-   01CA E6 E8 23      [ 5]  410 	ldb	35,s
-   01CD 4F            [ 2]  411 	clra		;zero_extendqihi: R:b -> R:d
-   01CE 1F 01         [ 6]  412 	tfr	d,x
-   01D0 AF E8 19      [ 6]  413 	stx	25,s
-   01D3 EC E8 19      [ 6]  414 	ldd	25,s
-   01D6 58            [ 2]  415 	aslb
-   01D7 49            [ 2]  416 	rola
-   01D8 ED E8 19      [ 6]  417 	std	25,s
-                            418 	; ldd	25,s	; optimization 5
-   01DB 30 8B         [ 8]  419 	leax	d,x
-   01DD AF E8 19      [ 6]  420 	stx	25,s
-   01E0 EC E8 19      [ 6]  421 	ldd	25,s
-   01E3 58            [ 2]  422 	aslb
-   01E4 49            [ 2]  423 	rola
-   01E5 ED E8 19      [ 6]  424 	std	25,s
-   01E8 EE E8 19      [ 6]  425 	ldu	25,s
-   01EB 30 C9 00 01   [ 8]  426 	leax	_bullets+1,u
-   01EF E6 84         [ 4]  427 	ldb	,x
-   01F1 E7 E8 1C      [ 5]  428 	stb	28,s
-   01F4 E6 E8 23      [ 5]  429 	ldb	35,s
-   01F7 4F            [ 2]  430 	clra		;zero_extendqihi: R:b -> R:d
-   01F8 1F 01         [ 6]  431 	tfr	d,x
-   01FA AF E8 17      [ 6]  432 	stx	23,s
-   01FD EC E8 17      [ 6]  433 	ldd	23,s
-   0200 58            [ 2]  434 	aslb
-   0201 49            [ 2]  435 	rola
-   0202 ED E8 17      [ 6]  436 	std	23,s
-                            437 	; ldd	23,s	; optimization 5
-   0205 30 8B         [ 8]  438 	leax	d,x
-   0207 AF E8 17      [ 6]  439 	stx	23,s
-   020A EC E8 17      [ 6]  440 	ldd	23,s
-   020D 58            [ 2]  441 	aslb
-   020E 49            [ 2]  442 	rola
-   020F ED E8 17      [ 6]  443 	std	23,s
-   0212 EE E8 17      [ 6]  444 	ldu	23,s
-   0215 30 C9 00 03   [ 8]  445 	leax	_bullets+3,u
-   0219 E6 84         [ 4]  446 	ldb	,x
-   021B E7 E8 1D      [ 5]  447 	stb	29,s
-   021E E6 E8 23      [ 5]  448 	ldb	35,s
-   0221 4F            [ 2]  449 	clra		;zero_extendqihi: R:b -> R:d
-   0222 1F 01         [ 6]  450 	tfr	d,x
-   0224 AF E8 15      [ 6]  451 	stx	21,s
-   0227 EC E8 15      [ 6]  452 	ldd	21,s
-   022A 58            [ 2]  453 	aslb
-   022B 49            [ 2]  454 	rola
-   022C ED E8 15      [ 6]  455 	std	21,s
-                            456 	; ldd	21,s	; optimization 5
-   022F 30 8B         [ 8]  457 	leax	d,x
-   0231 AF E8 15      [ 6]  458 	stx	21,s
-   0234 EC E8 15      [ 6]  459 	ldd	21,s
-   0237 58            [ 2]  460 	aslb
-   0238 49            [ 2]  461 	rola
-   0239 ED E8 15      [ 6]  462 	std	21,s
-   023C EE E8 15      [ 6]  463 	ldu	21,s
-   023F 30 C9 00 05   [ 8]  464 	leax	_bullets+5,u
-   0243 E6 84         [ 4]  465 	ldb	,x
-   0245 A6 E8 1D      [ 5]  466 	lda	29,s	;mulqihi3
-   0248 3D            [11]  467 	mul
-   0249 E7 E4         [ 4]  468 	stb	,s	;movlsbqihi: R:d -> ,s
-   024B E6 E4         [ 4]  469 	ldb	,s
-   024D EB E8 1C      [ 5]  470 	addb	28,s
-   0250 E7 E8 1E      [ 5]  471 	stb	30,s
-   0253 E6 E8 1B      [ 5]  472 	ldb	27,s
-   0256 4F            [ 2]  473 	clra		;zero_extendqihi: R:b -> R:d
-   0257 1F 01         [ 6]  474 	tfr	d,x
-   0259 AF E8 13      [ 6]  475 	stx	19,s
-   025C EC E8 13      [ 6]  476 	ldd	19,s
-   025F 58            [ 2]  477 	aslb
-   0260 49            [ 2]  478 	rola
-   0261 ED E8 13      [ 6]  479 	std	19,s
-                            480 	; ldd	19,s	; optimization 5
-   0264 30 8B         [ 8]  481 	leax	d,x
-   0266 AF E8 13      [ 6]  482 	stx	19,s
-   0269 EC E8 13      [ 6]  483 	ldd	19,s
-   026C 58            [ 2]  484 	aslb
-   026D 49            [ 2]  485 	rola
-   026E ED E8 13      [ 6]  486 	std	19,s
-   0271 EE E8 13      [ 6]  487 	ldu	19,s
-   0274 30 C9 00 01   [ 8]  488 	leax	_bullets+1,u
-   0278 E6 E8 1E      [ 5]  489 	ldb	30,s
-   027B E7 84         [ 4]  490 	stb	,x
-   027D E6 E8 23      [ 5]  491 	ldb	35,s
-   0280 E7 E8 1F      [ 5]  492 	stb	31,s
-   0283 E6 E8 23      [ 5]  493 	ldb	35,s
-   0286 4F            [ 2]  494 	clra		;zero_extendqihi: R:b -> R:d
-   0287 1F 01         [ 6]  495 	tfr	d,x
-   0289 AF E8 11      [ 6]  496 	stx	17,s
-   028C EC E8 11      [ 6]  497 	ldd	17,s
-   028F 58            [ 2]  498 	aslb
-   0290 49            [ 2]  499 	rola
-   0291 ED E8 11      [ 6]  500 	std	17,s
-                            501 	; ldd	17,s	; optimization 5
-   0294 30 8B         [ 8]  502 	leax	d,x
-   0296 AF E8 11      [ 6]  503 	stx	17,s
-   0299 EC E8 11      [ 6]  504 	ldd	17,s
-   029C C3 00 01      [ 4]  505 	addd	#1
-   029F 58            [ 2]  506 	aslb
-   02A0 49            [ 2]  507 	rola
-   02A1 CE 00 00      [ 3]  508 	ldu	#_bullets
-   02A4 30 CB         [ 8]  509 	leax	d,u
-   02A6 E6 84         [ 4]  510 	ldb	,x
-   02A8 E7 E8 20      [ 5]  511 	stb	32,s
-   02AB E6 E8 23      [ 5]  512 	ldb	35,s
-   02AE 4F            [ 2]  513 	clra		;zero_extendqihi: R:b -> R:d
-   02AF 1F 01         [ 6]  514 	tfr	d,x
-   02B1 AF 6F         [ 6]  515 	stx	15,s
-   02B3 EC 6F         [ 6]  516 	ldd	15,s
-   02B5 58            [ 2]  517 	aslb
-   02B6 49            [ 2]  518 	rola
-   02B7 ED 6F         [ 6]  519 	std	15,s
-                            520 	; ldd	15,s	; optimization 5
-   02B9 30 8B         [ 8]  521 	leax	d,x
-   02BB AF 6F         [ 6]  522 	stx	15,s
-   02BD EC 6F         [ 6]  523 	ldd	15,s
-   02BF 58            [ 2]  524 	aslb
-   02C0 49            [ 2]  525 	rola
-   02C1 ED 6F         [ 6]  526 	std	15,s
-   02C3 EE 6F         [ 6]  527 	ldu	15,s
-   02C5 30 C9 00 04   [ 8]  528 	leax	_bullets+4,u
-   02C9 E6 84         [ 4]  529 	ldb	,x
-   02CB E7 E8 21      [ 5]  530 	stb	33,s
-   02CE E6 E8 23      [ 5]  531 	ldb	35,s
-   02D1 4F            [ 2]  532 	clra		;zero_extendqihi: R:b -> R:d
-   02D2 1F 01         [ 6]  533 	tfr	d,x
-   02D4 AF 6D         [ 6]  534 	stx	13,s
-   02D6 EC 6D         [ 6]  535 	ldd	13,s
-   02D8 58            [ 2]  536 	aslb
-   02D9 49            [ 2]  537 	rola
-   02DA ED 6D         [ 6]  538 	std	13,s
-                            539 	; ldd	13,s	; optimization 5
-   02DC 30 8B         [ 8]  540 	leax	d,x
-   02DE AF 6D         [ 6]  541 	stx	13,s
-   02E0 EC 6D         [ 6]  542 	ldd	13,s
-   02E2 58            [ 2]  543 	aslb
-   02E3 49            [ 2]  544 	rola
-   02E4 ED 6D         [ 6]  545 	std	13,s
-   02E6 EE 6D         [ 6]  546 	ldu	13,s
-   02E8 30 C9 00 05   [ 8]  547 	leax	_bullets+5,u
-   02EC E6 84         [ 4]  548 	ldb	,x
-   02EE A6 E8 21      [ 5]  549 	lda	33,s	;mulqihi3
-   02F1 3D            [11]  550 	mul
-   02F2 E7 E4         [ 4]  551 	stb	,s	;movlsbqihi: R:d -> ,s
-   02F4 E6 E4         [ 4]  552 	ldb	,s
-   02F6 EB E8 20      [ 5]  553 	addb	32,s
-   02F9 E7 E8 22      [ 5]  554 	stb	34,s
-   02FC E6 E8 1F      [ 5]  555 	ldb	31,s
-   02FF 4F            [ 2]  556 	clra		;zero_extendqihi: R:b -> R:d
-   0300 1F 01         [ 6]  557 	tfr	d,x
-   0302 AF 6B         [ 6]  558 	stx	11,s
-   0304 EC 6B         [ 6]  559 	ldd	11,s
-   0306 58            [ 2]  560 	aslb
-   0307 49            [ 2]  561 	rola
-   0308 ED 6B         [ 6]  562 	std	11,s
-                            563 	; ldd	11,s	; optimization 5
-   030A 30 8B         [ 8]  564 	leax	d,x
-   030C AF 6B         [ 6]  565 	stx	11,s
-   030E EC 6B         [ 6]  566 	ldd	11,s
-   0310 C3 00 01      [ 4]  567 	addd	#1
-   0313 58            [ 2]  568 	aslb
-   0314 49            [ 2]  569 	rola
-   0315 CE 00 00      [ 3]  570 	ldu	#_bullets
-   0318 30 CB         [ 8]  571 	leax	d,u
-   031A E6 E8 22      [ 5]  572 	ldb	34,s
-   031D E7 84         [ 4]  573 	stb	,x
-   031F E6 E8 23      [ 5]  574 	ldb	35,s
-   0322 4F            [ 2]  575 	clra		;zero_extendqihi: R:b -> R:d
-   0323 1F 01         [ 6]  576 	tfr	d,x
-   0325 AF 69         [ 6]  577 	stx	9,s
-   0327 EC 69         [ 6]  578 	ldd	9,s
-   0329 58            [ 2]  579 	aslb
-   032A 49            [ 2]  580 	rola
-   032B ED 69         [ 6]  581 	std	9,s
-                            582 	; ldd	9,s	; optimization 5
-   032D 30 8B         [ 8]  583 	leax	d,x
-   032F AF 69         [ 6]  584 	stx	9,s
-   0331 EC 69         [ 6]  585 	ldd	9,s
-   0333 58            [ 2]  586 	aslb
-   0334 49            [ 2]  587 	rola
-   0335 ED 69         [ 6]  588 	std	9,s
-   0337 EE 69         [ 6]  589 	ldu	9,s
-   0339 30 C9 00 01   [ 8]  590 	leax	_bullets+1,u
-   033D E6 84         [ 4]  591 	ldb	,x
-   033F C1 64         [ 2]  592 	cmpb	#100	;cmpqi:
-   0341 10 2E 00 6C   [ 6]  593 	lbgt	L17
-   0345 E6 E8 23      [ 5]  594 	ldb	35,s
-   0348 4F            [ 2]  595 	clra		;zero_extendqihi: R:b -> R:d
-   0349 1F 01         [ 6]  596 	tfr	d,x
-   034B AF 67         [ 6]  597 	stx	7,s
-   034D EC 67         [ 6]  598 	ldd	7,s
-   034F 58            [ 2]  599 	aslb
-   0350 49            [ 2]  600 	rola
-   0351 ED 67         [ 6]  601 	std	7,s
-                            602 	; ldd	7,s	; optimization 5
-   0353 30 8B         [ 8]  603 	leax	d,x
-   0355 AF 67         [ 6]  604 	stx	7,s
-   0357 EC 67         [ 6]  605 	ldd	7,s
-   0359 58            [ 2]  606 	aslb
-   035A 49            [ 2]  607 	rola
-   035B ED 67         [ 6]  608 	std	7,s
-   035D EE 67         [ 6]  609 	ldu	7,s
-   035F 30 C9 00 01   [ 8]  610 	leax	_bullets+1,u
-   0363 E6 84         [ 4]  611 	ldb	,x
-   0365 C1 9C         [ 2]  612 	cmpb	#-100	;cmpqi:
-   0367 2D 48         [ 3]  613 	blt	L17
-   0369 E6 E8 23      [ 5]  614 	ldb	35,s
-   036C 4F            [ 2]  615 	clra		;zero_extendqihi: R:b -> R:d
-   036D 1F 01         [ 6]  616 	tfr	d,x
-   036F AF 65         [ 6]  617 	stx	5,s
-   0371 EC 65         [ 6]  618 	ldd	5,s
-   0373 58            [ 2]  619 	aslb
-   0374 49            [ 2]  620 	rola
-   0375 ED 65         [ 6]  621 	std	5,s
-                            622 	; ldd	5,s	; optimization 5
-   0377 30 8B         [ 8]  623 	leax	d,x
-   0379 AF 65         [ 6]  624 	stx	5,s
-   037B EC 65         [ 6]  625 	ldd	5,s
-   037D C3 00 01      [ 4]  626 	addd	#1
-   0380 58            [ 2]  627 	aslb
-   0381 49            [ 2]  628 	rola
-   0382 CE 00 00      [ 3]  629 	ldu	#_bullets
-   0385 30 CB         [ 8]  630 	leax	d,u
-   0387 E6 84         [ 4]  631 	ldb	,x
-   0389 C1 64         [ 2]  632 	cmpb	#100	;cmpqi:
-   038B 2E 24         [ 3]  633 	bgt	L17
-   038D E6 E8 23      [ 5]  634 	ldb	35,s
-   0390 4F            [ 2]  635 	clra		;zero_extendqihi: R:b -> R:d
-   0391 1F 01         [ 6]  636 	tfr	d,x
-   0393 AF 63         [ 6]  637 	stx	3,s
-   0395 EC 63         [ 6]  638 	ldd	3,s
-   0397 58            [ 2]  639 	aslb
-   0398 49            [ 2]  640 	rola
-   0399 ED 63         [ 6]  641 	std	3,s
-                            642 	; ldd	3,s	; optimization 5
-   039B 30 8B         [ 8]  643 	leax	d,x
-   039D AF 63         [ 6]  644 	stx	3,s
-   039F EC 63         [ 6]  645 	ldd	3,s
-   03A1 C3 00 01      [ 4]  646 	addd	#1
-   03A4 58            [ 2]  647 	aslb
-   03A5 49            [ 2]  648 	rola
-   03A6 CE 00 00      [ 3]  649 	ldu	#_bullets
-   03A9 30 CB         [ 8]  650 	leax	d,u
-   03AB E6 84         [ 4]  651 	ldb	,x
-   03AD C1 9C         [ 2]  652 	cmpb	#-100	;cmpqi:
-   03AF 2C 22         [ 3]  653 	bge	L19
-   03B1                     654 L17:
-   03B1 E6 E8 23      [ 5]  655 	ldb	35,s
-   03B4 4F            [ 2]  656 	clra		;zero_extendqihi: R:b -> R:d
-   03B5 1F 01         [ 6]  657 	tfr	d,x
-   03B7 AF 61         [ 6]  658 	stx	1,s
-   03B9 EC 61         [ 6]  659 	ldd	1,s
-   03BB 58            [ 2]  660 	aslb
-   03BC 49            [ 2]  661 	rola
-   03BD ED 61         [ 6]  662 	std	1,s
-                            663 	; ldd	1,s	; optimization 5
-   03BF 30 8B         [ 8]  664 	leax	d,x
-   03C1 AF 61         [ 6]  665 	stx	1,s
-   03C3 EC 61         [ 6]  666 	ldd	1,s
-   03C5 58            [ 2]  667 	aslb
-   03C6 49            [ 2]  668 	rola
-   03C7 ED 61         [ 6]  669 	std	1,s
-   03C9 EE 61         [ 6]  670 	ldu	1,s
-   03CB 30 C9 00 00   [ 8]  671 	leax	_bullets,u
-   03CF C6 01         [ 2]  672 	ldb	#1
-   03D1 E7 84         [ 4]  673 	stb	,x
-   03D3                     674 L19:
-   03D3 32 E8 24      [ 5]  675 	leas	36,s
-   03D6 35 C0         [ 7]  676 	puls	u,pc
-                            677 	.globl _fire_bullet
-   03D8                     678 _fire_bullet:
-   03D8 34 60         [ 7]  679 	pshs	y,u
-   03DA 32 71         [ 5]  680 	leas	-15,s
-   03DC AF 6C         [ 6]  681 	stx	12,s
-   03DE E7 6B         [ 5]  682 	stb	11,s
-   03E0 6F 6E         [ 7]  683 	clr	14,s
-   03E2 7E 04 A1      [ 4]  684 	jmp	L21
-   03E5                     685 L24:
-   03E5 E6 6E         [ 5]  686 	ldb	14,s
-   03E7 4F            [ 2]  687 	clra		;zero_extendqihi: R:b -> R:d
-   03E8 1F 01         [ 6]  688 	tfr	d,x
-   03EA AF 68         [ 6]  689 	stx	8,s
-   03EC EC 68         [ 6]  690 	ldd	8,s
-   03EE 58            [ 2]  691 	aslb
-   03EF 49            [ 2]  692 	rola
-   03F0 ED 68         [ 6]  693 	std	8,s
-                            694 	; ldd	8,s	; optimization 5
-   03F2 30 8B         [ 8]  695 	leax	d,x
-   03F4 AF 68         [ 6]  696 	stx	8,s
-   03F6 EC 68         [ 6]  697 	ldd	8,s
-   03F8 58            [ 2]  698 	aslb
-   03F9 49            [ 2]  699 	rola
-   03FA ED 68         [ 6]  700 	std	8,s
-   03FC EE 68         [ 6]  701 	ldu	8,s
-   03FE 30 C9 00 00   [ 8]  702 	leax	_bullets,u
-   0402 E6 84         [ 4]  703 	ldb	,x
-   0404 C1 01         [ 2]  704 	cmpb	#1	;cmpqi:
-   0406 10 26 00 95   [ 6]  705 	lbne	L22
-   040A E6 6E         [ 5]  706 	ldb	14,s
-   040C 4F            [ 2]  707 	clra		;zero_extendqihi: R:b -> R:d
-   040D 1F 01         [ 6]  708 	tfr	d,x
-   040F AF 66         [ 6]  709 	stx	6,s
-   0411 EC 66         [ 6]  710 	ldd	6,s
-   0413 58            [ 2]  711 	aslb
-   0414 49            [ 2]  712 	rola
-   0415 ED 66         [ 6]  713 	std	6,s
-                            714 	; ldd	6,s	; optimization 5
-   0417 30 8B         [ 8]  715 	leax	d,x
-   0419 AF 66         [ 6]  716 	stx	6,s
-   041B EC 66         [ 6]  717 	ldd	6,s
-   041D 58            [ 2]  718 	aslb
-   041E 49            [ 2]  719 	rola
-   041F ED 66         [ 6]  720 	std	6,s
-   0421 EE 66         [ 6]  721 	ldu	6,s
-   0423 30 C9 00 00   [ 8]  722 	leax	_bullets,u
-   0427 6F 84         [ 6]  723 	clr	,x
-   0429 E6 6E         [ 5]  724 	ldb	14,s
-   042B 4F            [ 2]  725 	clra		;zero_extendqihi: R:b -> R:d
-   042C 1F 01         [ 6]  726 	tfr	d,x
-   042E AF 64         [ 6]  727 	stx	4,s
-   0430 EC 64         [ 6]  728 	ldd	4,s
-   0432 58            [ 2]  729 	aslb
-   0433 49            [ 2]  730 	rola
-   0434 ED 64         [ 6]  731 	std	4,s
-                            732 	; ldd	4,s	; optimization 5
-   0436 30 8B         [ 8]  733 	leax	d,x
-   0438 AF 64         [ 6]  734 	stx	4,s
-   043A EC 64         [ 6]  735 	ldd	4,s
-   043C 58            [ 2]  736 	aslb
-   043D 49            [ 2]  737 	rola
-   043E ED 64         [ 6]  738 	std	4,s
-   0440 AE 64         [ 6]  739 	ldx	4,s
-   0442 31 89 00 01   [ 8]  740 	leay	_bullets+1,x
-   0446 AE 6C         [ 6]  741 	ldx	12,s
-   0448 AF A4         [ 5]  742 	stx	,y
-   044A E6 6E         [ 5]  743 	ldb	14,s
-   044C 4F            [ 2]  744 	clra		;zero_extendqihi: R:b -> R:d
-   044D 1F 01         [ 6]  745 	tfr	d,x
-   044F AF 62         [ 6]  746 	stx	2,s
-   0451 EC 62         [ 6]  747 	ldd	2,s
-   0453 58            [ 2]  748 	aslb
-   0454 49            [ 2]  749 	rola
-   0455 ED 62         [ 6]  750 	std	2,s
-                            751 	; ldd	2,s	; optimization 5
-   0457 30 8B         [ 8]  752 	leax	d,x
-   0459 AF 62         [ 6]  753 	stx	2,s
-   045B EC 62         [ 6]  754 	ldd	2,s
-   045D 58            [ 2]  755 	aslb
-   045E 49            [ 2]  756 	rola
-   045F ED 62         [ 6]  757 	std	2,s
-   0461 EE 62         [ 6]  758 	ldu	2,s
-   0463 30 C9 00 05   [ 8]  759 	leax	_bullets+5,u
-   0467 E6 6B         [ 5]  760 	ldb	11,s
-   0469 E7 84         [ 4]  761 	stb	,x
-   046B E6 6E         [ 5]  762 	ldb	14,s
-   046D E7 6A         [ 5]  763 	stb	10,s
-   046F E6 E8 15      [ 5]  764 	ldb	21,s
-   0472 4F            [ 2]  765 	clra		;zero_extendqihi: R:b -> R:d
-   0473 58            [ 2]  766 	aslb
-   0474 49            [ 2]  767 	rola
-   0475 CE 00 00      [ 3]  768 	ldu	#_LookUpAngle
-   0478 30 CB         [ 8]  769 	leax	d,u
-   047A 10 AE 84      [ 6]  770 	ldy	,x
-   047D E6 6A         [ 5]  771 	ldb	10,s
-   047F 4F            [ 2]  772 	clra		;zero_extendqihi: R:b -> R:d
-   0480 1F 01         [ 6]  773 	tfr	d,x
-   0482 AF E4         [ 5]  774 	stx	,s
-   0484 EC E4         [ 5]  775 	ldd	,s
-   0486 58            [ 2]  776 	aslb
-   0487 49            [ 2]  777 	rola
-   0488 ED E4         [ 5]  778 	std	,s
-                            779 	; ldd	,s	; optimization 5
-   048A 30 8B         [ 8]  780 	leax	d,x
-   048C AF E4         [ 5]  781 	stx	,s
-   048E EC E4         [ 5]  782 	ldd	,s
-   0490 58            [ 2]  783 	aslb
-   0491 49            [ 2]  784 	rola
-   0492 ED E4         [ 5]  785 	std	,s
-   0494 EE E4         [ 5]  786 	ldu	,s
-   0496 30 C9 00 03   [ 8]  787 	leax	_bullets+3,u
-   049A 10 AF 84      [ 6]  788 	sty	,x
-   049D 20 0A         [ 3]  789 	bra	L25
-   049F                     790 L22:
-   049F 6C 6E         [ 7]  791 	inc	14,s
-   04A1                     792 L21:
-   04A1 E6 6E         [ 5]  793 	ldb	14,s
-   04A3 C1 09         [ 2]  794 	cmpb	#9	;cmpqi:
-   04A5 10 23 FF 3C   [ 6]  795 	lbls	L24
-   04A9                     796 L25:
-   04A9 32 6F         [ 5]  797 	leas	15,s
-   04AB 35 E0         [ 8]  798 	puls	y,u,pc
-                            799 	.globl _check_bulletCollision
-   04AD                     800 _check_bulletCollision:
-   04AD 34 40         [ 6]  801 	pshs	u
-   04AF 32 E8 EE      [ 5]  802 	leas	-18,s
-   04B2 6F E8 10      [ 7]  803 	clr	16,s
-   04B5 7E 05 B3      [ 4]  804 	jmp	L27
-   04B8                     805 L32:
-   04B8 E6 E8 10      [ 5]  806 	ldb	16,s
-   04BB 4F            [ 2]  807 	clra		;zero_extendqihi: R:b -> R:d
-   04BC 1F 01         [ 6]  808 	tfr	d,x
-   04BE AF 6B         [ 6]  809 	stx	11,s
-   04C0 EC 6B         [ 6]  810 	ldd	11,s
-   04C2 58            [ 2]  811 	aslb
-   04C3 49            [ 2]  812 	rola
-   04C4 ED 6B         [ 6]  813 	std	11,s
-                            814 	; ldd	11,s	; optimization 5
-   04C6 30 8B         [ 8]  815 	leax	d,x
-   04C8 AF 6B         [ 6]  816 	stx	11,s
-   04CA EC 6B         [ 6]  817 	ldd	11,s
-   04CC 58            [ 2]  818 	aslb
-   04CD 49            [ 2]  819 	rola
-   04CE ED 6B         [ 6]  820 	std	11,s
-   04D0 EE 6B         [ 6]  821 	ldu	11,s
-   04D2 30 C9 00 00   [ 8]  822 	leax	_bullets,u
-   04D6 E6 84         [ 4]  823 	ldb	,x
-                            824 	; tstb	; optimization 6
-   04D8 10 26 00 D4   [ 6]  825 	lbne	L28
-   04DC 6F E8 11      [ 7]  826 	clr	17,s
-   04DF 7E 05 A9      [ 4]  827 	jmp	L29
-   04E2                     828 L31:
-   04E2 E6 E8 11      [ 5]  829 	ldb	17,s
-   04E5 4F            [ 2]  830 	clra		;zero_extendqihi: R:b -> R:d
-   04E6 1F 01         [ 6]  831 	tfr	d,x
-   04E8 AF 69         [ 6]  832 	stx	9,s
-   04EA EC 69         [ 6]  833 	ldd	9,s
-   04EC 58            [ 2]  834 	aslb
-   04ED 49            [ 2]  835 	rola
-   04EE 58            [ 2]  836 	aslb
-   04EF 49            [ 2]  837 	rola
-   04F0 ED 69         [ 6]  838 	std	9,s
-                            839 	; ldd	9,s	; optimization 5
-   04F2 30 8B         [ 8]  840 	leax	d,x
-   04F4 AF 69         [ 6]  841 	stx	9,s
-   04F6 EE 69         [ 6]  842 	ldu	9,s
-   04F8 30 C9 00 02   [ 8]  843 	leax	_enemies+2,u
-   04FC E6 84         [ 4]  844 	ldb	,x
-   04FE E7 6D         [ 5]  845 	stb	13,s
-   0500 E6 E8 11      [ 5]  846 	ldb	17,s
-   0503 4F            [ 2]  847 	clra		;zero_extendqihi: R:b -> R:d
-   0504 1F 01         [ 6]  848 	tfr	d,x
-   0506 AF 67         [ 6]  849 	stx	7,s
-   0508 EC 67         [ 6]  850 	ldd	7,s
-   050A 58            [ 2]  851 	aslb
-   050B 49            [ 2]  852 	rola
-   050C 58            [ 2]  853 	aslb
-   050D 49            [ 2]  854 	rola
-   050E ED 67         [ 6]  855 	std	7,s
-                            856 	; ldd	7,s	; optimization 5
-   0510 30 8B         [ 8]  857 	leax	d,x
-   0512 AF 67         [ 6]  858 	stx	7,s
-   0514 EE 67         [ 6]  859 	ldu	7,s
-   0516 30 C9 00 01   [ 8]  860 	leax	_enemies+1,u
-   051A E6 84         [ 4]  861 	ldb	,x
-   051C E7 6E         [ 5]  862 	stb	14,s
-   051E E6 E8 10      [ 5]  863 	ldb	16,s
-   0521 4F            [ 2]  864 	clra		;zero_extendqihi: R:b -> R:d
-   0522 1F 01         [ 6]  865 	tfr	d,x
-   0524 AF 65         [ 6]  866 	stx	5,s
-   0526 EC 65         [ 6]  867 	ldd	5,s
-   0528 58            [ 2]  868 	aslb
-   0529 49            [ 2]  869 	rola
-   052A ED 65         [ 6]  870 	std	5,s
-                            871 	; ldd	5,s	; optimization 5
-   052C 30 8B         [ 8]  872 	leax	d,x
-   052E AF 65         [ 6]  873 	stx	5,s
-   0530 EC 65         [ 6]  874 	ldd	5,s
-   0532 C3 00 01      [ 4]  875 	addd	#1
-   0535 58            [ 2]  876 	aslb
-   0536 49            [ 2]  877 	rola
-   0537 CE 00 00      [ 3]  878 	ldu	#_bullets
-   053A 30 CB         [ 8]  879 	leax	d,u
-   053C E6 84         [ 4]  880 	ldb	,x
-   053E E7 6F         [ 5]  881 	stb	15,s
-   0540 E6 E8 10      [ 5]  882 	ldb	16,s
-   0543 4F            [ 2]  883 	clra		;zero_extendqihi: R:b -> R:d
-   0544 1F 01         [ 6]  884 	tfr	d,x
-   0546 AF 63         [ 6]  885 	stx	3,s
-   0548 EC 63         [ 6]  886 	ldd	3,s
-   054A 58            [ 2]  887 	aslb
-   054B 49            [ 2]  888 	rola
-   054C ED 63         [ 6]  889 	std	3,s
-                            890 	; ldd	3,s	; optimization 5
-   054E 30 8B         [ 8]  891 	leax	d,x
-   0550 AF 63         [ 6]  892 	stx	3,s
-   0552 EC 63         [ 6]  893 	ldd	3,s
-   0554 58            [ 2]  894 	aslb
-   0555 49            [ 2]  895 	rola
-   0556 ED 63         [ 6]  896 	std	3,s
-   0558 EE 63         [ 6]  897 	ldu	3,s
-   055A 30 C9 00 01   [ 8]  898 	leax	_bullets+1,u
-   055E E6 84         [ 4]  899 	ldb	,x
-   0560 E7 E4         [ 4]  900 	stb	,s
-   0562 C6 08         [ 2]  901 	ldb	#8
-   0564 E7 E2         [ 6]  902 	stb	,-s
-   0566 C6 08         [ 2]  903 	ldb	#8
-   0568 E7 E2         [ 6]  904 	stb	,-s
-   056A E6 6F         [ 5]  905 	ldb	15,s
-   056C 34 04         [ 6]  906 	pshs	b
-   056E E6 E8 11      [ 5]  907 	ldb	17,s
-   0571 34 04         [ 6]  908 	pshs	b
-   0573 E6 E8 13      [ 5]  909 	ldb	19,s
-   0576 34 04         [ 6]  910 	pshs	b
-   0578 E6 65         [ 5]  911 	ldb	5,s
-   057A BD 00 00      [ 8]  912 	jsr	_check_collision
-   057D 32 65         [ 5]  913 	leas	5,s
-   057F 5D            [ 2]  914 	tstb
-   0580 27 24         [ 3]  915 	beq	L30
-   0582 8E 00 00      [ 3]  916 	ldx	#_bang
-   0585 BD 00 00      [ 8]  917 	jsr	_play_explosion
-   0588 E6 E8 11      [ 5]  918 	ldb	17,s
-   058B 4F            [ 2]  919 	clra		;zero_extendqihi: R:b -> R:d
-   058C 1F 01         [ 6]  920 	tfr	d,x
-   058E AF 61         [ 6]  921 	stx	1,s
-   0590 EC 61         [ 6]  922 	ldd	1,s
-   0592 58            [ 2]  923 	aslb
-   0593 49            [ 2]  924 	rola
-   0594 58            [ 2]  925 	aslb
-   0595 49            [ 2]  926 	rola
-   0596 ED 61         [ 6]  927 	std	1,s
-                            928 	; ldd	1,s	; optimization 5
-   0598 30 8B         [ 8]  929 	leax	d,x
-   059A AF 61         [ 6]  930 	stx	1,s
-   059C EE 61         [ 6]  931 	ldu	1,s
-   059E 30 C9 00 00   [ 8]  932 	leax	_enemies,u
-   05A2 C6 01         [ 2]  933 	ldb	#1
-   05A4 E7 84         [ 4]  934 	stb	,x
-   05A6                     935 L30:
-   05A6 6C E8 10      [ 7]  936 	inc	16,s
-   05A9                     937 L29:
-   05A9 6D E8 10      [ 7]  938 	tst	16,s
-   05AC 10 27 FF 32   [ 6]  939 	lbeq	L31
-   05B0                     940 L28:
-   05B0 6C E8 10      [ 7]  941 	inc	16,s
-   05B3                     942 L27:
-   05B3 E6 E8 10      [ 5]  943 	ldb	16,s
-   05B6 C1 09         [ 2]  944 	cmpb	#9	;cmpqi:
-   05B8 10 23 FE FC   [ 6]  945 	lbls	L32
-   05BC 32 E8 12      [ 5]  946 	leas	18,s
-   05BF 35 C0         [ 7]  947 	puls	u,pc
-                            948 	.area .bss
-                            949 	.globl	_bullets
-   0000                     950 _bullets:	.blkb	60
+                            262 	.globl _draw_bullets
+   00D3                     263 _draw_bullets:
+   00D3 34 40         [ 6]  264 	pshs	u
+   00D5 32 7D         [ 5]  265 	leas	-3,s
+   00D7 6F 62         [ 7]  266 	clr	2,s
+   00D9 20 2D         [ 3]  267 	bra	L6
+   00DB                     268 L8:
+   00DB E6 62         [ 5]  269 	ldb	2,s
+   00DD 4F            [ 2]  270 	clra		;zero_extendqihi: R:b -> R:d
+   00DE 1F 01         [ 6]  271 	tfr	d,x
+   00E0 AF E4         [ 5]  272 	stx	,s
+   00E2 EC E4         [ 5]  273 	ldd	,s
+   00E4 58            [ 2]  274 	aslb
+   00E5 49            [ 2]  275 	rola
+   00E6 ED E4         [ 5]  276 	std	,s
+                            277 	; ldd	,s	; optimization 5
+   00E8 30 8B         [ 8]  278 	leax	d,x
+   00EA AF E4         [ 5]  279 	stx	,s
+   00EC EC E4         [ 5]  280 	ldd	,s
+   00EE 58            [ 2]  281 	aslb
+   00EF 49            [ 2]  282 	rola
+   00F0 ED E4         [ 5]  283 	std	,s
+   00F2 EE E4         [ 5]  284 	ldu	,s
+   00F4 30 C9 00 00   [ 8]  285 	leax	_bullets,u
+   00F8 E6 84         [ 4]  286 	ldb	,x
+                            287 	; tstb	; optimization 6
+   00FA 26 0A         [ 3]  288 	bne	L7
+   00FC E6 62         [ 5]  289 	ldb	2,s
+   00FE BD 01 15      [ 8]  290 	jsr	_draw_bullet
+   0101 E6 62         [ 5]  291 	ldb	2,s
+   0103 BD 01 81      [ 8]  292 	jsr	_move_bullet
+   0106                     293 L7:
+   0106 6C 62         [ 7]  294 	inc	2,s
+   0108                     295 L6:
+   0108 E6 62         [ 5]  296 	ldb	2,s
+   010A C1 09         [ 2]  297 	cmpb	#9	;cmpqi:
+   010C 23 CD         [ 3]  298 	bls	L8
+   010E BD 04 DB      [ 8]  299 	jsr	_check_bulletCollision
+   0111 32 63         [ 5]  300 	leas	3,s
+   0113 35 C0         [ 7]  301 	puls	u,pc
+                            302 	.globl _draw_bullet
+   0115                     303 _draw_bullet:
+   0115 34 40         [ 6]  304 	pshs	u
+   0117 32 78         [ 5]  305 	leas	-8,s
+   0119 E7 65         [ 5]  306 	stb	5,s
+   011B BD 00 00      [ 8]  307 	jsr	___Reset0Ref
+   011E C6 7F         [ 2]  308 	ldb	#127
+   0120 D7 00         [ 4]  309 	stb	*_dp_VIA_t1_cnt_lo
+   0122 E6 65         [ 5]  310 	ldb	5,s
+   0124 4F            [ 2]  311 	clra		;zero_extendqihi: R:b -> R:d
+   0125 1F 01         [ 6]  312 	tfr	d,x
+   0127 AF 62         [ 6]  313 	stx	2,s
+   0129 EC 62         [ 6]  314 	ldd	2,s
+   012B 58            [ 2]  315 	aslb
+   012C 49            [ 2]  316 	rola
+   012D ED 62         [ 6]  317 	std	2,s
+                            318 	; ldd	2,s	; optimization 5
+   012F 30 8B         [ 8]  319 	leax	d,x
+   0131 AF 62         [ 6]  320 	stx	2,s
+   0133 EC 62         [ 6]  321 	ldd	2,s
+   0135 C3 00 01      [ 4]  322 	addd	#1
+   0138 58            [ 2]  323 	aslb
+   0139 49            [ 2]  324 	rola
+   013A CE 00 00      [ 3]  325 	ldu	#_bullets
+   013D 30 CB         [ 8]  326 	leax	d,u
+   013F E6 84         [ 4]  327 	ldb	,x
+   0141 E7 64         [ 5]  328 	stb	4,s
+   0143 E6 65         [ 5]  329 	ldb	5,s
+   0145 4F            [ 2]  330 	clra		;zero_extendqihi: R:b -> R:d
+   0146 1F 01         [ 6]  331 	tfr	d,x
+   0148 AF E4         [ 5]  332 	stx	,s
+   014A EC E4         [ 5]  333 	ldd	,s
+   014C 58            [ 2]  334 	aslb
+   014D 49            [ 2]  335 	rola
+   014E ED E4         [ 5]  336 	std	,s
+                            337 	; ldd	,s	; optimization 5
+   0150 30 8B         [ 8]  338 	leax	d,x
+   0152 AF E4         [ 5]  339 	stx	,s
+   0154 EC E4         [ 5]  340 	ldd	,s
+   0156 58            [ 2]  341 	aslb
+   0157 49            [ 2]  342 	rola
+   0158 ED E4         [ 5]  343 	std	,s
+   015A EE E4         [ 5]  344 	ldu	,s
+   015C 30 C9 00 01   [ 8]  345 	leax	_bullets+1,u
+   0160 E6 84         [ 4]  346 	ldb	,x
+   0162 E7 67         [ 5]  347 	stb	7,s
+   0164 E6 64         [ 5]  348 	ldb	4,s
+   0166 E7 66         [ 5]  349 	stb	6,s
+   0168 E6 67         [ 5]  350 	ldb	7,s
+   016A E7 E2         [ 6]  351 	stb	,-s
+   016C E6 67         [ 5]  352 	ldb	7,s
+   016E BD 00 00      [ 8]  353 	jsr	__Moveto_d
+   0171 32 61         [ 5]  354 	leas	1,s
+   0173 C6 22         [ 2]  355 	ldb	#34
+   0175 D7 00         [ 4]  356 	stb	*_dp_VIA_t1_cnt_lo
+   0177 BD 00 00      [ 8]  357 	jsr	___Intensity_5F
+   017A BD 00 00      [ 8]  358 	jsr	___Dot_here
+   017D 32 68         [ 5]  359 	leas	8,s
+   017F 35 C0         [ 7]  360 	puls	u,pc
+                            361 	.globl _move_bullet
+   0181                     362 _move_bullet:
+   0181 34 40         [ 6]  363 	pshs	u
+   0183 32 E8 D8      [ 5]  364 	leas	-40,s
+   0186 E7 E8 27      [ 5]  365 	stb	39,s
+                            366 	; ldb	39,s	; optimization 5
+   0189 E7 E8 21      [ 5]  367 	stb	33,s
+   018C E6 E8 27      [ 5]  368 	ldb	39,s
+   018F 4F            [ 2]  369 	clra		;zero_extendqihi: R:b -> R:d
+   0190 1F 01         [ 6]  370 	tfr	d,x
+   0192 AF E8 1F      [ 6]  371 	stx	31,s
+   0195 EC E8 1F      [ 6]  372 	ldd	31,s
+   0198 58            [ 2]  373 	aslb
+   0199 49            [ 2]  374 	rola
+   019A ED E8 1F      [ 6]  375 	std	31,s
+                            376 	; ldd	31,s	; optimization 5
+   019D 30 8B         [ 8]  377 	leax	d,x
+   019F AF E8 1F      [ 6]  378 	stx	31,s
+   01A2 EC E8 1F      [ 6]  379 	ldd	31,s
+   01A5 58            [ 2]  380 	aslb
+   01A6 49            [ 2]  381 	rola
+   01A7 ED E8 1F      [ 6]  382 	std	31,s
+   01AA EE E8 1F      [ 6]  383 	ldu	31,s
+   01AD 30 C9 00 01   [ 8]  384 	leax	_bullets+1,u
+   01B1 E6 84         [ 4]  385 	ldb	,x
+   01B3 E7 E8 22      [ 5]  386 	stb	34,s
+   01B6 E6 E8 27      [ 5]  387 	ldb	39,s
+   01B9 4F            [ 2]  388 	clra		;zero_extendqihi: R:b -> R:d
+   01BA 1F 01         [ 6]  389 	tfr	d,x
+   01BC AF E8 1D      [ 6]  390 	stx	29,s
+   01BF EC E8 1D      [ 6]  391 	ldd	29,s
+   01C2 58            [ 2]  392 	aslb
+   01C3 49            [ 2]  393 	rola
+   01C4 ED E8 1D      [ 6]  394 	std	29,s
+                            395 	; ldd	29,s	; optimization 5
+   01C7 30 8B         [ 8]  396 	leax	d,x
+   01C9 AF E8 1D      [ 6]  397 	stx	29,s
+   01CC EC E8 1D      [ 6]  398 	ldd	29,s
+   01CF 58            [ 2]  399 	aslb
+   01D0 49            [ 2]  400 	rola
+   01D1 ED E8 1D      [ 6]  401 	std	29,s
+   01D4 EE E8 1D      [ 6]  402 	ldu	29,s
+   01D7 30 C9 00 03   [ 8]  403 	leax	_bullets+3,u
+   01DB E6 84         [ 4]  404 	ldb	,x
+   01DD E7 E4         [ 4]  405 	stb	,s
+                            406 	; ldb	,s	; optimization 5
+   01DF EB E8 22      [ 5]  407 	addb	34,s
+   01E2 E7 E8 23      [ 5]  408 	stb	35,s
+   01E5 E6 E8 21      [ 5]  409 	ldb	33,s
+   01E8 4F            [ 2]  410 	clra		;zero_extendqihi: R:b -> R:d
+   01E9 1F 01         [ 6]  411 	tfr	d,x
+   01EB AF E8 1B      [ 6]  412 	stx	27,s
+   01EE EC E8 1B      [ 6]  413 	ldd	27,s
+   01F1 58            [ 2]  414 	aslb
+   01F2 49            [ 2]  415 	rola
+   01F3 ED E8 1B      [ 6]  416 	std	27,s
+                            417 	; ldd	27,s	; optimization 5
+   01F6 30 8B         [ 8]  418 	leax	d,x
+   01F8 AF E8 1B      [ 6]  419 	stx	27,s
+   01FB EC E8 1B      [ 6]  420 	ldd	27,s
+   01FE 58            [ 2]  421 	aslb
+   01FF 49            [ 2]  422 	rola
+   0200 ED E8 1B      [ 6]  423 	std	27,s
+   0203 EE E8 1B      [ 6]  424 	ldu	27,s
+   0206 30 C9 00 01   [ 8]  425 	leax	_bullets+1,u
+   020A E6 E8 23      [ 5]  426 	ldb	35,s
+   020D E7 84         [ 4]  427 	stb	,x
+   020F E6 E8 27      [ 5]  428 	ldb	39,s
+   0212 E7 E8 24      [ 5]  429 	stb	36,s
+   0215 E6 E8 27      [ 5]  430 	ldb	39,s
+   0218 4F            [ 2]  431 	clra		;zero_extendqihi: R:b -> R:d
+   0219 1F 01         [ 6]  432 	tfr	d,x
+   021B AF E8 19      [ 6]  433 	stx	25,s
+   021E EC E8 19      [ 6]  434 	ldd	25,s
+   0221 58            [ 2]  435 	aslb
+   0222 49            [ 2]  436 	rola
+   0223 ED E8 19      [ 6]  437 	std	25,s
+                            438 	; ldd	25,s	; optimization 5
+   0226 30 8B         [ 8]  439 	leax	d,x
+   0228 AF E8 19      [ 6]  440 	stx	25,s
+   022B EC E8 19      [ 6]  441 	ldd	25,s
+   022E C3 00 01      [ 4]  442 	addd	#1
+   0231 58            [ 2]  443 	aslb
+   0232 49            [ 2]  444 	rola
+   0233 CE 00 00      [ 3]  445 	ldu	#_bullets
+   0236 30 CB         [ 8]  446 	leax	d,u
+   0238 E6 84         [ 4]  447 	ldb	,x
+   023A E7 E8 25      [ 5]  448 	stb	37,s
+   023D E6 E8 27      [ 5]  449 	ldb	39,s
+   0240 4F            [ 2]  450 	clra		;zero_extendqihi: R:b -> R:d
+   0241 1F 01         [ 6]  451 	tfr	d,x
+   0243 AF E8 17      [ 6]  452 	stx	23,s
+   0246 EC E8 17      [ 6]  453 	ldd	23,s
+   0249 58            [ 2]  454 	aslb
+   024A 49            [ 2]  455 	rola
+   024B ED E8 17      [ 6]  456 	std	23,s
+                            457 	; ldd	23,s	; optimization 5
+   024E 30 8B         [ 8]  458 	leax	d,x
+   0250 AF E8 17      [ 6]  459 	stx	23,s
+   0253 EC E8 17      [ 6]  460 	ldd	23,s
+   0256 58            [ 2]  461 	aslb
+   0257 49            [ 2]  462 	rola
+   0258 ED E8 17      [ 6]  463 	std	23,s
+   025B EE E8 17      [ 6]  464 	ldu	23,s
+   025E 30 C9 00 04   [ 8]  465 	leax	_bullets+4,u
+   0262 E6 84         [ 4]  466 	ldb	,x
+   0264 E7 E4         [ 4]  467 	stb	,s
+                            468 	; ldb	,s	; optimization 5
+   0266 EB E8 25      [ 5]  469 	addb	37,s
+   0269 E7 E8 26      [ 5]  470 	stb	38,s
+   026C E6 E8 24      [ 5]  471 	ldb	36,s
+   026F 4F            [ 2]  472 	clra		;zero_extendqihi: R:b -> R:d
+   0270 1F 01         [ 6]  473 	tfr	d,x
+   0272 AF E8 15      [ 6]  474 	stx	21,s
+   0275 EC E8 15      [ 6]  475 	ldd	21,s
+   0278 58            [ 2]  476 	aslb
+   0279 49            [ 2]  477 	rola
+   027A ED E8 15      [ 6]  478 	std	21,s
+                            479 	; ldd	21,s	; optimization 5
+   027D 30 8B         [ 8]  480 	leax	d,x
+   027F AF E8 15      [ 6]  481 	stx	21,s
+   0282 EC E8 15      [ 6]  482 	ldd	21,s
+   0285 C3 00 01      [ 4]  483 	addd	#1
+   0288 58            [ 2]  484 	aslb
+   0289 49            [ 2]  485 	rola
+   028A CE 00 00      [ 3]  486 	ldu	#_bullets
+   028D 30 CB         [ 8]  487 	leax	d,u
+   028F E6 E8 26      [ 5]  488 	ldb	38,s
+   0292 E7 84         [ 4]  489 	stb	,x
+   0294 E6 E8 27      [ 5]  490 	ldb	39,s
+   0297 4F            [ 2]  491 	clra		;zero_extendqihi: R:b -> R:d
+   0298 1F 01         [ 6]  492 	tfr	d,x
+   029A AF E8 13      [ 6]  493 	stx	19,s
+   029D EC E8 13      [ 6]  494 	ldd	19,s
+   02A0 58            [ 2]  495 	aslb
+   02A1 49            [ 2]  496 	rola
+   02A2 ED E8 13      [ 6]  497 	std	19,s
+                            498 	; ldd	19,s	; optimization 5
+   02A5 30 8B         [ 8]  499 	leax	d,x
+   02A7 AF E8 13      [ 6]  500 	stx	19,s
+   02AA EC E8 13      [ 6]  501 	ldd	19,s
+   02AD 58            [ 2]  502 	aslb
+   02AE 49            [ 2]  503 	rola
+   02AF ED E8 13      [ 6]  504 	std	19,s
+   02B2 EE E8 13      [ 6]  505 	ldu	19,s
+   02B5 30 C9 00 01   [ 8]  506 	leax	_bullets+1,u
+   02B9 E6 84         [ 4]  507 	ldb	,x
+   02BB C1 64         [ 2]  508 	cmpb	#100	;cmpqi:
+   02BD 10 2E 00 75   [ 6]  509 	lbgt	L13
+   02C1 E6 E8 27      [ 5]  510 	ldb	39,s
+   02C4 4F            [ 2]  511 	clra		;zero_extendqihi: R:b -> R:d
+   02C5 1F 01         [ 6]  512 	tfr	d,x
+   02C7 AF E8 11      [ 6]  513 	stx	17,s
+   02CA EC E8 11      [ 6]  514 	ldd	17,s
+   02CD 58            [ 2]  515 	aslb
+   02CE 49            [ 2]  516 	rola
+   02CF ED E8 11      [ 6]  517 	std	17,s
+                            518 	; ldd	17,s	; optimization 5
+   02D2 30 8B         [ 8]  519 	leax	d,x
+   02D4 AF E8 11      [ 6]  520 	stx	17,s
+   02D7 EC E8 11      [ 6]  521 	ldd	17,s
+   02DA 58            [ 2]  522 	aslb
+   02DB 49            [ 2]  523 	rola
+   02DC ED E8 11      [ 6]  524 	std	17,s
+   02DF EE E8 11      [ 6]  525 	ldu	17,s
+   02E2 30 C9 00 01   [ 8]  526 	leax	_bullets+1,u
+   02E6 E6 84         [ 4]  527 	ldb	,x
+   02E8 C1 9C         [ 2]  528 	cmpb	#-100	;cmpqi:
+   02EA 2D 4A         [ 3]  529 	blt	L13
+   02EC E6 E8 27      [ 5]  530 	ldb	39,s
+   02EF 4F            [ 2]  531 	clra		;zero_extendqihi: R:b -> R:d
+   02F0 1F 01         [ 6]  532 	tfr	d,x
+   02F2 AF 6F         [ 6]  533 	stx	15,s
+   02F4 EC 6F         [ 6]  534 	ldd	15,s
+   02F6 58            [ 2]  535 	aslb
+   02F7 49            [ 2]  536 	rola
+   02F8 ED 6F         [ 6]  537 	std	15,s
+                            538 	; ldd	15,s	; optimization 5
+   02FA 30 8B         [ 8]  539 	leax	d,x
+   02FC AF 6F         [ 6]  540 	stx	15,s
+   02FE EC 6F         [ 6]  541 	ldd	15,s
+   0300 C3 00 01      [ 4]  542 	addd	#1
+   0303 58            [ 2]  543 	aslb
+   0304 49            [ 2]  544 	rola
+   0305 CE 00 00      [ 3]  545 	ldu	#_bullets
+   0308 30 CB         [ 8]  546 	leax	d,u
+   030A E6 84         [ 4]  547 	ldb	,x
+   030C C1 64         [ 2]  548 	cmpb	#100	;cmpqi:
+   030E 2E 26         [ 3]  549 	bgt	L13
+   0310 E6 E8 27      [ 5]  550 	ldb	39,s
+   0313 4F            [ 2]  551 	clra		;zero_extendqihi: R:b -> R:d
+   0314 1F 01         [ 6]  552 	tfr	d,x
+   0316 AF 6D         [ 6]  553 	stx	13,s
+   0318 EC 6D         [ 6]  554 	ldd	13,s
+   031A 58            [ 2]  555 	aslb
+   031B 49            [ 2]  556 	rola
+   031C ED 6D         [ 6]  557 	std	13,s
+                            558 	; ldd	13,s	; optimization 5
+   031E 30 8B         [ 8]  559 	leax	d,x
+   0320 AF 6D         [ 6]  560 	stx	13,s
+   0322 EC 6D         [ 6]  561 	ldd	13,s
+   0324 C3 00 01      [ 4]  562 	addd	#1
+   0327 58            [ 2]  563 	aslb
+   0328 49            [ 2]  564 	rola
+   0329 CE 00 00      [ 3]  565 	ldu	#_bullets
+   032C 30 CB         [ 8]  566 	leax	d,u
+   032E E6 84         [ 4]  567 	ldb	,x
+   0330 C1 9C         [ 2]  568 	cmpb	#-100	;cmpqi:
+   0332 10 2C 00 C2   [ 6]  569 	lbge	L15
+   0336                     570 L13:
+   0336 E6 E8 27      [ 5]  571 	ldb	39,s
+   0339 4F            [ 2]  572 	clra		;zero_extendqihi: R:b -> R:d
+   033A 1F 01         [ 6]  573 	tfr	d,x
+   033C AF 6B         [ 6]  574 	stx	11,s
+   033E EC 6B         [ 6]  575 	ldd	11,s
+   0340 58            [ 2]  576 	aslb
+   0341 49            [ 2]  577 	rola
+   0342 ED 6B         [ 6]  578 	std	11,s
+                            579 	; ldd	11,s	; optimization 5
+   0344 30 8B         [ 8]  580 	leax	d,x
+   0346 AF 6B         [ 6]  581 	stx	11,s
+   0348 EC 6B         [ 6]  582 	ldd	11,s
+   034A 58            [ 2]  583 	aslb
+   034B 49            [ 2]  584 	rola
+   034C ED 6B         [ 6]  585 	std	11,s
+   034E EE 6B         [ 6]  586 	ldu	11,s
+   0350 30 C9 00 00   [ 8]  587 	leax	_bullets,u
+   0354 C6 01         [ 2]  588 	ldb	#1
+   0356 E7 84         [ 4]  589 	stb	,x
+   0358 E6 E8 27      [ 5]  590 	ldb	39,s
+   035B 4F            [ 2]  591 	clra		;zero_extendqihi: R:b -> R:d
+   035C 1F 01         [ 6]  592 	tfr	d,x
+   035E AF 69         [ 6]  593 	stx	9,s
+   0360 EC 69         [ 6]  594 	ldd	9,s
+   0362 58            [ 2]  595 	aslb
+   0363 49            [ 2]  596 	rola
+   0364 ED 69         [ 6]  597 	std	9,s
+                            598 	; ldd	9,s	; optimization 5
+   0366 30 8B         [ 8]  599 	leax	d,x
+   0368 AF 69         [ 6]  600 	stx	9,s
+   036A EC 69         [ 6]  601 	ldd	9,s
+   036C 58            [ 2]  602 	aslb
+   036D 49            [ 2]  603 	rola
+   036E ED 69         [ 6]  604 	std	9,s
+   0370 EE 69         [ 6]  605 	ldu	9,s
+   0372 30 C9 00 01   [ 8]  606 	leax	_bullets+1,u
+   0376 6F 84         [ 6]  607 	clr	,x
+   0378 E6 E8 27      [ 5]  608 	ldb	39,s
+   037B 4F            [ 2]  609 	clra		;zero_extendqihi: R:b -> R:d
+   037C 1F 01         [ 6]  610 	tfr	d,x
+   037E AF 67         [ 6]  611 	stx	7,s
+   0380 EC 67         [ 6]  612 	ldd	7,s
+   0382 58            [ 2]  613 	aslb
+   0383 49            [ 2]  614 	rola
+   0384 ED 67         [ 6]  615 	std	7,s
+                            616 	; ldd	7,s	; optimization 5
+   0386 30 8B         [ 8]  617 	leax	d,x
+   0388 AF 67         [ 6]  618 	stx	7,s
+   038A EC 67         [ 6]  619 	ldd	7,s
+   038C C3 00 01      [ 4]  620 	addd	#1
+   038F 58            [ 2]  621 	aslb
+   0390 49            [ 2]  622 	rola
+   0391 CE 00 00      [ 3]  623 	ldu	#_bullets
+   0394 30 CB         [ 8]  624 	leax	d,u
+   0396 6F 84         [ 6]  625 	clr	,x
+   0398 E6 E8 27      [ 5]  626 	ldb	39,s
+   039B 4F            [ 2]  627 	clra		;zero_extendqihi: R:b -> R:d
+   039C 1F 01         [ 6]  628 	tfr	d,x
+   039E AF 65         [ 6]  629 	stx	5,s
+   03A0 EC 65         [ 6]  630 	ldd	5,s
+   03A2 58            [ 2]  631 	aslb
+   03A3 49            [ 2]  632 	rola
+   03A4 ED 65         [ 6]  633 	std	5,s
+                            634 	; ldd	5,s	; optimization 5
+   03A6 30 8B         [ 8]  635 	leax	d,x
+   03A8 AF 65         [ 6]  636 	stx	5,s
+   03AA EC 65         [ 6]  637 	ldd	5,s
+   03AC 58            [ 2]  638 	aslb
+   03AD 49            [ 2]  639 	rola
+   03AE ED 65         [ 6]  640 	std	5,s
+   03B0 EE 65         [ 6]  641 	ldu	5,s
+   03B2 30 C9 00 05   [ 8]  642 	leax	_bullets+5,u
+   03B6 6F 84         [ 6]  643 	clr	,x
+   03B8 E6 E8 27      [ 5]  644 	ldb	39,s
+   03BB 4F            [ 2]  645 	clra		;zero_extendqihi: R:b -> R:d
+   03BC 1F 01         [ 6]  646 	tfr	d,x
+   03BE AF 63         [ 6]  647 	stx	3,s
+   03C0 EC 63         [ 6]  648 	ldd	3,s
+   03C2 58            [ 2]  649 	aslb
+   03C3 49            [ 2]  650 	rola
+   03C4 ED 63         [ 6]  651 	std	3,s
+                            652 	; ldd	3,s	; optimization 5
+   03C6 30 8B         [ 8]  653 	leax	d,x
+   03C8 AF 63         [ 6]  654 	stx	3,s
+   03CA EC 63         [ 6]  655 	ldd	3,s
+   03CC 58            [ 2]  656 	aslb
+   03CD 49            [ 2]  657 	rola
+   03CE ED 63         [ 6]  658 	std	3,s
+   03D0 EE 63         [ 6]  659 	ldu	3,s
+   03D2 30 C9 00 04   [ 8]  660 	leax	_bullets+4,u
+   03D6 6F 84         [ 6]  661 	clr	,x
+   03D8 E6 E8 27      [ 5]  662 	ldb	39,s
+   03DB 4F            [ 2]  663 	clra		;zero_extendqihi: R:b -> R:d
+   03DC 1F 01         [ 6]  664 	tfr	d,x
+   03DE AF 61         [ 6]  665 	stx	1,s
+   03E0 EC 61         [ 6]  666 	ldd	1,s
+   03E2 58            [ 2]  667 	aslb
+   03E3 49            [ 2]  668 	rola
+   03E4 ED 61         [ 6]  669 	std	1,s
+                            670 	; ldd	1,s	; optimization 5
+   03E6 30 8B         [ 8]  671 	leax	d,x
+   03E8 AF 61         [ 6]  672 	stx	1,s
+   03EA EC 61         [ 6]  673 	ldd	1,s
+   03EC 58            [ 2]  674 	aslb
+   03ED 49            [ 2]  675 	rola
+   03EE ED 61         [ 6]  676 	std	1,s
+   03F0 EE 61         [ 6]  677 	ldu	1,s
+   03F2 30 C9 00 03   [ 8]  678 	leax	_bullets+3,u
+   03F6 6F 84         [ 6]  679 	clr	,x
+   03F8                     680 L15:
+   03F8 32 E8 28      [ 5]  681 	leas	40,s
+   03FB 35 C0         [ 7]  682 	puls	u,pc
+                            683 	.globl _fire_bullet
+   03FD                     684 _fire_bullet:
+   03FD 34 60         [ 7]  685 	pshs	y,u
+   03FF 32 71         [ 5]  686 	leas	-15,s
+   0401 AF 6C         [ 6]  687 	stx	12,s
+   0403 E7 6B         [ 5]  688 	stb	11,s
+   0405 E6 E8 15      [ 5]  689 	ldb	21,s
+   0408 C1 40         [ 2]  690 	cmpb	#64	;cmpqi:
+   040A 10 22 00 C9   [ 6]  691 	lbhi	L21
+   040E 6F 6E         [ 7]  692 	clr	14,s
+   0410 7E 04 CF      [ 4]  693 	jmp	L18
+   0413                     694 L20:
+   0413 E6 6E         [ 5]  695 	ldb	14,s
+   0415 4F            [ 2]  696 	clra		;zero_extendqihi: R:b -> R:d
+   0416 1F 01         [ 6]  697 	tfr	d,x
+   0418 AF 68         [ 6]  698 	stx	8,s
+   041A EC 68         [ 6]  699 	ldd	8,s
+   041C 58            [ 2]  700 	aslb
+   041D 49            [ 2]  701 	rola
+   041E ED 68         [ 6]  702 	std	8,s
+                            703 	; ldd	8,s	; optimization 5
+   0420 30 8B         [ 8]  704 	leax	d,x
+   0422 AF 68         [ 6]  705 	stx	8,s
+   0424 EC 68         [ 6]  706 	ldd	8,s
+   0426 58            [ 2]  707 	aslb
+   0427 49            [ 2]  708 	rola
+   0428 ED 68         [ 6]  709 	std	8,s
+   042A EE 68         [ 6]  710 	ldu	8,s
+   042C 30 C9 00 00   [ 8]  711 	leax	_bullets,u
+   0430 E6 84         [ 4]  712 	ldb	,x
+   0432 C1 01         [ 2]  713 	cmpb	#1	;cmpqi:
+   0434 10 26 00 95   [ 6]  714 	lbne	L19
+   0438 E6 6E         [ 5]  715 	ldb	14,s
+   043A 4F            [ 2]  716 	clra		;zero_extendqihi: R:b -> R:d
+   043B 1F 01         [ 6]  717 	tfr	d,x
+   043D AF 66         [ 6]  718 	stx	6,s
+   043F EC 66         [ 6]  719 	ldd	6,s
+   0441 58            [ 2]  720 	aslb
+   0442 49            [ 2]  721 	rola
+   0443 ED 66         [ 6]  722 	std	6,s
+                            723 	; ldd	6,s	; optimization 5
+   0445 30 8B         [ 8]  724 	leax	d,x
+   0447 AF 66         [ 6]  725 	stx	6,s
+   0449 EC 66         [ 6]  726 	ldd	6,s
+   044B 58            [ 2]  727 	aslb
+   044C 49            [ 2]  728 	rola
+   044D ED 66         [ 6]  729 	std	6,s
+   044F EE 66         [ 6]  730 	ldu	6,s
+   0451 30 C9 00 00   [ 8]  731 	leax	_bullets,u
+   0455 6F 84         [ 6]  732 	clr	,x
+   0457 E6 6E         [ 5]  733 	ldb	14,s
+   0459 4F            [ 2]  734 	clra		;zero_extendqihi: R:b -> R:d
+   045A 1F 01         [ 6]  735 	tfr	d,x
+   045C AF 64         [ 6]  736 	stx	4,s
+   045E EC 64         [ 6]  737 	ldd	4,s
+   0460 58            [ 2]  738 	aslb
+   0461 49            [ 2]  739 	rola
+   0462 ED 64         [ 6]  740 	std	4,s
+                            741 	; ldd	4,s	; optimization 5
+   0464 30 8B         [ 8]  742 	leax	d,x
+   0466 AF 64         [ 6]  743 	stx	4,s
+   0468 EC 64         [ 6]  744 	ldd	4,s
+   046A 58            [ 2]  745 	aslb
+   046B 49            [ 2]  746 	rola
+   046C ED 64         [ 6]  747 	std	4,s
+   046E AE 64         [ 6]  748 	ldx	4,s
+   0470 31 89 00 01   [ 8]  749 	leay	_bullets+1,x
+   0474 AE 6C         [ 6]  750 	ldx	12,s
+   0476 AF A4         [ 5]  751 	stx	,y
+   0478 E6 6E         [ 5]  752 	ldb	14,s
+   047A 4F            [ 2]  753 	clra		;zero_extendqihi: R:b -> R:d
+   047B 1F 01         [ 6]  754 	tfr	d,x
+   047D AF 62         [ 6]  755 	stx	2,s
+   047F EC 62         [ 6]  756 	ldd	2,s
+   0481 58            [ 2]  757 	aslb
+   0482 49            [ 2]  758 	rola
+   0483 ED 62         [ 6]  759 	std	2,s
+                            760 	; ldd	2,s	; optimization 5
+   0485 30 8B         [ 8]  761 	leax	d,x
+   0487 AF 62         [ 6]  762 	stx	2,s
+   0489 EC 62         [ 6]  763 	ldd	2,s
+   048B 58            [ 2]  764 	aslb
+   048C 49            [ 2]  765 	rola
+   048D ED 62         [ 6]  766 	std	2,s
+   048F EE 62         [ 6]  767 	ldu	2,s
+   0491 30 C9 00 05   [ 8]  768 	leax	_bullets+5,u
+   0495 E6 6B         [ 5]  769 	ldb	11,s
+   0497 E7 84         [ 4]  770 	stb	,x
+   0499 E6 6E         [ 5]  771 	ldb	14,s
+   049B E7 6A         [ 5]  772 	stb	10,s
+   049D E6 E8 15      [ 5]  773 	ldb	21,s
+   04A0 4F            [ 2]  774 	clra		;zero_extendqihi: R:b -> R:d
+   04A1 58            [ 2]  775 	aslb
+   04A2 49            [ 2]  776 	rola
+   04A3 CE 00 00      [ 3]  777 	ldu	#_LookUpAngle
+   04A6 30 CB         [ 8]  778 	leax	d,u
+   04A8 10 AE 84      [ 6]  779 	ldy	,x
+   04AB E6 6A         [ 5]  780 	ldb	10,s
+   04AD 4F            [ 2]  781 	clra		;zero_extendqihi: R:b -> R:d
+   04AE 1F 01         [ 6]  782 	tfr	d,x
+   04B0 AF E4         [ 5]  783 	stx	,s
+   04B2 EC E4         [ 5]  784 	ldd	,s
+   04B4 58            [ 2]  785 	aslb
+   04B5 49            [ 2]  786 	rola
+   04B6 ED E4         [ 5]  787 	std	,s
+                            788 	; ldd	,s	; optimization 5
+   04B8 30 8B         [ 8]  789 	leax	d,x
+   04BA AF E4         [ 5]  790 	stx	,s
+   04BC EC E4         [ 5]  791 	ldd	,s
+   04BE 58            [ 2]  792 	aslb
+   04BF 49            [ 2]  793 	rola
+   04C0 ED E4         [ 5]  794 	std	,s
+   04C2 EE E4         [ 5]  795 	ldu	,s
+   04C4 30 C9 00 03   [ 8]  796 	leax	_bullets+3,u
+   04C8 10 AF 84      [ 6]  797 	sty	,x
+   04CB 20 0A         [ 3]  798 	bra	L21
+   04CD                     799 L19:
+   04CD 6C 6E         [ 7]  800 	inc	14,s
+   04CF                     801 L18:
+   04CF E6 6E         [ 5]  802 	ldb	14,s
+   04D1 C1 09         [ 2]  803 	cmpb	#9	;cmpqi:
+   04D3 10 23 FF 3C   [ 6]  804 	lbls	L20
+   04D7                     805 L21:
+   04D7 32 6F         [ 5]  806 	leas	15,s
+   04D9 35 E0         [ 8]  807 	puls	y,u,pc
+                            808 	.globl _check_bulletCollision
+   04DB                     809 _check_bulletCollision:
+   04DB 34 40         [ 6]  810 	pshs	u
+   04DD 32 E8 EC      [ 5]  811 	leas	-20,s
+   04E0 6F E8 12      [ 7]  812 	clr	18,s
+   04E3 7E 06 16      [ 4]  813 	jmp	L23
+   04E6                     814 L28:
+   04E6 E6 E8 12      [ 5]  815 	ldb	18,s
+   04E9 4F            [ 2]  816 	clra		;zero_extendqihi: R:b -> R:d
+   04EA 1F 01         [ 6]  817 	tfr	d,x
+   04EC AF 6D         [ 6]  818 	stx	13,s
+   04EE EC 6D         [ 6]  819 	ldd	13,s
+   04F0 58            [ 2]  820 	aslb
+   04F1 49            [ 2]  821 	rola
+   04F2 ED 6D         [ 6]  822 	std	13,s
+                            823 	; ldd	13,s	; optimization 5
+   04F4 30 8B         [ 8]  824 	leax	d,x
+   04F6 AF 6D         [ 6]  825 	stx	13,s
+   04F8 EC 6D         [ 6]  826 	ldd	13,s
+   04FA 58            [ 2]  827 	aslb
+   04FB 49            [ 2]  828 	rola
+   04FC ED 6D         [ 6]  829 	std	13,s
+   04FE EE 6D         [ 6]  830 	ldu	13,s
+   0500 30 C9 00 00   [ 8]  831 	leax	_bullets,u
+   0504 E6 84         [ 4]  832 	ldb	,x
+                            833 	; tstb	; optimization 6
+   0506 10 26 01 09   [ 6]  834 	lbne	L24
+   050A 6F E8 13      [ 7]  835 	clr	19,s
+   050D 7E 06 0A      [ 4]  836 	jmp	L25
+   0510                     837 L27:
+   0510 E6 E8 13      [ 5]  838 	ldb	19,s
+   0513 4F            [ 2]  839 	clra		;zero_extendqihi: R:b -> R:d
+   0514 1F 01         [ 6]  840 	tfr	d,x
+   0516 AF 6B         [ 6]  841 	stx	11,s
+   0518 EC 6B         [ 6]  842 	ldd	11,s
+   051A 58            [ 2]  843 	aslb
+   051B 49            [ 2]  844 	rola
+   051C ED 6B         [ 6]  845 	std	11,s
+                            846 	; ldd	11,s	; optimization 5
+   051E 30 8B         [ 8]  847 	leax	d,x
+   0520 AF 6B         [ 6]  848 	stx	11,s
+   0522 EC 6B         [ 6]  849 	ldd	11,s
+   0524 58            [ 2]  850 	aslb
+   0525 49            [ 2]  851 	rola
+   0526 ED 6B         [ 6]  852 	std	11,s
+   0528 EE 6B         [ 6]  853 	ldu	11,s
+   052A 30 C9 00 00   [ 8]  854 	leax	_enemies,u
+   052E E6 84         [ 4]  855 	ldb	,x
+                            856 	; tstb	; optimization 6
+   0530 10 26 00 D3   [ 6]  857 	lbne	L26
+   0534 E6 E8 13      [ 5]  858 	ldb	19,s
+   0537 4F            [ 2]  859 	clra		;zero_extendqihi: R:b -> R:d
+   0538 1F 01         [ 6]  860 	tfr	d,x
+   053A AF 69         [ 6]  861 	stx	9,s
+   053C EC 69         [ 6]  862 	ldd	9,s
+   053E 58            [ 2]  863 	aslb
+   053F 49            [ 2]  864 	rola
+   0540 ED 69         [ 6]  865 	std	9,s
+                            866 	; ldd	9,s	; optimization 5
+   0542 30 8B         [ 8]  867 	leax	d,x
+   0544 AF 69         [ 6]  868 	stx	9,s
+   0546 EC 69         [ 6]  869 	ldd	9,s
+   0548 C3 00 01      [ 4]  870 	addd	#1
+   054B 58            [ 2]  871 	aslb
+   054C 49            [ 2]  872 	rola
+   054D CE 00 00      [ 3]  873 	ldu	#_enemies
+   0550 30 CB         [ 8]  874 	leax	d,u
+   0552 E6 84         [ 4]  875 	ldb	,x
+   0554 E7 6F         [ 5]  876 	stb	15,s
+   0556 E6 E8 13      [ 5]  877 	ldb	19,s
+   0559 4F            [ 2]  878 	clra		;zero_extendqihi: R:b -> R:d
+   055A 1F 01         [ 6]  879 	tfr	d,x
+   055C AF 67         [ 6]  880 	stx	7,s
+   055E EC 67         [ 6]  881 	ldd	7,s
+   0560 58            [ 2]  882 	aslb
+   0561 49            [ 2]  883 	rola
+   0562 ED 67         [ 6]  884 	std	7,s
+                            885 	; ldd	7,s	; optimization 5
+   0564 30 8B         [ 8]  886 	leax	d,x
+   0566 AF 67         [ 6]  887 	stx	7,s
+   0568 EC 67         [ 6]  888 	ldd	7,s
+   056A 58            [ 2]  889 	aslb
+   056B 49            [ 2]  890 	rola
+   056C ED 67         [ 6]  891 	std	7,s
+   056E EE 67         [ 6]  892 	ldu	7,s
+   0570 30 C9 00 01   [ 8]  893 	leax	_enemies+1,u
+   0574 E6 84         [ 4]  894 	ldb	,x
+   0576 E7 E8 10      [ 5]  895 	stb	16,s
+   0579 E6 E8 12      [ 5]  896 	ldb	18,s
+   057C 4F            [ 2]  897 	clra		;zero_extendqihi: R:b -> R:d
+   057D 1F 01         [ 6]  898 	tfr	d,x
+   057F AF 65         [ 6]  899 	stx	5,s
+   0581 EC 65         [ 6]  900 	ldd	5,s
+   0583 58            [ 2]  901 	aslb
+   0584 49            [ 2]  902 	rola
+   0585 ED 65         [ 6]  903 	std	5,s
+                            904 	; ldd	5,s	; optimization 5
+   0587 30 8B         [ 8]  905 	leax	d,x
+   0589 AF 65         [ 6]  906 	stx	5,s
+   058B EC 65         [ 6]  907 	ldd	5,s
+   058D C3 00 01      [ 4]  908 	addd	#1
+   0590 58            [ 2]  909 	aslb
+   0591 49            [ 2]  910 	rola
+   0592 CE 00 00      [ 3]  911 	ldu	#_bullets
+   0595 30 CB         [ 8]  912 	leax	d,u
+   0597 E6 84         [ 4]  913 	ldb	,x
+   0599 E7 E8 11      [ 5]  914 	stb	17,s
+   059C E6 E8 12      [ 5]  915 	ldb	18,s
+   059F 4F            [ 2]  916 	clra		;zero_extendqihi: R:b -> R:d
+   05A0 1F 01         [ 6]  917 	tfr	d,x
+   05A2 AF 63         [ 6]  918 	stx	3,s
+   05A4 EC 63         [ 6]  919 	ldd	3,s
+   05A6 58            [ 2]  920 	aslb
+   05A7 49            [ 2]  921 	rola
+   05A8 ED 63         [ 6]  922 	std	3,s
+                            923 	; ldd	3,s	; optimization 5
+   05AA 30 8B         [ 8]  924 	leax	d,x
+   05AC AF 63         [ 6]  925 	stx	3,s
+   05AE EC 63         [ 6]  926 	ldd	3,s
+   05B0 58            [ 2]  927 	aslb
+   05B1 49            [ 2]  928 	rola
+   05B2 ED 63         [ 6]  929 	std	3,s
+   05B4 EE 63         [ 6]  930 	ldu	3,s
+   05B6 30 C9 00 01   [ 8]  931 	leax	_bullets+1,u
+   05BA E6 84         [ 4]  932 	ldb	,x
+   05BC E7 E4         [ 4]  933 	stb	,s
+   05BE C6 08         [ 2]  934 	ldb	#8
+   05C0 E7 E2         [ 6]  935 	stb	,-s
+   05C2 C6 08         [ 2]  936 	ldb	#8
+   05C4 E7 E2         [ 6]  937 	stb	,-s
+   05C6 E6 E8 11      [ 5]  938 	ldb	17,s
+   05C9 34 04         [ 6]  939 	pshs	b
+   05CB E6 E8 13      [ 5]  940 	ldb	19,s
+   05CE 34 04         [ 6]  941 	pshs	b
+   05D0 E6 E8 15      [ 5]  942 	ldb	21,s
+   05D3 34 04         [ 6]  943 	pshs	b
+   05D5 E6 65         [ 5]  944 	ldb	5,s
+   05D7 BD 00 00      [ 8]  945 	jsr	_check_collision
+   05DA 32 65         [ 5]  946 	leas	5,s
+   05DC 5D            [ 2]  947 	tstb
+   05DD 27 28         [ 3]  948 	beq	L26
+   05DF 8E 00 00      [ 3]  949 	ldx	#_bang
+   05E2 BD 00 00      [ 8]  950 	jsr	_play_explosion
+   05E5 E6 E8 13      [ 5]  951 	ldb	19,s
+   05E8 4F            [ 2]  952 	clra		;zero_extendqihi: R:b -> R:d
+   05E9 1F 01         [ 6]  953 	tfr	d,x
+   05EB AF 61         [ 6]  954 	stx	1,s
+   05ED EC 61         [ 6]  955 	ldd	1,s
+   05EF 58            [ 2]  956 	aslb
+   05F0 49            [ 2]  957 	rola
+   05F1 ED 61         [ 6]  958 	std	1,s
+                            959 	; ldd	1,s	; optimization 5
+   05F3 30 8B         [ 8]  960 	leax	d,x
+   05F5 AF 61         [ 6]  961 	stx	1,s
+   05F7 EC 61         [ 6]  962 	ldd	1,s
+   05F9 58            [ 2]  963 	aslb
+   05FA 49            [ 2]  964 	rola
+   05FB ED 61         [ 6]  965 	std	1,s
+   05FD EE 61         [ 6]  966 	ldu	1,s
+   05FF 30 C9 00 00   [ 8]  967 	leax	_enemies,u
+   0603 C6 01         [ 2]  968 	ldb	#1
+   0605 E7 84         [ 4]  969 	stb	,x
+   0607                     970 L26:
+   0607 6C E8 13      [ 7]  971 	inc	19,s
+   060A                     972 L25:
+   060A E6 E8 13      [ 5]  973 	ldb	19,s
+   060D C1 04         [ 2]  974 	cmpb	#4	;cmpqi:
+   060F 10 23 FE FD   [ 6]  975 	lbls	L27
+   0613                     976 L24:
+   0613 6C E8 12      [ 7]  977 	inc	18,s
+   0616                     978 L23:
+   0616 E6 E8 12      [ 5]  979 	ldb	18,s
+   0619 C1 09         [ 2]  980 	cmpb	#9	;cmpqi:
+   061B 10 23 FE C7   [ 6]  981 	lbls	L28
+   061F 32 E8 14      [ 5]  982 	leas	20,s
+   0622 35 C0         [ 7]  983 	puls	u,pc
+                            984 	.area .bss
+                            985 	.globl	_bullets
+   0000                     986 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -955,26 +991,23 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  3 L10                013A R   |   3 L11                0138 R
-  3 L12                0112 R   |   3 L17                03B1 R
-  3 L19                03D3 R   |   3 L2                 00C7 R
-  3 L21                04A1 R   |   3 L22                049F R
-  3 L24                03E5 R   |   3 L25                04A9 R
-  3 L27                05B3 R   |   3 L28                05B0 R
-  3 L29                05A9 R   |   3 L3                 0009 R
-  3 L30                05A6 R   |   3 L31                04E2 R
-  3 L32                04B8 R   |   3 L6                 0103 R
-  3 L7                 0101 R   |   3 L8                 00DB R
-  3 L9                 0145 R   |   2 _LookUpAngle       0000 GR
+  3 L13                0336 R   |   3 L15                03F8 R
+  3 L18                04CF R   |   3 L19                04CD R
+  3 L2                 00C7 R   |   3 L20                0413 R
+  3 L21                04D7 R   |   3 L23                0616 R
+  3 L24                0613 R   |   3 L25                060A R
+  3 L26                0607 R   |   3 L27                0510 R
+  3 L28                04E6 R   |   3 L3                 0009 R
+  3 L6                 0108 R   |   3 L7                 0106 R
+  3 L8                 00DB R   |   2 _LookUpAngle       0000 GR
     __Moveto_d         **** GX  |     ___Dot_here        **** GX
     ___Intensity_5     **** GX  |     ___Reset0Ref       **** GX
     _bang              **** GX  |   4 _bullets           0000 GR
-  3 _check_bulletC     04AD GR  |     _check_collisi     **** GX
-    _dp_VIA_t1_cnt     **** GX  |   3 _draw_bullet       0153 GR
+  3 _check_bulletC     04DB GR  |     _check_collisi     **** GX
+    _dp_VIA_t1_cnt     **** GX  |   3 _draw_bullet       0115 GR
   3 _draw_bullets      00D3 GR  |     _enemies           **** GX
-  3 _fire_bullet       03D8 GR  |   3 _init_bullets      0000 GR
-  2 _limit.3250        0080 R   |   3 _move_bullet       01BF GR
-    _play_explosio     **** GX
+  3 _fire_bullet       03FD GR  |   3 _init_bullets      0000 GR
+  3 _move_bullet       0181 GR  |     _play_explosio     **** GX
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -983,8 +1016,8 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .data            size   81   flags  100
-   3 .text            size  5C1   flags  100
+   2 .data            size   80   flags  100
+   3 .text            size  624   flags  100
    4 .bss             size   3C   flags    0
 [_DSEG]
    1 _DATA            size    0   flags C0C0

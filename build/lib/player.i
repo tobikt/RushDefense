@@ -2159,12 +2159,10 @@ enum gamePhase_state_t
 struct game_t
 {
  enum gamePhase_state_t gamePhase;
- unsigned int option_players;
  unsigned int option_mode;
- unsigned int lives[2];
- unsigned int level[2];
- unsigned int score[2];
- unsigned int player;
+ unsigned int lives;
+ unsigned int level;
+ unsigned int score;
 };
 
 
@@ -2178,41 +2176,8 @@ int game(void);
 void game_init(void);
 void game_play(void);
 void game_over(void);
+void game_win(void);
 # 10 "source\\player.c" 2
-# 1 "source\\/level.h" 1
-
-
-
-
-       
-
-
-
-enum level_status_t
-{
- LEVEL_PLAY,
- LEVEL_LOST,
- LEVEL_WON,
-};
-
-
-
-struct level_t
-{
- enum level_status_t status;
- unsigned int count;
- unsigned int frame;
-};
-
-
-
-extern struct level_t current_level;
-
-
-
-void level_init(void);
-void level_play(void);
-# 11 "source\\player.c" 2
 # 1 "source\\/player.h" 1
 
 
@@ -2235,6 +2200,8 @@ struct player_t
 {
  enum player_lvl_t lvl;
  unsigned int angle;
+ unsigned int money;
+ unsigned int firerate;
 };
 
 
@@ -2245,7 +2212,7 @@ extern struct player_t player;
 
 void init_player(void);
 void handle_player(void);
-# 12 "source\\player.c" 2
+# 11 "source\\player.c" 2
 # 1 "source\\/player_lvl.h" 1
 
 
@@ -2263,7 +2230,7 @@ const struct packet_t vectors_player[] =
  {DRAW, { 1 * 4, 0 * 4}},
  {STOP, { 0, 0}},
 };
-# 13 "source\\player.c" 2
+# 12 "source\\player.c" 2
 # 1 "source\\/bullet.h" 1
 
 
@@ -2326,7 +2293,7 @@ void move_bullet(unsigned int i);
 
 void fire_bullet(struct vector2 coor, int speed, unsigned int angle);
 void check_bulletCollision(void);
-# 14 "source\\player.c" 2
+# 13 "source\\player.c" 2
 
 
 
@@ -2334,6 +2301,8 @@ struct player_t player =
 {
  .lvl = P_LEVEL_1,
  .angle = 0,
+ .money = 0,
+ .firerate = 0,
 };
 
 
@@ -2360,6 +2329,8 @@ void init_player(void)
 {
  player.lvl = P_LEVEL_1;
  player.angle = 0;
+ player.money = 0;
+ player.firerate = 1;
 }
 
 
@@ -2389,15 +2360,25 @@ void rotate_player(void)
 
 void shot_player(void)
 {
+ static unsigned int timerFireRate = 20;
  check_joysticks();
 
  struct vector2 vec;
  vec.Y = 0;
  vec.X = 0;
 
- if (joystick_1_up())
+
+ if(timerFireRate > player.firerate)
  {
-  fire_bullet(vec,3,player.angle);
+  timerFireRate -= player.firerate;
+ }
+ else
+ {
+  if (joystick_1_up())
+  {
+   fire_bullet(vec,3,player.angle);
+   timerFireRate = 20;
+  }
  }
 }
 

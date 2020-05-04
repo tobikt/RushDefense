@@ -7,32 +7,32 @@
 #include "utils/print.h"
 #include "utils/utils.h"
 #include "game.h"
-#include "level.h"
 #include "menu.h"
 #include "player.h"
 #include "tower.h"
 #include "bullet.h"
+#include "wave.h"
+#include "waves_data.h"
 
 // ---------------------------------------------------------------------------
 
 struct game_t current_game =
 {
-	.option_players = 0,
 	.option_mode = 0,
-	.lives = { 0, 0},
-	.level = { 0, 0},
-	.score = { 0, 0},
-	.player = 0,
+	.lives = 0,
+	.level = 0,
+	.score = 0,
 	.gamePhase = GAMEPHASE_ATTACK,
 };
 
 // ---------------------------------------------------------------------------
 
+//TO-DO two game modes one is staic lvls and the other is random lvls
 static inline __attribute__((always_inline))
 void game_options(void)
 {
-	Select_Game(2 /* max_players */, 5 /* max_options */);
-	current_game.option_players = Vec_Num_Players;
+	Select_Game(1 /* max_players */, 2 /* max_options */);
+	//current_game.option_player = Vec_Num_Players;
 	current_game.option_mode = Vec_Num_Game;
 }
 
@@ -47,23 +47,12 @@ void game_init(void)
 	disable_controller_2_y();
 	
 	// set player data
-	current_game.lives[0] = 3; 
-	current_game.level[0] = 1;
-	current_game.score[0] = 0;
-	current_game.score[1] = 0;
-
-	if (current_game.option_players == 2)
-	{
-		current_game.lives[1] = 3; 
-		current_game.level[1] = 1;
-	}
-	else
-	{
-		current_game.lives[1] = 0; 
-		current_game.level[1] = 0;
-	}
-
-	current_game.player = 0;
+	current_game.lives = 3; 
+	current_game.level = 2;
+	current_game.score = 0;
+	
+	current_wave.wave_lvl = 0;
+	current_wave.phase = 0;
 	
 	current_game.gamePhase = GAMEPHASE_ATTACK;
 }
@@ -76,28 +65,35 @@ void game_play(void)
 	init_player();
 	init_tower();
 	
-	level_init();
+	wave_init();
 	menu_init();
 	
-	while(current_game.lives[0] + current_game.lives[1])
+	while(current_game.lives)
 	{
 		if(current_game.gamePhase == GAMEPHASE_ATTACK)
 		{
-			level_play();
+			wave_play();
 			
-			if (current_level.status == LEVEL_WON)
+			if (current_wave.status == WAVE_WON)
 			{
-				++current_game.level[current_game.player];
+				++current_wave.wave_lvl;
+				current_wave.phase = 0;
 				current_game.gamePhase = GAMEPHASE_MENUE;
+				
+				if(current_wave.wave_lvl >= MAX_LEVELS)
+					game_win();
+			}
+			else if(current_wave.status == PHASE_WON)
+			{
+				++current_wave.phase;
+				wave_init();
 			}
 			else
 			{
-				if (--current_game.lives[current_game.player] == 0)
+				if (--current_game.lives == 0)
 				{
 					game_over();
 				}
-
-				current_game.player = (current_game.option_players - 1) - current_game.player;
 			}
 		}
 		else if(current_game.gamePhase == GAMEPHASE_MENUE)
@@ -106,12 +102,9 @@ void game_play(void)
 			menu_open();
 			current_game.gamePhase = GAMEPHASE_ATTACK;
 			
-			// Next Level ...
-			level_init();
-			level_play();
+			// Next WAVE ...
+			wave_init();	
 		}
-
-
 	}
 }
 
@@ -122,7 +115,7 @@ void game_over(void)
 	// update system high score
 	int score[7];
 	Clear_Score(&score);
-	Add_Score_a(current_game.score[current_game.player], &score);
+	Add_Score_a(current_game.score, &score);
 	New_High_Score(&score, (void*) &Vec_High_Score);
 
 	unsigned int delay = 150;
@@ -132,9 +125,26 @@ void game_over(void)
 		Sync();
 		Intensity_5F();
 		print_string(0, -64, "GAME OVER\x80");
-		print_string(20, -100, "PLAYER\x80");
-		print_unsigned_int(20, 40, current_game.player + 1);
-		Print_Ships(0x69, current_game.lives[current_game.player], 0xC0E2);
+		check_buttons();
+	}
+	while((--delay) && !button_1_4_pressed());
+}
+
+void game_win(void)
+{
+	// update system high score
+	int score[7];
+	Clear_Score(&score);
+	Add_Score_a(current_game.score, &score);
+	New_High_Score(&score, (void*) &Vec_High_Score);
+
+	unsigned int delay = 150;
+
+	do
+	{
+		Sync();
+		Intensity_5F();
+		print_string(0, -64, "YOU WIN\x80");
 		check_buttons();
 	}
 	while((--delay) && !button_1_4_pressed());

@@ -1,5 +1,5 @@
 // ***************************************************************************
-// level
+// wave
 // ***************************************************************************
 
 #include <vectrex.h>
@@ -7,25 +7,30 @@
 #include "utils/controller.h"
 #include "utils/print.h"
 #include "game.h"
-#include "level.h"
+#include "wave.h"
 #include "enemy.h"
 #include "tower.h"
 #include "player.h"
 #include "bullet.h"
+#include "waves_data.h"
 
 // ---------------------------------------------------------------------------
 
-struct level_t current_level =
+struct wave_t current_wave =
 {
-	.status = LEVEL_LOST,
+	.status = WAVE_LOST,
 	.count = 0,
 	.frame = 0,
+	.wave_lvl = 0,
+	.phase = 0,
+	.maxPhase = 0,
 };
 
 // ---------------------------------------------------------------------------
 
-void level_init()
-{
+void wave_init()
+{	
+	current_wave.maxPhase = waveData[current_wave.wave_lvl].phases_cnt;
 	
 	init_enemies();
 	init_bullets();
@@ -37,23 +42,22 @@ void level_init()
 		Sync();
 		check_buttons();
 		Intensity_5F();
-		print_string(60, -100, "LEVEL\x80");
-		print_unsigned_int(60, 40, current_game.level[current_game.player]);
-		print_string(20, -100, "PLAYER\x80");
-		print_unsigned_int(20, 40, current_game.player + 1);
-		Print_Ships(0x69, current_game.lives[current_game.player], 0xC0E2);
+		print_string(60, -100, "WAVE\x80");
+		print_unsigned_int(60, 40, current_wave.wave_lvl + 1);
+		print_string(20, -100, "PHASE\x80");
+		print_unsigned_int(20, 40, current_wave.phase + 1);
 	}
 	while((--delay) && !button_1_4_pressed());
 
-	current_level.status = LEVEL_PLAY;
-	current_level.frame = 0;
+	current_wave.status = WAVE_PLAY;
+	current_wave.frame = 0;
 }	
 
 // ---------------------------------------------------------------------------
 
-void level_play(void)
+void wave_play(void)
 {
-	while(current_level.status == LEVEL_PLAY)
+	while(current_wave.status == WAVE_PLAY)
 	{
 		// game loop header start - do not change
 		DP_to_C8();
@@ -66,8 +70,9 @@ void level_play(void)
 
 		// frame start: this is where the action happens...
 
-		print_unsigned_int(120, -100, current_game.score[current_game.player]);
-		
+		print_unsigned_int(120, -100, current_game.score);
+		print_unsigned_int(120, 60, player.money);
+		print_unsigned_int(-120, -100, tower.healtPoints);	
 		
 		handle_enemies();
 		handle_player();
@@ -76,19 +81,22 @@ void level_play(void)
 		draw_bullets();
 
 
-		++current_level.frame;
-		if (current_level.frame == current_game.level[current_game.player])
+		++current_wave.frame;
+		if (current_wave.frame == current_game.level)
 		{
-			current_level.frame = 0;
+			current_wave.frame = 0;
 		}
 		
 		// end of frame
 		if(tower.status == DEAD) 
-			current_level.status = LEVEL_LOST;
+			current_wave.status = WAVE_LOST;
 		check_AllEnemysDeath();
+			
 	}
 }	
+
 
 // ***************************************************************************
 // end of file
 // ***************************************************************************
+

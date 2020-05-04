@@ -14,7 +14,7 @@ const struct cartridge_t game_header __attribute__((section(".cartridge"), used)
 	.title_height 	= -8,
 	.title_width 	= 80,
 	.title_y 		= 24,
-	.title_x 		= -64,
+	.title_x 		= -75,
 	.title 			= "RUSH DEFENSE\x80" 	// note that \x00 is automatically appended!
 };
 

@@ -22,6 +22,8 @@ struct object_t
 	int x;					// x coordinate byte
 	int dy;					// delta y byte
 	int dx;					// delta x byte
+	unsigned int damage;
+	//unsigned int money;
 };
 
 // ---------------------------------------------------------------------------

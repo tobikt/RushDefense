@@ -10,15 +10,20 @@
 #include "enemy.h"
 #include "tower.h"
 #include "tunes.h"
-#include "level.h"
+#include "wave.h"
 #include "bullet.h"
+#include "waves_data.h"
+
 
 // ---------------------------------------------------------------------------
 
 struct object_t enemies[] =
 {
-	{ .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
-	//{ .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
 };
 
 // ---------------------------------------------------------------------------
@@ -61,7 +66,16 @@ void check_enemy(struct object_t* p)
 	if (check_collision(0, 0, p->y, p->x, 8, 8))
 	{
 		play_explosion(&bang);
-		tower.status = DEAD;
+		
+		if(tower.healtPoints > p->damage)
+		{	
+			tower.healtPoints -= p->damage;
+			p->status = INACTIVE;
+		}
+		else
+		{
+			tower.status = DEAD;
+		}
 	}
 }
 
@@ -69,9 +83,20 @@ void check_enemy(struct object_t* p)
 
 void init_enemies(void)
 {
-	for (unsigned int i = 0; i < MAX_ENEMIES; ++i)
+	unsigned int enemiesCnt = waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies_cnt;
+	for(unsigned int i = 0; i < enemiesCnt; i++)
 	{
-		init_object(&enemies[i]);
+		enemies[i].status 	= ACTIVE;
+		enemies[i].y 		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].y;
+		enemies[i].x 		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].x;
+		enemies[i].dy 		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dy;
+		enemies[i].dx  		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dx;
+		enemies[i].damage 	= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].damage;
+	}
+	
+	for (unsigned int i = enemiesCnt; i < MAX_ENEMIES; ++i)
+	{
+		enemies[i].status = INACTIVE;
 	}
 }
 // ---------------------------------------------------------------------------
@@ -99,7 +124,12 @@ void check_AllEnemysDeath(void)
 	}
 	
 	// Come here if all enemies are Inactive
-	current_level.status = LEVEL_WON;
+	if(current_wave.phase == current_wave.maxPhase - 1)
+		current_wave.status = WAVE_WON;
+	else
+	{	
+		current_wave.status = PHASE_WON;
+	}
 }
 
 // ***************************************************************************

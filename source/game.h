@@ -17,12 +17,10 @@ enum gamePhase_state_t
 struct game_t
 {
 	enum gamePhase_state_t gamePhase;
-	unsigned int option_players;
 	unsigned int option_mode;
-	unsigned int lives[2];
-	unsigned int level[2];
-	unsigned int score[2];
-	unsigned int player;
+	unsigned int lives;
+	unsigned int level;
+	unsigned int score;
 };
 
 // ---------------------------------------------------------------------------
@@ -36,6 +34,7 @@ int game(void);
 void game_init(void);
 void game_play(void);
 void game_over(void);
+void game_win(void);
 
 // ***************************************************************************
 // end of file
