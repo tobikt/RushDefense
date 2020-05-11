@@ -15,13 +15,13 @@ If you can reach the end level, and destroy the RUSH BOSS then you can call your
    As a reward you get money to level up your Gear.
 
 	Joystick Left/Right	-> Rotate the player
-	Joystick Up			-> Shot bullets
+	Joystick Up		-> Shot bullets
 
 -> After every completed wave you can level up your Gear (Player LVL, Player Fire Rate, Tower LVL, Tower Fire Rate)
 
 	Joystick Up and Down 	-> Navigation through the menu
-	Joystick Left			-> Leav the menu to rush the next wave
-	Joystick Right 			-> Level up the Selected Gear if you have enough money
+	Joystick Left		-> Leav the menu to rush the next wave
+	Joystick Right 		-> Level up the Selected Gear if you have enough money
 
 
 Author and Rank
