@@ -92,6 +92,7 @@ void init_enemies(void)
 		enemies[i].dy 		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dy;
 		enemies[i].dx  		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dx;
 		enemies[i].damage 	= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].damage;
+		enemies[i].money 	= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].money;
 	}
 	
 	for (unsigned int i = enemiesCnt; i < MAX_ENEMIES; ++i)

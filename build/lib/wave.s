@@ -14,11 +14,14 @@ _waveData:
 	.byte	1
 	.byte	1
 	.byte	0
-	.byte	0
-	.byte	100
+	.byte	-100
+	.byte	50
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
+	.word	0	;skip space 28
+	.word	0	;skip space 26
 	.word	0	;skip space 24
 	.word	0	;skip space 22
 	.word	0	;skip space 20
@@ -31,6 +34,11 @@ _waveData:
 	.word	0	;skip space 6
 	.word	0	;skip space 4
 	.word	0	;skip space 2
+	.word	0	;skip space 72
+	.word	0	;skip space 70
+	.word	0	;skip space 68
+	.word	0	;skip space 66
+	.word	0	;skip space 64
 	.word	0	;skip space 62
 	.word	0	;skip space 60
 	.word	0	;skip space 58
@@ -71,6 +79,9 @@ _waveData:
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
+	.word	0	;skip space 28
+	.word	0	;skip space 26
 	.word	0	;skip space 24
 	.word	0	;skip space 22
 	.word	0	;skip space 20
@@ -90,26 +101,14 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	-100
 	.byte	2
 	.byte	2
 	.byte	10
-	.word	0	;skip space 18
-	.word	0	;skip space 16
-	.word	0	;skip space 14
-	.word	0	;skip space 12
-	.word	0	;skip space 10
-	.word	0	;skip space 8
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
-	.word	0	;skip space 31
-	.word	0	;skip space 29
-	.word	0	;skip space 27
-	.word	0	;skip space 25
-	.word	0	;skip space 23
+	.byte	5
 	.word	0	;skip space 21
 	.word	0	;skip space 19
 	.word	0	;skip space 17
@@ -121,6 +120,24 @@ _waveData:
 	.word	0	;skip space 5
 	.word	0	;skip space 3
 	.byte	0	;skip space
+	.word	0	;skip space 36
+	.word	0	;skip space 34
+	.word	0	;skip space 32
+	.word	0	;skip space 30
+	.word	0	;skip space 28
+	.word	0	;skip space 26
+	.word	0	;skip space 24
+	.word	0	;skip space 22
+	.word	0	;skip space 20
+	.word	0	;skip space 18
+	.word	0	;skip space 16
+	.word	0	;skip space 14
+	.word	0	;skip space 12
+	.word	0	;skip space 10
+	.word	0	;skip space 8
+	.word	0	;skip space 6
+	.word	0	;skip space 4
+	.word	0	;skip space 2
 	.byte	3
 	.byte	3
 	.byte	3
@@ -130,18 +147,22 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
+	.byte	5
+	.word	0	;skip space 14
 	.word	0	;skip space 12
 	.word	0	;skip space 10
 	.word	0	;skip space 8
@@ -155,6 +176,9 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
+	.word	0	;skip space 28
+	.word	0	;skip space 26
 	.word	0	;skip space 24
 	.word	0	;skip space 22
 	.word	0	;skip space 20
@@ -174,18 +198,22 @@ _waveData:
 	.byte	2
 	.byte	-1
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	0
 	.byte	50
+	.byte	5
+	.word	0	;skip space 14
 	.word	0	;skip space 12
 	.word	0	;skip space 10
 	.word	0	;skip space 8
@@ -201,18 +229,22 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
+	.byte	5
+	.word	0	;skip space 14
 	.word	0	;skip space 12
 	.word	0	;skip space 10
 	.word	0	;skip space 8
@@ -226,27 +258,32 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	50
 	.byte	100
 	.byte	-1
 	.byte	-2
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.byte	5
 	.byte	0
 	.byte	-100
@@ -254,30 +291,35 @@ _waveData:
 	.byte	2
 	.byte	-1
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	0
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-2
 	.byte	0
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	-50
 	.byte	-100
 	.byte	1
 	.byte	2
 	.byte	50
+	.byte	10
 	.byte	5
 	.byte	3
 	.byte	4
@@ -287,27 +329,32 @@ _waveData:
 	.byte	1
 	.byte	1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	100
 	.byte	1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	-100
 	.byte	-1
 	.byte	1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	100
 	.byte	-1
 	.byte	-1
 	.byte	10
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.byte	4
 	.byte	0
 	.byte	0
@@ -315,27 +362,32 @@ _waveData:
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	0
 	.byte	10
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.byte	4
 	.byte	0
 	.byte	-50
@@ -343,27 +395,32 @@ _waveData:
 	.byte	1
 	.byte	2
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	-50
 	.byte	100
 	.byte	1
 	.byte	-2
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	50
 	.byte	-100
 	.byte	-1
 	.byte	2
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	50
 	.byte	100
 	.byte	-1
 	.byte	-2
 	.byte	50
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.globl _current_wave
 	.area .data
 _current_wave:
@@ -392,33 +449,37 @@ LC1:
 	.globl _wave_init
 _wave_init:
 	pshs	u
-	leas	-3,s
+	leas	-5,s
 	ldb	_current_wave
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	stx	,s
-	ldd	,s
+	stx	2,s
+	ldd	2,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	2,s
+	; ldd	2,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	,s
 	; ldd	,s	; optimization 5
-	leau	d,x
-	stu	,s
-	ldd	,s
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
+	subd	2,s	;subhi: R:d -= 2,s
 	std	,s
 	; ldd	,s	; optimization 5
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
+	std	,s
+	; ldd	,s	; optimization 5
+	aslb
+	rola
 	std	,s
 	ldu	,s
 	leax	_waveData+1,u
@@ -427,7 +488,7 @@ _wave_init:
 	jsr	_init_enemies
 	jsr	_init_bullets
 	ldb	#100
-	stb	2,s
+	stb	4,s
 L3:
 	jsr	_Sync
 	jsr	___Read_Btns
@@ -460,8 +521,8 @@ L3:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	dec	2,s
-	; tst	2,s	; optimization 1
+	dec	4,s
+	; tst	4,s	; optimization 1
 	beq	L2
 	ldb	_Vec_Buttons
 	andb	#8
@@ -470,7 +531,7 @@ L3:
 L2:
 	clr	_current_wave+3
 	clr	_current_wave+5
-	leas	3,s
+	leas	5,s
 	puls	u,pc
 	.globl _wave_play
 _wave_play:
@@ -496,13 +557,12 @@ L9:
 	ldb	#120
 	jsr	_print_unsigned_int
 	leas	2,s
-	ldb	_player+2
-	pshs	b
-	ldb	#60
+	ldx	_player+2
+	ldb	#40
 	stb	,-s
 	ldb	#120
-	jsr	_print_unsigned_int
-	leas	2,s
+	jsr	_print_long_unsigned_int
+	leas	1,s
 	ldb	_tower+4
 	pshs	b
 	ldb	#-100

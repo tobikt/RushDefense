@@ -2196,12 +2196,19 @@ enum player_lvl_t
  P_LEVEL_3,
 };
 
+enum player_firerate_t
+{
+ PLAYER_FIRERATE_1,
+ PLAYER_FIRERATE_2,
+ PLAYER_FIRERATE_3,
+};
+
 struct player_t
 {
  enum player_lvl_t lvl;
  unsigned int angle;
- unsigned int money;
- unsigned int firerate;
+ unsigned long money;
+ enum player_firerate_t firerate;
 };
 
 
@@ -2302,7 +2309,7 @@ struct player_t player =
  .lvl = P_LEVEL_1,
  .angle = 0,
  .money = 0,
- .firerate = 0,
+ .firerate = PLAYER_FIRERATE_1,
 };
 
 
@@ -2330,7 +2337,7 @@ void init_player(void)
  player.lvl = P_LEVEL_1;
  player.angle = 0;
  player.money = 0;
- player.firerate = 1;
+ player.firerate = PLAYER_FIRERATE_1;
 }
 
 
@@ -2360,25 +2367,27 @@ void rotate_player(void)
 
 void shot_player(void)
 {
- static unsigned int timerFireRate = 20;
+ static int timerFireRate = 20;
+
  check_joysticks();
 
  struct vector2 vec;
  vec.Y = 0;
  vec.X = 0;
 
-
- if(timerFireRate > player.firerate)
- {
-  timerFireRate -= player.firerate;
- }
- else
+ if(timerFireRate <= 0)
  {
   if (joystick_1_up())
   {
    fire_bullet(vec,3,player.angle);
    timerFireRate = 20;
   }
+ }
+ else
+ {
+  if(player.firerate == PLAYER_FIRERATE_1) timerFireRate -= 1;
+  else if(player.firerate == PLAYER_FIRERATE_2) timerFireRate -= 2;
+  else if(player.firerate == PLAYER_FIRERATE_3) timerFireRate -= 5;
  }
 }
 

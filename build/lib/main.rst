@@ -6,16 +6,16 @@
                               6 	.module	main.c
                               7 	.area .text
                               8 	.globl _main
-   1768                       9 _main:
-   1768 32 7F         [ 5]   10 	leas	-1,s
-   176A                      11 L2:
-   176A BD 17 3A      [ 8]   12 	jsr	_game
-   176D E7 E4         [ 4]   13 	stb	,s
+   18E2                       9 _main:
+   18E2 32 7F         [ 5]   10 	leas	-1,s
+   18E4                      11 L2:
+   18E4 BD 18 B4      [ 8]   12 	jsr	_game
+   18E7 E7 E4         [ 4]   13 	stb	,s
                              14 	; tst	,s	; optimization 3
-   176F 27 F9         [ 3]   15 	beq	L2
-   1771 E6 E4         [ 4]   16 	ldb	,s
-   1773 32 61         [ 5]   17 	leas	1,s
-   1775 39            [ 5]   18 	rts
+   18E9 27 F9         [ 3]   15 	beq	L2
+   18EB E6 E4         [ 4]   16 	ldb	,s
+   18ED 32 61         [ 5]   17 	leas	1,s
+   18EF 39            [ 5]   18 	rts
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 

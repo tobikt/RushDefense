@@ -25,9 +25,9 @@ enum tower_lvl_t
 
 enum tower_firerate_t
 {
-	FIRERATE_1,
-	FIRERATE_2,
-	FIRERATE_3,
+	TOWER_FIRERATE_1,
+	TOWER_FIRERATE_2,
+	TOWER_FIRERATE_3,
 };
 
 // ---------------------------------------------------------------------------

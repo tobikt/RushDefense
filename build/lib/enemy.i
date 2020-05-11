@@ -1912,12 +1912,11 @@ struct object_t
  int dy;
  int dx;
  unsigned int damage;
-
+ unsigned int money;
 };
 
 
 
-void init_object(struct object_t* p);
 void move_object(struct object_t* p);
 # 7 "source\\/enemy.h" 2
 
@@ -1963,9 +1962,9 @@ enum tower_lvl_t
 
 enum tower_firerate_t
 {
- FIRERATE_1,
- FIRERATE_2,
- FIRERATE_3,
+ TOWER_FIRERATE_1,
+ TOWER_FIRERATE_2,
+ TOWER_FIRERATE_3,
 };
 
 
@@ -2112,6 +2111,9 @@ const unsigned int MAX_LEVELS = 5;
 
 
 
+
+
+
 struct phase_data_t
 {
  unsigned int enemies_cnt;
@@ -2134,7 +2136,7 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt = 1,
     {
-     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 0, .dx = -1, .damage = 10, .money = 5},
     },
    },
   },
@@ -2146,14 +2148,14 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt = 1,
     {
-     { .status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
+     { .status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 2,
     {
-     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = -100, .x = -100 ,.dy = 2, .dx = 2, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = -100, .x = -100 ,.dy = 2, .dx = 2, .damage = 10, .money = 5},
     },
    },
   },
@@ -2165,23 +2167,23 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt = 3,
     {
-     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 1,
     {
-     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 3,
     {
-     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 2, .dx = -1, .damage = 50},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 50},
-     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 50},
+     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 2, .dx = -1, .damage = 50, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 50, .money = 5},
+     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 50, .money = 5},
     },
    },
   },
@@ -2193,28 +2195,28 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt = 3,
     {
-     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 4,
     {
-     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 50, .x = 100 ,.dy = -1, .dx = -2, .damage = 10},
-     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 50, .x = 100 ,.dy = -1, .dx = -2, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 5,
     {
-     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 2, .dx = -1, .damage = 50},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 50},
-     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 50},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -2, .dx = 0, .damage = 50},
-     {.status = ACTIVE, .y = -50, .x = -100 ,.dy = 1, .dx = 2, .damage = 50},
+     {.status = ACTIVE, .y = -100, .x = 50 ,.dy = 2, .dx = -1, .damage = 50, .money = 10},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 50, .money = 10},
+     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 50, .money = 10},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -2, .dx = 0, .damage = 50, .money = 10},
+     {.status = ACTIVE, .y = -50, .x = -100 ,.dy = 1, .dx = 2, .damage = 50, .money = 10},
     },
    },
   },
@@ -2226,28 +2228,28 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt = 4,
     {
-     {.status = ACTIVE, .y = -100, .x = -100 ,.dy = 1, .dx = 1, .damage = 10},
-     {.status = ACTIVE, .y = -100, .x = 100 ,.dy = 1, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 100, .x = -100 ,.dy = -1, .dx = 1, .damage = 10},
-     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10},
+     {.status = ACTIVE, .y = -100, .x = -100 ,.dy = 1, .dx = 1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = -100, .x = 100 ,.dy = 1, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = -100 ,.dy = -1, .dx = 1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = 100 ,.dy = -1, .dx = -1, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 4,
     {
-     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10},
-     {.status = ACTIVE, .y = 0, .x = -100 ,.dy = 0, .dx = 1, .damage = 10},
-     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10},
-     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 10},
+     {.status = ACTIVE, .y = 0, .x = 100 ,.dy = 0, .dx = -1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 0, .x = -100 ,.dy = 0, .dx = 1, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = 100, .x = 0 ,.dy = -1, .dx = 0, .damage = 10, .money = 5},
+     {.status = ACTIVE, .y = -100, .x = 0 ,.dy = 1, .dx = 0, .damage = 10, .money = 5},
     },
    },
    {
     .enemies_cnt = 4,
     {
-     {.status = ACTIVE, .y = -50, .x = -100 ,.dy = 1, .dx = 2, .damage = 50},
-     {.status = ACTIVE, .y = -50, .x = 100 ,.dy = 1, .dx = -2, .damage = 50},
-     {.status = ACTIVE, .y = 50, .x = -100 ,.dy = -1, .dx = 2, .damage = 50},
-     {.status = ACTIVE, .y = 50, .x = 100 ,.dy = -1, .dx = -2, .damage = 50},
+     {.status = ACTIVE, .y = -50, .x = -100 ,.dy = 1, .dx = 2, .damage = 50, .money = 5},
+     {.status = ACTIVE, .y = -50, .x = 100 ,.dy = 1, .dx = -2, .damage = 50, .money = 5},
+     {.status = ACTIVE, .y = 50, .x = -100 ,.dy = -1, .dx = 2, .damage = 50, .money = 5},
+     {.status = ACTIVE, .y = 50, .x = 100 ,.dy = -1, .dx = -2, .damage = 50, .money = 5},
     },
    },
   },
@@ -2333,6 +2335,7 @@ void init_enemies(void)
   enemies[i].dy = waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dy;
   enemies[i].dx = waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dx;
   enemies[i].damage = waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].damage;
+  enemies[i].money = waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].money;
  }
 
  for (unsigned int i = enemiesCnt; i < 5; ++i)

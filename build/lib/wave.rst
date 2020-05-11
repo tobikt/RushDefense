@@ -6,540 +6,600 @@
                               6 	.module	wave.c
                               7 	.globl _MAX_LEVELS
                               8 	.area .text
-   266A                       9 _MAX_LEVELS:
-   266A 05                   10 	.byte	5
+   317B                       9 _MAX_LEVELS:
+   317B 05                   10 	.byte	5
                              11 	.globl _waveData
-   266B                      12 _waveData:
-   266B 01                   13 	.byte	1
-   266C 01                   14 	.byte	1
-   266D 01                   15 	.byte	1
-   266E 00                   16 	.byte	0
-   266F 00                   17 	.byte	0
-   2670 64                   18 	.byte	100
-   2671 00                   19 	.byte	0
-   2672 FF                   20 	.byte	-1
-   2673 0A                   21 	.byte	10
-   2674 00 00                22 	.word	0	;skip space 24
-   2676 00 00                23 	.word	0	;skip space 22
-   2678 00 00                24 	.word	0	;skip space 20
-   267A 00 00                25 	.word	0	;skip space 18
-   267C 00 00                26 	.word	0	;skip space 16
-   267E 00 00                27 	.word	0	;skip space 14
-   2680 00 00                28 	.word	0	;skip space 12
-   2682 00 00                29 	.word	0	;skip space 10
-   2684 00 00                30 	.word	0	;skip space 8
-   2686 00 00                31 	.word	0	;skip space 6
-   2688 00 00                32 	.word	0	;skip space 4
-   268A 00 00                33 	.word	0	;skip space 2
-   268C 00 00                34 	.word	0	;skip space 62
-   268E 00 00                35 	.word	0	;skip space 60
-   2690 00 00                36 	.word	0	;skip space 58
-   2692 00 00                37 	.word	0	;skip space 56
-   2694 00 00                38 	.word	0	;skip space 54
-   2696 00 00                39 	.word	0	;skip space 52
-   2698 00 00                40 	.word	0	;skip space 50
-   269A 00 00                41 	.word	0	;skip space 48
-   269C 00 00                42 	.word	0	;skip space 46
-   269E 00 00                43 	.word	0	;skip space 44
-   26A0 00 00                44 	.word	0	;skip space 42
-   26A2 00 00                45 	.word	0	;skip space 40
-   26A4 00 00                46 	.word	0	;skip space 38
-   26A6 00 00                47 	.word	0	;skip space 36
-   26A8 00 00                48 	.word	0	;skip space 34
-   26AA 00 00                49 	.word	0	;skip space 32
-   26AC 00 00                50 	.word	0	;skip space 30
-   26AE 00 00                51 	.word	0	;skip space 28
-   26B0 00 00                52 	.word	0	;skip space 26
-   26B2 00 00                53 	.word	0	;skip space 24
-   26B4 00 00                54 	.word	0	;skip space 22
-   26B6 00 00                55 	.word	0	;skip space 20
-   26B8 00 00                56 	.word	0	;skip space 18
-   26BA 00 00                57 	.word	0	;skip space 16
-   26BC 00 00                58 	.word	0	;skip space 14
-   26BE 00 00                59 	.word	0	;skip space 12
-   26C0 00 00                60 	.word	0	;skip space 10
-   26C2 00 00                61 	.word	0	;skip space 8
-   26C4 00 00                62 	.word	0	;skip space 6
-   26C6 00 00                63 	.word	0	;skip space 4
-   26C8 00 00                64 	.word	0	;skip space 2
-   26CA 02                   65 	.byte	2
-   26CB 02                   66 	.byte	2
-   26CC 01                   67 	.byte	1
-   26CD 00                   68 	.byte	0
-   26CE 00                   69 	.byte	0
-   26CF 64                   70 	.byte	100
-   26D0 00                   71 	.byte	0
-   26D1 FF                   72 	.byte	-1
-   26D2 0A                   73 	.byte	10
-   26D3 00 00                74 	.word	0	;skip space 24
-   26D5 00 00                75 	.word	0	;skip space 22
-   26D7 00 00                76 	.word	0	;skip space 20
-   26D9 00 00                77 	.word	0	;skip space 18
-   26DB 00 00                78 	.word	0	;skip space 16
-   26DD 00 00                79 	.word	0	;skip space 14
-   26DF 00 00                80 	.word	0	;skip space 12
-   26E1 00 00                81 	.word	0	;skip space 10
-   26E3 00 00                82 	.word	0	;skip space 8
-   26E5 00 00                83 	.word	0	;skip space 6
-   26E7 00 00                84 	.word	0	;skip space 4
-   26E9 00 00                85 	.word	0	;skip space 2
-   26EB 02                   86 	.byte	2
-   26EC 00                   87 	.byte	0
-   26ED 64                   88 	.byte	100
-   26EE 64                   89 	.byte	100
-   26EF FF                   90 	.byte	-1
-   26F0 FF                   91 	.byte	-1
-   26F1 0A                   92 	.byte	10
-   26F2 00                   93 	.byte	0
-   26F3 9C                   94 	.byte	-100
-   26F4 9C                   95 	.byte	-100
-   26F5 02                   96 	.byte	2
-   26F6 02                   97 	.byte	2
-   26F7 0A                   98 	.byte	10
-   26F8 00 00                99 	.word	0	;skip space 18
-   26FA 00 00               100 	.word	0	;skip space 16
-   26FC 00 00               101 	.word	0	;skip space 14
-   26FE 00 00               102 	.word	0	;skip space 12
-   2700 00 00               103 	.word	0	;skip space 10
-   2702 00 00               104 	.word	0	;skip space 8
-   2704 00 00               105 	.word	0	;skip space 6
-   2706 00 00               106 	.word	0	;skip space 4
-   2708 00 00               107 	.word	0	;skip space 2
-   270A 00 00               108 	.word	0	;skip space 31
-   270C 00 00               109 	.word	0	;skip space 29
-   270E 00 00               110 	.word	0	;skip space 27
-   2710 00 00               111 	.word	0	;skip space 25
-   2712 00 00               112 	.word	0	;skip space 23
-   2714 00 00               113 	.word	0	;skip space 21
-   2716 00 00               114 	.word	0	;skip space 19
-   2718 00 00               115 	.word	0	;skip space 17
-   271A 00 00               116 	.word	0	;skip space 15
-   271C 00 00               117 	.word	0	;skip space 13
-   271E 00 00               118 	.word	0	;skip space 11
-   2720 00 00               119 	.word	0	;skip space 9
-   2722 00 00               120 	.word	0	;skip space 7
-   2724 00 00               121 	.word	0	;skip space 5
-   2726 00 00               122 	.word	0	;skip space 3
-   2728 00                  123 	.byte	0	;skip space
-   2729 03                  124 	.byte	3
-   272A 03                  125 	.byte	3
-   272B 03                  126 	.byte	3
-   272C 00                  127 	.byte	0
-   272D 64                  128 	.byte	100
-   272E 64                  129 	.byte	100
-   272F FF                  130 	.byte	-1
-   2730 FF                  131 	.byte	-1
-   2731 0A                  132 	.byte	10
-   2732 00                  133 	.byte	0
-   2733 00                  134 	.byte	0
-   2734 64                  135 	.byte	100
-   2735 00                  136 	.byte	0
-   2736 FF                  137 	.byte	-1
-   2737 0A                  138 	.byte	10
-   2738 00                  139 	.byte	0
-   2739 64                  140 	.byte	100
-   273A 00                  141 	.byte	0
-   273B FF                  142 	.byte	-1
-   273C 00                  143 	.byte	0
-   273D 0A                  144 	.byte	10
-   273E 00 00               145 	.word	0	;skip space 12
-   2740 00 00               146 	.word	0	;skip space 10
-   2742 00 00               147 	.word	0	;skip space 8
-   2744 00 00               148 	.word	0	;skip space 6
-   2746 00 00               149 	.word	0	;skip space 4
-   2748 00 00               150 	.word	0	;skip space 2
-   274A 01                  151 	.byte	1
-   274B 00                  152 	.byte	0
-   274C 64                  153 	.byte	100
-   274D 64                  154 	.byte	100
-   274E FF                  155 	.byte	-1
-   274F FF                  156 	.byte	-1
-   2750 0A                  157 	.byte	10
-   2751 00 00               158 	.word	0	;skip space 24
-   2753 00 00               159 	.word	0	;skip space 22
-   2755 00 00               160 	.word	0	;skip space 20
-   2757 00 00               161 	.word	0	;skip space 18
-   2759 00 00               162 	.word	0	;skip space 16
-   275B 00 00               163 	.word	0	;skip space 14
-   275D 00 00               164 	.word	0	;skip space 12
-   275F 00 00               165 	.word	0	;skip space 10
-   2761 00 00               166 	.word	0	;skip space 8
-   2763 00 00               167 	.word	0	;skip space 6
-   2765 00 00               168 	.word	0	;skip space 4
-   2767 00 00               169 	.word	0	;skip space 2
-   2769 03                  170 	.byte	3
-   276A 00                  171 	.byte	0
-   276B 9C                  172 	.byte	-100
-   276C 32                  173 	.byte	50
-   276D 02                  174 	.byte	2
-   276E FF                  175 	.byte	-1
-   276F 32                  176 	.byte	50
-   2770 00                  177 	.byte	0
-   2771 64                  178 	.byte	100
-   2772 00                  179 	.byte	0
-   2773 FF                  180 	.byte	-1
-   2774 00                  181 	.byte	0
-   2775 32                  182 	.byte	50
-   2776 00                  183 	.byte	0
-   2777 9C                  184 	.byte	-100
-   2778 00                  185 	.byte	0
-   2779 01                  186 	.byte	1
-   277A 00                  187 	.byte	0
-   277B 32                  188 	.byte	50
-   277C 00 00               189 	.word	0	;skip space 12
-   277E 00 00               190 	.word	0	;skip space 10
-   2780 00 00               191 	.word	0	;skip space 8
-   2782 00 00               192 	.word	0	;skip space 6
-   2784 00 00               193 	.word	0	;skip space 4
-   2786 00 00               194 	.word	0	;skip space 2
-   2788 04                  195 	.byte	4
-   2789 03                  196 	.byte	3
-   278A 03                  197 	.byte	3
-   278B 00                  198 	.byte	0
-   278C 64                  199 	.byte	100
-   278D 64                  200 	.byte	100
-   278E FF                  201 	.byte	-1
-   278F FF                  202 	.byte	-1
-   2790 0A                  203 	.byte	10
-   2791 00                  204 	.byte	0
-   2792 00                  205 	.byte	0
-   2793 64                  206 	.byte	100
-   2794 00                  207 	.byte	0
-   2795 FF                  208 	.byte	-1
-   2796 0A                  209 	.byte	10
-   2797 00                  210 	.byte	0
-   2798 64                  211 	.byte	100
-   2799 00                  212 	.byte	0
-   279A FF                  213 	.byte	-1
-   279B 00                  214 	.byte	0
-   279C 0A                  215 	.byte	10
-   279D 00 00               216 	.word	0	;skip space 12
-   279F 00 00               217 	.word	0	;skip space 10
-   27A1 00 00               218 	.word	0	;skip space 8
-   27A3 00 00               219 	.word	0	;skip space 6
-   27A5 00 00               220 	.word	0	;skip space 4
-   27A7 00 00               221 	.word	0	;skip space 2
-   27A9 04                  222 	.byte	4
-   27AA 00                  223 	.byte	0
-   27AB 64                  224 	.byte	100
-   27AC 64                  225 	.byte	100
-   27AD FF                  226 	.byte	-1
-   27AE FF                  227 	.byte	-1
-   27AF 0A                  228 	.byte	10
-   27B0 00                  229 	.byte	0
-   27B1 32                  230 	.byte	50
-   27B2 64                  231 	.byte	100
-   27B3 FF                  232 	.byte	-1
-   27B4 FE                  233 	.byte	-2
-   27B5 0A                  234 	.byte	10
-   27B6 00                  235 	.byte	0
-   27B7 00                  236 	.byte	0
-   27B8 64                  237 	.byte	100
-   27B9 00                  238 	.byte	0
-   27BA FF                  239 	.byte	-1
-   27BB 0A                  240 	.byte	10
-   27BC 00                  241 	.byte	0
-   27BD 64                  242 	.byte	100
-   27BE 00                  243 	.byte	0
-   27BF FF                  244 	.byte	-1
-   27C0 00                  245 	.byte	0
-   27C1 0A                  246 	.byte	10
-   27C2 00 00               247 	.word	0	;skip space 6
-   27C4 00 00               248 	.word	0	;skip space 4
-   27C6 00 00               249 	.word	0	;skip space 2
-   27C8 05                  250 	.byte	5
-   27C9 00                  251 	.byte	0
-   27CA 9C                  252 	.byte	-100
-   27CB 32                  253 	.byte	50
-   27CC 02                  254 	.byte	2
-   27CD FF                  255 	.byte	-1
-   27CE 32                  256 	.byte	50
-   27CF 00                  257 	.byte	0
-   27D0 64                  258 	.byte	100
-   27D1 00                  259 	.byte	0
-   27D2 FF                  260 	.byte	-1
-   27D3 00                  261 	.byte	0
-   27D4 32                  262 	.byte	50
-   27D5 00                  263 	.byte	0
-   27D6 9C                  264 	.byte	-100
-   27D7 00                  265 	.byte	0
-   27D8 01                  266 	.byte	1
-   27D9 00                  267 	.byte	0
-   27DA 32                  268 	.byte	50
-   27DB 00                  269 	.byte	0
-   27DC 64                  270 	.byte	100
-   27DD 00                  271 	.byte	0
-   27DE FE                  272 	.byte	-2
-   27DF 00                  273 	.byte	0
-   27E0 32                  274 	.byte	50
-   27E1 00                  275 	.byte	0
-   27E2 CE                  276 	.byte	-50
-   27E3 9C                  277 	.byte	-100
-   27E4 01                  278 	.byte	1
-   27E5 02                  279 	.byte	2
-   27E6 32                  280 	.byte	50
-   27E7 05                  281 	.byte	5
-   27E8 03                  282 	.byte	3
-   27E9 04                  283 	.byte	4
-   27EA 00                  284 	.byte	0
-   27EB 9C                  285 	.byte	-100
-   27EC 9C                  286 	.byte	-100
-   27ED 01                  287 	.byte	1
-   27EE 01                  288 	.byte	1
-   27EF 0A                  289 	.byte	10
-   27F0 00                  290 	.byte	0
-   27F1 9C                  291 	.byte	-100
-   27F2 64                  292 	.byte	100
-   27F3 01                  293 	.byte	1
-   27F4 FF                  294 	.byte	-1
-   27F5 0A                  295 	.byte	10
-   27F6 00                  296 	.byte	0
-   27F7 64                  297 	.byte	100
-   27F8 9C                  298 	.byte	-100
-   27F9 FF                  299 	.byte	-1
-   27FA 01                  300 	.byte	1
-   27FB 0A                  301 	.byte	10
-   27FC 00                  302 	.byte	0
-   27FD 64                  303 	.byte	100
-   27FE 64                  304 	.byte	100
-   27FF FF                  305 	.byte	-1
-   2800 FF                  306 	.byte	-1
-   2801 0A                  307 	.byte	10
-   2802 00 00               308 	.word	0	;skip space 6
-   2804 00 00               309 	.word	0	;skip space 4
-   2806 00 00               310 	.word	0	;skip space 2
-   2808 04                  311 	.byte	4
-   2809 00                  312 	.byte	0
-   280A 00                  313 	.byte	0
-   280B 64                  314 	.byte	100
-   280C 00                  315 	.byte	0
-   280D FF                  316 	.byte	-1
-   280E 0A                  317 	.byte	10
-   280F 00                  318 	.byte	0
-   2810 00                  319 	.byte	0
-   2811 9C                  320 	.byte	-100
-   2812 00                  321 	.byte	0
-   2813 01                  322 	.byte	1
-   2814 0A                  323 	.byte	10
-   2815 00                  324 	.byte	0
-   2816 64                  325 	.byte	100
-   2817 00                  326 	.byte	0
-   2818 FF                  327 	.byte	-1
-   2819 00                  328 	.byte	0
-   281A 0A                  329 	.byte	10
-   281B 00                  330 	.byte	0
-   281C 9C                  331 	.byte	-100
-   281D 00                  332 	.byte	0
-   281E 01                  333 	.byte	1
-   281F 00                  334 	.byte	0
-   2820 0A                  335 	.byte	10
-   2821 00 00               336 	.word	0	;skip space 6
-   2823 00 00               337 	.word	0	;skip space 4
-   2825 00 00               338 	.word	0	;skip space 2
-   2827 04                  339 	.byte	4
-   2828 00                  340 	.byte	0
-   2829 CE                  341 	.byte	-50
-   282A 9C                  342 	.byte	-100
-   282B 01                  343 	.byte	1
-   282C 02                  344 	.byte	2
-   282D 32                  345 	.byte	50
-   282E 00                  346 	.byte	0
-   282F CE                  347 	.byte	-50
-   2830 64                  348 	.byte	100
-   2831 01                  349 	.byte	1
-   2832 FE                  350 	.byte	-2
-   2833 32                  351 	.byte	50
-   2834 00                  352 	.byte	0
-   2835 32                  353 	.byte	50
-   2836 9C                  354 	.byte	-100
-   2837 FF                  355 	.byte	-1
-   2838 02                  356 	.byte	2
-   2839 32                  357 	.byte	50
-   283A 00                  358 	.byte	0
-   283B 32                  359 	.byte	50
-   283C 64                  360 	.byte	100
-   283D FF                  361 	.byte	-1
-   283E FE                  362 	.byte	-2
-   283F 32                  363 	.byte	50
-   2840 00 00               364 	.word	0	;skip space 6
-   2842 00 00               365 	.word	0	;skip space 4
-   2844 00 00               366 	.word	0	;skip space 2
-                            367 	.globl _current_wave
-                            368 	.area .data
-   C9BC                     369 _current_wave:
-   C9BC 00                  370 	.byte	0
-   C9BD 00                  371 	.byte	0
-   C9BE 00                  372 	.byte	0
-   C9BF 01                  373 	.byte	1
-   C9C0 00                  374 	.byte	0
-   C9C1 00                  375 	.byte	0
-                            376 	.area .text
-   2846                     377 LC0:
-   2846 57                  378 	.byte	0x57
-   2847 41                  379 	.byte	0x41
-   2848 56                  380 	.byte	0x56
-   2849 45                  381 	.byte	0x45
-   284A 80                  382 	.byte	0x80
-   284B 00                  383 	.byte	0x00
-   284C                     384 LC1:
-   284C 50                  385 	.byte	0x50
-   284D 48                  386 	.byte	0x48
-   284E 41                  387 	.byte	0x41
-   284F 53                  388 	.byte	0x53
-   2850 45                  389 	.byte	0x45
-   2851 80                  390 	.byte	0x80
-   2852 00                  391 	.byte	0x00
-                            392 	.globl _wave_init
-   2853                     393 _wave_init:
-   2853 34 40         [ 6]  394 	pshs	u
-   2855 32 7D         [ 5]  395 	leas	-3,s
-   2857 F6 C9 BC      [ 5]  396 	ldb	_current_wave
-   285A 4F            [ 2]  397 	clra		;zero_extendqihi: R:b -> R:d
-   285B 1F 01         [ 6]  398 	tfr	d,x
-   285D AF E4         [ 5]  399 	stx	,s
-   285F EC E4         [ 5]  400 	ldd	,s
-   2861 58            [ 2]  401 	aslb
-   2862 49            [ 2]  402 	rola
-   2863 ED E4         [ 5]  403 	std	,s
-                            404 	; ldd	,s	; optimization 5
-   2865 33 8B         [ 8]  405 	leau	d,x
-   2867 EF E4         [ 5]  406 	stu	,s
-   2869 EC E4         [ 5]  407 	ldd	,s
-   286B 58            [ 2]  408 	aslb
-   286C 49            [ 2]  409 	rola
-   286D 58            [ 2]  410 	aslb
-   286E 49            [ 2]  411 	rola
-   286F 58            [ 2]  412 	aslb
-   2870 49            [ 2]  413 	rola
-   2871 58            [ 2]  414 	aslb
-   2872 49            [ 2]  415 	rola
-   2873 58            [ 2]  416 	aslb
-   2874 49            [ 2]  417 	rola
-   2875 ED E4         [ 5]  418 	std	,s
-                            419 	; ldd	,s	; optimization 5
-   2877 34 10         [ 6]  420 	pshs	x	;subhi: R:d -= R:x
-   2879 A3 E1         [ 9]  421 	subd	,s++
-   287B ED E4         [ 5]  422 	std	,s
-   287D EE E4         [ 5]  423 	ldu	,s
-   287F 30 C9 26 6C   [ 8]  424 	leax	_waveData+1,u
-   2883 E6 84         [ 4]  425 	ldb	,x
-   2885 F7 C9 BE      [ 5]  426 	stb	_current_wave+2
-   2888 BD 0E 96      [ 8]  427 	jsr	_init_enemies
-   288B BD 03 D7      [ 8]  428 	jsr	_init_bullets
-   288E C6 64         [ 2]  429 	ldb	#100
-   2890 E7 62         [ 5]  430 	stb	2,s
-   2892                     431 L3:
-   2892 BD 26 4C      [ 8]  432 	jsr	_Sync
-   2895 BD F1 BA      [ 8]  433 	jsr	___Read_Btns
-   2898 BD F2 A5      [ 8]  434 	jsr	___Intensity_5F
-   289B C6 9C         [ 2]  435 	ldb	#-100
-   289D E7 E2         [ 6]  436 	stb	,-s
-   289F 8E 28 46      [ 3]  437 	ldx	#LC0
-   28A2 C6 3C         [ 2]  438 	ldb	#60
-   28A4 BD 1E 4B      [ 8]  439 	jsr	_print_string
-   28A7 32 61         [ 5]  440 	leas	1,s
-   28A9 F6 C9 BC      [ 5]  441 	ldb	_current_wave
-   28AC 5C            [ 2]  442 	incb
-   28AD 34 04         [ 6]  443 	pshs	b
-   28AF C6 28         [ 2]  444 	ldb	#40
-   28B1 E7 E2         [ 6]  445 	stb	,-s
-   28B3 C6 3C         [ 2]  446 	ldb	#60
-   28B5 BD 1E 7E      [ 8]  447 	jsr	_print_unsigned_int
-   28B8 32 62         [ 5]  448 	leas	2,s
-   28BA C6 9C         [ 2]  449 	ldb	#-100
-   28BC E7 E2         [ 6]  450 	stb	,-s
-   28BE 8E 28 4C      [ 3]  451 	ldx	#LC1
-   28C1 C6 14         [ 2]  452 	ldb	#20
-   28C3 BD 1E 4B      [ 8]  453 	jsr	_print_string
-   28C6 32 61         [ 5]  454 	leas	1,s
-   28C8 F6 C9 BD      [ 5]  455 	ldb	_current_wave+1
-   28CB 5C            [ 2]  456 	incb
-   28CC 34 04         [ 6]  457 	pshs	b
-   28CE C6 28         [ 2]  458 	ldb	#40
-   28D0 E7 E2         [ 6]  459 	stb	,-s
-   28D2 C6 14         [ 2]  460 	ldb	#20
-   28D4 BD 1E 7E      [ 8]  461 	jsr	_print_unsigned_int
-   28D7 32 62         [ 5]  462 	leas	2,s
-   28D9 6A 62         [ 7]  463 	dec	2,s
-                            464 	; tst	2,s	; optimization 1
-   28DB 27 08         [ 3]  465 	beq	L2
-   28DD F6 C8 11      [ 5]  466 	ldb	_Vec_Buttons
-   28E0 C4 08         [ 2]  467 	andb	#8
-   28E2 5D            [ 2]  468 	tstb
-   28E3 27 AD         [ 3]  469 	beq	L3
-   28E5                     470 L2:
-   28E5 7F C9 BF      [ 7]  471 	clr	_current_wave+3
-   28E8 7F C9 C1      [ 7]  472 	clr	_current_wave+5
-   28EB 32 63         [ 5]  473 	leas	3,s
-   28ED 35 C0         [ 7]  474 	puls	u,pc
-                            475 	.globl _wave_play
-   28EF                     476 _wave_play:
-   28EF 32 7B         [ 5]  477 	leas	-5,s
-   28F1 7E 29 6C      [ 4]  478 	jmp	L6
-   28F4                     479 L9:
-   28F4 BD F1 AF      [ 8]  480 	jsr	___DP_to_C8
-   28F7 BE C9 AD      [ 6]  481 	ldx	_current_explosion
-   28FA AF 61         [ 6]  482 	stx	1,s
-                            483 	; ldx	1,s	; optimization 5
-   28FC BD 02 EE      [ 8]  484 	jsr	__Explosion_Snd
-   28FF BE C9 AB      [ 6]  485 	ldx	_current_music
-   2902 AF 63         [ 6]  486 	stx	3,s
-                            487 	; ldx	3,s	; optimization 5
-   2904 BD 02 CA      [ 8]  488 	jsr	__Init_Music_chk
-   2907 BD F1 92      [ 8]  489 	jsr	___Wait_Recal
-   290A BD 02 C3      [ 8]  490 	jsr	__Do_Sound
-   290D BD F2 A5      [ 8]  491 	jsr	___Intensity_5F
-   2910 F6 C9 22      [ 5]  492 	ldb	_current_game+4
-   2913 34 04         [ 6]  493 	pshs	b
-   2915 C6 9C         [ 2]  494 	ldb	#-100
-   2917 E7 E2         [ 6]  495 	stb	,-s
-   2919 C6 78         [ 2]  496 	ldb	#120
-   291B BD 1E 7E      [ 8]  497 	jsr	_print_unsigned_int
-   291E 32 62         [ 5]  498 	leas	2,s
-   2920 F6 C9 A8      [ 5]  499 	ldb	_player+2
-   2923 34 04         [ 6]  500 	pshs	b
-   2925 C6 3C         [ 2]  501 	ldb	#60
-   2927 E7 E2         [ 6]  502 	stb	,-s
-   2929 C6 78         [ 2]  503 	ldb	#120
-   292B BD 1E 7E      [ 8]  504 	jsr	_print_unsigned_int
-   292E 32 62         [ 5]  505 	leas	2,s
-   2930 F6 C9 B3      [ 5]  506 	ldb	_tower+4
-   2933 34 04         [ 6]  507 	pshs	b
-   2935 C6 9C         [ 2]  508 	ldb	#-100
-   2937 E7 E2         [ 6]  509 	stb	,-s
-   2939 C6 88         [ 2]  510 	ldb	#-120
-   293B BD 1E 7E      [ 8]  511 	jsr	_print_unsigned_int
-   293E 32 62         [ 5]  512 	leas	2,s
-   2940 BD 13 1C      [ 8]  513 	jsr	_handle_enemies
-   2943 BD 1E 41      [ 8]  514 	jsr	_handle_player
-   2946 BD 26 2F      [ 8]  515 	jsr	_handle_tower
-   2949 BD 04 AA      [ 8]  516 	jsr	_draw_bullets
-   294C F6 C9 C1      [ 5]  517 	ldb	_current_wave+5
-   294F 5C            [ 2]  518 	incb
-   2950 F7 C9 C1      [ 5]  519 	stb	_current_wave+5
-                            520 	; ldb	_current_wave+5	; optimization 5
-   2953 E7 E4         [ 4]  521 	stb	,s
-   2955 F6 C9 21      [ 5]  522 	ldb	_current_game+3
-   2958 E1 E4         [ 4]  523 	cmpb	,s	;cmpqi:(R)
-   295A 26 03         [ 3]  524 	bne	L7
-   295C 7F C9 C1      [ 7]  525 	clr	_current_wave+5
-   295F                     526 L7:
-   295F F6 C9 AF      [ 5]  527 	ldb	_tower
-                            528 	; tstb	; optimization 6
-   2962 26 05         [ 3]  529 	bne	L8
-   2964 C6 01         [ 2]  530 	ldb	#1
-   2966 F7 C9 BF      [ 5]  531 	stb	_current_wave+3
-   2969                     532 L8:
-   2969 BD 13 B6      [ 8]  533 	jsr	_check_AllEnemysDeath
-   296C                     534 L6:
-   296C F6 C9 BF      [ 5]  535 	ldb	_current_wave+3
-                            536 	; tstb	; optimization 6
-   296F 10 27 FF 81   [ 6]  537 	lbeq	L9
-   2973 32 65         [ 5]  538 	leas	5,s
-   2975 39            [ 5]  539 	rts
-                            540 	.area .bss
-                            541 	.globl	_bullets
-   CB96                     542 _bullets:	.blkb	60
+   317C                      12 _waveData:
+   317C 01                   13 	.byte	1
+   317D 01                   14 	.byte	1
+   317E 01                   15 	.byte	1
+   317F 00                   16 	.byte	0
+   3180 9C                   17 	.byte	-100
+   3181 32                   18 	.byte	50
+   3182 00                   19 	.byte	0
+   3183 FF                   20 	.byte	-1
+   3184 0A                   21 	.byte	10
+   3185 05                   22 	.byte	5
+   3186 00 00                23 	.word	0	;skip space 28
+   3188 00 00                24 	.word	0	;skip space 26
+   318A 00 00                25 	.word	0	;skip space 24
+   318C 00 00                26 	.word	0	;skip space 22
+   318E 00 00                27 	.word	0	;skip space 20
+   3190 00 00                28 	.word	0	;skip space 18
+   3192 00 00                29 	.word	0	;skip space 16
+   3194 00 00                30 	.word	0	;skip space 14
+   3196 00 00                31 	.word	0	;skip space 12
+   3198 00 00                32 	.word	0	;skip space 10
+   319A 00 00                33 	.word	0	;skip space 8
+   319C 00 00                34 	.word	0	;skip space 6
+   319E 00 00                35 	.word	0	;skip space 4
+   31A0 00 00                36 	.word	0	;skip space 2
+   31A2 00 00                37 	.word	0	;skip space 72
+   31A4 00 00                38 	.word	0	;skip space 70
+   31A6 00 00                39 	.word	0	;skip space 68
+   31A8 00 00                40 	.word	0	;skip space 66
+   31AA 00 00                41 	.word	0	;skip space 64
+   31AC 00 00                42 	.word	0	;skip space 62
+   31AE 00 00                43 	.word	0	;skip space 60
+   31B0 00 00                44 	.word	0	;skip space 58
+   31B2 00 00                45 	.word	0	;skip space 56
+   31B4 00 00                46 	.word	0	;skip space 54
+   31B6 00 00                47 	.word	0	;skip space 52
+   31B8 00 00                48 	.word	0	;skip space 50
+   31BA 00 00                49 	.word	0	;skip space 48
+   31BC 00 00                50 	.word	0	;skip space 46
+   31BE 00 00                51 	.word	0	;skip space 44
+   31C0 00 00                52 	.word	0	;skip space 42
+   31C2 00 00                53 	.word	0	;skip space 40
+   31C4 00 00                54 	.word	0	;skip space 38
+   31C6 00 00                55 	.word	0	;skip space 36
+   31C8 00 00                56 	.word	0	;skip space 34
+   31CA 00 00                57 	.word	0	;skip space 32
+   31CC 00 00                58 	.word	0	;skip space 30
+   31CE 00 00                59 	.word	0	;skip space 28
+   31D0 00 00                60 	.word	0	;skip space 26
+   31D2 00 00                61 	.word	0	;skip space 24
+   31D4 00 00                62 	.word	0	;skip space 22
+   31D6 00 00                63 	.word	0	;skip space 20
+   31D8 00 00                64 	.word	0	;skip space 18
+   31DA 00 00                65 	.word	0	;skip space 16
+   31DC 00 00                66 	.word	0	;skip space 14
+   31DE 00 00                67 	.word	0	;skip space 12
+   31E0 00 00                68 	.word	0	;skip space 10
+   31E2 00 00                69 	.word	0	;skip space 8
+   31E4 00 00                70 	.word	0	;skip space 6
+   31E6 00 00                71 	.word	0	;skip space 4
+   31E8 00 00                72 	.word	0	;skip space 2
+   31EA 02                   73 	.byte	2
+   31EB 02                   74 	.byte	2
+   31EC 01                   75 	.byte	1
+   31ED 00                   76 	.byte	0
+   31EE 00                   77 	.byte	0
+   31EF 64                   78 	.byte	100
+   31F0 00                   79 	.byte	0
+   31F1 FF                   80 	.byte	-1
+   31F2 0A                   81 	.byte	10
+   31F3 05                   82 	.byte	5
+   31F4 00 00                83 	.word	0	;skip space 28
+   31F6 00 00                84 	.word	0	;skip space 26
+   31F8 00 00                85 	.word	0	;skip space 24
+   31FA 00 00                86 	.word	0	;skip space 22
+   31FC 00 00                87 	.word	0	;skip space 20
+   31FE 00 00                88 	.word	0	;skip space 18
+   3200 00 00                89 	.word	0	;skip space 16
+   3202 00 00                90 	.word	0	;skip space 14
+   3204 00 00                91 	.word	0	;skip space 12
+   3206 00 00                92 	.word	0	;skip space 10
+   3208 00 00                93 	.word	0	;skip space 8
+   320A 00 00                94 	.word	0	;skip space 6
+   320C 00 00                95 	.word	0	;skip space 4
+   320E 00 00                96 	.word	0	;skip space 2
+   3210 02                   97 	.byte	2
+   3211 00                   98 	.byte	0
+   3212 64                   99 	.byte	100
+   3213 64                  100 	.byte	100
+   3214 FF                  101 	.byte	-1
+   3215 FF                  102 	.byte	-1
+   3216 0A                  103 	.byte	10
+   3217 05                  104 	.byte	5
+   3218 00                  105 	.byte	0
+   3219 9C                  106 	.byte	-100
+   321A 9C                  107 	.byte	-100
+   321B 02                  108 	.byte	2
+   321C 02                  109 	.byte	2
+   321D 0A                  110 	.byte	10
+   321E 05                  111 	.byte	5
+   321F 00 00               112 	.word	0	;skip space 21
+   3221 00 00               113 	.word	0	;skip space 19
+   3223 00 00               114 	.word	0	;skip space 17
+   3225 00 00               115 	.word	0	;skip space 15
+   3227 00 00               116 	.word	0	;skip space 13
+   3229 00 00               117 	.word	0	;skip space 11
+   322B 00 00               118 	.word	0	;skip space 9
+   322D 00 00               119 	.word	0	;skip space 7
+   322F 00 00               120 	.word	0	;skip space 5
+   3231 00 00               121 	.word	0	;skip space 3
+   3233 00                  122 	.byte	0	;skip space
+   3234 00 00               123 	.word	0	;skip space 36
+   3236 00 00               124 	.word	0	;skip space 34
+   3238 00 00               125 	.word	0	;skip space 32
+   323A 00 00               126 	.word	0	;skip space 30
+   323C 00 00               127 	.word	0	;skip space 28
+   323E 00 00               128 	.word	0	;skip space 26
+   3240 00 00               129 	.word	0	;skip space 24
+   3242 00 00               130 	.word	0	;skip space 22
+   3244 00 00               131 	.word	0	;skip space 20
+   3246 00 00               132 	.word	0	;skip space 18
+   3248 00 00               133 	.word	0	;skip space 16
+   324A 00 00               134 	.word	0	;skip space 14
+   324C 00 00               135 	.word	0	;skip space 12
+   324E 00 00               136 	.word	0	;skip space 10
+   3250 00 00               137 	.word	0	;skip space 8
+   3252 00 00               138 	.word	0	;skip space 6
+   3254 00 00               139 	.word	0	;skip space 4
+   3256 00 00               140 	.word	0	;skip space 2
+   3258 03                  141 	.byte	3
+   3259 03                  142 	.byte	3
+   325A 03                  143 	.byte	3
+   325B 00                  144 	.byte	0
+   325C 64                  145 	.byte	100
+   325D 64                  146 	.byte	100
+   325E FF                  147 	.byte	-1
+   325F FF                  148 	.byte	-1
+   3260 0A                  149 	.byte	10
+   3261 05                  150 	.byte	5
+   3262 00                  151 	.byte	0
+   3263 00                  152 	.byte	0
+   3264 64                  153 	.byte	100
+   3265 00                  154 	.byte	0
+   3266 FF                  155 	.byte	-1
+   3267 0A                  156 	.byte	10
+   3268 05                  157 	.byte	5
+   3269 00                  158 	.byte	0
+   326A 64                  159 	.byte	100
+   326B 00                  160 	.byte	0
+   326C FF                  161 	.byte	-1
+   326D 00                  162 	.byte	0
+   326E 0A                  163 	.byte	10
+   326F 05                  164 	.byte	5
+   3270 00 00               165 	.word	0	;skip space 14
+   3272 00 00               166 	.word	0	;skip space 12
+   3274 00 00               167 	.word	0	;skip space 10
+   3276 00 00               168 	.word	0	;skip space 8
+   3278 00 00               169 	.word	0	;skip space 6
+   327A 00 00               170 	.word	0	;skip space 4
+   327C 00 00               171 	.word	0	;skip space 2
+   327E 01                  172 	.byte	1
+   327F 00                  173 	.byte	0
+   3280 64                  174 	.byte	100
+   3281 64                  175 	.byte	100
+   3282 FF                  176 	.byte	-1
+   3283 FF                  177 	.byte	-1
+   3284 0A                  178 	.byte	10
+   3285 05                  179 	.byte	5
+   3286 00 00               180 	.word	0	;skip space 28
+   3288 00 00               181 	.word	0	;skip space 26
+   328A 00 00               182 	.word	0	;skip space 24
+   328C 00 00               183 	.word	0	;skip space 22
+   328E 00 00               184 	.word	0	;skip space 20
+   3290 00 00               185 	.word	0	;skip space 18
+   3292 00 00               186 	.word	0	;skip space 16
+   3294 00 00               187 	.word	0	;skip space 14
+   3296 00 00               188 	.word	0	;skip space 12
+   3298 00 00               189 	.word	0	;skip space 10
+   329A 00 00               190 	.word	0	;skip space 8
+   329C 00 00               191 	.word	0	;skip space 6
+   329E 00 00               192 	.word	0	;skip space 4
+   32A0 00 00               193 	.word	0	;skip space 2
+   32A2 03                  194 	.byte	3
+   32A3 00                  195 	.byte	0
+   32A4 9C                  196 	.byte	-100
+   32A5 32                  197 	.byte	50
+   32A6 02                  198 	.byte	2
+   32A7 FF                  199 	.byte	-1
+   32A8 32                  200 	.byte	50
+   32A9 05                  201 	.byte	5
+   32AA 00                  202 	.byte	0
+   32AB 64                  203 	.byte	100
+   32AC 00                  204 	.byte	0
+   32AD FF                  205 	.byte	-1
+   32AE 00                  206 	.byte	0
+   32AF 32                  207 	.byte	50
+   32B0 05                  208 	.byte	5
+   32B1 00                  209 	.byte	0
+   32B2 9C                  210 	.byte	-100
+   32B3 00                  211 	.byte	0
+   32B4 01                  212 	.byte	1
+   32B5 00                  213 	.byte	0
+   32B6 32                  214 	.byte	50
+   32B7 05                  215 	.byte	5
+   32B8 00 00               216 	.word	0	;skip space 14
+   32BA 00 00               217 	.word	0	;skip space 12
+   32BC 00 00               218 	.word	0	;skip space 10
+   32BE 00 00               219 	.word	0	;skip space 8
+   32C0 00 00               220 	.word	0	;skip space 6
+   32C2 00 00               221 	.word	0	;skip space 4
+   32C4 00 00               222 	.word	0	;skip space 2
+   32C6 04                  223 	.byte	4
+   32C7 03                  224 	.byte	3
+   32C8 03                  225 	.byte	3
+   32C9 00                  226 	.byte	0
+   32CA 64                  227 	.byte	100
+   32CB 64                  228 	.byte	100
+   32CC FF                  229 	.byte	-1
+   32CD FF                  230 	.byte	-1
+   32CE 0A                  231 	.byte	10
+   32CF 05                  232 	.byte	5
+   32D0 00                  233 	.byte	0
+   32D1 00                  234 	.byte	0
+   32D2 64                  235 	.byte	100
+   32D3 00                  236 	.byte	0
+   32D4 FF                  237 	.byte	-1
+   32D5 0A                  238 	.byte	10
+   32D6 05                  239 	.byte	5
+   32D7 00                  240 	.byte	0
+   32D8 64                  241 	.byte	100
+   32D9 00                  242 	.byte	0
+   32DA FF                  243 	.byte	-1
+   32DB 00                  244 	.byte	0
+   32DC 0A                  245 	.byte	10
+   32DD 05                  246 	.byte	5
+   32DE 00 00               247 	.word	0	;skip space 14
+   32E0 00 00               248 	.word	0	;skip space 12
+   32E2 00 00               249 	.word	0	;skip space 10
+   32E4 00 00               250 	.word	0	;skip space 8
+   32E6 00 00               251 	.word	0	;skip space 6
+   32E8 00 00               252 	.word	0	;skip space 4
+   32EA 00 00               253 	.word	0	;skip space 2
+   32EC 04                  254 	.byte	4
+   32ED 00                  255 	.byte	0
+   32EE 64                  256 	.byte	100
+   32EF 64                  257 	.byte	100
+   32F0 FF                  258 	.byte	-1
+   32F1 FF                  259 	.byte	-1
+   32F2 0A                  260 	.byte	10
+   32F3 05                  261 	.byte	5
+   32F4 00                  262 	.byte	0
+   32F5 32                  263 	.byte	50
+   32F6 64                  264 	.byte	100
+   32F7 FF                  265 	.byte	-1
+   32F8 FE                  266 	.byte	-2
+   32F9 0A                  267 	.byte	10
+   32FA 05                  268 	.byte	5
+   32FB 00                  269 	.byte	0
+   32FC 00                  270 	.byte	0
+   32FD 64                  271 	.byte	100
+   32FE 00                  272 	.byte	0
+   32FF FF                  273 	.byte	-1
+   3300 0A                  274 	.byte	10
+   3301 05                  275 	.byte	5
+   3302 00                  276 	.byte	0
+   3303 64                  277 	.byte	100
+   3304 00                  278 	.byte	0
+   3305 FF                  279 	.byte	-1
+   3306 00                  280 	.byte	0
+   3307 0A                  281 	.byte	10
+   3308 05                  282 	.byte	5
+   3309 00 00               283 	.word	0	;skip space 7
+   330B 00 00               284 	.word	0	;skip space 5
+   330D 00 00               285 	.word	0	;skip space 3
+   330F 00                  286 	.byte	0	;skip space
+   3310 05                  287 	.byte	5
+   3311 00                  288 	.byte	0
+   3312 9C                  289 	.byte	-100
+   3313 32                  290 	.byte	50
+   3314 02                  291 	.byte	2
+   3315 FF                  292 	.byte	-1
+   3316 32                  293 	.byte	50
+   3317 0A                  294 	.byte	10
+   3318 00                  295 	.byte	0
+   3319 64                  296 	.byte	100
+   331A 00                  297 	.byte	0
+   331B FF                  298 	.byte	-1
+   331C 00                  299 	.byte	0
+   331D 32                  300 	.byte	50
+   331E 0A                  301 	.byte	10
+   331F 00                  302 	.byte	0
+   3320 9C                  303 	.byte	-100
+   3321 00                  304 	.byte	0
+   3322 01                  305 	.byte	1
+   3323 00                  306 	.byte	0
+   3324 32                  307 	.byte	50
+   3325 0A                  308 	.byte	10
+   3326 00                  309 	.byte	0
+   3327 64                  310 	.byte	100
+   3328 00                  311 	.byte	0
+   3329 FE                  312 	.byte	-2
+   332A 00                  313 	.byte	0
+   332B 32                  314 	.byte	50
+   332C 0A                  315 	.byte	10
+   332D 00                  316 	.byte	0
+   332E CE                  317 	.byte	-50
+   332F 9C                  318 	.byte	-100
+   3330 01                  319 	.byte	1
+   3331 02                  320 	.byte	2
+   3332 32                  321 	.byte	50
+   3333 0A                  322 	.byte	10
+   3334 05                  323 	.byte	5
+   3335 03                  324 	.byte	3
+   3336 04                  325 	.byte	4
+   3337 00                  326 	.byte	0
+   3338 9C                  327 	.byte	-100
+   3339 9C                  328 	.byte	-100
+   333A 01                  329 	.byte	1
+   333B 01                  330 	.byte	1
+   333C 0A                  331 	.byte	10
+   333D 05                  332 	.byte	5
+   333E 00                  333 	.byte	0
+   333F 9C                  334 	.byte	-100
+   3340 64                  335 	.byte	100
+   3341 01                  336 	.byte	1
+   3342 FF                  337 	.byte	-1
+   3343 0A                  338 	.byte	10
+   3344 05                  339 	.byte	5
+   3345 00                  340 	.byte	0
+   3346 64                  341 	.byte	100
+   3347 9C                  342 	.byte	-100
+   3348 FF                  343 	.byte	-1
+   3349 01                  344 	.byte	1
+   334A 0A                  345 	.byte	10
+   334B 05                  346 	.byte	5
+   334C 00                  347 	.byte	0
+   334D 64                  348 	.byte	100
+   334E 64                  349 	.byte	100
+   334F FF                  350 	.byte	-1
+   3350 FF                  351 	.byte	-1
+   3351 0A                  352 	.byte	10
+   3352 05                  353 	.byte	5
+   3353 00 00               354 	.word	0	;skip space 7
+   3355 00 00               355 	.word	0	;skip space 5
+   3357 00 00               356 	.word	0	;skip space 3
+   3359 00                  357 	.byte	0	;skip space
+   335A 04                  358 	.byte	4
+   335B 00                  359 	.byte	0
+   335C 00                  360 	.byte	0
+   335D 64                  361 	.byte	100
+   335E 00                  362 	.byte	0
+   335F FF                  363 	.byte	-1
+   3360 0A                  364 	.byte	10
+   3361 05                  365 	.byte	5
+   3362 00                  366 	.byte	0
+   3363 00                  367 	.byte	0
+   3364 9C                  368 	.byte	-100
+   3365 00                  369 	.byte	0
+   3366 01                  370 	.byte	1
+   3367 0A                  371 	.byte	10
+   3368 05                  372 	.byte	5
+   3369 00                  373 	.byte	0
+   336A 64                  374 	.byte	100
+   336B 00                  375 	.byte	0
+   336C FF                  376 	.byte	-1
+   336D 00                  377 	.byte	0
+   336E 0A                  378 	.byte	10
+   336F 05                  379 	.byte	5
+   3370 00                  380 	.byte	0
+   3371 9C                  381 	.byte	-100
+   3372 00                  382 	.byte	0
+   3373 01                  383 	.byte	1
+   3374 00                  384 	.byte	0
+   3375 0A                  385 	.byte	10
+   3376 05                  386 	.byte	5
+   3377 00 00               387 	.word	0	;skip space 7
+   3379 00 00               388 	.word	0	;skip space 5
+   337B 00 00               389 	.word	0	;skip space 3
+   337D 00                  390 	.byte	0	;skip space
+   337E 04                  391 	.byte	4
+   337F 00                  392 	.byte	0
+   3380 CE                  393 	.byte	-50
+   3381 9C                  394 	.byte	-100
+   3382 01                  395 	.byte	1
+   3383 02                  396 	.byte	2
+   3384 32                  397 	.byte	50
+   3385 05                  398 	.byte	5
+   3386 00                  399 	.byte	0
+   3387 CE                  400 	.byte	-50
+   3388 64                  401 	.byte	100
+   3389 01                  402 	.byte	1
+   338A FE                  403 	.byte	-2
+   338B 32                  404 	.byte	50
+   338C 05                  405 	.byte	5
+   338D 00                  406 	.byte	0
+   338E 32                  407 	.byte	50
+   338F 9C                  408 	.byte	-100
+   3390 FF                  409 	.byte	-1
+   3391 02                  410 	.byte	2
+   3392 32                  411 	.byte	50
+   3393 05                  412 	.byte	5
+   3394 00                  413 	.byte	0
+   3395 32                  414 	.byte	50
+   3396 64                  415 	.byte	100
+   3397 FF                  416 	.byte	-1
+   3398 FE                  417 	.byte	-2
+   3399 32                  418 	.byte	50
+   339A 05                  419 	.byte	5
+   339B 00 00               420 	.word	0	;skip space 7
+   339D 00 00               421 	.word	0	;skip space 5
+   339F 00 00               422 	.word	0	;skip space 3
+   33A1 00                  423 	.byte	0	;skip space
+                            424 	.globl _current_wave
+                            425 	.area .data
+   C9C2                     426 _current_wave:
+   C9C2 00                  427 	.byte	0
+   C9C3 00                  428 	.byte	0
+   C9C4 00                  429 	.byte	0
+   C9C5 01                  430 	.byte	1
+   C9C6 00                  431 	.byte	0
+   C9C7 00                  432 	.byte	0
+                            433 	.area .text
+   33A2                     434 LC0:
+   33A2 57                  435 	.byte	0x57
+   33A3 41                  436 	.byte	0x41
+   33A4 56                  437 	.byte	0x56
+   33A5 45                  438 	.byte	0x45
+   33A6 80                  439 	.byte	0x80
+   33A7 00                  440 	.byte	0x00
+   33A8                     441 LC1:
+   33A8 50                  442 	.byte	0x50
+   33A9 48                  443 	.byte	0x48
+   33AA 41                  444 	.byte	0x41
+   33AB 53                  445 	.byte	0x53
+   33AC 45                  446 	.byte	0x45
+   33AD 80                  447 	.byte	0x80
+   33AE 00                  448 	.byte	0x00
+                            449 	.globl _wave_init
+   33AF                     450 _wave_init:
+   33AF 34 40         [ 6]  451 	pshs	u
+   33B1 32 7B         [ 5]  452 	leas	-5,s
+   33B3 F6 C9 C2      [ 5]  453 	ldb	_current_wave
+   33B6 4F            [ 2]  454 	clra		;zero_extendqihi: R:b -> R:d
+   33B7 1F 01         [ 6]  455 	tfr	d,x
+   33B9 AF 62         [ 6]  456 	stx	2,s
+   33BB EC 62         [ 6]  457 	ldd	2,s
+   33BD 58            [ 2]  458 	aslb
+   33BE 49            [ 2]  459 	rola
+   33BF 58            [ 2]  460 	aslb
+   33C0 49            [ 2]  461 	rola
+   33C1 58            [ 2]  462 	aslb
+   33C2 49            [ 2]  463 	rola
+   33C3 ED 62         [ 6]  464 	std	2,s
+                            465 	; ldd	2,s	; optimization 5
+   33C5 58            [ 2]  466 	aslb
+   33C6 49            [ 2]  467 	rola
+   33C7 58            [ 2]  468 	aslb
+   33C8 49            [ 2]  469 	rola
+   33C9 58            [ 2]  470 	aslb
+   33CA 49            [ 2]  471 	rola
+   33CB ED E4         [ 5]  472 	std	,s
+                            473 	; ldd	,s	; optimization 5
+   33CD A3 62         [ 7]  474 	subd	2,s	;subhi: R:d -= 2,s
+   33CF ED E4         [ 5]  475 	std	,s
+                            476 	; ldd	,s	; optimization 5
+   33D1 34 10         [ 6]  477 	pshs	x	;subhi: R:d -= R:x
+   33D3 A3 E1         [ 9]  478 	subd	,s++
+   33D5 ED E4         [ 5]  479 	std	,s
+                            480 	; ldd	,s	; optimization 5
+   33D7 58            [ 2]  481 	aslb
+   33D8 49            [ 2]  482 	rola
+   33D9 ED E4         [ 5]  483 	std	,s
+   33DB EE E4         [ 5]  484 	ldu	,s
+   33DD 30 C9 31 7D   [ 8]  485 	leax	_waveData+1,u
+   33E1 E6 84         [ 4]  486 	ldb	,x
+   33E3 F7 C9 C4      [ 5]  487 	stb	_current_wave+2
+   33E6 BD 0F 0C      [ 8]  488 	jsr	_init_enemies
+   33E9 BD 03 D7      [ 8]  489 	jsr	_init_bullets
+   33EC C6 64         [ 2]  490 	ldb	#100
+   33EE E7 64         [ 5]  491 	stb	4,s
+   33F0                     492 L3:
+   33F0 BD 31 5D      [ 8]  493 	jsr	_Sync
+   33F3 BD F1 BA      [ 8]  494 	jsr	___Read_Btns
+   33F6 BD F2 A5      [ 8]  495 	jsr	___Intensity_5F
+   33F9 C6 9C         [ 2]  496 	ldb	#-100
+   33FB E7 E2         [ 6]  497 	stb	,-s
+   33FD 8E 33 A2      [ 3]  498 	ldx	#LC0
+   3400 C6 3C         [ 2]  499 	ldb	#60
+   3402 BD 28 A4      [ 8]  500 	jsr	_print_string
+   3405 32 61         [ 5]  501 	leas	1,s
+   3407 F6 C9 C2      [ 5]  502 	ldb	_current_wave
+   340A 5C            [ 2]  503 	incb
+   340B 34 04         [ 6]  504 	pshs	b
+   340D C6 28         [ 2]  505 	ldb	#40
+   340F E7 E2         [ 6]  506 	stb	,-s
+   3411 C6 3C         [ 2]  507 	ldb	#60
+   3413 BD 28 D7      [ 8]  508 	jsr	_print_unsigned_int
+   3416 32 62         [ 5]  509 	leas	2,s
+   3418 C6 9C         [ 2]  510 	ldb	#-100
+   341A E7 E2         [ 6]  511 	stb	,-s
+   341C 8E 33 A8      [ 3]  512 	ldx	#LC1
+   341F C6 14         [ 2]  513 	ldb	#20
+   3421 BD 28 A4      [ 8]  514 	jsr	_print_string
+   3424 32 61         [ 5]  515 	leas	1,s
+   3426 F6 C9 C3      [ 5]  516 	ldb	_current_wave+1
+   3429 5C            [ 2]  517 	incb
+   342A 34 04         [ 6]  518 	pshs	b
+   342C C6 28         [ 2]  519 	ldb	#40
+   342E E7 E2         [ 6]  520 	stb	,-s
+   3430 C6 14         [ 2]  521 	ldb	#20
+   3432 BD 28 D7      [ 8]  522 	jsr	_print_unsigned_int
+   3435 32 62         [ 5]  523 	leas	2,s
+   3437 6A 64         [ 7]  524 	dec	4,s
+                            525 	; tst	4,s	; optimization 1
+   3439 27 08         [ 3]  526 	beq	L2
+   343B F6 C8 11      [ 5]  527 	ldb	_Vec_Buttons
+   343E C4 08         [ 2]  528 	andb	#8
+   3440 5D            [ 2]  529 	tstb
+   3441 27 AD         [ 3]  530 	beq	L3
+   3443                     531 L2:
+   3443 7F C9 C5      [ 7]  532 	clr	_current_wave+3
+   3446 7F C9 C7      [ 7]  533 	clr	_current_wave+5
+   3449 32 65         [ 5]  534 	leas	5,s
+   344B 35 C0         [ 7]  535 	puls	u,pc
+                            536 	.globl _wave_play
+   344D                     537 _wave_play:
+   344D 32 7B         [ 5]  538 	leas	-5,s
+   344F 7E 34 C8      [ 4]  539 	jmp	L6
+   3452                     540 L9:
+   3452 BD F1 AF      [ 8]  541 	jsr	___DP_to_C8
+   3455 BE C9 B3      [ 6]  542 	ldx	_current_explosion
+   3458 AF 61         [ 6]  543 	stx	1,s
+                            544 	; ldx	1,s	; optimization 5
+   345A BD 02 EE      [ 8]  545 	jsr	__Explosion_Snd
+   345D BE C9 B1      [ 6]  546 	ldx	_current_music
+   3460 AF 63         [ 6]  547 	stx	3,s
+                            548 	; ldx	3,s	; optimization 5
+   3462 BD 02 CA      [ 8]  549 	jsr	__Init_Music_chk
+   3465 BD F1 92      [ 8]  550 	jsr	___Wait_Recal
+   3468 BD 02 C3      [ 8]  551 	jsr	__Do_Sound
+   346B BD F2 A5      [ 8]  552 	jsr	___Intensity_5F
+   346E F6 C9 27      [ 5]  553 	ldb	_current_game+4
+   3471 34 04         [ 6]  554 	pshs	b
+   3473 C6 9C         [ 2]  555 	ldb	#-100
+   3475 E7 E2         [ 6]  556 	stb	,-s
+   3477 C6 78         [ 2]  557 	ldb	#120
+   3479 BD 28 D7      [ 8]  558 	jsr	_print_unsigned_int
+   347C 32 62         [ 5]  559 	leas	2,s
+   347E BE C9 AD      [ 6]  560 	ldx	_player+2
+   3481 C6 28         [ 2]  561 	ldb	#40
+   3483 E7 E2         [ 6]  562 	stb	,-s
+   3485 C6 78         [ 2]  563 	ldb	#120
+   3487 BD 2A 11      [ 8]  564 	jsr	_print_long_unsigned_int
+   348A 32 61         [ 5]  565 	leas	1,s
+   348C F6 C9 B9      [ 5]  566 	ldb	_tower+4
+   348F 34 04         [ 6]  567 	pshs	b
+   3491 C6 9C         [ 2]  568 	ldb	#-100
+   3493 E7 E2         [ 6]  569 	stb	,-s
+   3495 C6 88         [ 2]  570 	ldb	#-120
+   3497 BD 28 D7      [ 8]  571 	jsr	_print_unsigned_int
+   349A 32 62         [ 5]  572 	leas	2,s
+   349C BD 14 54      [ 8]  573 	jsr	_handle_enemies
+   349F BD 28 9A      [ 8]  574 	jsr	_handle_player
+   34A2 BD 31 40      [ 8]  575 	jsr	_handle_tower
+   34A5 BD 04 AA      [ 8]  576 	jsr	_draw_bullets
+   34A8 F6 C9 C7      [ 5]  577 	ldb	_current_wave+5
+   34AB 5C            [ 2]  578 	incb
+   34AC F7 C9 C7      [ 5]  579 	stb	_current_wave+5
+                            580 	; ldb	_current_wave+5	; optimization 5
+   34AF E7 E4         [ 4]  581 	stb	,s
+   34B1 F6 C9 26      [ 5]  582 	ldb	_current_game+3
+   34B4 E1 E4         [ 4]  583 	cmpb	,s	;cmpqi:(R)
+   34B6 26 03         [ 3]  584 	bne	L7
+   34B8 7F C9 C7      [ 7]  585 	clr	_current_wave+5
+   34BB                     586 L7:
+   34BB F6 C9 B5      [ 5]  587 	ldb	_tower
+                            588 	; tstb	; optimization 6
+   34BE 26 05         [ 3]  589 	bne	L8
+   34C0 C6 01         [ 2]  590 	ldb	#1
+   34C2 F7 C9 C5      [ 5]  591 	stb	_current_wave+3
+   34C5                     592 L8:
+   34C5 BD 14 E5      [ 8]  593 	jsr	_check_AllEnemysDeath
+   34C8                     594 L6:
+   34C8 F6 C9 C5      [ 5]  595 	ldb	_current_wave+3
+                            596 	; tstb	; optimization 6
+   34CB 10 27 FF 83   [ 6]  597 	lbeq	L9
+   34CF 32 65         [ 5]  598 	leas	5,s
+   34D1 39            [ 5]  599 	rts
+                            600 	.area .bss
+                            601 	.globl	_bullets
+   CB9C                     602 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -547,10 +607,10 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  2 L2                 027B R   |   2 L3                 0228 R
-  2 L6                 0302 R   |   2 L7                 02F5 R
-  2 L8                 02FF R   |   2 L9                 028A R
-  2 LC0                01DC R   |   2 LC1                01E2 R
+  2 L2                 02C8 R   |   2 L3                 0275 R
+  2 L6                 034D R   |   2 L7                 0340 R
+  2 L8                 034A R   |   2 L9                 02D7 R
+  2 LC0                0227 R   |   2 LC1                022D R
   2 _MAX_LEVELS        0000 GR  |     _Sync              **** GX
     _Vec_Buttons       **** GX  |     __Do_Sound         **** GX
     __Explosion_Sn     **** GX  |     __Init_Music_c     **** GX
@@ -562,10 +622,10 @@ Symbol Table
     _draw_bullets      **** GX  |     _handle_enemie     **** GX
     _handle_player     **** GX  |     _handle_tower      **** GX
     _init_bullets      **** GX  |     _init_enemies      **** GX
-    _player            **** GX  |     _print_string      **** GX
-    _print_unsigne     **** GX  |     _tower             **** GX
-  2 _waveData          0001 GR  |   2 _wave_init         01E9 GR
-  2 _wave_play         0285 GR
+    _player            **** GX  |     _print_long_un     **** GX
+    _print_string      **** GX  |     _print_unsigne     **** GX
+    _tower             **** GX  |   2 _waveData          0001 GR
+  2 _wave_init         0234 GR  |   2 _wave_play         02D2 GR
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -574,7 +634,7 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .text            size  30C   flags  100
+   2 .text            size  357   flags  100
    3 .data            size    6   flags  100
    4 .bss             size   3C   flags    0
 [_DSEG]

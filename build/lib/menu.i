@@ -2135,8 +2135,10 @@ enum menu_status_t
 
 enum menu_selectedItem_t
 {
- SELECTEDITEM_PLAYER,
- SELECTEDITEM_TOWER,
+ SELECTEDITEM_PLAYER_LVL,
+ SELECTEDITEM_PLAYER_RATE,
+ SELECTEDITEM_TOWER_LVL,
+ SELECTEDITEM_TOWER_RATE,
 };
 
 struct menu_t
@@ -2174,12 +2176,19 @@ enum player_lvl_t
  P_LEVEL_3,
 };
 
+enum player_firerate_t
+{
+ PLAYER_FIRERATE_1,
+ PLAYER_FIRERATE_2,
+ PLAYER_FIRERATE_3,
+};
+
 struct player_t
 {
  enum player_lvl_t lvl;
  unsigned int angle;
- unsigned int money;
- unsigned int firerate;
+ unsigned long money;
+ enum player_firerate_t firerate;
 };
 
 
@@ -2219,9 +2228,9 @@ enum tower_lvl_t
 
 enum tower_firerate_t
 {
- FIRERATE_1,
- FIRERATE_2,
- FIRERATE_3,
+ TOWER_FIRERATE_1,
+ TOWER_FIRERATE_2,
+ TOWER_FIRERATE_3,
 };
 
 
@@ -2246,13 +2255,206 @@ void set_tower(enum tower_lvl_t lvl);
 void init_tower(void);
 void handle_tower(void);
 # 12 "source\\menu.c" 2
+# 1 "source\\/tower_lvl.h" 1
+
+
+
+
+# 1 "source\\/utils/vector.h" 1
+
+
+
+
+       
+
+
+
+
+struct vector_t
+{
+ int y;
+ int x;
+};
+
+
+
+
+enum mode_t
+{
+ MOVE = 0,
+ STOP = 1,
+ DRAW = 255
+};
+
+
+
+
+struct packet_t
+{
+ enum mode_t mode;
+ struct vector_t vector;
+};
+# 6 "source\\/tower_lvl.h" 2
+
+
+
+
+struct tower_cost
+{
+ unsigned long lvl_cost;
+ unsigned long firerate_2_cost;
+ unsigned long firerate_3_cost;
+};
+
+
+const struct tower_cost towercost[] =
+{
+
+ {
+  .lvl_cost = 0,
+  .firerate_2_cost = 0,
+  .firerate_3_cost = 0,
+ },
+
+ {
+  .lvl_cost = 20,
+  .firerate_2_cost = 20,
+  .firerate_3_cost = 30,
+ },
+
+ {
+  .lvl_cost = 50,
+  .firerate_2_cost = 50,
+  .firerate_3_cost = 60,
+ },
+
+ {
+  .lvl_cost = 100,
+  .firerate_2_cost = 150,
+  .firerate_3_cost = 200,
+ },
+
+ {
+  .lvl_cost = 200,
+  .firerate_2_cost = 250,
+  .firerate_3_cost = 300,
+ },
+
+ {
+  .lvl_cost = 500,
+  .firerate_2_cost = 800,
+  .firerate_3_cost = 900,
+ }
+};
+
+const struct packet_t vectors_tower_lvl_1[] =
+{
+ {MOVE, { 1 * 16, 0 * 16}},
+ {DRAW, { 0 * 16, 1 * 16}},
+ {DRAW, { -2 * 16, 0 * 16}},
+ {MOVE, { 2 * 16, 0 * 16}},
+ {DRAW, { -1 * 16, 1 * 16}},
+ {DRAW, { -1 * 16, -1 * 16}},
+ {DRAW, { 0 * 16, -2 * 16}},
+ {DRAW, { 2 * 16, 0 * 16}},
+ {DRAW, { 0 * 16, 1 * 16}},
+ {STOP, { 0, 0}},
+};
+
+const struct packet_t vectors_tower_lvl_2[] =
+{
+ {MOVE, { 1 * 16, 0 * 16}},
+ {DRAW, { 0 * 16, 1 * 16}},
+ {DRAW, { -2 * 16, 0 * 16}},
+ {MOVE, { 2 * 16, 0 * 16}},
+ {DRAW, { -1 * 16, 1 * 16}},
+ {DRAW, { -1 * 16, -1 * 16}},
+ {DRAW, { 0 * 16, -2 * 16}},
+ {DRAW, { 2 * 16, 0 * 16}},
+ {MOVE, { -2 * 16, 0 * 16}},
+ {DRAW, { 1 * 16, -1 * 16}},
+ {DRAW, { 1 * 16, 1 * 16}},
+ {DRAW, { 0 * 16, 1 * 16}},
+ {STOP, { 0, 0}},
+};
+
+const struct packet_t vectors_tower_lvl_3[] =
+{
+ {MOVE, { 2 * 16, 0 * 16}},
+ {DRAW, { -1 * 16, 1 * 16}},
+ {DRAW, { 0 * 16, -2 * 16}},
+ {MOVE, { 0 * 16, 2 * 16}},
+ {DRAW, { -2 * 16, 0 * 16}},
+ {MOVE, { 2 * 16, 0 * 16}},
+ {DRAW, { -1 * 16, 1 * 16}},
+ {DRAW, { -1 * 16, -1 * 16}},
+ {DRAW, { 0 * 16, -2 * 16}},
+ {DRAW, { 2 * 16, 0 * 16}},
+ {MOVE, { -2 * 16, 0 * 16}},
+ {DRAW, { 1 * 16, -1 * 16}},
+ {DRAW, { 1 * 16, 1 * 16}},
+ {DRAW, { 1 * 16, 1 * 16}},
+ {STOP, { 0, 0}},
+};
+
+const struct packet_t vectors_tower_lvl_4[] =
+{
+ {MOVE, { 2 * 16, 0 * 16}},
+ {DRAW, { -1 * 16, 1 * 16}},
+ {DRAW, { 0 * 16, -2 * 16}},
+ {MOVE, { 0 * 16, 2 * 16}},
+ {DRAW, { -2 * 16, 0 * 16}},
+ {MOVE, { 2 * 16, 0 * 16}},
+ {DRAW, { -1 * 16, 1 * 16}},
+ {DRAW, { -1 * 16, -1 * 16}},
+ {DRAW, { 0 * 16, -2 * 16}},
+ {MOVE, { 0 * 16, 2 * 16}},
+ {DRAW, { -1 * 16, -1 * 16}},
+ {DRAW, { 1 * 16, -1 * 16}},
+ {DRAW, { 2 * 16, 0 * 16}},
+ {MOVE, { -2 * 16, 0 * 16}},
+ {DRAW, { 1 * 16, -1 * 16}},
+ {DRAW, { 1 * 16, 1 * 16}},
+ {DRAW, { 1 * 16, 1 * 16}},
+ {STOP, { 0, 0}},
+};
+
+const struct packet_t vectors_tower_lvl_5[] =
+{
+ {MOVE, { 2.5 * 16, 0 * 16}},
+ {DRAW, { 0 * 16, 1.5 * 16}},
+ {DRAW, { -2.5 * 16, 1.5 * 16}},
+ {DRAW, { -2.5 * 16, -1.5 * 16}},
+ {DRAW, { 0 * 16, -3 * 16}},
+ {DRAW, { 2.5 * 16, -1.5 * 16}},
+ {DRAW, { 2.5 * 16, 1.5 * 16}},
+ {DRAW, { 0 * 16, 1.5 * 16}},
+ {STOP, { 0, 0}},
+};
+
+
+
+
+const struct packet_t vectors_tower_lvl_6[] =
+{
+ {MOVE, { 2.5 * 32, 0 * 32}},
+ {DRAW, { 0 * 32, 1.5 * 32}},
+ {DRAW, { -2.5 * 32, 1.5 * 32}},
+ {DRAW, { -2.5 * 32, -1.5 * 32}},
+ {DRAW, { 0 * 32, -3 * 32}},
+ {DRAW, { 2.5 * 32, -1.5 * 32}},
+ {DRAW, { 2.5 * 32, 1.5 * 32}},
+ {DRAW, { 0 * 32, 1.5 * 32}},
+ {STOP, { 0, 0}},
+};
+# 13 "source\\menu.c" 2
 
 
 
 struct menu_t Menu =
 {
  .status = MENU_CLOSE,
- .selectedItem = SELECTEDITEM_PLAYER,
+ .selectedItem = SELECTEDITEM_PLAYER_LVL,
 };
 
 
@@ -2260,12 +2462,12 @@ struct menu_t Menu =
 void menu_init(void)
 {
  Menu.status = MENU_CLOSE;
- Menu.selectedItem = SELECTEDITEM_PLAYER;
+ Menu.selectedItem = SELECTEDITEM_PLAYER_LVL;
 }
 
 void menu_handle(void)
 {
- static int limit = 5;
+ static int limit = 3;
  if(limit != 0)
  {
   --limit;
@@ -2285,70 +2487,164 @@ void menu_handle(void)
  else if (joystick_1_right())
  {
 
-  if(Menu.selectedItem == SELECTEDITEM_PLAYER)
+  if(Menu.selectedItem == SELECTEDITEM_PLAYER_LVL)
   {
 
-   switch(player.lvl)
+
+   if(player.firerate == PLAYER_FIRERATE_3)
    {
-    case P_LEVEL_1:
-     player.lvl = P_LEVEL_2;
-     player.firerate = 2;
-     break;
-    case P_LEVEL_2:
-     player.lvl = P_LEVEL_3;
-     player.firerate = 5;
-     break;
-    case P_LEVEL_3:
-     player.lvl = P_LEVEL_3;
-     player.firerate = 5;
-     break;
-    default:
-     player.lvl = P_LEVEL_1;
-     player.firerate = 1;
-     break;
-   };
+    switch(player.lvl)
+    {
+     case P_LEVEL_1:
+      player.lvl = P_LEVEL_2;
+      break;
+     case P_LEVEL_2:
+      player.lvl = P_LEVEL_3;
+      break;
+     case P_LEVEL_3:
+      break;
+     default:
+      player.lvl = P_LEVEL_1;
+      break;
+    };
+   }
   }
-  else
+  else if(Menu.selectedItem == SELECTEDITEM_PLAYER_RATE)
   {
 
-   switch(tower.lvl)
+   switch(player.firerate)
    {
-    case LEVEL_1:
-     set_tower(LEVEL_2);
+    case PLAYER_FIRERATE_1:
+     player.firerate = PLAYER_FIRERATE_2;
      break;
-    case LEVEL_2:
-     set_tower(LEVEL_3);
+    case PLAYER_FIRERATE_2:
+     player.firerate = PLAYER_FIRERATE_3;
      break;
-    case LEVEL_3:
-     set_tower(LEVEL_4);
-     break;
-    case LEVEL_4:
-     set_tower(LEVEL_5);
-     break;
-    case LEVEL_5:
-     set_tower(LEVEL_6);
-     break;
-    case LEVEL_6:
+    case PLAYER_FIRERATE_3:
      break;
     default:
+     player.firerate = PLAYER_FIRERATE_1;
      break;
-   };
+   }
   }
+  else if(Menu.selectedItem == SELECTEDITEM_TOWER_LVL)
+  {
+
+
+   if(tower.firerate == TOWER_FIRERATE_3)
+   {
+    switch(tower.lvl)
+    {
+     case LEVEL_1:
+      if(player.money > towercost[1].lvl_cost)
+      {
+       player.money -= towercost[1].lvl_cost;
+       set_tower(LEVEL_2);
+      }
+      break;
+     case LEVEL_2:
+      if(player.money > towercost[2].lvl_cost)
+      {
+       player.money -= towercost[1].lvl_cost;
+       set_tower(LEVEL_3);
+      }
+      break;
+     case LEVEL_3:
+      if(player.money > towercost[3].lvl_cost)
+      {
+       player.money -= towercost[1].lvl_cost;
+       set_tower(LEVEL_4);
+      }
+      break;
+     case LEVEL_4:
+      if(player.money > towercost[4].lvl_cost)
+      {
+       player.money -= towercost[1].lvl_cost;
+       set_tower(LEVEL_5);
+      }
+      break;
+     case LEVEL_5:
+      if(player.money > towercost[5].lvl_cost)
+      {
+       player.money -= towercost[1].lvl_cost;
+       set_tower(LEVEL_6);
+      }
+      break;
+     case LEVEL_6:
+      break;
+     default:
+      break;
+    };
+   }
+  }
+  else if(Menu.selectedItem == SELECTEDITEM_TOWER_RATE)
+  {
+
+   switch(tower.firerate)
+   {
+    case TOWER_FIRERATE_1:
+     if(player.money > towercost[tower.lvl + 1].firerate_2_cost)
+     {
+      player.money -= towercost[tower.lvl + 1].firerate_2_cost;
+      tower.firerate = TOWER_FIRERATE_2;
+     }
+     break;
+    case TOWER_FIRERATE_2:
+     if(player.money > towercost[tower.lvl + 1].firerate_3_cost)
+     {
+      player.money -= towercost[tower.lvl + 1].firerate_3_cost;
+      tower.firerate = TOWER_FIRERATE_3;
+     }
+     break;
+    case TOWER_FIRERATE_3:
+     break;
+    default:
+     tower.firerate = TOWER_FIRERATE_1;
+     break;
+   }
+  }
+  else{}
 
  }
  else if (joystick_1_up())
  {
-  if(Menu.selectedItem == SELECTEDITEM_PLAYER)
-   Menu.selectedItem = SELECTEDITEM_TOWER;
-  else
-   Menu.selectedItem = SELECTEDITEM_PLAYER;
+  switch(Menu.selectedItem)
+  {
+   case SELECTEDITEM_PLAYER_LVL:
+    Menu.selectedItem = SELECTEDITEM_TOWER_RATE;
+    break;
+   case SELECTEDITEM_PLAYER_RATE:
+    Menu.selectedItem = SELECTEDITEM_PLAYER_LVL;
+    break;
+   case SELECTEDITEM_TOWER_LVL:
+    Menu.selectedItem = SELECTEDITEM_PLAYER_RATE;
+    break;
+   case SELECTEDITEM_TOWER_RATE:
+    Menu.selectedItem = SELECTEDITEM_TOWER_LVL;
+    break;
+   default:
+    break;
+  }
  }
  else if (joystick_1_down())
  {
-  if(Menu.selectedItem == SELECTEDITEM_PLAYER)
-   Menu.selectedItem = SELECTEDITEM_TOWER;
-  else
-   Menu.selectedItem = SELECTEDITEM_PLAYER;
+  switch(Menu.selectedItem)
+  {
+   case SELECTEDITEM_PLAYER_LVL:
+    Menu.selectedItem = SELECTEDITEM_PLAYER_RATE;
+    break;
+   case SELECTEDITEM_PLAYER_RATE:
+    Menu.selectedItem = SELECTEDITEM_TOWER_LVL;
+    break;
+   case SELECTEDITEM_TOWER_LVL:
+    Menu.selectedItem = SELECTEDITEM_TOWER_RATE;
+    break;
+   case SELECTEDITEM_TOWER_RATE:
+    Menu.selectedItem = SELECTEDITEM_PLAYER_LVL;
+    break;
+   default:
+    break;
+  }
  }
 }
 
@@ -2367,18 +2663,35 @@ void menu_draw(void)
  Reset0Ref();
 
  Sync();
- if(Menu.selectedItem == SELECTEDITEM_PLAYER)
+ if(Menu.selectedItem == SELECTEDITEM_PLAYER_LVL)
  {
-  print_string(60, -100, "A PLAYER\x80");
+  print_string(100, -110, "A PLAYER LVL\x80");
   switch(player.lvl)
   {
    case P_LEVEL_1:
-    print_unsigned_int(60, 40, 1);
+    print_unsigned_int(100, 40, 1);
     break;
    case P_LEVEL_2:
-    print_unsigned_int(60, 40, 2);
+    print_unsigned_int(100, 40, 2);
     break;
    case P_LEVEL_3:
+    print_unsigned_int(100, 40, 3);
+    break;
+   default:
+    print_unsigned_int(100, 40, 100);
+    break;
+  };
+
+  print_string(60, -110, "  PLAYER RATE\x80");
+  switch(player.firerate)
+  {
+   case PLAYER_FIRERATE_1:
+    print_unsigned_int(60, 40, 1);
+    break;
+   case PLAYER_FIRERATE_2:
+    print_unsigned_int(60, 40, 2);
+    break;
+   case PLAYER_FIRERATE_3:
     print_unsigned_int(60, 40, 3);
     break;
    default:
@@ -2386,7 +2699,7 @@ void menu_draw(void)
     break;
   };
 
-  print_string(20, -100, "  TOWER\x80");
+  print_string(20, -110, "  TOWER LVL\x80");
   switch(tower.lvl)
   {
    case LEVEL_1:
@@ -2411,19 +2724,53 @@ void menu_draw(void)
     print_unsigned_int(20, 40, 100);
     break;
   };
+
+  print_string(-20, -110, "  TOWER RATE\x80");
+  switch(tower.firerate)
+  {
+   case TOWER_FIRERATE_1:
+    print_unsigned_int(-20, 40, 1);
+    break;
+   case TOWER_FIRERATE_2:
+    print_unsigned_int(-20, 40, 2);
+    break;
+   case TOWER_FIRERATE_3:
+    print_unsigned_int(-20, 40, 3);
+    break;
+   default:
+    print_unsigned_int(-20, 40, 100);
+    break;
+  };
  }
- else
+ else if(Menu.selectedItem == SELECTEDITEM_PLAYER_RATE)
  {
-  print_string(60, -100, "   PLAYER\x80");
+  print_string(100, -110, "  PLAYER LVL\x80");
   switch(player.lvl)
   {
    case P_LEVEL_1:
-    print_unsigned_int(60, 40, 1);
+    print_unsigned_int(100, 40, 1);
     break;
    case P_LEVEL_2:
-    print_unsigned_int(60, 40, 2);
+    print_unsigned_int(100, 40, 2);
     break;
    case P_LEVEL_3:
+    print_unsigned_int(100, 40, 3);
+    break;
+   default:
+    print_unsigned_int(100, 40, 100);
+    break;
+  };
+
+  print_string(60, -110, "A PLAYER RATE\x80");
+  switch(player.firerate)
+  {
+   case PLAYER_FIRERATE_1:
+    print_unsigned_int(60, 40, 1);
+    break;
+   case PLAYER_FIRERATE_2:
+    print_unsigned_int(60, 40, 2);
+    break;
+   case PLAYER_FIRERATE_3:
     print_unsigned_int(60, 40, 3);
     break;
    default:
@@ -2431,7 +2778,7 @@ void menu_draw(void)
     break;
   };
 
-  print_string(20, -100, "A  TOWER\x80");
+  print_string(20, -110, "  TOWER LVL\x80");
   switch(tower.lvl)
   {
    case LEVEL_1:
@@ -2456,5 +2803,181 @@ void menu_draw(void)
     print_unsigned_int(20, 40, 100);
     break;
   };
+
+  print_string(-20, -110, "  TOWER RATE\x80");
+  switch(tower.firerate)
+  {
+   case TOWER_FIRERATE_1:
+    print_unsigned_int(-20, 40, 1);
+    break;
+   case TOWER_FIRERATE_2:
+    print_unsigned_int(-20, 40, 2);
+    break;
+   case TOWER_FIRERATE_3:
+    print_unsigned_int(-20, 40, 3);
+    break;
+   default:
+    print_unsigned_int(-20, 40, 100);
+    break;
+  };
  }
+ else if(Menu.selectedItem == SELECTEDITEM_TOWER_LVL)
+ {
+  print_string(100, -110, "  PLAYER LVL\x80");
+  switch(player.lvl)
+  {
+   case P_LEVEL_1:
+    print_unsigned_int(100, 40, 1);
+    break;
+   case P_LEVEL_2:
+    print_unsigned_int(100, 40, 2);
+    break;
+   case P_LEVEL_3:
+    print_unsigned_int(100, 40, 3);
+    break;
+   default:
+    print_unsigned_int(100, 40, 100);
+    break;
+  };
+
+  print_string(60, -110, "  PLAYER RATE\x80");
+  switch(player.firerate)
+  {
+   case PLAYER_FIRERATE_1:
+    print_unsigned_int(60, 40, 1);
+    break;
+   case PLAYER_FIRERATE_2:
+    print_unsigned_int(60, 40, 2);
+    break;
+   case PLAYER_FIRERATE_3:
+    print_unsigned_int(60, 40, 3);
+    break;
+   default:
+    print_unsigned_int(60, 40, 100);
+    break;
+  };
+
+  print_string(20, -110, "A TOWER LVL\x80");
+  switch(tower.lvl)
+  {
+   case LEVEL_1:
+    print_unsigned_int(20, 40, 1);
+    break;
+   case LEVEL_2:
+    print_unsigned_int(20, 40, 2);
+    break;
+   case LEVEL_3:
+    print_unsigned_int(20, 40, 3);
+    break;
+   case LEVEL_4:
+    print_unsigned_int(20, 40, 4);
+    break;
+   case LEVEL_5:
+    print_unsigned_int(20, 40, 5);
+    break;
+   case LEVEL_6:
+    print_unsigned_int(20, 40, 6);
+    break;
+   default:
+    print_unsigned_int(20, 40, 100);
+    break;
+  };
+
+  print_string(-20, -110, "  TOWER RATE\x80");
+  switch(tower.firerate)
+  {
+   case TOWER_FIRERATE_1:
+    print_unsigned_int(-20, 40, 1);
+    break;
+   case TOWER_FIRERATE_2:
+    print_unsigned_int(-20, 40, 2);
+    break;
+   case TOWER_FIRERATE_3:
+    print_unsigned_int(-20, 40, 3);
+    break;
+   default:
+    print_unsigned_int(-20, 40, 100);
+    break;
+  };
+ }
+ else if(Menu.selectedItem == SELECTEDITEM_TOWER_RATE)
+ {
+  print_string(100, -110, "  PLAYER LVL\x80");
+  switch(player.lvl)
+  {
+   case P_LEVEL_1:
+    print_unsigned_int(100, 40, 1);
+    break;
+   case P_LEVEL_2:
+    print_unsigned_int(100, 40, 2);
+    break;
+   case P_LEVEL_3:
+    print_unsigned_int(100, 40, 3);
+    break;
+   default:
+    print_unsigned_int(100, 40, 100);
+    break;
+  };
+
+  print_string(60, -110, "  PLAYER RATE\x80");
+  switch(player.firerate)
+  {
+   case PLAYER_FIRERATE_1:
+    print_unsigned_int(60, 40, 1);
+    break;
+   case PLAYER_FIRERATE_2:
+    print_unsigned_int(60, 40, 2);
+    break;
+   case PLAYER_FIRERATE_3:
+    print_unsigned_int(60, 40, 3);
+    break;
+   default:
+    print_unsigned_int(60, 40, 100);
+    break;
+  };
+
+  print_string(20, -110, "  TOWER LVL\x80");
+  switch(tower.lvl)
+  {
+   case LEVEL_1:
+    print_unsigned_int(20, 40, 1);
+    break;
+   case LEVEL_2:
+    print_unsigned_int(20, 40, 2);
+    break;
+   case LEVEL_3:
+    print_unsigned_int(20, 40, 3);
+    break;
+   case LEVEL_4:
+    print_unsigned_int(20, 40, 4);
+    break;
+   case LEVEL_5:
+    print_unsigned_int(20, 40, 5);
+    break;
+   case LEVEL_6:
+    print_unsigned_int(20, 40, 6);
+    break;
+   default:
+    print_unsigned_int(20, 40, 100);
+    break;
+  };
+
+  print_string(-20, -110, "A TOWER RATE\x80");
+  switch(tower.firerate)
+  {
+   case TOWER_FIRERATE_1:
+    print_unsigned_int(-20, 40, 1);
+    break;
+   case TOWER_FIRERATE_2:
+    print_unsigned_int(-20, 40, 2);
+    break;
+   case TOWER_FIRERATE_3:
+    print_unsigned_int(-20, 40, 3);
+    break;
+   default:
+    print_unsigned_int(-20, 40, 100);
+    break;
+  };
+ }
+
 }

@@ -12,6 +12,7 @@
 #include "bullet.h"
 #include "lookupAngle.h"
 #include "enemy.h"
+#include "player.h"
 
 // ---------------------------------------------------------------------------
 
@@ -110,6 +111,7 @@ void check_bulletCollision(void)
 					if(check_collision(bullets[i].coor.Y, bullets[i].coor.X, enemies[j].y, enemies[j].x, 8, 8))
 					{
 						play_explosion(&bang);
+						player.money += enemies[j].money;
 						enemies[j].status = INACTIVE;
 					}
 				}

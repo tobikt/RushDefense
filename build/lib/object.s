@@ -136,22 +136,13 @@ _LookUpAngle:
 	.byte	-1
 	.byte	10
 	.area .text
-	.globl _init_object
-_init_object:
-	leas	-2,s
-	stx	,s
-	; ldx	,s	; optimization 5
-	ldb	#10
-	stb	5,x
-	leas	2,s
-	rts
 	.globl _move_object
 _move_object:
 	leas	-4,s
 	stx	2,s
 	ldb	_current_wave+5
 	; tstb	; optimization 6
-	beq	L5
+	beq	L3
 	ldx	2,s
 	ldb	1,x
 	stb	,s
@@ -168,6 +159,6 @@ _move_object:
 	addb	1,s
 	ldx	2,s
 	stb	2,x
-L5:
+L3:
 	leas	4,s
 	rts

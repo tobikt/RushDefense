@@ -807,74 +807,96 @@ L21:
 	puls	y,u,pc
 	.globl _check_bulletCollision
 _check_bulletCollision:
-	pshs	u
-	leas	-20,s
-	clr	18,s
+	pshs	y,u
+	leas	-22,s
+	clr	20,s
 	jmp	L23
 L28:
-	ldb	18,s
+	ldb	20,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	stx	13,s
-	ldd	13,s
+	stx	15,s
+	ldd	15,s
 	aslb
 	rola
-	std	13,s
-	; ldd	13,s	; optimization 5
+	std	15,s
+	; ldd	15,s	; optimization 5
 	leax	d,x
-	stx	13,s
-	ldd	13,s
+	stx	15,s
+	ldd	15,s
 	aslb
 	rola
-	std	13,s
-	ldu	13,s
+	std	15,s
+	ldu	15,s
 	leax	_bullets,u
 	ldb	,x
 	; tstb	; optimization 6
 	lbne	L24
-	clr	19,s
+	clr	21,s
 	jmp	L25
 L27:
-	ldb	19,s
+	ldb	21,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	stx	11,s
-	ldd	11,s
+	stx	13,s
+	ldd	13,s
 	aslb
 	rola
-	std	11,s
-	; ldd	11,s	; optimization 5
-	leax	d,x
-	stx	11,s
-	ldd	11,s
 	aslb
 	rola
-	std	11,s
-	ldu	11,s
+	aslb
+	rola
+	std	13,s
+	; ldd	13,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	13,s
+	ldu	13,s
 	leax	_enemies,u
 	ldb	,x
 	; tstb	; optimization 6
 	lbne	L26
-	ldb	19,s
+	ldb	21,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	11,s
+	ldd	11,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	11,s
+	; ldd	11,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	11,s
+	ldu	11,s
+	leax	_enemies+2,u
+	ldb	,x
+	stb	17,s
+	ldb	21,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	9,s
 	ldd	9,s
 	aslb
 	rola
-	std	9,s
-	; ldd	9,s	; optimization 5
-	leax	d,x
-	stx	9,s
-	ldd	9,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_enemies
-	leax	d,u
+	aslb
+	rola
+	std	9,s
+	; ldd	9,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	9,s
+	ldu	9,s
+	leax	_enemies+1,u
 	ldb	,x
-	stb	15,s
-	ldb	19,s
+	stb	18,s
+	ldb	20,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	7,s
@@ -886,14 +908,14 @@ L27:
 	leax	d,x
 	stx	7,s
 	ldd	7,s
+	addd	#1
 	aslb
 	rola
-	std	7,s
-	ldu	7,s
-	leax	_enemies+1,u
+	ldu	#_bullets
+	leax	d,u
 	ldb	,x
-	stb	16,s
-	ldb	18,s
+	stb	19,s
+	ldb	20,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	5,s
@@ -905,29 +927,10 @@ L27:
 	leax	d,x
 	stx	5,s
 	ldd	5,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_bullets
-	leax	d,u
-	ldb	,x
-	stb	17,s
-	ldb	18,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	stx	3,s
-	ldd	3,s
-	aslb
-	rola
-	std	3,s
-	; ldd	3,s	; optimization 5
-	leax	d,x
-	stx	3,s
-	ldd	3,s
-	aslb
-	rola
-	std	3,s
-	ldu	3,s
+	std	5,s
+	ldu	5,s
 	leax	_bullets+1,u
 	ldb	,x
 	stb	,s
@@ -935,11 +938,11 @@ L27:
 	stb	,-s
 	ldb	#8
 	stb	,-s
-	ldb	17,s
-	pshs	b
 	ldb	19,s
 	pshs	b
 	ldb	21,s
+	pshs	b
+	ldb	23,s
 	pshs	b
 	ldb	5,s
 	jsr	_check_collision
@@ -948,39 +951,63 @@ L27:
 	beq	L26
 	ldx	#_bang
 	jsr	_play_explosion
-	ldb	19,s
+	ldy	_player+2
+	ldb	21,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	3,s
+	ldd	3,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	3,s
+	; ldd	3,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	3,s
+	ldu	3,s
+	leax	_enemies+6,u
+	ldb	,x
+	clra		;zero_extendqihi: R:b -> R:d
+	leax	d,y
+	stx	_player+2
+	ldb	21,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	1,s
 	ldd	1,s
 	aslb
 	rola
-	std	1,s
-	; ldd	1,s	; optimization 5
-	leax	d,x
-	stx	1,s
-	ldd	1,s
 	aslb
 	rola
+	aslb
+	rola
+	std	1,s
+	; ldd	1,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
 	std	1,s
 	ldu	1,s
 	leax	_enemies,u
 	ldb	#1
 	stb	,x
 L26:
-	inc	19,s
+	inc	21,s
 L25:
-	ldb	19,s
+	ldb	21,s
 	cmpb	#4	;cmpqi:
 	lbls	L27
 L24:
-	inc	18,s
+	inc	20,s
 L23:
-	ldb	18,s
+	ldb	20,s
 	cmpb	#9	;cmpqi:
 	lbls	L28
-	leas	20,s
-	puls	u,pc
+	leas	22,s
+	puls	y,u,pc
 	.area .bss
 	.globl	_bullets
 _bullets:	.blkb	60

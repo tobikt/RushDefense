@@ -40,14 +40,14 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
           00D8  l_.0xf3                         
           00EF  l_.0xf5                         
           0100  l_direct                        
-          0142  l_.data                         
+          0148  l_.data                         
           0210  l_.bss                          
-          29A8  l_.text                         
-          29C7  s_.text.unlikely                
-          29C7  s_.text.hot                     
+          3504  l_.text                         
+          3523  s_.text.unlikely                
+          3523  s_.text.hot                     
           C800  s_.dpc8                         
           C880  s_.data                         
-          C9C2  s_.bss                          
+          C9C8  s_.bss                          
           CBEA  s_.dpcb                         
           D000  s_.dpd0                         
           E7B5  s_.0xe7                         
@@ -98,7 +98,7 @@ Hexidecimal  [16-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        29A8 =       10664. bytes (REL,CON,CSEG)
+.text                      001F        3504 =       13572. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
@@ -157,7 +157,7 @@ Hexidecimal  [16-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        29A8 =       10664. bytes (REL,CON,CSEG)
+.text                      001F        3504 =       13572. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
@@ -202,108 +202,107 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
           0558  _move_bullet                       bullet.c
           07D4  _fire_bullet                       bullet.c
           08B2  _check_bulletCollision             bullet.c
-          09FB  _check_collision                   collision.c
-          0A60  __f_debug                          debug.c
-          0C04  _MAX_LEVELS                        enemy.c
-          0C05  _waveData                          enemy.c
-          0DE0  _vectors_enemy                     enemy.c
-          0E07  _draw_enemy                        enemy.c
-          0E3A  _check_enemy                       enemy.c
-          0E96  _init_enemies                      enemy.c
-          131C  _handle_enemies                    enemy.c
+          0A26  _check_collision                   collision.c
+          0A8B  __f_debug                          debug.c
+          0C2F  _MAX_LEVELS                        enemy.c
+          0C30  _waveData                          enemy.c
+          0E56  _vectors_enemy                     enemy.c
+          0E7D  _draw_enemy                        enemy.c
+          0EB0  _check_enemy                       enemy.c
+          0F0C  _init_enemies                      enemy.c
+          1454  _handle_enemies                    enemy.c
 ASxxxx Linker V05.00,  page 6.
 Hexidecimal  [16-Bits]
 [ Bank == rom ]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        29A8 =       10664. bytes (REL,CON,CSEG)
+.text                      001F        3504 =       13572. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
-          13B6  _check_AllEnemysDeath              enemy.c
-          15E6  _game_init                         game.c
-          160D  _game_play                         game.c
-          1697  _game_over                         game.c
-          16ED  _game_win                          game.c
-          173A  _game                              game.c
-          1768  _main                              main.c
-          1776  _trigonometry_64                   math.c
-          1976  _menu_init                         menu.c
-          197F  _menu_handle                       menu.c
-          1A9E  _menu_open                         menu.c
-          1AD2  _menu_draw                         menu.c
-          1D10  _init_object                       object.c
-          1D1B  _move_object                       object.c
-          1D47  _vectors_player                    player.c
-          1D62  _draw_player                       player.c
-          1D96  _init_player                       player.c
-          1DA5  _rotate_player                     player.c
-          1DF3  _shot_player                       player.c
-          1E41  _handle_player                     player.c
-          1E4B  _print_string                      print.c
-          1E7E  _print_unsigned_int                print.c
-          1F04  _print_signed_int                  print.c
-          1FB8  _print_long_unsigned_int           print.c
-          2042  _print_long_signed_int             print.c
-          2103  _print_binary                      print.c
-          2174  _music_off                         sound.c
-          217C  _explosion_off                     sound.c
-          2180  _sound_init                        sound.c
-          218D  _stop_explosion                    sound.c
-          219A  _stop_music                        sound.c
-          21A4  _play_music                        sound.c
-          21B8  _play_explosion                    sound.c
-          21CF  _play_tune                         sound.c
-          2232  _vectors_tower_lvl_1               tower.c
-          2250  _vectors_tower_lvl_2               tower.c
-          2277  _vectors_tower_lvl_3               tower.c
-          22A4  _vectors_tower_lvl_4               tower.c
-          22DA  _vectors_tower_lvl_5               tower.c
-          22F5  _vectors_tower_lvl_6               tower.c
-          2310  _draw_tower                        tower.c
-          2446  _init_tower                        tower.c
-          2458  _set_tower                         tower.c
-          2598  _tower_shot                        tower.c
-          262F  _handle_tower                      tower.c
-          2640  _bing                              tunes.c
-          2648  _bang                              tunes.c
-          264C  _Sync                              utils.c
-          2853  _wave_init                         wave.c
-          28EF  _wave_play                         wave.c
+          14E5  _check_AllEnemysDeath              enemy.c
+          1760  _game_init                         game.c
+          1787  _game_play                         game.c
+          1811  _game_over                         game.c
+          1867  _game_win                          game.c
+          18B4  _game                              game.c
+          18E2  _main                              main.c
+          18F0  _trigonometry_64                   math.c
+          1AF0  _towercost                         menu.c
+          1B14  _vectors_tower_lvl_1               menu.c
+          1B32  _vectors_tower_lvl_2               menu.c
+          1B59  _vectors_tower_lvl_3               menu.c
+          1B86  _vectors_tower_lvl_4               menu.c
+          1BBC  _vectors_tower_lvl_5               menu.c
+          1BD7  _vectors_tower_lvl_6               menu.c
+          1BF2  _menu_init                         menu.c
+          1BFB  _menu_handle                       menu.c
+          1F2D  _menu_open                         menu.c
+          1FA9  _menu_draw                         menu.c
+          275D  _move_object                       object.c
+          2789  _vectors_player                    player.c
+          27A4  _draw_player                       player.c
+          27D8  _init_player                       player.c
+          27E8  _rotate_player                     player.c
+          2836  _shot_player                       player.c
+          289A  _handle_player                     player.c
+          28A4  _print_string                      print.c
+          28D7  _print_unsigned_int                print.c
+          295D  _print_signed_int                  print.c
+          2A11  _print_long_unsigned_int           print.c
+          2A9B  _print_long_signed_int             print.c
+          2B5C  _print_binary                      print.c
+          2BCD  _music_off                         sound.c
+          2BD5  _explosion_off                     sound.c
+          2BD9  _sound_init                        sound.c
+          2BE6  _stop_explosion                    sound.c
+          2BF3  _stop_music                        sound.c
+          2BFD  _play_music                        sound.c
+          2C11  _play_explosion                    sound.c
+          2C28  _play_tune                         sound.c
+          2D8D  _draw_tower                        tower.c
+          2F60  _init_tower                        tower.c
+          2F75  _set_tower                         tower.c
+          30A9  _tower_shot                        tower.c
+          3140  _handle_tower                      tower.c
+          3151  _bing                              tunes.c
+          3159  _bang                              tunes.c
+          315D  _Sync                              utils.c
+          33AF  _wave_init                         wave.c
+          344D  _wave_play                         wave.c
 ASxxxx Linker V05.00,  page 7.
 Hexidecimal  [16-Bits]
 [ Bank == rom ]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        29A8 =       10664. bytes (REL,CON,CSEG)
+.text                      001F        3504 =       13572. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
-          2976  _umodhi3                           
-          2987  _udivhi3                           
-          2995  _euclid                            
+          34D2  _umodhi3                           
+          34E3  _udivhi3                           
+          34F1  _euclid                            
 ASxxxx Linker V05.00,  page 8.
 Hexidecimal  [16-Bits]
 [ Bank == ram ]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.data                      C880        0142 =         322. bytes (REL,CON,CSEG)
+.data                      C880        0148 =         328. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
           C880  _LookUpAngle                       bullet.c
           C900  _enemies                           enemy.c
-          C91E  _current_game                      game.c
-          C923  _Menu                              menu.c
-          C9A6  _player                            player.c
-          C9AB  _current_music                     sound.c
-          C9AD  _current_explosion                 sound.c
-          C9AF  _tower                             tower.c
-          C9BA  _cnt                               tower.c
-          C9BC  _current_wave                      wave.c
+          C923  _current_game                      game.c
+          C928  _Menu                              menu.c
+          C9AB  _player                            player.c
+          C9B1  _current_music                     sound.c
+          C9B3  _current_explosion                 sound.c
+          C9B5  _tower                             tower.c
+          C9C2  _current_wave                      wave.c
 
 ASxxxx Linker V05.00,  page 9.
 Hexidecimal  [16-Bits]
@@ -311,15 +310,15 @@ Hexidecimal  [16-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.bss                       C9C2        0210 =         528. bytes (REL,CON,CSEG)
+.bss                       C9C8        0210 =         528. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
-          C9C2  _bullets                           bullet.c
-          CAEE  _rotated_tower1                    tower.c
-          CB0C  _rotated_tower2                    tower.c
-          CB33  _rotated_tower3                    tower.c
-          CB60  _rotated_tower4                    tower.c
+          C9C8  _bullets                           bullet.c
+          CAF4  _rotated_tower1                    tower.c
+          CB12  _rotated_tower2                    tower.c
+          CB39  _rotated_tower3                    tower.c
+          CB66  _rotated_tower4                    tower.c
 
 ASxxxx Linker V05.00,  page 10.
 Hexidecimal  [16-Bits]

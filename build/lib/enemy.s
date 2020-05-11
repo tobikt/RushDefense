@@ -14,11 +14,14 @@ _waveData:
 	.byte	1
 	.byte	1
 	.byte	0
-	.byte	0
-	.byte	100
+	.byte	-100
+	.byte	50
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
+	.word	0	;skip space 28
+	.word	0	;skip space 26
 	.word	0	;skip space 24
 	.word	0	;skip space 22
 	.word	0	;skip space 20
@@ -31,6 +34,11 @@ _waveData:
 	.word	0	;skip space 6
 	.word	0	;skip space 4
 	.word	0	;skip space 2
+	.word	0	;skip space 72
+	.word	0	;skip space 70
+	.word	0	;skip space 68
+	.word	0	;skip space 66
+	.word	0	;skip space 64
 	.word	0	;skip space 62
 	.word	0	;skip space 60
 	.word	0	;skip space 58
@@ -71,6 +79,9 @@ _waveData:
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
+	.word	0	;skip space 28
+	.word	0	;skip space 26
 	.word	0	;skip space 24
 	.word	0	;skip space 22
 	.word	0	;skip space 20
@@ -90,26 +101,14 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	-100
 	.byte	2
 	.byte	2
 	.byte	10
-	.word	0	;skip space 18
-	.word	0	;skip space 16
-	.word	0	;skip space 14
-	.word	0	;skip space 12
-	.word	0	;skip space 10
-	.word	0	;skip space 8
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
-	.word	0	;skip space 31
-	.word	0	;skip space 29
-	.word	0	;skip space 27
-	.word	0	;skip space 25
-	.word	0	;skip space 23
+	.byte	5
 	.word	0	;skip space 21
 	.word	0	;skip space 19
 	.word	0	;skip space 17
@@ -121,6 +120,24 @@ _waveData:
 	.word	0	;skip space 5
 	.word	0	;skip space 3
 	.byte	0	;skip space
+	.word	0	;skip space 36
+	.word	0	;skip space 34
+	.word	0	;skip space 32
+	.word	0	;skip space 30
+	.word	0	;skip space 28
+	.word	0	;skip space 26
+	.word	0	;skip space 24
+	.word	0	;skip space 22
+	.word	0	;skip space 20
+	.word	0	;skip space 18
+	.word	0	;skip space 16
+	.word	0	;skip space 14
+	.word	0	;skip space 12
+	.word	0	;skip space 10
+	.word	0	;skip space 8
+	.word	0	;skip space 6
+	.word	0	;skip space 4
+	.word	0	;skip space 2
 	.byte	3
 	.byte	3
 	.byte	3
@@ -130,18 +147,22 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
+	.byte	5
+	.word	0	;skip space 14
 	.word	0	;skip space 12
 	.word	0	;skip space 10
 	.word	0	;skip space 8
@@ -155,6 +176,9 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
+	.word	0	;skip space 28
+	.word	0	;skip space 26
 	.word	0	;skip space 24
 	.word	0	;skip space 22
 	.word	0	;skip space 20
@@ -174,18 +198,22 @@ _waveData:
 	.byte	2
 	.byte	-1
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	0
 	.byte	50
+	.byte	5
+	.word	0	;skip space 14
 	.word	0	;skip space 12
 	.word	0	;skip space 10
 	.word	0	;skip space 8
@@ -201,18 +229,22 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
+	.byte	5
+	.word	0	;skip space 14
 	.word	0	;skip space 12
 	.word	0	;skip space 10
 	.word	0	;skip space 8
@@ -226,27 +258,32 @@ _waveData:
 	.byte	-1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	50
 	.byte	100
 	.byte	-1
 	.byte	-2
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.byte	5
 	.byte	0
 	.byte	-100
@@ -254,30 +291,35 @@ _waveData:
 	.byte	2
 	.byte	-1
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	0
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-2
 	.byte	0
 	.byte	50
+	.byte	10
 	.byte	0
 	.byte	-50
 	.byte	-100
 	.byte	1
 	.byte	2
 	.byte	50
+	.byte	10
 	.byte	5
 	.byte	3
 	.byte	4
@@ -287,27 +329,32 @@ _waveData:
 	.byte	1
 	.byte	1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	100
 	.byte	1
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	-100
 	.byte	-1
 	.byte	1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	100
 	.byte	-1
 	.byte	-1
 	.byte	10
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.byte	4
 	.byte	0
 	.byte	0
@@ -315,27 +362,32 @@ _waveData:
 	.byte	0
 	.byte	-1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	100
 	.byte	0
 	.byte	-1
 	.byte	0
 	.byte	10
+	.byte	5
 	.byte	0
 	.byte	-100
 	.byte	0
 	.byte	1
 	.byte	0
 	.byte	10
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.byte	4
 	.byte	0
 	.byte	-50
@@ -343,27 +395,32 @@ _waveData:
 	.byte	1
 	.byte	2
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	-50
 	.byte	100
 	.byte	1
 	.byte	-2
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	50
 	.byte	-100
 	.byte	-1
 	.byte	2
 	.byte	50
+	.byte	5
 	.byte	0
 	.byte	50
 	.byte	100
 	.byte	-1
 	.byte	-2
 	.byte	50
-	.word	0	;skip space 6
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.byte	5
+	.word	0	;skip space 7
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.globl _enemies
 	.area .data
 _enemies:
@@ -373,30 +430,35 @@ _enemies:
 	.byte	0
 	.byte	0
 	.byte	0
+	.byte	0	;skip space
 	.byte	1
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
+	.byte	0	;skip space
 	.byte	1
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
+	.byte	0	;skip space
 	.byte	1
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
+	.byte	0	;skip space
 	.byte	1
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
 	.byte	0
+	.byte	0	;skip space
 	.globl _vectors_enemy
 	.area .text
 _vectors_enemy:
@@ -517,119 +579,310 @@ L6:
 	.globl _init_enemies
 _init_enemies:
 	pshs	y,u
-	leas	-84,s
+	leas	-112,s
 	ldb	_current_wave
-	stb	60,s
+	stb	84,s
 	ldb	_current_wave+1
 	clra		;zero_extendqihi: R:b -> R:d
+	std	,s
+	ldb	84,s
+	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	ldb	60,s
+	ldu	,s
+	stu	82,s
+	ldd	82,s
+	aslb
+	rola
+	aslb
+	rola
+	std	82,s
+	; ldd	82,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	ldu	82,s
+	leau	d,u
+	stu	82,s
+	stx	80,s
+	ldd	80,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	80,s
+	; ldd	80,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	78,s
+	; ldd	78,s	; optimization 5
+	subd	80,s	;subhi: R:d -= 80,s
+	std	78,s
+	; ldd	78,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	78,s
+	; ldd	78,s	; optimization 5
+	aslb
+	rola
+	std	78,s
+	ldd	82,s
+	ldu	78,s
+	leax	d,u
+	leax	_waveData+2,x
+	ldb	,x
+	stb	109,s
+	clr	110,s
+	jmp	L8
+L9:
+	ldb	110,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	76,s
+	ldd	76,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	76,s
+	; ldd	76,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	76,s
+	ldu	76,s
+	leax	_enemies,u
+	clr	,x
+	ldb	110,s
+	stb	85,s
+	ldb	_current_wave
+	stb	86,s
+	ldb	_current_wave+1
+	stb	87,s
+	ldb	110,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	ldb	87,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,y
-	stx	58,s
+	ldb	86,s
+	clra		;zero_extendqihi: R:b -> R:d
+	std	74,s
+	stx	72,s
+	ldd	72,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	72,s
+	; ldd	72,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	72,s
+	sty	70,s
+	ldd	70,s
+	aslb
+	rola
+	aslb
+	rola
+	std	70,s
+	; ldd	70,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	ldx	70,s
+	leax	d,x
+	stx	70,s
+	ldd	72,s
+	ldu	70,s
+	leax	d,u
+	ldd	74,s
+	std	68,s
+	; ldd	68,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	68,s
+	; ldd	68,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	66,s
+	; ldd	66,s	; optimization 5
+	subd	68,s	;subhi: R:d -= 68,s
+	std	66,s
+	; ldd	66,s	; optimization 5
+	subd	74,s	;subhi: R:d -= 74,s
+	std	66,s
+	; ldd	66,s	; optimization 5
+	aslb
+	rola
+	std	66,s
+	exg	d,x
+	addd	66,s
+	exg	d,x
+	leax	_waveData+4,x
+	ldb	,x
+	stb	88,s
+	ldb	85,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	stx	64,s
+	ldd	64,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	64,s
+	; ldd	64,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	64,s
+	ldu	64,s
+	leax	_enemies+1,u
+	ldb	88,s
+	stb	,x
+	ldb	110,s
+	stb	89,s
+	ldb	_current_wave
+	stb	90,s
+	ldb	_current_wave+1
+	stb	91,s
+	ldb	110,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	ldb	91,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,y
+	ldb	90,s
+	clra		;zero_extendqihi: R:b -> R:d
+	std	62,s
+	stx	60,s
+	ldd	60,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	60,s
+	; ldd	60,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	60,s
+	sty	58,s
 	ldd	58,s
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
 	aslb
 	rola
 	aslb
 	rola
 	std	58,s
 	; ldd	58,s	; optimization 5
-	pshs	x	;subhi: R:d -= R:x
-	subd	,s++
-	std	58,s
-	sty	56,s
-	ldd	56,s
-	aslb
-	rola
-	std	56,s
-	; ldd	56,s	; optimization 5
-	leax	d,y
-	stx	56,s
-	ldd	56,s
 	aslb
 	rola
 	aslb
 	rola
 	aslb
 	rola
-	aslb
-	rola
-	aslb
-	rola
-	std	56,s
-	; ldd	56,s	; optimization 5
-	pshs	y	;subhi: R:d -= R:y
-	subd	,s++
-	std	56,s
-	ldd	58,s
-	ldu	56,s
+	ldx	58,s
+	leax	d,x
+	stx	58,s
+	ldd	60,s
+	ldu	58,s
 	leax	d,u
-	leax	_waveData+2,x
-	ldb	,x
-	stb	81,s
-	clr	82,s
-	jmp	L8
-L9:
-	ldb	82,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	stx	54,s
-	ldd	54,s
+	ldd	62,s
+	std	56,s
+	; ldd	56,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	56,s
+	; ldd	56,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	54,s
 	; ldd	54,s	; optimization 5
-	leax	d,x
-	stx	54,s
-	ldd	54,s
+	subd	56,s	;subhi: R:d -= 56,s
+	std	54,s
+	; ldd	54,s	; optimization 5
+	subd	62,s	;subhi: R:d -= 62,s
+	std	54,s
+	; ldd	54,s	; optimization 5
 	aslb
 	rola
 	std	54,s
-	ldu	54,s
-	leax	_enemies,u
-	clr	,x
-	ldb	82,s
-	stb	61,s
-	ldb	_current_wave
-	stb	62,s
-	ldb	_current_wave+1
-	stb	63,s
-	ldb	82,s
+	exg	d,x
+	addd	54,s
+	exg	d,x
+	leax	_waveData+5,x
+	ldb	,x
+	stb	92,s
+	ldb	89,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	52,s
 	ldd	52,s
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	52,s
 	; ldd	52,s	; optimization 5
-	leax	d,x
-	stx	52,s
-	ldd	52,s
-	addd	#1
-	std	,s
-	ldb	63,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,y
-	ldb	62,s
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	52,s
+	ldu	52,s
+	leax	_enemies+2,u
+	ldb	92,s
+	stb	,x
+	ldb	110,s
+	stb	93,s
+	ldb	_current_wave
+	stb	94,s
+	ldb	_current_wave+1
+	stb	95,s
+	ldb	110,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	ldd	,s
-	aslb
-	rola
+	ldb	95,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,y
+	ldb	94,s
+	clra		;zero_extendqihi: R:b -> R:d
 	std	50,s
-	sty	48,s
+	stx	48,s
 	ldd	48,s
-	aslb
-	rola
-	aslb
-	rola
 	aslb
 	rola
 	aslb
@@ -638,123 +891,100 @@ L9:
 	rola
 	std	48,s
 	; ldd	48,s	; optimization 5
-	pshs	y	;subhi: R:d -= R:y
-	subd	,s++
-	std	48,s
-	ldd	50,s
-	ldu	48,s
-	leay	d,u
-	stx	46,s
-	ldd	46,s
-	aslb
-	rola
-	std	46,s
-	; ldd	46,s	; optimization 5
-	leau	d,x
-	stu	46,s
-	ldd	46,s
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	std	46,s
-	; ldd	46,s	; optimization 5
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
+	std	48,s
+	sty	46,s
+	ldd	46,s
+	aslb
+	rola
+	aslb
+	rola
 	std	46,s
 	; ldd	46,s	; optimization 5
-	leax	d,y
-	leax	_waveData+2,x
-	ldb	,x
-	stb	64,s
-	ldb	61,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	stx	44,s
-	ldd	44,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	ldx	46,s
+	leax	d,x
+	stx	46,s
+	ldd	48,s
+	ldu	46,s
+	leax	d,u
+	ldd	50,s
+	std	44,s
+	; ldd	44,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	44,s
 	; ldd	44,s	; optimization 5
-	leax	d,x
-	stx	44,s
-	ldd	44,s
 	aslb
 	rola
-	std	44,s
-	ldu	44,s
-	leax	_enemies+1,u
-	ldb	64,s
-	stb	,x
-	ldb	82,s
-	stb	65,s
-	ldb	_current_wave
-	stb	66,s
-	ldb	_current_wave+1
-	stb	67,s
-	ldb	82,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	stx	42,s
-	ldd	42,s
+	aslb
+	rola
 	aslb
 	rola
 	std	42,s
 	; ldd	42,s	; optimization 5
-	leax	d,x
-	stx	42,s
-	ldd	42,s
-	addd	#1
-	std	,s
-	ldb	67,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,y
-	ldb	66,s
+	subd	44,s	;subhi: R:d -= 44,s
+	std	42,s
+	; ldd	42,s	; optimization 5
+	subd	50,s	;subhi: R:d -= 50,s
+	std	42,s
+	; ldd	42,s	; optimization 5
+	aslb
+	rola
+	std	42,s
+	exg	d,x
+	addd	42,s
+	exg	d,x
+	leax	_waveData+6,x
+	ldb	,x
+	stb	96,s
+	ldb	93,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	ldd	,s
+	stx	40,s
+	ldd	40,s
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	40,s
-	sty	38,s
-	ldd	38,s
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	std	38,s
-	; ldd	38,s	; optimization 5
-	pshs	y	;subhi: R:d -= R:y
+	; ldd	40,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
+	std	40,s
+	ldu	40,s
+	leax	_enemies+3,u
+	ldb	96,s
+	stb	,x
+	ldb	110,s
+	stb	97,s
+	ldb	_current_wave
+	stb	98,s
+	ldb	_current_wave+1
+	stb	99,s
+	ldb	110,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
+	ldb	99,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,y
+	ldb	98,s
+	clra		;zero_extendqihi: R:b -> R:d
 	std	38,s
-	ldd	40,s
-	ldu	38,s
-	leay	d,u
 	stx	36,s
 	ldd	36,s
-	aslb
-	rola
-	std	36,s
-	; ldd	36,s	; optimization 5
-	leau	d,x
-	stu	36,s
-	ldd	36,s
-	aslb
-	rola
-	aslb
-	rola
 	aslb
 	rola
 	aslb
@@ -766,58 +996,63 @@ L9:
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	36,s
-	; ldd	36,s	; optimization 5
-	leax	d,y
-	leax	_waveData+3,x
-	ldb	,x
-	stb	68,s
-	ldb	65,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	stx	34,s
+	sty	34,s
 	ldd	34,s
+	aslb
+	rola
 	aslb
 	rola
 	std	34,s
 	; ldd	34,s	; optimization 5
-	leax	d,x
-	stx	34,s
-	ldd	34,s
-	addd	#1
 	aslb
 	rola
-	ldu	#_enemies
+	aslb
+	rola
+	aslb
+	rola
+	ldx	34,s
+	leax	d,x
+	stx	34,s
+	ldd	36,s
+	ldu	34,s
 	leax	d,u
-	ldb	68,s
-	stb	,x
-	ldb	82,s
-	stb	69,s
-	ldb	_current_wave
-	stb	70,s
-	ldb	_current_wave+1
-	stb	71,s
-	ldb	82,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	ldb	71,s
-	clra		;zero_extendqihi: R:b -> R:d
+	ldd	38,s
 	std	32,s
-	ldb	70,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,y
-	stx	30,s
-	ldd	30,s
+	; ldd	32,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	32,s
+	; ldd	32,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	30,s
 	; ldd	30,s	; optimization 5
-	leax	d,x
-	stx	30,s
-	ldd	30,s
+	subd	32,s	;subhi: R:d -= 32,s
+	std	30,s
+	; ldd	30,s	; optimization 5
+	subd	38,s	;subhi: R:d -= 38,s
+	std	30,s
+	; ldd	30,s	; optimization 5
 	aslb
 	rola
 	std	30,s
-	ldx	32,s
+	exg	d,x
+	addd	30,s
+	exg	d,x
+	leax	_waveData+7,x
+	ldb	,x
+	stb	100,s
+	ldb	97,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,x
 	stx	28,s
 	ldd	28,s
 	aslb
@@ -826,100 +1061,74 @@ L9:
 	rola
 	aslb
 	rola
-	aslb
-	rola
-	aslb
-	rola
 	std	28,s
 	; ldd	28,s	; optimization 5
-	subd	32,s	;subhi: R:d -= 32,s
-	std	28,s
-	ldd	30,s
-	ldu	28,s
-	leax	d,u
-	sty	26,s
-	ldd	26,s
-	aslb
-	rola
-	std	26,s
-	; ldd	26,s	; optimization 5
-	leau	d,y
-	stu	26,s
-	ldd	26,s
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	std	26,s
-	; ldd	26,s	; optimization 5
-	pshs	y	;subhi: R:d -= R:y
+	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
-	std	26,s
-	exg	d,x
-	addd	26,s
-	exg	d,x
-	leax	_waveData+6,x
-	ldb	,x
-	stb	72,s
-	ldb	69,s
+	std	28,s
+	ldu	28,s
+	leax	_enemies+4,u
+	ldb	100,s
+	stb	,x
+	ldb	110,s
+	stb	101,s
+	ldb	_current_wave
+	stb	102,s
+	ldb	_current_wave+1
+	stb	103,s
+	ldb	110,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
+	ldb	103,s
+	clra		;zero_extendqihi: R:b -> R:d
+	tfr	d,y
+	ldb	102,s
+	clra		;zero_extendqihi: R:b -> R:d
+	std	26,s
 	stx	24,s
 	ldd	24,s
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	24,s
 	; ldd	24,s	; optimization 5
-	leax	d,x
-	stx	24,s
-	ldd	24,s
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	24,s
+	sty	22,s
+	ldd	22,s
 	aslb
 	rola
-	std	24,s
-	ldu	24,s
-	leax	_enemies+3,u
-	ldb	72,s
-	stb	,x
-	ldb	82,s
-	stb	73,s
-	ldb	_current_wave
-	stb	74,s
-	ldb	_current_wave+1
-	stb	75,s
-	ldb	82,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,x
-	ldb	75,s
-	clra		;zero_extendqihi: R:b -> R:d
+	aslb
+	rola
 	std	22,s
-	ldb	74,s
-	clra		;zero_extendqihi: R:b -> R:d
-	tfr	d,y
-	stx	20,s
-	ldd	20,s
+	; ldd	22,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	ldx	22,s
+	leax	d,x
+	stx	22,s
+	ldd	24,s
+	ldu	22,s
+	leax	d,u
+	ldd	26,s
+	std	20,s
+	; ldd	20,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	20,s
 	; ldd	20,s	; optimization 5
-	leax	d,x
-	stx	20,s
-	ldd	20,s
-	aslb
-	rola
-	std	20,s
-	ldx	22,s
-	stx	18,s
-	ldd	18,s
-	aslb
-	rola
-	aslb
-	rola
 	aslb
 	rola
 	aslb
@@ -928,95 +1137,93 @@ L9:
 	rola
 	std	18,s
 	; ldd	18,s	; optimization 5
-	subd	22,s	;subhi: R:d -= 22,s
+	subd	20,s	;subhi: R:d -= 20,s
 	std	18,s
-	ldd	20,s
-	ldu	18,s
-	leax	d,u
-	sty	16,s
-	ldd	16,s
+	; ldd	18,s	; optimization 5
+	subd	26,s	;subhi: R:d -= 26,s
+	std	18,s
+	; ldd	18,s	; optimization 5
 	aslb
 	rola
-	std	16,s
-	; ldd	16,s	; optimization 5
-	leau	d,y
-	stu	16,s
-	ldd	16,s
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	aslb
-	rola
-	std	16,s
-	; ldd	16,s	; optimization 5
-	pshs	y	;subhi: R:d -= R:y
-	subd	,s++
-	std	16,s
+	std	18,s
 	exg	d,x
-	addd	16,s
+	addd	18,s
 	exg	d,x
-	leax	_waveData+7,x
+	leax	_waveData+8,x
 	ldb	,x
-	stb	76,s
-	ldb	73,s
+	stb	104,s
+	ldb	101,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
-	stx	14,s
-	ldd	14,s
+	stx	16,s
+	ldd	16,s
 	aslb
 	rola
-	std	14,s
-	; ldd	14,s	; optimization 5
-	leax	d,x
-	stx	14,s
-	ldd	14,s
 	aslb
 	rola
-	std	14,s
-	ldu	14,s
-	leax	_enemies+4,u
-	ldb	76,s
+	aslb
+	rola
+	std	16,s
+	; ldd	16,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	16,s
+	ldu	16,s
+	leax	_enemies+5,u
+	ldb	104,s
 	stb	,x
-	ldb	82,s
-	stb	77,s
+	ldb	110,s
+	stb	105,s
 	ldb	_current_wave
-	stb	78,s
+	stb	106,s
 	ldb	_current_wave+1
-	stb	79,s
-	ldb	82,s
+	stb	107,s
+	ldb	110,s
 	clra		;zero_extendqihi: R:b -> R:d
 	ldu	#1
 	leax	d,u
-	ldb	79,s
-	clra		;zero_extendqihi: R:b -> R:d
-	std	12,s
-	ldb	78,s
+	ldb	107,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,y
-	stx	10,s
+	ldb	106,s
+	clra		;zero_extendqihi: R:b -> R:d
+	std	14,s
+	stx	12,s
+	ldd	12,s
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	std	12,s
+	; ldd	12,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	std	12,s
+	sty	10,s
 	ldd	10,s
+	aslb
+	rola
 	aslb
 	rola
 	std	10,s
 	; ldd	10,s	; optimization 5
+	aslb
+	rola
+	aslb
+	rola
+	aslb
+	rola
+	ldx	10,s
 	leax	d,x
 	stx	10,s
-	ldd	10,s
-	aslb
-	rola
-	std	10,s
-	ldx	12,s
-	stx	8,s
-	ldd	8,s
-	aslb
-	rola
-	aslb
-	rola
+	ldd	12,s
+	ldu	10,s
+	leax	d,u
+	ldd	14,s
+	std	8,s
+	; ldd	8,s	; optimization 5
 	aslb
 	rola
 	aslb
@@ -1025,24 +1232,6 @@ L9:
 	rola
 	std	8,s
 	; ldd	8,s	; optimization 5
-	subd	12,s	;subhi: R:d -= 12,s
-	std	8,s
-	ldd	10,s
-	ldu	8,s
-	leax	d,u
-	sty	6,s
-	ldd	6,s
-	aslb
-	rola
-	std	6,s
-	; ldd	6,s	; optimization 5
-	leau	d,y
-	stu	6,s
-	ldd	6,s
-	aslb
-	rola
-	aslb
-	rola
 	aslb
 	rola
 	aslb
@@ -1051,68 +1240,76 @@ L9:
 	rola
 	std	6,s
 	; ldd	6,s	; optimization 5
-	pshs	y	;subhi: R:d -= R:y
-	subd	,s++
+	subd	8,s	;subhi: R:d -= 8,s
+	std	6,s
+	; ldd	6,s	; optimization 5
+	subd	14,s	;subhi: R:d -= 14,s
+	std	6,s
+	; ldd	6,s	; optimization 5
+	aslb
+	rola
 	std	6,s
 	exg	d,x
 	addd	6,s
 	exg	d,x
 	leax	_waveData+2,x
 	ldb	,x
-	stb	80,s
-	ldb	77,s
+	stb	108,s
+	ldb	105,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	4,s
 	ldd	4,s
+	aslb
+	rola
+	aslb
+	rola
 	aslb
 	rola
 	std	4,s
 	; ldd	4,s	; optimization 5
-	leax	d,x
-	stx	4,s
-	ldd	4,s
-	aslb
-	rola
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
 	std	4,s
 	ldu	4,s
-	leax	_enemies+5,u
-	ldb	80,s
+	leax	_enemies+6,u
+	ldb	108,s
 	stb	,x
-	inc	82,s
+	inc	110,s
 L8:
-	ldb	82,s
-	cmpb	81,s	;cmpqi:
+	ldb	110,s
+	cmpb	109,s	;cmpqi:
 	lblo	L9
-	ldb	81,s
-	stb	83,s
+	ldb	109,s
+	stb	111,s
 	bra	L10
 L11:
-	ldb	83,s
+	ldb	111,s
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	2,s
 	ldd	2,s
 	aslb
 	rola
-	std	2,s
-	; ldd	2,s	; optimization 5
-	leax	d,x
-	stx	2,s
-	ldd	2,s
 	aslb
 	rola
+	aslb
+	rola
+	std	2,s
+	; ldd	2,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
 	std	2,s
 	ldu	2,s
 	leax	_enemies,u
 	ldb	#1
 	stb	,x
-	inc	83,s
+	inc	111,s
 L10:
-	ldb	83,s
+	ldb	111,s
 	cmpb	#4	;cmpqi:
 	bls	L11
-	leas	84,s
+	leas	112,s
 	puls	y,u,pc
 	.globl _handle_enemies
 _handle_enemies:
@@ -1128,13 +1325,14 @@ L16:
 	ldd	6,s
 	aslb
 	rola
-	std	6,s
-	; ldd	6,s	; optimization 5
-	leax	d,x
-	stx	6,s
-	ldd	6,s
 	aslb
 	rola
+	aslb
+	rola
+	std	6,s
+	; ldd	6,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
 	std	6,s
 	ldu	6,s
 	leax	_enemies,u
@@ -1148,16 +1346,16 @@ L16:
 	ldd	4,s
 	aslb
 	rola
-	std	4,s
-	; ldd	4,s	; optimization 5
-	leax	d,x
-	stx	4,s
-	ldd	4,s
+	aslb
+	rola
 	aslb
 	rola
 	std	4,s
-	ldx	4,s
-	leax	_enemies,x
+	; ldd	4,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	ldu	#_enemies
+	leax	d,u
 	jsr	_move_object
 	ldb	8,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -1166,16 +1364,16 @@ L16:
 	ldd	2,s
 	aslb
 	rola
-	std	2,s
-	; ldd	2,s	; optimization 5
-	leax	d,x
-	stx	2,s
-	ldd	2,s
+	aslb
+	rola
 	aslb
 	rola
 	std	2,s
-	ldx	2,s
-	leax	_enemies,x
+	; ldd	2,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	ldu	#_enemies
+	leax	d,u
 	jsr	_draw_enemy
 	ldb	8,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -1184,16 +1382,16 @@ L16:
 	ldd	,s
 	aslb
 	rola
-	std	,s
-	; ldd	,s	; optimization 5
-	leax	d,x
-	stx	,s
-	ldd	,s
+	aslb
+	rola
 	aslb
 	rola
 	std	,s
-	ldx	,s
-	leax	_enemies,x
+	; ldd	,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
+	ldu	#_enemies
+	leax	d,u
 	jsr	_check_enemy
 L15:
 	inc	8,s
@@ -1217,13 +1415,14 @@ L21:
 	ldd	1,s
 	aslb
 	rola
-	std	1,s
-	; ldd	1,s	; optimization 5
-	leax	d,x
-	stx	1,s
-	ldd	1,s
 	aslb
 	rola
+	aslb
+	rola
+	std	1,s
+	; ldd	1,s	; optimization 5
+	pshs	x	;subhi: R:d -= R:x
+	subd	,s++
 	std	1,s
 	ldu	1,s
 	leax	_enemies,u

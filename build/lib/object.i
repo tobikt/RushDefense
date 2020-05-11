@@ -1716,12 +1716,11 @@ struct object_t
  int dy;
  int dx;
  unsigned int damage;
-
+ unsigned int money;
 };
 
 
 
-void init_object(struct object_t* p);
 void move_object(struct object_t* p);
 # 8 "source\\object.c" 2
 # 1 "source\\/lookupAngle.h" 1
@@ -1870,13 +1869,6 @@ void game_win(void);
 
 
 
-void init_object(struct object_t* p)
-{
-
-
- p->damage = 10;
-# 29 "source\\object.c"
-}
 
 
 void move_object(struct object_t* p)

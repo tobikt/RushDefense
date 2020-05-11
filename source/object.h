@@ -23,12 +23,11 @@ struct object_t
 	int dy;					// delta y byte
 	int dx;					// delta x byte
 	unsigned int damage;
-	//unsigned int money;
+	unsigned int money;
 };
 
 // ---------------------------------------------------------------------------
 
-void init_object(struct object_t* p);
 void move_object(struct object_t* p);
 
 // ***************************************************************************

@@ -15,12 +15,19 @@ enum player_lvl_t
 	P_LEVEL_3,
 };
 
+enum player_firerate_t
+{
+	PLAYER_FIRERATE_1,
+	PLAYER_FIRERATE_2,
+	PLAYER_FIRERATE_3,
+};
+
 struct player_t
 {
 	enum player_lvl_t lvl;
 	unsigned int angle;
-	unsigned int money;
-	unsigned int firerate;
+	unsigned long money;
+	enum player_firerate_t firerate;
 };
 
 // ---------------------------------------------------------------------------

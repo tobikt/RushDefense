@@ -12,6 +12,7 @@
 #include "tower_lvl.h"
 #include "vector2.h"
 #include "bullet.h"
+#include "RushDefenseDefine.h"
 
 // ---------------------------------------------------------------------------
 
@@ -20,14 +21,12 @@ struct tower_t tower =
 	.status = DEAD,
 	.lvl = LEVEL_1,
 	.angle = 0,
-	.firerate = FIRERATE_1,
+	.firerate = TOWER_FIRERATE_1,
 	.healtPoints = 0,
 	.towerBullets = {0,0,0,0,0,0},
 };
 
 // ---------------------------------------------------------------------------
-
-unsigned int cnt = 0;
 
 
 struct packet_t rotated_tower1[sizeof (vectors_tower_lvl_1) / sizeof(struct packet_t)];
@@ -39,6 +38,8 @@ struct packet_t rotated_tower4[sizeof (vectors_tower_lvl_4) / sizeof(struct pack
 
 void draw_tower(void)
 {
+	static unsigned int RotationDelay = TowerRotationSpeed;
+	
 	Reset0Ref();						// reset beam to center of screen
 	dp_VIA_t1_cnt_lo = 0x7f;			// set scaling factor for positioning
 	Moveto_d(0, 0);						// move beam to object coordinates
@@ -78,19 +79,40 @@ void draw_tower(void)
 	};
 	
 
-	if(cnt == 50)
+	if(RotationDelay == 0)
 	{
-		cnt = 0;
-		tower.angle += 2;
+		RotationDelay = TowerRotationSpeed;
 		
-		tower.towerBullets[0] += tower.angle;
-		tower.towerBullets[1] += tower.angle;
-		tower.towerBullets[2] += tower.angle;
-		tower.towerBullets[3] += tower.angle;
-		tower.towerBullets[4] += tower.angle;
-		tower.towerBullets[5] += tower.angle;
+		tower.angle += TowerRotationAngleCnt;
+		
+		if(tower.angle >= 63) tower.angle = 0;
+		
+		switch(tower.lvl)
+		{
+			case LEVEL_6:
+				if(tower.towerBullets[5] + tower.angle >= 63) tower.towerBullets[5] = 0;
+				else tower.towerBullets[5] += TowerRotationAngleCnt;
+			case LEVEL_5:
+				if(tower.towerBullets[4] + tower.angle >= 63) tower.towerBullets[4] = 0;
+				else tower.towerBullets[4] += TowerRotationAngleCnt;
+			case LEVEL_4:
+				if(tower.towerBullets[3] + tower.angle >= 63) tower.towerBullets[3] = 0;
+				else tower.towerBullets[3] += TowerRotationAngleCnt;
+			case LEVEL_3:
+				if(tower.towerBullets[2] + tower.angle >= 63) tower.towerBullets[2] = 0;
+				else tower.towerBullets[2] += TowerRotationAngleCnt;
+			case LEVEL_2:
+				if(tower.towerBullets[1] + tower.angle >= 63) tower.towerBullets[1] = 0;
+				else tower.towerBullets[1] += TowerRotationAngleCnt;
+			case LEVEL_1:
+				if(tower.towerBullets[0] + tower.angle >= 63) tower.towerBullets[0] = 0;
+				else tower.towerBullets[0] += TowerRotationAngleCnt;
+				break;
+			default:
+				break;
+		}
 	}
-	++cnt;
+	--RotationDelay;
 	
 	
 }
@@ -102,17 +124,20 @@ void init_tower(void)
 	tower.status = ALIVE;
 	set_tower(LEVEL_1);
 	tower.angle = 0;
-	tower.healtPoints = 100;
+	tower.firerate = TOWER_FIRERATE_1;
+	tower.healtPoints = TowerHealthPoints;
 }
 
 // ---------------------------------------------------------------------------
 void set_tower(enum tower_lvl_t lvl)
 {
 	tower.lvl = lvl;
+	tower.angle = 0;
+	tower.firerate = TOWER_FIRERATE_1;
+	tower.healtPoints = TowerHealthPoints;
 	switch(tower.lvl)
 	{
-		case LEVEL_1:
-			tower.firerate = FIRERATE_1;
+		case LEVEL_1:	
 			tower.towerBullets[0] = tower.angle;
 			tower.towerBullets[1] = 100;
 			tower.towerBullets[2] = 100;
@@ -121,7 +146,6 @@ void set_tower(enum tower_lvl_t lvl)
 			tower.towerBullets[5] = 100;
 			break;
 		case LEVEL_2:
-			tower.firerate = FIRERATE_1;
 			tower.towerBullets[0] = tower.angle;
 			tower.towerBullets[1] = tower.angle + 32;
 			tower.towerBullets[2] = 100;
@@ -130,7 +154,6 @@ void set_tower(enum tower_lvl_t lvl)
 			tower.towerBullets[5] = 100;
 			break;
 		case LEVEL_3:
-			tower.firerate = FIRERATE_2;
 			tower.towerBullets[0] = tower.angle;
 			tower.towerBullets[1] = tower.angle + 16;
 			tower.towerBullets[2] = tower.angle + 32;
@@ -139,7 +162,6 @@ void set_tower(enum tower_lvl_t lvl)
 			tower.towerBullets[5] = 100;
 			break;
 		case LEVEL_4:
-			tower.firerate = FIRERATE_2;
 			tower.towerBullets[0] = tower.angle;
 			tower.towerBullets[1] = tower.angle + 16;
 			tower.towerBullets[2] = tower.angle + 32;
@@ -148,7 +170,6 @@ void set_tower(enum tower_lvl_t lvl)
 			tower.towerBullets[5] = 100;
 			break;
 		case LEVEL_5:
-			tower.firerate = FIRERATE_3;
 			tower.towerBullets[0] = tower.angle;
 			tower.towerBullets[1] = tower.angle + 11;
 			tower.towerBullets[2] = tower.angle + 21;
@@ -157,7 +178,6 @@ void set_tower(enum tower_lvl_t lvl)
 			tower.towerBullets[5] = 100;
 			break;
 		case LEVEL_6:
-			tower.firerate = FIRERATE_3;
 			tower.towerBullets[0] = tower.angle;
 			tower.towerBullets[1] = tower.angle + 11;
 			tower.towerBullets[2] = tower.angle + 21;
@@ -172,10 +192,10 @@ void set_tower(enum tower_lvl_t lvl)
 
 void tower_shot(void)
 {
-	static unsigned int rate = 50;
-	if(tower.firerate == FIRERATE_1) rate -= 1;
-	else if(tower.firerate == FIRERATE_2) rate -= 2;
-	else if(tower.firerate == FIRERATE_3) rate -= 5;
+	static int rate = 50;
+	if(tower.firerate == TOWER_FIRERATE_1) rate -= 1;
+	else if(tower.firerate == TOWER_FIRERATE_2) rate -= 2;
+	else if(tower.firerate == TOWER_FIRERATE_3) rate -= 5;
 	
 	struct vector2 vec;
 	vec.Y = 0;

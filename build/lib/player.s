@@ -37,8 +37,9 @@ _vectors_player:
 	.globl _player
 	.area .data
 _player:
-	.word	0	;skip space 4
-	.word	0	;skip space 2
+	.word	0	;skip space 5
+	.word	0	;skip space 3
+	.byte	0	;skip space
 	.area .text
 	.globl _draw_player
 _draw_player:
@@ -68,9 +69,9 @@ _draw_player:
 _init_player:
 	clr	_player
 	clr	_player+1
-	clr	_player+2
-	ldb	#1
-	stb	_player+3
+	ldx	#0
+	stx	_player+2
+	clr	_player+4
 	rts
 	.globl _rotate_player
 _rotate_player:
@@ -119,49 +120,62 @@ L11:
 	leas	3,s
 	rts
 	.area .data
-_timerFireRate.3281:
+_timerFireRate.3285:
 	.byte	20
 	.area .text
 	.globl _shot_player
 _shot_player:
-	leas	-6,s
+	leas	-3,s
 	jsr	___Joy_Digital
-	clr	4,s
-	clr	5,s
-	ldb	_player+3
-	stb	1,s
-	ldb	_timerFireRate.3281
-	cmpb	1,s	;cmpqi:(R)
-	bls	L13
-	ldb	_timerFireRate.3281
-	stb	,s
-	ldb	_player+3
-	stb	2,s
-	ldb	,s
-	subb	2,s
-	stb	_timerFireRate.3281
-	bra	L16
-L13:
-	ldb	_Vec_Joy_1_Y
-	clr	3,s
-	tstb
-	ble	L15
-	ldb	#1
-	stb	3,s
-L15:
-	ldb	3,s
+	clr	1,s
+	clr	2,s
+	ldb	_timerFireRate.3285
 	; tstb	; optimization 6
-	beq	L16
+	bgt	L13
+	ldb	_Vec_Joy_1_Y
+	clr	,s
+	tstb
+	ble	L14
+	ldb	#1
+	stb	,s
+L14:
+	ldb	,s
+	; tstb	; optimization 6
+	beq	L19
 	ldb	_player+1
 	pshs	b
 	ldb	#3
-	ldx	5,s
+	ldx	2,s
 	jsr	_fire_bullet
 	leas	1,s
 	ldb	#20
-	stb	_timerFireRate.3281
-L16:
-	leas	6,s
+	stb	_timerFireRate.3285
+	bra	L19
+L13:
+	ldb	_player+4
+	; tstb	; optimization 6
+	bne	L17
+	ldb	_timerFireRate.3285
+	decb
+	stb	_timerFireRate.3285
+	bra	L19
+L17:
+	ldb	_player+4
+	cmpb	#1	;cmpqi:
+	bne	L18
+	ldb	_timerFireRate.3285
+	addb	#-2
+	stb	_timerFireRate.3285
+	bra	L19
+L18:
+	ldb	_player+4
+	cmpb	#2	;cmpqi:
+	bne	L19
+	ldb	_timerFireRate.3285
+	addb	#-5
+	stb	_timerFireRate.3285
+L19:
+	leas	3,s
 	rts
 	.globl _handle_player
 _handle_player:

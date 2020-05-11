@@ -2340,12 +2340,11 @@ struct object_t
  int dy;
  int dx;
  unsigned int damage;
-
+ unsigned int money;
 };
 
 
 
-void init_object(struct object_t* p);
 void move_object(struct object_t* p);
 # 7 "source\\/enemy.h" 2
 
@@ -2363,6 +2362,48 @@ void init_enemies(void);
 void handle_enemies(void);
 void check_AllEnemysDeath(void);
 # 15 "source\\bullet.c" 2
+# 1 "source\\/player.h" 1
+
+
+
+
+       
+
+
+
+
+
+enum player_lvl_t
+{
+ P_LEVEL_1,
+ P_LEVEL_2,
+ P_LEVEL_3,
+};
+
+enum player_firerate_t
+{
+ PLAYER_FIRERATE_1,
+ PLAYER_FIRERATE_2,
+ PLAYER_FIRERATE_3,
+};
+
+struct player_t
+{
+ enum player_lvl_t lvl;
+ unsigned int angle;
+ unsigned long money;
+ enum player_firerate_t firerate;
+};
+
+
+
+extern struct player_t player;
+
+
+
+void init_player(void);
+void handle_player(void);
+# 16 "source\\bullet.c" 2
 
 
 
@@ -2461,6 +2502,7 @@ void check_bulletCollision(void)
      if(check_collision(bullets[i].coor.Y, bullets[i].coor.X, enemies[j].y, enemies[j].x, 8, 8))
      {
       play_explosion(&bang);
+      player.money += enemies[j].money;
       enemies[j].status = INACTIVE;
      }
     }
