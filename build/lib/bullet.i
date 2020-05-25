@@ -2456,7 +2456,7 @@ void move_bullet(unsigned int i)
  bullets[i].coor.Y += bullets[i].angle.Y;
  bullets[i].coor.X += bullets[i].angle.X;
 
- if(bullets[i].coor.Y > 100 || bullets[i].coor.Y < -100 || bullets[i].coor.X > 100 || bullets[i].coor.X < -100)
+ if(bullets[i].coor.Y > 120 || bullets[i].coor.Y < -120 || bullets[i].coor.X > 120 || bullets[i].coor.X < -120)
  {
   bullets[i].state = BULLET_UNSHOT;
   bullets[i].coor.Y = 0;

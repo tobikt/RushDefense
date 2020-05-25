@@ -29,7 +29,7 @@ void menu_init(void)
 
 void menu_handle(void)
 {
-	static int limit = 3;
+	static int limit = 2;
 	if(limit != 0)
 	{
 		--limit;
@@ -37,16 +37,17 @@ void menu_handle(void)
 	}
 	else
 	{
-		limit = 5;
+		limit = 2;
 	}
 	check_joysticks();
+	check_buttons();
 	
-	if (joystick_1_left())
+	if (button_1_3_pressed())
 	{
 		//BACK TO GAME
 		Menu.status = MENU_CLOSE;
 	}
-	else if (joystick_1_right())
+	else if (button_1_4_pressed())
 	{
 		//LVL UP
 		if(Menu.selectedItem == SELECTEDITEM_PLAYER_LVL)
@@ -541,6 +542,9 @@ void menu_draw(void)
 				break;
 		};	
 	}
+
+	print_string(-80, -110, "MONEY \x80");
+	print_long_unsigned_int(-80, 40, player.money);
 	
 }
 

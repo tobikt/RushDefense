@@ -1645,7 +1645,7 @@ _game_play:
 	jmp	L4
 L10:
 	ldb	_current_game
-	; tstb	; optimization 6
+	tstb
 	bne	L5
 	jsr	_wave_play
 	ldb	_current_wave+3
@@ -1677,7 +1677,7 @@ L9:
 	ldb	_current_game+2
 	decb
 	stb	_current_game+2
-	; ldb	_current_game+2	; optimization 5
+	ldb	_current_game+2
 	tstb
 	bne	L4
 	jsr	_game_over
@@ -1692,7 +1692,7 @@ L5:
 	jsr	_wave_init
 L4:
 	ldb	_current_game+2
-	; tstb	; optimization 6
+	tstb
 	lbne	L10
 	leas	1,s
 	rts
@@ -1738,7 +1738,7 @@ L14:
 	leas	1,s
 	jsr	___Read_Btns
 	dec	7,s
-	; tst	7,s	; optimization 1
+	tst	7,s
 	beq	L15
 	ldb	_Vec_Buttons
 	andb	#8
@@ -1787,7 +1787,7 @@ L18:
 	leas	1,s
 	jsr	___Read_Btns
 	dec	7,s
-	; tst	7,s	; optimization 1
+	tst	7,s
 	beq	L19
 	ldb	_Vec_Buttons
 	andb	#8

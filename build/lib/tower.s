@@ -269,12 +269,12 @@ _tower:
 	.word	0	;skip space 3
 	.byte	0	;skip space
 _RotationDelay.3290:
-	.byte	30
+	.byte	60
 	.area .text
 	.globl _draw_tower
 _draw_tower:
 	pshs	u
-	leas	-16,s
+	leas	-9,s
 	jsr	___Reset0Ref
 	ldb	#127
 	stb	*_dp_VIA_t1_cnt_lo
@@ -285,14 +285,14 @@ _draw_tower:
 	ldb	#34
 	stb	*_dp_VIA_t1_cnt_lo
 	ldb	_tower+1
-	stb	3,s
-	; ldb	3,s	; optimization 5
+	stb	2,s
+	ldb	2,s
 	cmpb	#5	;cmpqi:
 	lbhi	L2
-	ldb	3,s
+	ldb	2,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	aslb
 	rola
 	ldu	#L9
@@ -308,11 +308,11 @@ L9:
 	.word L10
 L3:
 	ldb	_tower+3
-	stb	11,s
+	stb	4,s
 	ldx	#_rotated_tower1
 	pshs	x
 	ldx	#_vectors_tower_lvl_1
-	ldb	13,s
+	ldb	6,s
 	jsr	__Rot_VL_Mode
 	leas	2,s
 	ldx	#_rotated_tower1
@@ -320,11 +320,11 @@ L3:
 	jmp	L10
 L4:
 	ldb	_tower+3
-	stb	12,s
+	stb	5,s
 	ldx	#_rotated_tower2
 	pshs	x
 	ldx	#_vectors_tower_lvl_2
-	ldb	14,s
+	ldb	7,s
 	jsr	__Rot_VL_Mode
 	leas	2,s
 	ldx	#_rotated_tower2
@@ -332,11 +332,11 @@ L4:
 	bra	L10
 L5:
 	ldb	_tower+3
-	stb	13,s
+	stb	6,s
 	ldx	#_rotated_tower3
 	pshs	x
 	ldx	#_vectors_tower_lvl_3
-	ldb	15,s
+	ldb	8,s
 	jsr	__Rot_VL_Mode
 	leas	2,s
 	ldx	#_rotated_tower3
@@ -344,11 +344,11 @@ L5:
 	bra	L10
 L6:
 	ldb	_tower+3
-	stb	14,s
+	stb	7,s
 	ldx	#_rotated_tower4
 	pshs	x
 	ldx	#_vectors_tower_lvl_4
-	ldb	16,s
+	ldb	9,s
 	jsr	__Rot_VL_Mode
 	leas	2,s
 	ldx	#_rotated_tower4
@@ -356,38 +356,38 @@ L6:
 	bra	L10
 L2:
 	ldb	_tower+3
-	stb	15,s
+	stb	8,s
 	ldx	#_rotated_tower1
 	pshs	x
 	ldx	#_vectors_tower_lvl_1
-	ldb	17,s
+	ldb	10,s
 	jsr	__Rot_VL_Mode
 	leas	2,s
 	ldx	#_rotated_tower1
 	jsr	___Draw_VLp
 L10:
 	ldb	_RotationDelay.3290
-	; tstb	; optimization 6
+	tstb
 	lbne	L11
-	ldb	#30
+	ldb	#60
 	stb	_RotationDelay.3290
 	ldb	_tower+3
-	addb	#4
+	addb	#2
 	stb	_tower+3
-	; ldb	_tower+3	; optimization 5
+	ldb	_tower+3
 	cmpb	#62	;cmpqi:
 	bls	L12
 	clr	_tower+3
 L12:
 	ldb	_tower+1
-	stb	4,s
-	; ldb	4,s	; optimization 5
+	stb	3,s
+	ldb	3,s
 	cmpb	#5	;cmpqi:
 	lbhi	L11
-	ldb	4,s
+	ldb	3,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	aslb
 	rola
 	ldu	#L19
@@ -403,99 +403,87 @@ L19:
 	.word L18
 L18:
 	ldb	_tower+10
-	stb	2,s
-	ldb	_tower+3
-	stb	5,s
-	ldb	2,s
-	addb	5,s
+	addb	#2
 	cmpb	#62	;cmpqi:
 	bls	L20
-	clr	_tower+10
+	ldb	_tower+10
+	addb	#-62
+	stb	_tower+10
 	bra	L17
 L20:
 	ldb	_tower+10
-	addb	#4
+	addb	#2
 	stb	_tower+10
 L17:
 	ldb	_tower+9
-	stb	2,s
-	ldb	_tower+3
-	stb	6,s
-	ldb	2,s
-	addb	6,s
+	addb	#2
 	cmpb	#62	;cmpqi:
 	bls	L21
-	clr	_tower+9
+	ldb	_tower+9
+	addb	#-62
+	stb	_tower+9
 	bra	L16
 L21:
 	ldb	_tower+9
-	addb	#4
+	addb	#2
 	stb	_tower+9
 L16:
 	ldb	_tower+8
-	stb	2,s
-	ldb	_tower+3
-	stb	7,s
-	ldb	2,s
-	addb	7,s
+	addb	#2
 	cmpb	#62	;cmpqi:
 	bls	L22
-	clr	_tower+8
+	ldb	_tower+8
+	addb	#-62
+	stb	_tower+8
 	bra	L15
 L22:
 	ldb	_tower+8
-	addb	#4
+	addb	#2
 	stb	_tower+8
 L15:
 	ldb	_tower+7
-	stb	2,s
-	ldb	_tower+3
-	stb	8,s
-	ldb	2,s
-	addb	8,s
+	addb	#2
 	cmpb	#62	;cmpqi:
 	bls	L23
-	clr	_tower+7
+	ldb	_tower+7
+	addb	#-62
+	stb	_tower+7
 	bra	L14
 L23:
 	ldb	_tower+7
-	addb	#4
+	addb	#2
 	stb	_tower+7
 L14:
 	ldb	_tower+6
-	stb	2,s
-	ldb	_tower+3
-	stb	9,s
-	ldb	2,s
-	addb	9,s
+	addb	#2
 	cmpb	#62	;cmpqi:
 	bls	L24
-	clr	_tower+6
+	ldb	_tower+6
+	addb	#-62
+	stb	_tower+6
 	bra	L13
 L24:
 	ldb	_tower+6
-	addb	#4
+	addb	#2
 	stb	_tower+6
 L13:
 	ldb	_tower+5
-	stb	2,s
-	ldb	_tower+3
-	stb	10,s
-	ldb	2,s
-	addb	10,s
+	addb	#2
 	cmpb	#62	;cmpqi:
 	bls	L25
-	clr	_tower+5
+	ldb	_tower+5
+	addb	#-62
+	stb	_tower+5
 	bra	L11
 L25:
 	ldb	_tower+5
-	addb	#4
+	addb	#2
 	stb	_tower+5
 L11:
 	ldb	_RotationDelay.3290
 	decb
 	stb	_RotationDelay.3290
-	leas	16,s
+	leas	9,s
 	puls	u,pc
 	.globl _init_tower
 _init_tower:
@@ -513,7 +501,7 @@ _set_tower:
 	pshs	u
 	leas	-4,s
 	stb	3,s
-	; ldb	3,s	; optimization 5
+	ldb	3,s
 	stb	_tower+1
 	clr	_tower+3
 	clr	_tower+2
@@ -521,13 +509,13 @@ _set_tower:
 	stb	_tower+4
 	ldb	_tower+1
 	stb	2,s
-	; ldb	2,s	; optimization 5
+	ldb	2,s
 	cmpb	#5	;cmpqi:
 	lbhi	L38
 	ldb	2,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	aslb
 	rola
 	ldu	#L37
@@ -643,39 +631,39 @@ L38:
 	leas	4,s
 	puls	u,pc
 	.area .data
-_rate.3431:
+_rate.3437:
 	.byte	50
 	.area .text
 	.globl _tower_shot
 _tower_shot:
 	leas	-2,s
 	ldb	_tower+2
-	; tstb	; optimization 6
+	tstb
 	bne	L40
-	ldb	_rate.3431
+	ldb	_rate.3437
 	decb
-	stb	_rate.3431
+	stb	_rate.3437
 	bra	L41
 L40:
 	ldb	_tower+2
 	cmpb	#1	;cmpqi:
 	bne	L42
-	ldb	_rate.3431
+	ldb	_rate.3437
 	addb	#-2
-	stb	_rate.3431
+	stb	_rate.3437
 	bra	L41
 L42:
 	ldb	_tower+2
 	cmpb	#2	;cmpqi:
 	bne	L41
-	ldb	_rate.3431
+	ldb	_rate.3437
 	addb	#-5
-	stb	_rate.3431
+	stb	_rate.3437
 L41:
 	clr	,s
 	clr	1,s
-	ldb	_rate.3431
-	; tstb	; optimization 6
+	ldb	_rate.3437
+	tstb
 	lbgt	L44
 	ldb	_tower+5
 	pshs	b
@@ -714,7 +702,7 @@ L41:
 	jsr	_fire_bullet
 	leas	1,s
 	ldb	#50
-	stb	_rate.3431
+	stb	_rate.3437
 L44:
 	leas	2,s
 	rts
@@ -723,7 +711,7 @@ _handle_tower:
 	jsr	_tower_shot
 	jsr	_draw_tower
 	ldb	_tower
-	; tstb	; optimization 6
+	tstb
 	bne	L47
 	ldb	#1
 	stb	_current_wave+3

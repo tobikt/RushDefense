@@ -43,7 +43,7 @@ __f_debug:
 	ldb	34,u
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,u
-	; ldd	,u	; optimization 5
+	ldd	,u
 	addd	32,u
 	std	14,u
 	clr	34,u
@@ -82,7 +82,7 @@ L7:
 	std	14,u
 	ldb	[14,u]
 	stb	17,u
-	; ldb	17,u	; optimization 5
+	ldb	17,u
 	cmpb	#96	;cmpqi:
 	bls	L6
 	ldb	17,u
@@ -113,11 +113,11 @@ L13:
 	jsr	___DP_to_C8
 	ldx	_current_explosion
 	stx	18,u
-	; ldx	18,u	; optimization 5
+	ldx	18,u
 	jsr	__Explosion_Snd
 	ldx	_current_music
 	stx	20,u
-	; ldx	20,u	; optimization 5
+	ldx	20,u
 	jsr	__Init_Music_chk
 	jsr	___Wait_Recal
 	jsr	__Do_Sound
@@ -163,13 +163,13 @@ L13:
 	leas	1,s
 	ldb	9,u
 	stb	4,u
-	; ldb	4,u	; optimization 5
+	ldb	4,u
 	cmpb	#1	;cmpqi:
 	beq	L10
 	ldb	4,u
 	cmpb	#1	;cmpqi:
 	blo	L9
-	; ldb	4,u; optimization 8
+	ldb	4,u
 	cmpb	#2	;cmpqi:
 	beq	L11
 	ldb	4,u

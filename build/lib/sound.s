@@ -106,7 +106,7 @@ _play_tune:
 	ldb	2,s
 	addb	#8
 	stb	6,s
-	; ldb	6,s	; optimization 5
+	ldb	6,s
 	stb	12,s
 	ldb	15,s
 	stb	11,s

@@ -2519,7 +2519,7 @@ struct packet_t rotated_tower4[sizeof (vectors_tower_lvl_4) / sizeof(struct pack
 
 void draw_tower(void)
 {
- static unsigned int RotationDelay = 30;
+ static unsigned int RotationDelay = 60;
 
  Reset0Ref();
  dp_VIA_t1_cnt_lo = 0x7f;
@@ -2562,32 +2562,32 @@ void draw_tower(void)
 
  if(RotationDelay == 0)
  {
-  RotationDelay = 30;
+  RotationDelay = 60;
 
-  tower.angle += 4;
+  tower.angle += 2;
 
   if(tower.angle >= 63) tower.angle = 0;
 
   switch(tower.lvl)
   {
    case LEVEL_6:
-    if(tower.towerBullets[5] + tower.angle >= 63) tower.towerBullets[5] = 0;
-    else tower.towerBullets[5] += 4;
+    if((tower.towerBullets[5] + 2) >= 63) tower.towerBullets[5] = (tower.towerBullets[5] + 2) - 64;
+    else tower.towerBullets[5] += 2;
    case LEVEL_5:
-    if(tower.towerBullets[4] + tower.angle >= 63) tower.towerBullets[4] = 0;
-    else tower.towerBullets[4] += 4;
+    if((tower.towerBullets[4] + 2) >= 63) tower.towerBullets[4] = (tower.towerBullets[4] + 2) - 64;
+    else tower.towerBullets[4] += 2;
    case LEVEL_4:
-    if(tower.towerBullets[3] + tower.angle >= 63) tower.towerBullets[3] = 0;
-    else tower.towerBullets[3] += 4;
+    if((tower.towerBullets[3] + 2) >= 63) tower.towerBullets[3] = (tower.towerBullets[3] + 2) - 64;
+    else tower.towerBullets[3] += 2;
    case LEVEL_3:
-    if(tower.towerBullets[2] + tower.angle >= 63) tower.towerBullets[2] = 0;
-    else tower.towerBullets[2] += 4;
+    if((tower.towerBullets[2] + 2) >= 63) tower.towerBullets[2] = (tower.towerBullets[2] + 2) - 64;
+    else tower.towerBullets[2] += 2;
    case LEVEL_2:
-    if(tower.towerBullets[1] + tower.angle >= 63) tower.towerBullets[1] = 0;
-    else tower.towerBullets[1] += 4;
+    if((tower.towerBullets[1] + 2) >= 63) tower.towerBullets[1] = (tower.towerBullets[1] + 2) - 64;
+    else tower.towerBullets[1] += 2;
    case LEVEL_1:
-    if(tower.towerBullets[0] + tower.angle >= 63) tower.towerBullets[0] = 0;
-    else tower.towerBullets[0] += 4;
+    if((tower.towerBullets[0] + 2) >= 63) tower.towerBullets[0] = (tower.towerBullets[0] + 2) - 64;
+    else tower.towerBullets[0] += 2;
     break;
    default:
     break;

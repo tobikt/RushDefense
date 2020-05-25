@@ -11,7 +11,7 @@ _main:
 L2:
 	jsr	_game
 	stb	,s
-	; tst	,s	; optimization 3
+	tst	,s
 	beq	L2
 	ldb	,s
 	leas	1,s

@@ -1873,13 +1873,32 @@ void print_unsigned_int(int y, int x, unsigned int z)
 {
  volatile char message[4];
  message[3] = '\x80';
- unsigned int i = 2;
- do
+
+ if(z<100u)
  {
-  message[i--] = (char) ('0' + z % 10);
-  z = z / 10;
+  message[0] = (char) ('0');
  }
- while (i != 255);
+ else if(z<200u)
+ {
+  message[0] = (char) ('1');
+  z = z - 100u;
+ }
+ else
+ {
+  message[0] = (char) ('2');
+  z = z - 200u;
+ }
+
+ message[1] = '0';
+ while(z>10u)
+ {
+  ++message[1];
+  z = z - 10u;
+ }
+
+ message[2] = '0' + z;
+
+
  position_beam_s(y, x, 0x7F);
  Print_Str((void*) &message[0]);
 }
@@ -1911,13 +1930,69 @@ void print_long_unsigned_int(int y, int x, unsigned long int z)
 {
  volatile char message[6];
  message[5] = '\x80';
- unsigned int i = 4;
- do
+# 98 "source\\utils\\print.c"
+ if(z<10000ul)
  {
-  message[i--] = (char) ('0' + (z % 10));
-  z = z / 10;
+  message[0] = '0';
  }
- while (i != 255);
+ else if(z<20000ul)
+ {
+  message[0] = '1';
+  z = z - 10000ul;
+ }
+ else if(z<30000ul)
+ {
+  message[0] = '2';
+  z = z - 20000ul;
+ }
+ else if(z<40000ul)
+ {
+  message[0] = '3';
+  z = z - 30000ul;
+ }
+ else if(z<50000ul)
+ {
+  message[0] = '4';
+  z = z - 40000ul;
+ }
+ else if(z<60000ul)
+ {
+  message[0] = '5';
+  z = z - 50000ul;
+ }
+ else
+ {
+  message[0] = '6';
+  z = z - 60000ul;
+ }
+
+
+ message[1] = '0';
+ while(z>1000ul)
+ {
+  ++message[1];
+  z = z - 1000ul;
+ }
+
+ message[2] = '0';
+ while(z>100u)
+ {
+  ++message[2];
+  z = z - 100u;
+ }
+
+ message[3] = '0';
+ while(z>10u)
+ {
+  ++message[3];
+  z = z - 10u;
+ }
+
+ message[4] = '0' + (unsigned int)z;
+
+
+
+
  position_beam_s(y, x, 0x7F);
  Print_Str((void*) &message[0]);
 }

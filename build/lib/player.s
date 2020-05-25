@@ -87,12 +87,12 @@ _rotate_player:
 	stb	,s
 L6:
 	ldb	,s
-	; tstb	; optimization 6
+	tstb
 	beq	L7
 	ldb	_player+1
 	addb	2,s
 	stb	_player+1
-	; ldb	_player+1	; optimization 5
+	ldb	_player+1
 	cmpb	#62	;cmpqi:
 	bls	L11
 	clr	_player+1
@@ -106,12 +106,12 @@ L7:
 	stb	1,s
 L10:
 	ldb	1,s
-	; tstb	; optimization 6
+	tstb
 	beq	L11
 	ldb	_player+1
 	subb	2,s
 	stb	_player+1
-	; ldb	_player+1	; optimization 5
+	ldb	_player+1
 	cmpb	#64	;cmpqi:
 	bls	L11
 	ldb	#63
@@ -130,7 +130,7 @@ _shot_player:
 	clr	,s
 	clr	1,s
 	ldb	_timerFireRate.3285
-	; tstb	; optimization 6
+	tstb
 	bgt	L13
 	ldb	_Vec_Buttons
 	andb	#8
@@ -147,7 +147,7 @@ _shot_player:
 	bra	L18
 L13:
 	ldb	_player+4
-	; tstb	; optimization 6
+	tstb
 	bne	L16
 	ldb	_timerFireRate.3285
 	decb

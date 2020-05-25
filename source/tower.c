@@ -90,22 +90,22 @@ void draw_tower(void)
 		switch(tower.lvl)
 		{
 			case LEVEL_6:
-				if(tower.towerBullets[5] + tower.angle >= 63) tower.towerBullets[5] = 0;
+				if((tower.towerBullets[5] + TowerRotationAngleCnt) >= 63) tower.towerBullets[5] = (tower.towerBullets[5] + TowerRotationAngleCnt) - 64;
 				else tower.towerBullets[5] += TowerRotationAngleCnt;
 			case LEVEL_5:
-				if(tower.towerBullets[4] + tower.angle >= 63) tower.towerBullets[4] = 0;
+				if((tower.towerBullets[4] + TowerRotationAngleCnt) >= 63) tower.towerBullets[4] = (tower.towerBullets[4] + TowerRotationAngleCnt) - 64;
 				else tower.towerBullets[4] += TowerRotationAngleCnt;
 			case LEVEL_4:
-				if(tower.towerBullets[3] + tower.angle >= 63) tower.towerBullets[3] = 0;
+				if((tower.towerBullets[3] + TowerRotationAngleCnt) >= 63) tower.towerBullets[3] = (tower.towerBullets[3] + TowerRotationAngleCnt) - 64;
 				else tower.towerBullets[3] += TowerRotationAngleCnt;
 			case LEVEL_3:
-				if(tower.towerBullets[2] + tower.angle >= 63) tower.towerBullets[2] = 0;
+				if((tower.towerBullets[2] + TowerRotationAngleCnt) >= 63) tower.towerBullets[2] = (tower.towerBullets[2] + TowerRotationAngleCnt) - 64;
 				else tower.towerBullets[2] += TowerRotationAngleCnt;
 			case LEVEL_2:
-				if(tower.towerBullets[1] + tower.angle >= 63) tower.towerBullets[1] = 0;
+				if((tower.towerBullets[1] + TowerRotationAngleCnt) >= 63) tower.towerBullets[1] = (tower.towerBullets[1] + TowerRotationAngleCnt) - 64;
 				else tower.towerBullets[1] += TowerRotationAngleCnt;
 			case LEVEL_1:
-				if(tower.towerBullets[0] + tower.angle >= 63) tower.towerBullets[0] = 0;
+				if((tower.towerBullets[0] + TowerRotationAngleCnt) >= 63) tower.towerBullets[0] = (tower.towerBullets[0] + TowerRotationAngleCnt) - 64;
 				else tower.towerBullets[0] += TowerRotationAngleCnt;
 				break;
 			default:

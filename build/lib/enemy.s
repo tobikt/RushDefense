@@ -1721,7 +1721,7 @@ _draw_enemy:
 _check_enemy:
 	leas	-6,s
 	stx	4,s
-	; ldx	4,s	; optimization 5
+	ldx	4,s
 	ldb	2,x
 	stb	,s
 	ldx	4,s
@@ -1786,7 +1786,7 @@ _init_enemies:
 	aslb
 	rola
 	std	82,s
-	; ldd	82,s	; optimization 5
+	ldd	82,s
 	aslb
 	rola
 	aslb
@@ -1805,7 +1805,7 @@ _init_enemies:
 	aslb
 	rola
 	std	80,s
-	; ldd	80,s	; optimization 5
+	ldd	80,s
 	aslb
 	rola
 	aslb
@@ -1813,14 +1813,14 @@ _init_enemies:
 	aslb
 	rola
 	std	78,s
-	; ldd	78,s	; optimization 5
+	ldd	78,s
 	subd	80,s	;subhi: R:d -= 80,s
 	std	78,s
-	; ldd	78,s	; optimization 5
+	ldd	78,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	78,s
-	; ldd	78,s	; optimization 5
+	ldd	78,s
 	aslb
 	rola
 	std	78,s
@@ -1845,7 +1845,7 @@ L9:
 	aslb
 	rola
 	std	76,s
-	; ldd	76,s	; optimization 5
+	ldd	76,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	76,s
@@ -1876,7 +1876,7 @@ L9:
 	aslb
 	rola
 	std	72,s
-	; ldd	72,s	; optimization 5
+	ldd	72,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	72,s
@@ -1887,7 +1887,7 @@ L9:
 	aslb
 	rola
 	std	70,s
-	; ldd	70,s	; optimization 5
+	ldd	70,s
 	aslb
 	rola
 	aslb
@@ -1902,7 +1902,7 @@ L9:
 	leax	d,u
 	ldd	74,s
 	std	68,s
-	; ldd	68,s	; optimization 5
+	ldd	68,s
 	aslb
 	rola
 	aslb
@@ -1910,7 +1910,7 @@ L9:
 	aslb
 	rola
 	std	68,s
-	; ldd	68,s	; optimization 5
+	ldd	68,s
 	aslb
 	rola
 	aslb
@@ -1918,13 +1918,13 @@ L9:
 	aslb
 	rola
 	std	66,s
-	; ldd	66,s	; optimization 5
+	ldd	66,s
 	subd	68,s	;subhi: R:d -= 68,s
 	std	66,s
-	; ldd	66,s	; optimization 5
+	ldd	66,s
 	subd	74,s	;subhi: R:d -= 74,s
 	std	66,s
-	; ldd	66,s	; optimization 5
+	ldd	66,s
 	aslb
 	rola
 	std	66,s
@@ -1946,7 +1946,7 @@ L9:
 	aslb
 	rola
 	std	64,s
-	; ldd	64,s	; optimization 5
+	ldd	64,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	64,s
@@ -1978,7 +1978,7 @@ L9:
 	aslb
 	rola
 	std	60,s
-	; ldd	60,s	; optimization 5
+	ldd	60,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	60,s
@@ -1989,7 +1989,7 @@ L9:
 	aslb
 	rola
 	std	58,s
-	; ldd	58,s	; optimization 5
+	ldd	58,s
 	aslb
 	rola
 	aslb
@@ -2004,7 +2004,7 @@ L9:
 	leax	d,u
 	ldd	62,s
 	std	56,s
-	; ldd	56,s	; optimization 5
+	ldd	56,s
 	aslb
 	rola
 	aslb
@@ -2012,7 +2012,7 @@ L9:
 	aslb
 	rola
 	std	56,s
-	; ldd	56,s	; optimization 5
+	ldd	56,s
 	aslb
 	rola
 	aslb
@@ -2020,13 +2020,13 @@ L9:
 	aslb
 	rola
 	std	54,s
-	; ldd	54,s	; optimization 5
+	ldd	54,s
 	subd	56,s	;subhi: R:d -= 56,s
 	std	54,s
-	; ldd	54,s	; optimization 5
+	ldd	54,s
 	subd	62,s	;subhi: R:d -= 62,s
 	std	54,s
-	; ldd	54,s	; optimization 5
+	ldd	54,s
 	aslb
 	rola
 	std	54,s
@@ -2048,7 +2048,7 @@ L9:
 	aslb
 	rola
 	std	52,s
-	; ldd	52,s	; optimization 5
+	ldd	52,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	52,s
@@ -2080,7 +2080,7 @@ L9:
 	aslb
 	rola
 	std	48,s
-	; ldd	48,s	; optimization 5
+	ldd	48,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	48,s
@@ -2091,7 +2091,7 @@ L9:
 	aslb
 	rola
 	std	46,s
-	; ldd	46,s	; optimization 5
+	ldd	46,s
 	aslb
 	rola
 	aslb
@@ -2106,7 +2106,7 @@ L9:
 	leax	d,u
 	ldd	50,s
 	std	44,s
-	; ldd	44,s	; optimization 5
+	ldd	44,s
 	aslb
 	rola
 	aslb
@@ -2114,7 +2114,7 @@ L9:
 	aslb
 	rola
 	std	44,s
-	; ldd	44,s	; optimization 5
+	ldd	44,s
 	aslb
 	rola
 	aslb
@@ -2122,13 +2122,13 @@ L9:
 	aslb
 	rola
 	std	42,s
-	; ldd	42,s	; optimization 5
+	ldd	42,s
 	subd	44,s	;subhi: R:d -= 44,s
 	std	42,s
-	; ldd	42,s	; optimization 5
+	ldd	42,s
 	subd	50,s	;subhi: R:d -= 50,s
 	std	42,s
-	; ldd	42,s	; optimization 5
+	ldd	42,s
 	aslb
 	rola
 	std	42,s
@@ -2150,7 +2150,7 @@ L9:
 	aslb
 	rola
 	std	40,s
-	; ldd	40,s	; optimization 5
+	ldd	40,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	40,s
@@ -2182,7 +2182,7 @@ L9:
 	aslb
 	rola
 	std	36,s
-	; ldd	36,s	; optimization 5
+	ldd	36,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	36,s
@@ -2193,7 +2193,7 @@ L9:
 	aslb
 	rola
 	std	34,s
-	; ldd	34,s	; optimization 5
+	ldd	34,s
 	aslb
 	rola
 	aslb
@@ -2208,7 +2208,7 @@ L9:
 	leax	d,u
 	ldd	38,s
 	std	32,s
-	; ldd	32,s	; optimization 5
+	ldd	32,s
 	aslb
 	rola
 	aslb
@@ -2216,7 +2216,7 @@ L9:
 	aslb
 	rola
 	std	32,s
-	; ldd	32,s	; optimization 5
+	ldd	32,s
 	aslb
 	rola
 	aslb
@@ -2224,13 +2224,13 @@ L9:
 	aslb
 	rola
 	std	30,s
-	; ldd	30,s	; optimization 5
+	ldd	30,s
 	subd	32,s	;subhi: R:d -= 32,s
 	std	30,s
-	; ldd	30,s	; optimization 5
+	ldd	30,s
 	subd	38,s	;subhi: R:d -= 38,s
 	std	30,s
-	; ldd	30,s	; optimization 5
+	ldd	30,s
 	aslb
 	rola
 	std	30,s
@@ -2252,7 +2252,7 @@ L9:
 	aslb
 	rola
 	std	28,s
-	; ldd	28,s	; optimization 5
+	ldd	28,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	28,s
@@ -2284,7 +2284,7 @@ L9:
 	aslb
 	rola
 	std	24,s
-	; ldd	24,s	; optimization 5
+	ldd	24,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	24,s
@@ -2295,7 +2295,7 @@ L9:
 	aslb
 	rola
 	std	22,s
-	; ldd	22,s	; optimization 5
+	ldd	22,s
 	aslb
 	rola
 	aslb
@@ -2310,7 +2310,7 @@ L9:
 	leax	d,u
 	ldd	26,s
 	std	20,s
-	; ldd	20,s	; optimization 5
+	ldd	20,s
 	aslb
 	rola
 	aslb
@@ -2318,7 +2318,7 @@ L9:
 	aslb
 	rola
 	std	20,s
-	; ldd	20,s	; optimization 5
+	ldd	20,s
 	aslb
 	rola
 	aslb
@@ -2326,13 +2326,13 @@ L9:
 	aslb
 	rola
 	std	18,s
-	; ldd	18,s	; optimization 5
+	ldd	18,s
 	subd	20,s	;subhi: R:d -= 20,s
 	std	18,s
-	; ldd	18,s	; optimization 5
+	ldd	18,s
 	subd	26,s	;subhi: R:d -= 26,s
 	std	18,s
-	; ldd	18,s	; optimization 5
+	ldd	18,s
 	aslb
 	rola
 	std	18,s
@@ -2354,7 +2354,7 @@ L9:
 	aslb
 	rola
 	std	16,s
-	; ldd	16,s	; optimization 5
+	ldd	16,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	16,s
@@ -2387,7 +2387,7 @@ L9:
 	aslb
 	rola
 	std	12,s
-	; ldd	12,s	; optimization 5
+	ldd	12,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	12,s
@@ -2398,7 +2398,7 @@ L9:
 	aslb
 	rola
 	std	10,s
-	; ldd	10,s	; optimization 5
+	ldd	10,s
 	aslb
 	rola
 	aslb
@@ -2413,7 +2413,7 @@ L9:
 	leax	d,u
 	ldd	14,s
 	std	8,s
-	; ldd	8,s	; optimization 5
+	ldd	8,s
 	aslb
 	rola
 	aslb
@@ -2421,7 +2421,7 @@ L9:
 	aslb
 	rola
 	std	8,s
-	; ldd	8,s	; optimization 5
+	ldd	8,s
 	aslb
 	rola
 	aslb
@@ -2429,13 +2429,13 @@ L9:
 	aslb
 	rola
 	std	6,s
-	; ldd	6,s	; optimization 5
+	ldd	6,s
 	subd	8,s	;subhi: R:d -= 8,s
 	std	6,s
-	; ldd	6,s	; optimization 5
+	ldd	6,s
 	subd	14,s	;subhi: R:d -= 14,s
 	std	6,s
-	; ldd	6,s	; optimization 5
+	ldd	6,s
 	aslb
 	rola
 	std	6,s
@@ -2457,7 +2457,7 @@ L9:
 	aslb
 	rola
 	std	4,s
-	; ldd	4,s	; optimization 5
+	ldd	4,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	4,s
@@ -2486,7 +2486,7 @@ L11:
 	aslb
 	rola
 	std	2,s
-	; ldd	2,s	; optimization 5
+	ldd	2,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	2,s
@@ -2520,14 +2520,14 @@ L16:
 	aslb
 	rola
 	std	6,s
-	; ldd	6,s	; optimization 5
+	ldd	6,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	6,s
 	ldu	6,s
 	leax	_enemies,u
 	ldb	,x
-	; tstb	; optimization 6
+	tstb
 	lbne	L15
 	ldb	8,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -2541,7 +2541,7 @@ L16:
 	aslb
 	rola
 	std	4,s
-	; ldd	4,s	; optimization 5
+	ldd	4,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	ldu	#_enemies
@@ -2559,7 +2559,7 @@ L16:
 	aslb
 	rola
 	std	2,s
-	; ldd	2,s	; optimization 5
+	ldd	2,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	ldu	#_enemies
@@ -2577,7 +2577,7 @@ L16:
 	aslb
 	rola
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	ldu	#_enemies
@@ -2610,14 +2610,14 @@ L21:
 	aslb
 	rola
 	std	1,s
-	; ldd	1,s	; optimization 5
+	ldd	1,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	1,s
 	ldu	1,s
 	leax	_enemies,u
 	ldb	,x
-	; tstb	; optimization 6
+	tstb
 	beq	L23
 	inc	5,s
 L19:
@@ -2628,7 +2628,7 @@ L19:
 	stb	,s
 	ldb	_current_wave+2
 	stb	3,s
-	; ldb	3,s	; optimization 5
+	ldb	3,s
 	decb
 	stb	4,s
 	ldb	,s

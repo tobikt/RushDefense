@@ -1652,7 +1652,7 @@ _wave_init:
 	aslb
 	rola
 	std	2,s
-	; ldd	2,s	; optimization 5
+	ldd	2,s
 	aslb
 	rola
 	aslb
@@ -1660,14 +1660,14 @@ _wave_init:
 	aslb
 	rola
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	subd	2,s	;subhi: R:d -= 2,s
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	aslb
 	rola
 	std	,s
@@ -1712,7 +1712,7 @@ L3:
 	jsr	_print_unsigned_int
 	leas	2,s
 	dec	4,s
-	; tst	4,s	; optimization 1
+	tst	4,s
 	beq	L2
 	ldb	_Vec_Buttons
 	andb	#8
@@ -1731,28 +1731,15 @@ L9:
 	jsr	___DP_to_C8
 	ldx	_current_explosion
 	stx	1,s
-	; ldx	1,s	; optimization 5
+	ldx	1,s
 	jsr	__Explosion_Snd
 	ldx	_current_music
 	stx	3,s
-	; ldx	3,s	; optimization 5
+	ldx	3,s
 	jsr	__Init_Music_chk
 	jsr	___Wait_Recal
 	jsr	__Do_Sound
 	jsr	___Intensity_5F
-	ldb	_current_game+4
-	pshs	b
-	ldb	#-100
-	stb	,-s
-	ldb	#120
-	jsr	_print_unsigned_int
-	leas	2,s
-	ldx	_player+2
-	ldb	#40
-	stb	,-s
-	ldb	#120
-	jsr	_print_long_unsigned_int
-	leas	1,s
 	ldb	_tower+4
 	pshs	b
 	ldb	#-100
@@ -1767,7 +1754,7 @@ L9:
 	ldb	_current_wave+5
 	incb
 	stb	_current_wave+5
-	; ldb	_current_wave+5	; optimization 5
+	ldb	_current_wave+5
 	stb	,s
 	ldb	_current_game+3
 	cmpb	,s	;cmpqi:(R)
@@ -1775,7 +1762,7 @@ L9:
 	clr	_current_wave+5
 L7:
 	ldb	_tower
-	; tstb	; optimization 6
+	tstb
 	bne	L8
 	ldb	#1
 	stb	_current_wave+3
@@ -1783,7 +1770,7 @@ L8:
 	jsr	_check_AllEnemysDeath
 L6:
 	ldb	_current_wave+3
-	; tstb	; optimization 6
+	tstb
 	lbeq	L9
 	leas	5,s
 	rts

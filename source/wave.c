@@ -70,8 +70,8 @@ void wave_play(void)
 
 		// frame start: this is where the action happens...
 
-		print_unsigned_int(120, -100, current_game.score);
-		print_long_unsigned_int(120, 40, player.money);
+		//print_unsigned_int(120, -100, current_game.score);
+		//print_long_unsigned_int(120, 40, player.money);
 		print_unsigned_int(-120, -100, tower.healtPoints);	
 		
 		handle_enemies();

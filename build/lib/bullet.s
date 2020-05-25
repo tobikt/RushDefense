@@ -151,7 +151,7 @@ L3:
 	aslb
 	rola
 	std	10,s
-	; ldd	10,s	; optimization 5
+	ldd	10,s
 	leax	d,x
 	stx	10,s
 	ldd	10,s
@@ -170,7 +170,7 @@ L3:
 	aslb
 	rola
 	std	8,s
-	; ldd	8,s	; optimization 5
+	ldd	8,s
 	leax	d,x
 	stx	8,s
 	ldd	8,s
@@ -188,7 +188,7 @@ L3:
 	aslb
 	rola
 	std	6,s
-	; ldd	6,s	; optimization 5
+	ldd	6,s
 	leax	d,x
 	stx	6,s
 	ldd	6,s
@@ -206,7 +206,7 @@ L3:
 	aslb
 	rola
 	std	4,s
-	; ldd	4,s	; optimization 5
+	ldd	4,s
 	leax	d,x
 	stx	4,s
 	ldd	4,s
@@ -224,7 +224,7 @@ L3:
 	aslb
 	rola
 	std	2,s
-	; ldd	2,s	; optimization 5
+	ldd	2,s
 	leax	d,x
 	stx	2,s
 	ldd	2,s
@@ -242,7 +242,7 @@ L3:
 	aslb
 	rola
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	leax	d,x
 	stx	,s
 	ldd	,s
@@ -274,7 +274,7 @@ L8:
 	aslb
 	rola
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	leax	d,x
 	stx	,s
 	ldd	,s
@@ -284,7 +284,7 @@ L8:
 	ldu	,s
 	leax	_bullets,u
 	ldb	,x
-	; tstb	; optimization 6
+	tstb
 	bne	L7
 	ldb	2,s
 	jsr	_draw_bullet
@@ -315,7 +315,7 @@ _draw_bullet:
 	aslb
 	rola
 	std	2,s
-	; ldd	2,s	; optimization 5
+	ldd	2,s
 	leax	d,x
 	stx	2,s
 	ldd	2,s
@@ -334,7 +334,7 @@ _draw_bullet:
 	aslb
 	rola
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	leax	d,x
 	stx	,s
 	ldd	,s
@@ -363,7 +363,7 @@ _move_bullet:
 	pshs	u
 	leas	-40,s
 	stb	39,s
-	; ldb	39,s	; optimization 5
+	ldb	39,s
 	stb	33,s
 	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -373,7 +373,7 @@ _move_bullet:
 	aslb
 	rola
 	std	31,s
-	; ldd	31,s	; optimization 5
+	ldd	31,s
 	leax	d,x
 	stx	31,s
 	ldd	31,s
@@ -392,7 +392,7 @@ _move_bullet:
 	aslb
 	rola
 	std	29,s
-	; ldd	29,s	; optimization 5
+	ldd	29,s
 	leax	d,x
 	stx	29,s
 	ldd	29,s
@@ -403,7 +403,7 @@ _move_bullet:
 	leax	_bullets+3,u
 	ldb	,x
 	stb	,s
-	; ldb	,s	; optimization 5
+	ldb	,s
 	addb	34,s
 	stb	35,s
 	ldb	33,s
@@ -414,7 +414,7 @@ _move_bullet:
 	aslb
 	rola
 	std	27,s
-	; ldd	27,s	; optimization 5
+	ldd	27,s
 	leax	d,x
 	stx	27,s
 	ldd	27,s
@@ -435,7 +435,7 @@ _move_bullet:
 	aslb
 	rola
 	std	25,s
-	; ldd	25,s	; optimization 5
+	ldd	25,s
 	leax	d,x
 	stx	25,s
 	ldd	25,s
@@ -454,7 +454,7 @@ _move_bullet:
 	aslb
 	rola
 	std	23,s
-	; ldd	23,s	; optimization 5
+	ldd	23,s
 	leax	d,x
 	stx	23,s
 	ldd	23,s
@@ -465,7 +465,7 @@ _move_bullet:
 	leax	_bullets+4,u
 	ldb	,x
 	stb	,s
-	; ldb	,s	; optimization 5
+	ldb	,s
 	addb	37,s
 	stb	38,s
 	ldb	36,s
@@ -476,7 +476,7 @@ _move_bullet:
 	aslb
 	rola
 	std	21,s
-	; ldd	21,s	; optimization 5
+	ldd	21,s
 	leax	d,x
 	stx	21,s
 	ldd	21,s
@@ -495,7 +495,7 @@ _move_bullet:
 	aslb
 	rola
 	std	19,s
-	; ldd	19,s	; optimization 5
+	ldd	19,s
 	leax	d,x
 	stx	19,s
 	ldd	19,s
@@ -505,7 +505,7 @@ _move_bullet:
 	ldu	19,s
 	leax	_bullets+1,u
 	ldb	,x
-	cmpb	#100	;cmpqi:
+	cmpb	#120	;cmpqi:
 	lbgt	L13
 	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -515,7 +515,7 @@ _move_bullet:
 	aslb
 	rola
 	std	17,s
-	; ldd	17,s	; optimization 5
+	ldd	17,s
 	leax	d,x
 	stx	17,s
 	ldd	17,s
@@ -525,7 +525,7 @@ _move_bullet:
 	ldu	17,s
 	leax	_bullets+1,u
 	ldb	,x
-	cmpb	#-100	;cmpqi:
+	cmpb	#-120	;cmpqi:
 	blt	L13
 	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -535,7 +535,7 @@ _move_bullet:
 	aslb
 	rola
 	std	15,s
-	; ldd	15,s	; optimization 5
+	ldd	15,s
 	leax	d,x
 	stx	15,s
 	ldd	15,s
@@ -545,7 +545,7 @@ _move_bullet:
 	ldu	#_bullets
 	leax	d,u
 	ldb	,x
-	cmpb	#100	;cmpqi:
+	cmpb	#120	;cmpqi:
 	bgt	L13
 	ldb	39,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -555,7 +555,7 @@ _move_bullet:
 	aslb
 	rola
 	std	13,s
-	; ldd	13,s	; optimization 5
+	ldd	13,s
 	leax	d,x
 	stx	13,s
 	ldd	13,s
@@ -565,7 +565,7 @@ _move_bullet:
 	ldu	#_bullets
 	leax	d,u
 	ldb	,x
-	cmpb	#-100	;cmpqi:
+	cmpb	#-120	;cmpqi:
 	lbge	L15
 L13:
 	ldb	39,s
@@ -576,7 +576,7 @@ L13:
 	aslb
 	rola
 	std	11,s
-	; ldd	11,s	; optimization 5
+	ldd	11,s
 	leax	d,x
 	stx	11,s
 	ldd	11,s
@@ -595,7 +595,7 @@ L13:
 	aslb
 	rola
 	std	9,s
-	; ldd	9,s	; optimization 5
+	ldd	9,s
 	leax	d,x
 	stx	9,s
 	ldd	9,s
@@ -613,7 +613,7 @@ L13:
 	aslb
 	rola
 	std	7,s
-	; ldd	7,s	; optimization 5
+	ldd	7,s
 	leax	d,x
 	stx	7,s
 	ldd	7,s
@@ -631,7 +631,7 @@ L13:
 	aslb
 	rola
 	std	5,s
-	; ldd	5,s	; optimization 5
+	ldd	5,s
 	leax	d,x
 	stx	5,s
 	ldd	5,s
@@ -649,7 +649,7 @@ L13:
 	aslb
 	rola
 	std	3,s
-	; ldd	3,s	; optimization 5
+	ldd	3,s
 	leax	d,x
 	stx	3,s
 	ldd	3,s
@@ -667,7 +667,7 @@ L13:
 	aslb
 	rola
 	std	1,s
-	; ldd	1,s	; optimization 5
+	ldd	1,s
 	leax	d,x
 	stx	1,s
 	ldd	1,s
@@ -700,7 +700,7 @@ L20:
 	aslb
 	rola
 	std	8,s
-	; ldd	8,s	; optimization 5
+	ldd	8,s
 	leax	d,x
 	stx	8,s
 	ldd	8,s
@@ -720,7 +720,7 @@ L20:
 	aslb
 	rola
 	std	6,s
-	; ldd	6,s	; optimization 5
+	ldd	6,s
 	leax	d,x
 	stx	6,s
 	ldd	6,s
@@ -738,7 +738,7 @@ L20:
 	aslb
 	rola
 	std	4,s
-	; ldd	4,s	; optimization 5
+	ldd	4,s
 	leax	d,x
 	stx	4,s
 	ldd	4,s
@@ -757,7 +757,7 @@ L20:
 	aslb
 	rola
 	std	2,s
-	; ldd	2,s	; optimization 5
+	ldd	2,s
 	leax	d,x
 	stx	2,s
 	ldd	2,s
@@ -785,7 +785,7 @@ L20:
 	aslb
 	rola
 	std	,s
-	; ldd	,s	; optimization 5
+	ldd	,s
 	leax	d,x
 	stx	,s
 	ldd	,s
@@ -820,7 +820,7 @@ L28:
 	aslb
 	rola
 	std	15,s
-	; ldd	15,s	; optimization 5
+	ldd	15,s
 	leax	d,x
 	stx	15,s
 	ldd	15,s
@@ -830,7 +830,7 @@ L28:
 	ldu	15,s
 	leax	_bullets,u
 	ldb	,x
-	; tstb	; optimization 6
+	tstb
 	lbne	L24
 	clr	21,s
 	jmp	L25
@@ -847,14 +847,14 @@ L27:
 	aslb
 	rola
 	std	13,s
-	; ldd	13,s	; optimization 5
+	ldd	13,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	13,s
 	ldu	13,s
 	leax	_enemies,u
 	ldb	,x
-	; tstb	; optimization 6
+	tstb
 	lbne	L26
 	ldb	21,s
 	clra		;zero_extendqihi: R:b -> R:d
@@ -868,7 +868,7 @@ L27:
 	aslb
 	rola
 	std	11,s
-	; ldd	11,s	; optimization 5
+	ldd	11,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	11,s
@@ -888,7 +888,7 @@ L27:
 	aslb
 	rola
 	std	9,s
-	; ldd	9,s	; optimization 5
+	ldd	9,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	9,s
@@ -904,7 +904,7 @@ L27:
 	aslb
 	rola
 	std	7,s
-	; ldd	7,s	; optimization 5
+	ldd	7,s
 	leax	d,x
 	stx	7,s
 	ldd	7,s
@@ -923,7 +923,7 @@ L27:
 	aslb
 	rola
 	std	5,s
-	; ldd	5,s	; optimization 5
+	ldd	5,s
 	leax	d,x
 	stx	5,s
 	ldd	5,s
@@ -964,7 +964,7 @@ L27:
 	aslb
 	rola
 	std	3,s
-	; ldd	3,s	; optimization 5
+	ldd	3,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	3,s
@@ -986,7 +986,7 @@ L27:
 	aslb
 	rola
 	std	1,s
-	; ldd	1,s	; optimization 5
+	ldd	1,s
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	1,s
