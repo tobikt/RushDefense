@@ -126,31 +126,31 @@
    0B4D E7 E2         [ 6]  126 	stb	,-s
    0B4F AE 4A         [ 6]  127 	ldx	10,u
    0B51 C6 5A         [ 2]  128 	ldb	#90
-   0B53 BD 28 A4      [ 8]  129 	jsr	_print_string
+   0B53 BD 35 80      [ 8]  129 	jsr	_print_string
    0B56 32 61         [ 5]  130 	leas	1,s
    0B58 C6 88         [ 2]  131 	ldb	#-120
    0B5A E7 E2         [ 6]  132 	stb	,-s
    0B5C 8E 0A 75      [ 3]  133 	ldx	#LC0
    0B5F C6 32         [ 2]  134 	ldb	#50
-   0B61 BD 28 A4      [ 8]  135 	jsr	_print_string
+   0B61 BD 35 80      [ 8]  135 	jsr	_print_string
    0B64 32 61         [ 5]  136 	leas	1,s
    0B66 AE 4C         [ 6]  137 	ldx	12,u
    0B68 C6 88         [ 2]  138 	ldb	#-120
    0B6A E7 E2         [ 6]  139 	stb	,-s
    0B6C C6 1E         [ 2]  140 	ldb	#30
-   0B6E BD 28 A4      [ 8]  141 	jsr	_print_string
+   0B6E BD 35 80      [ 8]  141 	jsr	_print_string
    0B71 32 61         [ 5]  142 	leas	1,s
    0B73 C6 88         [ 2]  143 	ldb	#-120
    0B75 E7 E2         [ 6]  144 	stb	,-s
    0B77 8E 0A 7C      [ 3]  145 	ldx	#LC1
    0B7A 5F            [ 2]  146 	clrb
-   0B7B BD 28 A4      [ 8]  147 	jsr	_print_string
+   0B7B BD 35 80      [ 8]  147 	jsr	_print_string
    0B7E 32 61         [ 5]  148 	leas	1,s
    0B80 C6 88         [ 2]  149 	ldb	#-120
    0B82 E7 E2         [ 6]  150 	stb	,-s
    0B84 AE C8 23      [ 6]  151 	ldx	35,u
    0B87 C6 EC         [ 2]  152 	ldb	#-20
-   0B89 BD 2A 11      [ 8]  153 	jsr	_print_long_unsigned_int
+   0B89 BD 36 ED      [ 8]  153 	jsr	_print_long_unsigned_int
    0B8C 32 61         [ 5]  154 	leas	1,s
    0B8E AE C8 1C      [ 6]  155 	ldx	28,u
    0B91 8C 00 00      [ 4]  156 	cmpx	#0
@@ -159,7 +159,7 @@
    0B9A E7 E2         [ 6]  159 	stb	,-s
    0B9C 8E 0A 83      [ 3]  160 	ldx	#LC2
    0B9F C6 CE         [ 2]  161 	ldb	#-50
-   0BA1 BD 28 A4      [ 8]  162 	jsr	_print_string
+   0BA1 BD 35 80      [ 8]  162 	jsr	_print_string
    0BA4 32 61         [ 5]  163 	leas	1,s
    0BA6 E6 49         [ 5]  164 	ldb	9,u
    0BA8 E7 44         [ 5]  165 	stb	4,u

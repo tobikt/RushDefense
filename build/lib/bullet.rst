@@ -949,8 +949,8 @@
    09B2 32 65         [ 5]  949 	leas	5,s
    09B4 5D            [ 2]  950 	tstb
    09B5 27 52         [ 3]  951 	beq	L26
-   09B7 8E 31 59      [ 3]  952 	ldx	#_bang
-   09BA BD 2C 11      [ 8]  953 	jsr	_play_explosion
+   09B7 8E 3E 35      [ 3]  952 	ldx	#_bang
+   09BA BD 38 ED      [ 8]  953 	jsr	_play_explosion
    09BD 10 BE C9 AD   [ 7]  954 	ldy	_player+2
    09C1 E6 E8 15      [ 5]  955 	ldb	21,s
    09C4 4F            [ 2]  956 	clra		;zero_extendqihi: R:b -> R:d

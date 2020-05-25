@@ -125,57 +125,51 @@ _timerFireRate.3285:
 	.area .text
 	.globl _shot_player
 _shot_player:
-	leas	-3,s
-	jsr	___Joy_Digital
+	leas	-2,s
+	jsr	___Read_Btns
+	clr	,s
 	clr	1,s
-	clr	2,s
 	ldb	_timerFireRate.3285
 	; tstb	; optimization 6
 	bgt	L13
-	ldb	_Vec_Joy_1_Y
-	clr	,s
+	ldb	_Vec_Buttons
+	andb	#8
 	tstb
-	ble	L14
-	ldb	#1
-	stb	,s
-L14:
-	ldb	,s
-	; tstb	; optimization 6
-	beq	L19
+	beq	L18
 	ldb	_player+1
 	pshs	b
 	ldb	#3
-	ldx	2,s
+	ldx	1,s
 	jsr	_fire_bullet
 	leas	1,s
 	ldb	#20
 	stb	_timerFireRate.3285
-	bra	L19
+	bra	L18
 L13:
 	ldb	_player+4
 	; tstb	; optimization 6
-	bne	L17
+	bne	L16
 	ldb	_timerFireRate.3285
 	decb
 	stb	_timerFireRate.3285
-	bra	L19
-L17:
+	bra	L18
+L16:
 	ldb	_player+4
 	cmpb	#1	;cmpqi:
-	bne	L18
+	bne	L17
 	ldb	_timerFireRate.3285
 	addb	#-2
 	stb	_timerFireRate.3285
-	bra	L19
-L18:
+	bra	L18
+L17:
 	ldb	_player+4
 	cmpb	#2	;cmpqi:
-	bne	L19
+	bne	L18
 	ldb	_timerFireRate.3285
 	addb	#-5
 	stb	_timerFireRate.3285
-L19:
-	leas	3,s
+L18:
+	leas	2,s
 	rts
 	.globl _handle_player
 _handle_player:

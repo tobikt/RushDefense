@@ -2369,7 +2369,7 @@ void shot_player(void)
 {
  static int timerFireRate = 20;
 
- check_joysticks();
+ check_buttons();
 
  struct vector2 vec;
  vec.Y = 0;
@@ -2377,7 +2377,7 @@ void shot_player(void)
 
  if(timerFireRate <= 0)
  {
-  if (joystick_1_up())
+  if (button_1_4_pressed())
   {
    fire_bullet(vec,3,player.angle);
    timerFireRate = 20;

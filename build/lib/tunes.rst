@@ -6,19 +6,19 @@
                               6 	.module	tunes.c
                               7 	.globl _bing
                               8 	.area .text
-   3151                       9 _bing:
-   3151 FE E8                10 	.word	_Vec_ADSR_FADE4
-   3153 FE B6                11 	.word	_Vec_TWANG_VIBEHL
-   3155 00                   12 	.byte	0
-   3156 0C                   13 	.byte	12
-   3157 00                   14 	.byte	0
-   3158 80                   15 	.byte	-128
+   3E2D                       9 _bing:
+   3E2D FE E8                10 	.word	_Vec_ADSR_FADE4
+   3E2F FE B6                11 	.word	_Vec_TWANG_VIBEHL
+   3E31 00                   12 	.byte	0
+   3E32 0C                   13 	.byte	12
+   3E33 00                   14 	.byte	0
+   3E34 80                   15 	.byte	-128
                              16 	.globl _bang
-   3159                      17 _bang:
-   3159 2A                   18 	.byte	42
-   315A 00                   19 	.byte	0
-   315B 00                   20 	.byte	0
-   315C 01                   21 	.byte	1
+   3E35                      17 _bang:
+   3E35 2A                   18 	.byte	42
+   3E36 00                   19 	.byte	0
+   3E37 00                   20 	.byte	0
+   3E38 01                   21 	.byte	1
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
