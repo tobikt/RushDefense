@@ -1,0 +1,186 @@
+                              1 
+                              2 ;;; gcc for m6809 : Feb 15 2016 21:40:10
+                              3 ;;; 4.3.6 (gcc6809)
+                              4 ;;; ABI version 1
+                              5 ;;; -mint8
+                              6 	.module	object.c
+                              7 	.globl _LookUpAngle
+                              8 	.area .data
+   0000                       9 _LookUpAngle:
+   0000 00                   10 	.byte	0
+   0001 0A                   11 	.byte	10
+   0002 01                   12 	.byte	1
+   0003 0A                   13 	.byte	10
+   0004 02                   14 	.byte	2
+   0005 0A                   15 	.byte	10
+   0006 03                   16 	.byte	3
+   0007 09                   17 	.byte	9
+   0008 04                   18 	.byte	4
+   0009 09                   19 	.byte	9
+   000A 05                   20 	.byte	5
+   000B 09                   21 	.byte	9
+   000C 05                   22 	.byte	5
+   000D 08                   23 	.byte	8
+   000E 06                   24 	.byte	6
+   000F 08                   25 	.byte	8
+   0010 07                   26 	.byte	7
+   0011 07                   27 	.byte	7
+   0012 08                   28 	.byte	8
+   0013 06                   29 	.byte	6
+   0014 08                   30 	.byte	8
+   0015 05                   31 	.byte	5
+   0016 09                   32 	.byte	9
+   0017 05                   33 	.byte	5
+   0018 09                   34 	.byte	9
+   0019 04                   35 	.byte	4
+   001A 09                   36 	.byte	9
+   001B 03                   37 	.byte	3
+   001C 0A                   38 	.byte	10
+   001D 02                   39 	.byte	2
+   001E 0A                   40 	.byte	10
+   001F 01                   41 	.byte	1
+   0020 0A                   42 	.byte	10
+   0021 00                   43 	.byte	0
+   0022 0A                   44 	.byte	10
+   0023 FF                   45 	.byte	-1
+   0024 0A                   46 	.byte	10
+   0025 FE                   47 	.byte	-2
+   0026 09                   48 	.byte	9
+   0027 FD                   49 	.byte	-3
+   0028 09                   50 	.byte	9
+   0029 FC                   51 	.byte	-4
+   002A 09                   52 	.byte	9
+   002B FB                   53 	.byte	-5
+   002C 08                   54 	.byte	8
+   002D FB                   55 	.byte	-5
+   002E 08                   56 	.byte	8
+   002F FA                   57 	.byte	-6
+   0030 07                   58 	.byte	7
+   0031 F9                   59 	.byte	-7
+   0032 06                   60 	.byte	6
+   0033 F8                   61 	.byte	-8
+   0034 05                   62 	.byte	5
+   0035 F8                   63 	.byte	-8
+   0036 05                   64 	.byte	5
+   0037 F7                   65 	.byte	-9
+   0038 04                   66 	.byte	4
+   0039 F7                   67 	.byte	-9
+   003A 03                   68 	.byte	3
+   003B F7                   69 	.byte	-9
+   003C 02                   70 	.byte	2
+   003D F6                   71 	.byte	-10
+   003E 01                   72 	.byte	1
+   003F F6                   73 	.byte	-10
+   0040 00                   74 	.byte	0
+   0041 F6                   75 	.byte	-10
+   0042 FF                   76 	.byte	-1
+   0043 F6                   77 	.byte	-10
+   0044 FE                   78 	.byte	-2
+   0045 F6                   79 	.byte	-10
+   0046 FD                   80 	.byte	-3
+   0047 F7                   81 	.byte	-9
+   0048 FC                   82 	.byte	-4
+   0049 F7                   83 	.byte	-9
+   004A FB                   84 	.byte	-5
+   004B F7                   85 	.byte	-9
+   004C FB                   86 	.byte	-5
+   004D F8                   87 	.byte	-8
+   004E FA                   88 	.byte	-6
+   004F F8                   89 	.byte	-8
+   0050 F9                   90 	.byte	-7
+   0051 F9                   91 	.byte	-7
+   0052 F8                   92 	.byte	-8
+   0053 FA                   93 	.byte	-6
+   0054 F8                   94 	.byte	-8
+   0055 FB                   95 	.byte	-5
+   0056 F7                   96 	.byte	-9
+   0057 FB                   97 	.byte	-5
+   0058 F7                   98 	.byte	-9
+   0059 FC                   99 	.byte	-4
+   005A F7                  100 	.byte	-9
+   005B FD                  101 	.byte	-3
+   005C F6                  102 	.byte	-10
+   005D FE                  103 	.byte	-2
+   005E F6                  104 	.byte	-10
+   005F FF                  105 	.byte	-1
+   0060 F6                  106 	.byte	-10
+   0061 00                  107 	.byte	0
+   0062 F6                  108 	.byte	-10
+   0063 01                  109 	.byte	1
+   0064 F6                  110 	.byte	-10
+   0065 02                  111 	.byte	2
+   0066 F7                  112 	.byte	-9
+   0067 03                  113 	.byte	3
+   0068 F7                  114 	.byte	-9
+   0069 04                  115 	.byte	4
+   006A F7                  116 	.byte	-9
+   006B 05                  117 	.byte	5
+   006C F8                  118 	.byte	-8
+   006D 05                  119 	.byte	5
+   006E F8                  120 	.byte	-8
+   006F 06                  121 	.byte	6
+   0070 F9                  122 	.byte	-7
+   0071 07                  123 	.byte	7
+   0072 FA                  124 	.byte	-6
+   0073 08                  125 	.byte	8
+   0074 FB                  126 	.byte	-5
+   0075 08                  127 	.byte	8
+   0076 FB                  128 	.byte	-5
+   0077 09                  129 	.byte	9
+   0078 FC                  130 	.byte	-4
+   0079 09                  131 	.byte	9
+   007A FD                  132 	.byte	-3
+   007B 09                  133 	.byte	9
+   007C FE                  134 	.byte	-2
+   007D 0A                  135 	.byte	10
+   007E FF                  136 	.byte	-1
+   007F 0A                  137 	.byte	10
+                            138 	.area .text
+                            139 	.globl _move_object
+   0000                     140 _move_object:
+   0000 32 7C         [ 5]  141 	leas	-4,s
+   0002 AF 62         [ 6]  142 	stx	2,s
+   0004 F6 00 05      [ 5]  143 	ldb	_current_wave+5
+                            144 	; tstb	; optimization 6
+   0007 27 20         [ 3]  145 	beq	L3
+   0009 AE 62         [ 6]  146 	ldx	2,s
+   000B E6 01         [ 5]  147 	ldb	1,x
+   000D E7 E4         [ 4]  148 	stb	,s
+   000F AE 62         [ 6]  149 	ldx	2,s
+   0011 E6 03         [ 5]  150 	ldb	3,x
+   0013 EB E4         [ 4]  151 	addb	,s
+   0015 AE 62         [ 6]  152 	ldx	2,s
+   0017 E7 01         [ 5]  153 	stb	1,x
+   0019 AE 62         [ 6]  154 	ldx	2,s
+   001B E6 02         [ 5]  155 	ldb	2,x
+   001D E7 61         [ 5]  156 	stb	1,s
+   001F AE 62         [ 6]  157 	ldx	2,s
+   0021 E6 04         [ 5]  158 	ldb	4,x
+   0023 EB 61         [ 5]  159 	addb	1,s
+   0025 AE 62         [ 6]  160 	ldx	2,s
+   0027 E7 02         [ 5]  161 	stb	2,x
+   0029                     162 L3:
+   0029 32 64         [ 5]  163 	leas	4,s
+   002B 39            [ 5]  164 	rts
+ASxxxx Assembler V05.00  (Motorola 6809), page 1.
+Hexidecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
+    .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
+  3 L3                 0029 R   |   2 _LookUpAngle       0000 GR
+    _current_wave      **** GX  |   3 _move_object       0000 GR
+
+ASxxxx Assembler V05.00  (Motorola 6809), page 2.
+Hexidecimal [16-Bits]
+
+Area Table
+
+[_CSEG]
+   0 _CODE            size    0   flags C080
+   2 .data            size   80   flags  100
+   3 .text            size   2C   flags  100
+[_DSEG]
+   1 _DATA            size    0   flags C0C0
+

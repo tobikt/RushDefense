@@ -280,7 +280,7 @@ _menu_handle:
 	pshs	y,u
 	leas	-18,s
 	ldb	_limit.3290
-	tstb
+	; tstb	; optimization 6
 	beq	L4
 	ldb	_limit.3290
 	decb
@@ -304,20 +304,20 @@ L6:
 	tstb
 	lbeq	L7
 	ldb	_Menu+1
-	tstb
+	; tstb	; optimization 6
 	bne	L8
 	ldb	_player+4
 	cmpb	#2	;cmpqi:
 	lbne	L51
 	ldb	_player
 	stb	10,s
-	ldb	10,s
+	; ldb	10,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L12
 	ldb	10,s
 	cmpb	#1	;cmpqi:
 	blo	L11
-	ldb	10,s
+	; ldb	10,s; optimization 8
 	cmpb	#2	;cmpqi:
 	lbeq	L51
 	bra	L52
@@ -338,13 +338,13 @@ L8:
 	bne	L15
 	ldb	_player+4
 	stb	11,s
-	ldb	11,s
+	; ldb	11,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L18
 	ldb	11,s
 	cmpb	#1	;cmpqi:
 	blo	L17
-	ldb	11,s
+	; ldb	11,s; optimization 8
 	cmpb	#2	;cmpqi:
 	lbeq	L51
 	bra	L53
@@ -368,13 +368,13 @@ L15:
 	lbne	L51
 	ldb	_tower+1
 	stb	12,s
-	ldb	12,s
+	; ldb	12,s	; optimization 5
 	cmpb	#4	;cmpqi:
 	lbhi	L51
 	ldb	12,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L28
@@ -463,13 +463,13 @@ L21:
 	lbne	L51
 	ldb	_tower+2
 	stb	13,s
-	ldb	13,s
+	; ldb	13,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	lbeq	L35
 	ldb	13,s
 	cmpb	#1	;cmpqi:
 	blo	L34
-	ldb	13,s
+	; ldb	13,s; optimization 8
 	cmpb	#2	;cmpqi:
 	lbeq	L51
 	jmp	L54
@@ -484,7 +484,7 @@ L34:
 	aslb
 	rola
 	std	8,s
-	ldd	8,s
+	; ldd	8,s	; optimization 5
 	leax	d,x
 	stx	8,s
 	ldd	8,s
@@ -507,7 +507,7 @@ L34:
 	aslb
 	rola
 	std	6,s
-	ldd	6,s
+	; ldd	6,s	; optimization 5
 	leax	d,x
 	stx	6,s
 	ldd	6,s
@@ -535,7 +535,7 @@ L35:
 	aslb
 	rola
 	std	4,s
-	ldd	4,s
+	; ldd	4,s	; optimization 5
 	leax	d,x
 	stx	4,s
 	ldd	4,s
@@ -558,7 +558,7 @@ L35:
 	aslb
 	rola
 	std	2,s
-	ldd	2,s
+	; ldd	2,s	; optimization 5
 	leax	d,x
 	stx	2,s
 	ldd	2,s
@@ -587,17 +587,17 @@ L7:
 	stb	16,s
 L39:
 	ldb	16,s
-	tstb
+	; tstb	; optimization 6
 	beq	L40
 	ldb	_Menu+1
 	stb	14,s
-	ldb	14,s
+	; ldb	14,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L43
 	ldb	14,s
 	cmpb	#1	;cmpqi:
 	blo	L42
-	ldb	14,s
+	; ldb	14,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L44
 	ldb	14,s
@@ -628,17 +628,17 @@ L40:
 	stb	17,s
 L46:
 	ldb	17,s
-	tstb
+	; tstb	; optimization 6
 	beq	L51
 	ldb	_Menu+1
 	stb	15,s
-	ldb	15,s
+	; ldb	15,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L48
 	ldb	15,s
 	cmpb	#1	;cmpqi:
 	blo	L47
-	ldb	15,s
+	; ldb	15,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L49
 	ldb	15,s
@@ -668,7 +668,7 @@ L56:
 	jsr	_menu_handle
 	jsr	_menu_draw
 	ldb	_Menu
-	tstb
+	; tstb	; optimization 6
 	beq	L56
 	rts
 LC0:
@@ -807,7 +807,7 @@ _menu_draw:
 	jsr	___Reset0Ref
 	jsr	_Sync
 	ldb	_Menu+1
-	tstb
+	; tstb	; optimization 6
 	lbne	L59
 	ldb	#-110
 	stb	,-s
@@ -817,13 +817,13 @@ _menu_draw:
 	leas	1,s
 	ldb	_player
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L62
 	ldb	2,s
 	cmpb	#1	;cmpqi:
 	blo	L61
-	ldb	2,s
+	; ldb	2,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L63
 	bra	L159
@@ -871,13 +871,13 @@ L64:
 	leas	1,s
 	ldb	_player+4
 	stb	3,s
-	ldb	3,s
+	; ldb	3,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L67
 	ldb	3,s
 	cmpb	#1	;cmpqi:
 	blo	L66
-	ldb	3,s
+	; ldb	3,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L68
 	bra	L160
@@ -925,13 +925,13 @@ L69:
 	leas	1,s
 	ldb	_tower+1
 	stb	4,s
-	ldb	4,s
+	; ldb	4,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L70
 	ldb	4,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L77
@@ -1016,13 +1016,13 @@ L78:
 	leas	1,s
 	ldb	_tower+2
 	stb	5,s
-	ldb	5,s
+	; ldb	5,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L81
 	ldb	5,s
 	cmpb	#1	;cmpqi:
 	blo	L80
-	ldb	5,s
+	; ldb	5,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L82
 	bra	L161
@@ -1074,13 +1074,13 @@ L59:
 	leas	1,s
 	ldb	_player
 	stb	6,s
-	ldb	6,s
+	; ldb	6,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L88
 	ldb	6,s
 	cmpb	#1	;cmpqi:
 	blo	L87
-	ldb	6,s
+	; ldb	6,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L89
 	bra	L162
@@ -1128,13 +1128,13 @@ L90:
 	leas	1,s
 	ldb	_player+4
 	stb	7,s
-	ldb	7,s
+	; ldb	7,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L93
 	ldb	7,s
 	cmpb	#1	;cmpqi:
 	blo	L92
-	ldb	7,s
+	; ldb	7,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L94
 	bra	L163
@@ -1182,13 +1182,13 @@ L95:
 	leas	1,s
 	ldb	_tower+1
 	stb	8,s
-	ldb	8,s
+	; ldb	8,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L96
 	ldb	8,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L103
@@ -1273,13 +1273,13 @@ L104:
 	leas	1,s
 	ldb	_tower+2
 	stb	9,s
-	ldb	9,s
+	; ldb	9,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L107
 	ldb	9,s
 	cmpb	#1	;cmpqi:
 	blo	L106
-	ldb	9,s
+	; ldb	9,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L108
 	bra	L164
@@ -1331,13 +1331,13 @@ L85:
 	leas	1,s
 	ldb	_player
 	stb	10,s
-	ldb	10,s
+	; ldb	10,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L113
 	ldb	10,s
 	cmpb	#1	;cmpqi:
 	blo	L112
-	ldb	10,s
+	; ldb	10,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L114
 	bra	L165
@@ -1385,13 +1385,13 @@ L115:
 	leas	1,s
 	ldb	_player+4
 	stb	11,s
-	ldb	11,s
+	; ldb	11,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L118
 	ldb	11,s
 	cmpb	#1	;cmpqi:
 	blo	L117
-	ldb	11,s
+	; ldb	11,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L119
 	bra	L166
@@ -1439,13 +1439,13 @@ L120:
 	leas	1,s
 	ldb	_tower+1
 	stb	12,s
-	ldb	12,s
+	; ldb	12,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L121
 	ldb	12,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L128
@@ -1530,13 +1530,13 @@ L129:
 	leas	1,s
 	ldb	_tower+2
 	stb	13,s
-	ldb	13,s
+	; ldb	13,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L132
 	ldb	13,s
 	cmpb	#1	;cmpqi:
 	blo	L131
-	ldb	13,s
+	; ldb	13,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L133
 	bra	L167
@@ -1588,13 +1588,13 @@ L110:
 	leas	1,s
 	ldb	_player
 	stb	14,s
-	ldb	14,s
+	; ldb	14,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L137
 	ldb	14,s
 	cmpb	#1	;cmpqi:
 	blo	L136
-	ldb	14,s
+	; ldb	14,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L138
 	bra	L168
@@ -1642,13 +1642,13 @@ L139:
 	leas	1,s
 	ldb	_player+4
 	stb	15,s
-	ldb	15,s
+	; ldb	15,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L142
 	ldb	15,s
 	cmpb	#1	;cmpqi:
 	blo	L141
-	ldb	15,s
+	; ldb	15,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L143
 	bra	L169
@@ -1696,13 +1696,13 @@ L144:
 	leas	1,s
 	ldb	_tower+1
 	stb	16,s
-	ldb	16,s
+	; ldb	16,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L145
 	ldb	16,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L152
@@ -1787,13 +1787,13 @@ L153:
 	leas	1,s
 	ldb	_tower+2
 	stb	17,s
-	ldb	17,s
+	; ldb	17,s	; optimization 5
 	cmpb	#1	;cmpqi:
 	beq	L156
 	ldb	17,s
 	cmpb	#1	;cmpqi:
 	blo	L155
-	ldb	17,s
+	; ldb	17,s; optimization 8
 	cmpb	#2	;cmpqi:
 	beq	L157
 	bra	L170

@@ -141,7 +141,7 @@ _move_object:
 	leas	-4,s
 	stx	2,s
 	ldb	_current_wave+5
-	tstb
+	; tstb	; optimization 6
 	beq	L3
 	ldx	2,s
 	ldb	1,x

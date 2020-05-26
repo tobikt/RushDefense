@@ -286,13 +286,13 @@ _draw_tower:
 	stb	*_dp_VIA_t1_cnt_lo
 	ldb	_tower+1
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L2
 	ldb	2,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L9
@@ -367,27 +367,27 @@ L2:
 	jsr	___Draw_VLp
 L10:
 	ldb	_RotationDelay.3290
-	tstb
+	; tstb	; optimization 6
 	lbne	L11
 	ldb	#60
 	stb	_RotationDelay.3290
 	ldb	_tower+3
 	addb	#2
 	stb	_tower+3
-	ldb	_tower+3
+	; ldb	_tower+3	; optimization 5
 	cmpb	#62	;cmpqi:
 	bls	L12
 	clr	_tower+3
 L12:
 	ldb	_tower+1
 	stb	3,s
-	ldb	3,s
+	; ldb	3,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L11
 	ldb	3,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L19
@@ -501,7 +501,7 @@ _set_tower:
 	pshs	u
 	leas	-4,s
 	stb	3,s
-	ldb	3,s
+	; ldb	3,s	; optimization 5
 	stb	_tower+1
 	clr	_tower+3
 	clr	_tower+2
@@ -509,13 +509,13 @@ _set_tower:
 	stb	_tower+4
 	ldb	_tower+1
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	cmpb	#5	;cmpqi:
 	lbhi	L38
 	ldb	2,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
-	ldd	,s
+	; ldd	,s	; optimization 5
 	aslb
 	rola
 	ldu	#L37
@@ -638,7 +638,7 @@ _rate.3437:
 _tower_shot:
 	leas	-2,s
 	ldb	_tower+2
-	tstb
+	; tstb	; optimization 6
 	bne	L40
 	ldb	_rate.3437
 	decb
@@ -663,7 +663,7 @@ L41:
 	clr	,s
 	clr	1,s
 	ldb	_rate.3437
-	tstb
+	; tstb	; optimization 6
 	lbgt	L44
 	ldb	_tower+5
 	pshs	b
@@ -711,7 +711,7 @@ _handle_tower:
 	jsr	_tower_shot
 	jsr	_draw_tower
 	ldb	_tower
-	tstb
+	; tstb	; optimization 6
 	bne	L47
 	ldb	#1
 	stb	_current_wave+3

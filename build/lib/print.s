@@ -29,7 +29,7 @@ _print_string:
 	leas	1,s
 	ldx	,s
 	stx	7,s
-	ldx	7,s
+	; ldx	7,s	; optimization 5
 	jsr	__Print_Str
 	leas	9,s
 	rts
@@ -74,7 +74,7 @@ L8:
 	stb	12,s
 L7:
 	ldb	12,s
-	cmpb	#10	;cmpqi:
+	cmpb	#9	;cmpqi:
 	bhi	L8
 	ldb	12,s
 	addb	#48
@@ -123,7 +123,7 @@ L12:
 	bge	L13
 	ldb	22,s
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	negb
 	stb	4,s
 	bra	L14
@@ -146,7 +146,7 @@ L15:
 	leas	2,s
 	tfr	x,d	;movlsbqihi: R:x -> R:b
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	addb	#48
 	stb	6,s
 	ldb	5,s
@@ -274,7 +274,7 @@ L26:
 	std	,s
 L25:
 	ldx	,s
-	cmpx	#1000	;cmphi:
+	cmpx	#999	;cmphi:
 	bhi	L26
 	ldb	#48
 	stb	5,s
@@ -288,7 +288,7 @@ L28:
 	std	,s
 L27:
 	ldx	,s
-	cmpx	#100	;cmphi:
+	cmpx	#99	;cmphi:
 	bhi	L28
 	ldb	#48
 	stb	6,s
@@ -302,7 +302,7 @@ L30:
 	std	,s
 L29:
 	ldx	,s
-	cmpx	#10	;cmphi:
+	cmpx	#9	;cmphi:
 	bhi	L30
 	ldx	,s
 	tfr	x,d	;movlsbqihi: R:x -> R:b
@@ -335,7 +335,7 @@ _print_long_signed_int:
 	leas	-25,s
 	stb	10,s
 	stx	8,s
-	ldx	8,s
+	; ldx	8,s	; optimization 5
 	cmpx	#0
 	bge	L33
 	ldb	#45
@@ -378,7 +378,7 @@ L37:
 	leas	2,s
 	tfr	x,d	;movlsbqihi: R:x -> R:b
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	addb	#48
 	stb	7,s
 	ldb	6,s
@@ -437,7 +437,7 @@ L40:
 	ldb	#1
 	andb	,s
 	stb	2,s
-	ldb	2,s
+	; ldb	2,s	; optimization 5
 	addb	#48
 	stb	4,s
 	ldb	3,s

@@ -11,11 +11,11 @@ _Sync:
 	jsr	___DP_to_C8
 	ldx	_current_explosion
 	stx	,s
-	ldx	,s
+	; ldx	,s	; optimization 5
 	jsr	__Explosion_Snd
 	ldx	_current_music
 	stx	2,s
-	ldx	2,s
+	; ldx	2,s	; optimization 5
 	jsr	__Init_Music_chk
 	jsr	___Wait_Recal
 	jsr	__Do_Sound

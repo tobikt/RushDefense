@@ -46,7 +46,7 @@ void print_unsigned_int(int y, int x, unsigned int z)
 	}
 	
 	message[1] = '0';
-	while(z>10u)
+	while(z>9u)
 	{
 		++message[1];
 		z = z - 10u;
@@ -132,21 +132,21 @@ void print_long_unsigned_int(int y, int x, unsigned long int z)
 	
 		
 	message[1] = '0';
-	while(z>1000ul)
+	while(z>999ul)
 	{
 		++message[1];
 		z = z - 1000ul;
 	}
 	
 	message[2] = '0';
-	while(z>100u)
+	while(z>99u)
 	{
 		++message[2];
 		z = z - 100u;
 	}
 	
 	message[3] = '0';
-	while(z>10u)
+	while(z>9u)
 	{
 		++message[3];
 		z = z - 10u;

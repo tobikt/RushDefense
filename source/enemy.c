@@ -13,42 +13,22 @@
 #include "wave.h"
 #include "bullet.h"
 #include "waves_data.h"
+#include "enemy_data.h"
 
 
 // ---------------------------------------------------------------------------
 
 struct object_t enemies[] =
 {
-	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
-	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
-	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
-	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
-	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0, .direction = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0, .direction = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0, .direction = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0, .direction = 0},
+	{ .damage = 0, .status = INACTIVE, .y = 0, .x = 0, .dy = 0, .dx = 0, .direction = 0},
 };
 
 // ---------------------------------------------------------------------------
 
-#undef SF
-#define SF 16
-
-const struct packet_t vectors_enemy[] =
-{
-	{MOVE, {  1 * SF,  0 * SF}},
-	{DRAW, {  -1 * SF,  0 * SF}},
-	{DRAW, { -1 * SF,  1 * SF}},
-	{DRAW, { -1 * SF,  0 * SF}},
-	{DRAW, { 0 * SF, 1 * SF}},
-	{DRAW, { -1 * SF, -1 * SF}},
-	{DRAW, {  1 * SF, -1 * SF}},
-	{DRAW, {  -1 * SF, -1 * SF}},
-	{DRAW, {  1 * SF,  -1 * SF}},
-	{DRAW, {  0 * SF,  1 * SF}},
-	{DRAW, {  1 * SF,  0 * SF}},
-	{DRAW, {  1 * SF,  1 * SF}},
-	{STOP, { 0, 0}},
-};
-
-// ---------------------------------------------------------------------------
 
 void draw_enemy(struct object_t* p)
 {
@@ -56,7 +36,7 @@ void draw_enemy(struct object_t* p)
 	dp_VIA_t1_cnt_lo = 0x7f;	// set scaling factor for positioning
 	Moveto_d(p->y, p->x);		// move beam to object coordinates
 	dp_VIA_t1_cnt_lo = 0x22;	// set scalinf factor for drawing
-	Draw_VLp(&vectors_enemy);	// draw vector list
+	Draw_VLp(&enemy_data[p->direction].vectors_enemy);	// draw vector list
 }
 
 // ---------------------------------------------------------------------------
@@ -93,6 +73,7 @@ void init_enemies(void)
 		enemies[i].dx  		= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].dx;
 		enemies[i].damage 	= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].damage;
 		enemies[i].money 	= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].money;
+		enemies[i].direction= waveData[current_wave.wave_lvl].phases[current_wave.phase].enemies[i].direction;
 	}
 	
 	for (unsigned int i = enemiesCnt; i < MAX_ENEMIES; ++i)

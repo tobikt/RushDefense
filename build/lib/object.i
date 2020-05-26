@@ -1715,6 +1715,7 @@ struct object_t
  int x;
  int dy;
  int dx;
+ int direction;
  unsigned int damage;
  unsigned int money;
 };
