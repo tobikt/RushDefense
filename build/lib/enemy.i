@@ -2108,235 +2108,273 @@ void check_bulletCollision(void);
 # 1 "source\\/waves_data.h" 1
        
 
-const unsigned int MAX_LEVELS = 35;
+const unsigned int MAX_LEVELS = 40;
 struct phase_data_t { unsigned int enemies_cnt; struct object_t enemies [ 5 ];};
 struct wave_data_t{ unsigned int wave_lvl;unsigned int phases_cnt;struct phase_data_t phases [ 3 ];};
 const struct wave_data_t waveData[] =
 {
  {
   .wave_lvl = 1,
-  .phases_cnt = 2,
+  .phases_cnt = 3,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 18,.money = 92,.direction = 60},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 5,.money = 87,.direction = 0},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 2,.money = 5,.direction = 7},
     },
    },
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 18,.money = 94,.direction = 4},
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 6,.money = 67,.direction = 32},
-     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 8,.money = 4,.direction = 28},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 1,.money = 9,.direction = 7},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 3,.money = 7,.direction = 12},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 2,.money = 1,.direction = 5},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 1,.money = 4,.direction = 1},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 1,.money = 2,.direction = 14},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 1,.money = 2,.direction = 7},
     },
    },
   },
  },
  {
   .wave_lvl = 2,
-  .phases_cnt = 2,
+  .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 13,.money = 59,.direction = 16},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 12,.money = 53,.direction = 44},
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 4,.money = 20,.direction = 16},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 3,.dx = 6,.damage = 12,.money = 75,.direction = 4},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 1,.dx = -1,.damage = 12,.money = 80,.direction = 24},
-     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 5,.money = 18,.direction = 28},
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 4,.money = 41,.direction = 20},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 2,.money = 8,.direction = 1},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 2,.money = 9,.direction = 14},
     },
    },
   },
  },
  {
   .wave_lvl = 3,
-  .phases_cnt = 3,
+  .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 9,.money = 97,.direction = 52},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -6,.dx = -3,.damage = 9,.money = 54,.direction = 44},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 2,.money = 1,.direction = 12},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 1,.money = 1,.direction = 9},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 4,.money = 8,.direction = 7},
     },
    },
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 5,.money = 85,.direction = 16},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -3,.dx = -6,.damage = 11,.money = 2,.direction = 36},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 17,.money = 83,.direction = 52},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -2,.dx = -4,.damage = 6,.money = 12,.direction = 36},
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 11,.money = 32,.direction = 8},
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 5,.money = 68,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 2,.money = 10,.direction = 11},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 2,.money = 10,.direction = 11},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 1,.dx = 1,.damage = 2,.money = 10,.direction = 2},
     },
    },
   },
  },
  {
   .wave_lvl = 4,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
    {
     .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 13,.money = 11,.direction = 60},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 1,.money = 3,.direction = 9},
+    },
+   },
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 5,.money = 6,.direction = 9},
+    },
+   },
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 3,.money = 11,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 2,.money = 9,.direction = 5},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 3,.money = 10,.direction = 12},
     },
    },
   },
  },
  {
   .wave_lvl = 5,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 10,.money = 40,.direction = 36},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 10,.money = 7,.direction = 12},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 1,.money = 4,.direction = 1},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 4,.money = 4,.direction = 11},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 4,.money = 3,.direction = 1},
+    },
+   },
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 1,.money = 10,.direction = 9},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 4,.money = 9,.direction = 3},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 5,.money = 1,.direction = 3},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 2,.money = 2,.direction = 12},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 1,.money = 5,.direction = 10},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 2,.money = 5,.direction = 8},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 1,.money = 7,.direction = 1},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 5,.money = 9,.direction = 0},
     },
    },
   },
  },
  {
   .wave_lvl = 6,
-  .phases_cnt = 3,
+  .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 3,.dx = 6,.damage = 4,.money = 72,.direction = 4},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 1,.dx = -1,.damage = 7,.money = 66,.direction = 24},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 16,.money = 34,.direction = 8},
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 16,.money = 12,.direction = 56},
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 8,.money = 76,.direction = 4},
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 17,.money = 40,.direction = 4},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 8,.money = 64,.direction = 4},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 4,.dx = 2,.damage = 12,.money = 49,.direction = 12},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 1,.money = 38,.direction = 0},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 3,.dx = -3,.damage = 18,.money = 92,.direction = 24},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 3,.money = 4,.direction = 0},
     },
    },
   },
  },
  {
   .wave_lvl = 7,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
+   {
+    .enemies_cnt= 2,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 3,.money = 9,.direction = 9},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 4,.money = 7,.direction = 9},
+    },
+   },
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 11,.money = 61,.direction = 8},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 1,.dx = -1,.damage = 4,.money = 27,.direction = 24},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 6,.money = 8,.direction = 24},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 1,.money = 10,.direction = 15},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 1,.money = 10,.direction = 10},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 1,.money = 6,.direction = 3},
     },
    },
   },
  },
  {
   .wave_lvl = 8,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -6,.dx = -3,.damage = 19,.money = 58,.direction = 44},
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -3,.dx = 3,.damage = 13,.money = 91,.direction = 56},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 6,.money = 3,.direction = 12},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 3,.money = 12,.direction = 11},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 2,.money = 6,.direction = 15},
+    },
+   },
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 6,.money = 7,.direction = 14},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 4,.money = 3,.direction = 10},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 1,.money = 3,.direction = 1},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 4,.money = 6,.direction = 7},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 1,.money = 11,.direction = 5},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 5,.money = 2,.direction = 10},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 6,.money = 4,.direction = 9},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 6,.money = 13,.direction = 10},
     },
    },
   },
  },
  {
   .wave_lvl = 9,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 9,.money = 67,.direction = 52},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -4,.dx = -2,.damage = 6,.money = 73,.direction = 44},
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 14,.money = 25,.direction = 20},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 1,.dx = 1,.damage = 2,.money = 13,.direction = 2},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 3,.money = 2,.direction = 8},
+     {.status = ACTIVE,.y = -100,.x = 100,.dy = 1,.dx = -1,.damage = 4,.money = 4,.direction = 6},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 5,.money = 7,.direction = 4},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 2,.money = 6,.direction = 0},
     },
    },
   },
  },
  {
   .wave_lvl = 10,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 4,.dx = 2,.damage = 12,.money = 52,.direction = 12},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 1,.money = 74,.direction = 0},
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 5,.money = 80,.direction = 16},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 7,.money = 9,.direction = 8},
+    },
+   },
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -2,.dx = 0,.damage = 7,.money = 7,.direction = 12},
     },
    },
   },
  },
  {
   .wave_lvl = 11,
-  .phases_cnt = 3,
+  .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 15,.money = 30,.direction = 8},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 4,.dx = 2,.damage = 10,.money = 62,.direction = 12},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 2,.money = 50,.direction = 12},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 1,.money = 12,.direction = 13},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 3,.money = 3,.direction = 11},
     },
    },
    {
-    .enemies_cnt= 4,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 3,.dx = 6,.damage = 17,.money = 3,.direction = 4},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 18,.money = 93,.direction = 0},
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 17,.money = 27,.direction = 40},
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 12,.money = 62,.direction = 8},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = 100,.x = 0,.dy = -3,.dx = 0,.damage = 13,.money = 69,.direction = 48},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 10,.money = 20,.direction = 24},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 10,.money = 91,.direction = 36},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 2,.money = 18,.direction = 60},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 4,.money = 8,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 4,.money = 12,.direction = 5},
     },
    },
   },
  },
  {
   .wave_lvl = 12,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
     .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 8,.money = 15,.direction = 20},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 7,.money = 3,.direction = 1},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 3,.money = 10,.direction = 0},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 1,.money = 5,.direction = 5},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 1,.money = 7,.direction = 5},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 2,.money = 3,.direction = 2},
     },
    },
   },
@@ -2346,30 +2384,42 @@ const struct wave_data_t waveData[] =
   .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 3,.dx = -3,.damage = 14,.money = 82,.direction = 24},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 3,.money = 14,.direction = 12},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 5,.money = 5,.direction = 3},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 3,.money = 7,.direction = 15},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 1,.money = 5,.direction = 8},
     },
    },
   },
  },
  {
   .wave_lvl = 14,
-  .phases_cnt = 2,
+  .phases_cnt = 3,
   {
    {
     .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 3,.money = 78,.direction = 40},
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 17,.money = 28,.direction = 52},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 4,.money = 12,.direction = 0},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 4,.money = 7,.direction = 10},
     },
    },
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 4,
     {
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 2,.money = 44,.direction = 24},
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 9,.money = 2,.direction = 20},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 4,.money = 1,.direction = 1},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 7,.money = 4,.direction = 4},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 4,.money = 9,.direction = 0},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 5,.money = 13,.direction = 1},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 2,.money = 16,.direction = 5},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 1,.money = 10,.direction = 0},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 2,.money = 5,.direction = 10},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 7,.money = 5,.direction = 8},
     },
    },
   },
@@ -2379,40 +2429,28 @@ const struct wave_data_t waveData[] =
   .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 19,.money = 59,.direction = 60},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 18,.money = 7,.direction = 60},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 2,.dx = -4,.damage = 1,.money = 13,.direction = 7},
     },
    },
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 5,.money = 76,.direction = 0},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 6,.dx = 3,.damage = 10,.money = 10,.direction = 12},
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 11,.money = 6,.direction = 32},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 1,.money = 16,.direction = 14},
     },
    },
   },
  },
  {
   .wave_lvl = 16,
-  .phases_cnt = 2,
+  .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 2,.money = 11,.direction = 52},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 6,.dx = 3,.damage = 15,.money = 93,.direction = 12},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 3,.damage = 15,.money = 73,.direction = 0},
-    },
-   },
-   {
-    .enemies_cnt= 3,
-    {
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -3,.damage = 17,.money = 20,.direction = 32},
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 3,.money = 97,.direction = 20},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 15,.money = 41,.direction = 36},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 4,.money = 8,.direction = 5},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 2,.money = 12,.direction = 5},
     },
    },
   },
@@ -2422,84 +2460,102 @@ const struct wave_data_t waveData[] =
   .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 1,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 2,.money = 58,.direction = 40},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 4,.money = 1,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 4,.money = 3,.direction = 11},
     },
    },
    {
-    .enemies_cnt= 1,
+    .enemies_cnt= 4,
     {
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -3,.dx = 3,.damage = 18,.money = 1,.direction = 56},
+     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 4,.money = 10,.direction = 6},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 7,.money = 11,.direction = 12},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 1,.money = 6,.direction = 5},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 8,.money = 12,.direction = 4},
     },
    },
   },
  },
  {
   .wave_lvl = 18,
-  .phases_cnt = 3,
+  .phases_cnt = 2,
   {
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 6,.money = 16,.direction = 9},
+    },
+   },
    {
     .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 3,.money = 24,.direction = 8},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 7,.money = 22,.direction = 60},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -3,.dx = 3,.damage = 2,.money = 7,.direction = 56},
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 5,.money = 49,.direction = 40},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 14,.money = 2,.direction = 60},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 4,.dx = 2,.damage = 9,.money = 78,.direction = 12},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 9,.money = 14,.direction = 60},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 1,.money = 3,.direction = 44},
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 3,.dx = 6,.damage = 12,.money = 14,.direction = 4},
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 5,.money = 49,.direction = 32},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 3,.money = 2,.direction = 8},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 7,.money = 15,.direction = 8},
     },
    },
   },
  },
  {
   .wave_lvl = 19,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 3,.dx = 3,.damage = 2,.money = 60,.direction = 8},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 3,.damage = 15,.money = 14,.direction = 0},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 6,.money = 1,.direction = 0},
+    },
+   },
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 4,.money = 2,.direction = 6},
     },
    },
   },
  },
  {
   .wave_lvl = 20,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
    {
     .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -4,.dx = 2,.damage = 12,.money = 65,.direction = 52},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 3,.money = 16,.direction = 4},
+    },
+   },
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 1,.money = 5,.direction = 7},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -3,.damage = 4,.money = 14,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -3,.dx = 3,.damage = 5,.money = 11,.direction = 14},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -4,.dx = 2,.damage = 7,.money = 14,.direction = 13},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 10,.money = 4,.direction = 9},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -6,.dx = -3,.damage = 7,.money = 13,.direction = 11},
     },
    },
   },
  },
  {
   .wave_lvl = 21,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 6,.dx = 3,.damage = 16,.money = 58,.direction = 12},
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 5,.money = 29,.direction = 56},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 10,.money = 7,.direction = 8},
+    },
+   },
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 5,.money = 2,.direction = 7},
     },
    },
   },
@@ -2511,16 +2567,14 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 1,.dx = -1,.damage = 10,.money = 71,.direction = 24},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 4,.money = 15,.direction = 15},
     },
    },
    {
-    .enemies_cnt= 4,
+    .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 19,.money = 87,.direction = 60},
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 18,.money = 31,.direction = 56},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 17,.money = 28,.direction = 0},
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -3,.damage = 15,.money = 29,.direction = 32},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -3,.dx = -6,.damage = 6,.money = 15,.direction = 9},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 10,.money = 7,.direction = 3},
     },
    },
   },
@@ -2530,99 +2584,130 @@ const struct wave_data_t waveData[] =
   .phases_cnt = 3,
   {
    {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 2,.money = 18,.direction = 3},
+    },
+   },
+   {
     .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 5,.money = 11,.direction = 56},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -2,.dx = -4,.damage = 15,.money = 19,.direction = 36},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 5,.money = 20,.direction = 4},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 2,.money = 13,.direction = 8},
     },
    },
    {
     .enemies_cnt= 4,
     {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 4,.money = 20,.direction = 60},
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 2,.money = 93,.direction = 20},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 12,.money = 96,.direction = 24},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -6,.dx = -3,.damage = 5,.money = 78,.direction = 44},
-    },
-   },
-   {
-    .enemies_cnt= 5,
-    {
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 12,.money = 1,.direction = 40},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 2,.money = 7,.direction = 0},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -3,.dx = -6,.damage = 8,.money = 6,.direction = 36},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 3,.money = 64,.direction = 60},
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 3,.dx = 0,.damage = 17,.money = 88,.direction = 16},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 8,.money = 10,.direction = 2},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 3,.money = 3,.direction = 14},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 6,.money = 1,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 3,.dx = 3,.damage = 2,.money = 13,.direction = 2},
     },
    },
   },
  },
  {
   .wave_lvl = 24,
-  .phases_cnt = 3,
+  .phases_cnt = 2,
   {
    {
     .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -3,.dx = 3,.damage = 18,.money = 9,.direction = 56},
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 3,.dx = 3,.damage = 17,.money = 16,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 11,.money = 14,.direction = 12},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 5,.money = 11,.direction = 14},
     },
    },
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 3,.dx = 0,.damage = 12,.money = 4,.direction = 16},
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 9,.money = 26,.direction = 4},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -6,.dx = -3,.damage = 3,.money = 47,.direction = 44},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 12,.money = 40,.direction = 60},
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 19,.money = 2,.direction = 36},
-     {.status = ACTIVE,.y = -100,.x = -50,.dy = 6,.dx = 3,.damage = 14,.money = 90,.direction = 12},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 18,.money = 91,.direction = 60},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 1,.money = 18,.direction = 13},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 6,.money = 20,.direction = 4},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -3,.dx = -3,.damage = 7,.money = 4,.direction = 10},
     },
    },
   },
  },
  {
   .wave_lvl = 25,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 17,.money = 14,.direction = 24},
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -3,.dx = -3,.damage = 16,.money = 78,.direction = 40},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 19,.money = 50,.direction = 24},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 9,.money = 5,.direction = 4},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 1,.money = 17,.direction = 13},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 9,.money = 9,.direction = 7},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -3,.damage = 3,.money = 6,.direction = 8},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 8,.money = 19,.direction = 1},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 7,.money = 19,.direction = 15},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 10,.money = 19,.direction = 15},
     },
    },
   },
  },
  {
   .wave_lvl = 26,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
    {
-    .enemies_cnt= 1,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 17,.money = 49,.direction = 60},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 5,.money = 11,.direction = 14},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 4,.money = 16,.direction = 5},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 9,.money = 2,.direction = 7},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 4,.dx = 2,.damage = 1,.money = 16,.direction = 3},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 3,.dx = 0,.damage = 4,.money = 9,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 2,.dx = 1,.damage = 10,.money = 5,.direction = 3},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 3,.money = 2,.direction = 15},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 3,.money = 11,.direction = 7},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 10,.money = 18,.direction = 15},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 1,.money = 13,.direction = 12},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 9,.money = 8,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -4,.dx = -2,.damage = 7,.money = 8,.direction = 11},
     },
    },
   },
  },
  {
   .wave_lvl = 27,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 3,.dx = 3,.damage = 7,.money = 7,.direction = 2},
+    },
+   },
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 18,.money = 74,.direction = 40},
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 10,.money = 9,.direction = 8},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -3,.dx = 6,.damage = 18,.money = 29,.direction = 60},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 9,.money = 14,.direction = 0},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 6,.money = 15,.direction = 13},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 3,.money = 12,.direction = 12},
+    },
+   },
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 2,.money = 2,.direction = 7},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 12,.money = 1,.direction = 12},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -3,.dx = -3,.damage = 11,.money = 15,.direction = 10},
     },
    },
   },
@@ -2632,23 +2717,40 @@ const struct wave_data_t waveData[] =
   .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 1,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 3,.dx = 6,.damage = 1,.money = 74,.direction = 4},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 2,.dx = -4,.damage = 6,.money = 9,.direction = 7},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 3,.dx = 6,.damage = 12,.money = 14,.direction = 1},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 6,.money = 13,.direction = 5},
     },
    },
   },
  },
  {
   .wave_lvl = 29,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
+   {
+    .enemies_cnt= 2,
+    {
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 12,.money = 13,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -2,.dx = 0,.damage = 10,.money = 7,.direction = 12},
+    },
+   },
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -2,.dx = -4,.damage = 17,.money = 23,.direction = 36},
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -1,.dx = 1,.damage = 16,.money = 2,.direction = 56},
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 1,.money = 25,.direction = 20},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 11,.money = 9,.direction = 5},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 7,.money = 21,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 8,.money = 7,.direction = 14},
+    },
+   },
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 2,.money = 9,.direction = 9},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 7,.money = 21,.direction = 11},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 2,.money = 12,.direction = 5},
     },
    },
   },
@@ -2658,20 +2760,17 @@ const struct wave_data_t waveData[] =
   .phases_cnt = 2,
   {
    {
-    .enemies_cnt= 3,
+    .enemies_cnt= 1,
     {
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 2,.money = 34,.direction = 4},
-     {.status = ACTIVE,.y = -50,.x = -100,.dy = 1,.dx = 2,.damage = 5,.money = 56,.direction = 4},
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 1,.dx = -1,.damage = 16,.money = 84,.direction = 24},
+     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 7,.money = 12,.direction = 14},
     },
    },
    {
-    .enemies_cnt= 4,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 3,.damage = 4,.money = 80,.direction = 0},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 13,.money = 70,.direction = 60},
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 18,.money = 41,.direction = 16},
-     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 12,.money = 64,.direction = 0},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 3,.money = 6,.direction = 5},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 5,.money = 5,.direction = 15},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 11,.money = 12,.direction = 9},
     },
    },
   },
@@ -2683,85 +2782,214 @@ const struct wave_data_t waveData[] =
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 50,.x = 100,.dy = -3,.dx = -6,.damage = 9,.money = 30,.direction = 36},
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 19,.money = 48,.direction = 32},
-     {.status = ACTIVE,.y = 100,.x = 0,.dy = -2,.dx = 0,.damage = 4,.money = 89,.direction = 48},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 9,.money = 20,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 12,.money = 12,.direction = 5},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 12,.money = 17,.direction = 2},
     },
    },
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = 100,.dy = 2,.dx = -2,.damage = 7,.money = 40,.direction = 24},
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -2,.dx = -1,.damage = 4,.money = 14,.direction = 44},
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 1,.money = 79,.direction = 52},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 13,.money = 17,.direction = 13},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 7,.money = 23,.direction = 1},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 8,.money = 13,.direction = 0},
     },
    },
   },
  },
  {
   .wave_lvl = 32,
-  .phases_cnt = 1,
+  .phases_cnt = 2,
   {
    {
     .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = -100,.dy = 1,.dx = 1,.damage = 19,.money = 89,.direction = 8},
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 7,.money = 42,.direction = 32},
-     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 19,.money = 48,.direction = 40},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 5,.money = 2,.direction = 4},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -6,.dx = -3,.damage = 10,.money = 15,.direction = 11},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 8,.money = 8,.direction = 4},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 3,.money = 19,.direction = 15},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -1,.dx = -1,.damage = 4,.money = 19,.direction = 10},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 6,.money = 2,.direction = 8},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -2,.dx = -4,.damage = 2,.money = 6,.direction = 9},
     },
    },
   },
  },
  {
   .wave_lvl = 33,
-  .phases_cnt = 1,
+  .phases_cnt = 3,
   {
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -3,.dx = -6,.damage = 6,.money = 5,.direction = 9},
+    },
+   },
    {
     .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -4,.dx = -2,.damage = 6,.money = 77,.direction = 44},
-     {.status = ACTIVE,.y = 100,.x = 0,.dy = -3,.dx = 0,.damage = 1,.money = 38,.direction = 48},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -1,.damage = 7,.money = 23,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -6,.dx = 3,.damage = 11,.money = 7,.direction = 13},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 6,.money = 20,.direction = 13},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 2,.dx = 0,.damage = 10,.money = 20,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 6,.dx = 3,.damage = 4,.money = 25,.direction = 3},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -3,.dx = 0,.damage = 13,.money = 20,.direction = 12},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 6,.money = 2,.direction = 0},
     },
    },
   },
  },
  {
   .wave_lvl = 34,
-  .phases_cnt = 2,
+  .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 2,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 6,.money = 81,.direction = 20},
-     {.status = ACTIVE,.y = 100,.x = -50,.dy = -4,.dx = 2,.damage = 13,.money = 97,.direction = 52},
-    },
-   },
-   {
-    .enemies_cnt= 4,
-    {
-     {.status = ACTIVE,.y = -50,.x = 100,.dy = 2,.dx = -4,.damage = 16,.money = 60,.direction = 28},
-     {.status = ACTIVE,.y = 100,.x = -100,.dy = -2,.dx = 2,.damage = 3,.money = 23,.direction = 56},
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 19,.money = 15,.direction = 16},
-     {.status = ACTIVE,.y = -100,.x = 0,.dy = 3,.dx = 0,.damage = 5,.money = 82,.direction = 16},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -4,.dx = 2,.damage = 14,.money = 11,.direction = 13},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -2,.dx = -4,.damage = 12,.money = 20,.direction = 9},
+     {.status = ACTIVE,.y = 100,.x = 0,.dy = -1,.dx = 0,.damage = 13,.money = 22,.direction = 12},
     },
    },
   },
  },
  {
   .wave_lvl = 35,
-  .phases_cnt = 2,
+  .phases_cnt = 1,
   {
    {
-    .enemies_cnt= 1,
+    .enemies_cnt= 3,
     {
-     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -3,.damage = 13,.money = 25,.direction = 32},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 1,.dx = 0,.damage = 13,.money = 8,.direction = 4},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 11,.money = 26,.direction = 2},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 1,.money = 22,.direction = 13},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 36,
+  .phases_cnt = 3,
+  {
+   {
+    .enemies_cnt= 2,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -2,.dx = -4,.damage = 6,.money = 19,.direction = 9},
+     {.status = ACTIVE,.y = -100,.x = -50,.dy = 6,.dx = 3,.damage = 13,.money = 15,.direction = 3},
     },
    },
    {
     .enemies_cnt= 2,
     {
-     {.status = ACTIVE,.y = 100,.x = 50,.dy = -4,.dx = -2,.damage = 7,.money = 11,.direction = 44},
-     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 10,.money = 36,.direction = 60},
+     {.status = ACTIVE,.y = -100,.x = 100,.dy = 3,.dx = -3,.damage = 6,.money = 10,.direction = 6},
+     {.status = ACTIVE,.y = -100,.x = 0,.dy = 3,.dx = 0,.damage = 3,.money = 24,.direction = 4},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -2,.dx = 1,.damage = 14,.money = 26,.direction = 13},
+     {.status = ACTIVE,.y = 100,.x = -50,.dy = -4,.dx = 2,.damage = 11,.money = 20,.direction = 13},
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -2,.dx = 4,.damage = 9,.money = 11,.direction = 15},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 3,.money = 15,.direction = 8},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 1,.dx = -2,.damage = 12,.money = 5,.direction = 7},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 37,
+  .phases_cnt = 1,
+  {
+   {
+    .enemies_cnt= 2,
+    {
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 1,.damage = 8,.money = 2,.direction = 0},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 7,.money = 15,.direction = 5},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 38,
+  .phases_cnt = 2,
+  {
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 1,.money = 5,.direction = 10},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 2,.money = 25,.direction = 7},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 2,.dx = -1,.damage = 15,.money = 5,.direction = 5},
+     {.status = ACTIVE,.y = 100,.x = 50,.dy = -4,.dx = -2,.damage = 12,.money = 17,.direction = 11},
+     {.status = ACTIVE,.y = -50,.x = -100,.dy = 2,.dx = 4,.damage = 1,.money = 26,.direction = 1},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 39,
+  .phases_cnt = 3,
+  {
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -3,.damage = 14,.money = 4,.direction = 8},
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 3,.dx = 3,.damage = 13,.money = 22,.direction = 2},
+     {.status = ACTIVE,.y = -50,.x = 100,.dy = 3,.dx = -6,.damage = 9,.money = 13,.direction = 7},
+    },
+   },
+   {
+    .enemies_cnt= 3,
+    {
+     {.status = ACTIVE,.y = 50,.x = -100,.dy = -1,.dx = 2,.damage = 2,.money = 13,.direction = 15},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 14,.money = 18,.direction = 10},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 4,.money = 11,.direction = 5},
+    },
+   },
+   {
+    .enemies_cnt= 5,
+    {
+     {.status = ACTIVE,.y = -100,.x = -100,.dy = 2,.dx = 2,.damage = 7,.money = 11,.direction = 2},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 6,.dx = -3,.damage = 15,.money = 25,.direction = 5},
+     {.status = ACTIVE,.y = -100,.x = 50,.dy = 4,.dx = -2,.damage = 1,.money = 23,.direction = 5},
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -3,.dx = -6,.damage = 15,.money = 15,.direction = 9},
+     {.status = ACTIVE,.y = 0,.x = -100,.dy = 0,.dx = 2,.damage = 6,.money = 12,.direction = 0},
+    },
+   },
+  },
+ },
+ {
+  .wave_lvl = 40,
+  .phases_cnt = 2,
+  {
+   {
+    .enemies_cnt= 1,
+    {
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 3,.money = 15,.direction = 8},
+    },
+   },
+   {
+    .enemies_cnt= 4,
+    {
+     {.status = ACTIVE,.y = 50,.x = 100,.dy = -1,.dx = -2,.damage = 15,.money = 19,.direction = 9},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 10,.money = 5,.direction = 8},
+     {.status = ACTIVE,.y = 100,.x = 100,.dy = -2,.dx = -2,.damage = 16,.money = 16,.direction = 10},
+     {.status = ACTIVE,.y = 0,.x = 100,.dy = 0,.dx = -2,.damage = 7,.money = 16,.direction = 8},
     },
    },
   },
@@ -2795,18 +3023,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { 6 * 1, 14 * 1}},
    {DRAW, { -6 * 1, -14 * 1}},
    {DRAW, { -20 * 1, -8 * 1}},
@@ -2820,18 +3036,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { 6 * 1, 15 * 1}},
    {DRAW, { -8 * 1, 20 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -2853,18 +3057,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { 14 * 1, 6 * 1}},
    {DRAW, { -14 * 1, -6 * 1}},
    {DRAW, { -20 * 1, 8 * 1}},
@@ -2878,18 +3070,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { 15 * 1, 7 * 1}},
    {DRAW, { 8 * 1, 20 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -2911,18 +3091,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { 14 * 1, -6 * 1}},
    {DRAW, { -14 * 1, 6 * 1}},
    {DRAW, { -8 * 1, 20 * 1}},
@@ -2936,18 +3104,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { 15 * 1, -6 * 1}},
    {DRAW, { 20 * 1, 8 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -2969,18 +3125,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { 6 * 1, -14 * 1}},
    {DRAW, { -6 * 1, 14 * 1}},
    {DRAW, { 8 * 1, 20 * 1}},
@@ -2994,18 +3138,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { 7 * 1, -15 * 1}},
    {DRAW, { 20 * 1, -8 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -3027,18 +3159,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { -6 * 1, -14 * 1}},
    {DRAW, { 6 * 1, 14 * 1}},
    {DRAW, { 20 * 1, 8 * 1}},
@@ -3052,18 +3172,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { -6 * 1, -15 * 1}},
    {DRAW, { 8 * 1, -20 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -3085,18 +3193,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { -14 * 1, -6 * 1}},
    {DRAW, { 14 * 1, 6 * 1}},
    {DRAW, { 20 * 1, -8 * 1}},
@@ -3110,18 +3206,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { -15 * 1, -7 * 1}},
    {DRAW, { -8 * 1, -20 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -3143,18 +3227,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { -14 * 1, 6 * 1}},
    {DRAW, { 14 * 1, -6 * 1}},
    {DRAW, { 8 * 1, -20 * 1}},
@@ -3168,18 +3240,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { -15 * 1, 6 * 1}},
    {DRAW, { -20 * 1, -8 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
  {
@@ -3201,18 +3261,6 @@ const struct enemy_data_t enemy_data[] =
  },
  {
   {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
    {MOVE, { -6 * 1, 14 * 1}},
    {DRAW, { 6 * 1, -14 * 1}},
    {DRAW, { -8 * 1, -20 * 1}},
@@ -3226,18 +3274,6 @@ const struct enemy_data_t enemy_data[] =
    {DRAW, { -7 * 1, 15 * 1}},
    {DRAW, { -20 * 1, 8 * 1}},
    {STOP, { 0, 0}},
-  },
- },
- {
-  {
-  },
- },
- {
-  {
-  },
- },
- {
-  {
   },
  },
 };

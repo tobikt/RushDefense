@@ -2287,32 +2287,32 @@ const struct tower_cost towercost[] =
 
  {
   .lvl_cost = 0,
-  .firerate_2_cost = 0,
-  .firerate_3_cost = 0,
+  .firerate_2_cost = 10,
+  .firerate_3_cost = 20,
  },
 
  {
   .lvl_cost = 20,
-  .firerate_2_cost = 20,
-  .firerate_3_cost = 30,
+  .firerate_2_cost = 40,
+  .firerate_3_cost = 50,
  },
 
  {
   .lvl_cost = 50,
-  .firerate_2_cost = 50,
-  .firerate_3_cost = 60,
- },
-
- {
-  .lvl_cost = 100,
-  .firerate_2_cost = 150,
+  .firerate_2_cost = 100,
   .firerate_3_cost = 200,
  },
 
  {
+  .lvl_cost = 100,
+  .firerate_2_cost = 200,
+  .firerate_3_cost = 250,
+ },
+
+ {
   .lvl_cost = 200,
-  .firerate_2_cost = 250,
-  .firerate_3_cost = 300,
+  .firerate_2_cost = 400,
+  .firerate_3_cost = 600,
  },
 
  {

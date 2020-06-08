@@ -8,20 +8,20 @@
 	.area .text
 _towercost:
 	.word	0
-	.word	0
-	.word	0
+	.word	10
 	.word	20
 	.word	20
-	.word	30
+	.word	40
 	.word	50
 	.word	50
-	.word	60
 	.word	100
-	.word	150
 	.word	200
+	.word	100
 	.word	200
 	.word	250
-	.word	300
+	.word	200
+	.word	400
+	.word	600
 	.word	500
 	.word	800
 	.word	900
@@ -408,7 +408,7 @@ L24:
 	cmpy	,s++	;cmphi:
 	lbls	L51
 	ldd	_player+2
-	ldx	_towercost+6
+	ldx	_towercost+12
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	_player+2
@@ -422,7 +422,7 @@ L25:
 	cmpy	,s++	;cmphi:
 	lbls	L51
 	ldd	_player+2
-	ldx	_towercost+6
+	ldx	_towercost+18
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	_player+2
@@ -436,7 +436,7 @@ L26:
 	cmpy	,s++	;cmphi:
 	lbls	L51
 	ldd	_player+2
-	ldx	_towercost+6
+	ldx	_towercost+24
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	_player+2
@@ -450,7 +450,7 @@ L27:
 	cmpy	,s++	;cmphi:
 	lbls	L51
 	ldd	_player+2
-	ldx	_towercost+6
+	ldx	_towercost+30
 	pshs	x	;subhi: R:d -= R:x
 	subd	,s++
 	std	_player+2
@@ -476,7 +476,6 @@ L21:
 L34:
 	ldy	_player+2
 	ldb	_tower+1
-	incb
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	8,s
@@ -499,7 +498,6 @@ L34:
 	lbls	L51
 	ldy	_player+2
 	ldb	_tower+1
-	incb
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	6,s
@@ -527,7 +525,6 @@ L34:
 L35:
 	ldy	_player+2
 	ldb	_tower+1
-	incb
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	4,s
@@ -550,7 +547,6 @@ L35:
 	lbls	L51
 	ldy	_player+2
 	ldb	_tower+1
-	incb
 	clra		;zero_extendqihi: R:b -> R:d
 	tfr	d,x
 	stx	2,s

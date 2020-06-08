@@ -135,10 +135,24 @@ _shot_player:
 	ldb	_Vec_Buttons
 	andb	#8
 	tstb
-	beq	L18
+	lbeq	L18
+	ldb	_player+1
+	addb	#-4
+	pshs	b
+	ldb	#1
+	ldx	1,s
+	jsr	_fire_bullet
+	leas	1,s
 	ldb	_player+1
 	pshs	b
-	ldb	#3
+	ldb	#1
+	ldx	1,s
+	jsr	_fire_bullet
+	leas	1,s
+	ldb	_player+1
+	addb	#4
+	pshs	b
+	ldb	#1
 	ldx	1,s
 	jsr	_fire_bullet
 	leas	1,s

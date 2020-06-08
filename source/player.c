@@ -88,7 +88,9 @@ void shot_player(void)
 	{
 		if (button_1_4_pressed())
 		{
-			fire_bullet(vec,3,player.angle);
+			fire_bullet(vec,1,player.angle -4);
+			fire_bullet(vec,1,player.angle);
+			fire_bullet(vec,1,player.angle +4);
 			timerFireRate = 20;
 		}
 	}

@@ -108,28 +108,28 @@ void menu_handle(void)
 					case LEVEL_2:
 						if(player.money > towercost[2].lvl_cost)
 						{
-							player.money -= towercost[1].lvl_cost;	
+							player.money -= towercost[2].lvl_cost;	
 							set_tower(LEVEL_3);
 						}
 						break;
 					case LEVEL_3:
 						if(player.money > towercost[3].lvl_cost)
 						{
-							player.money -= towercost[1].lvl_cost;	
+							player.money -= towercost[3].lvl_cost;	
 							set_tower(LEVEL_4);
 						}
 						break;
 					case LEVEL_4:
 						if(player.money > towercost[4].lvl_cost)
 						{
-							player.money -= towercost[1].lvl_cost;	
+							player.money -= towercost[4].lvl_cost;	
 							set_tower(LEVEL_5);
 						}
 						break;
 					case LEVEL_5:
 						if(player.money > towercost[5].lvl_cost)
 						{
-							player.money -= towercost[1].lvl_cost;	
+							player.money -= towercost[5].lvl_cost;	
 							set_tower(LEVEL_6);
 						}
 						break;
@@ -146,16 +146,16 @@ void menu_handle(void)
 			switch(tower.firerate)
 			{
 				case TOWER_FIRERATE_1:
-					if(player.money > towercost[tower.lvl + 1].firerate_2_cost)
+					if(player.money > towercost[tower.lvl].firerate_2_cost)
 					{
-						player.money -= towercost[tower.lvl + 1].firerate_2_cost;
+						player.money -= towercost[tower.lvl].firerate_2_cost;
 						tower.firerate = TOWER_FIRERATE_2;
 					}
 					break;
 				case TOWER_FIRERATE_2:
-					if(player.money > towercost[tower.lvl + 1].firerate_3_cost)
+					if(player.money > towercost[tower.lvl].firerate_3_cost)
 					{
-						player.money -= towercost[tower.lvl + 1].firerate_3_cost;
+						player.money -= towercost[tower.lvl].firerate_3_cost;
 						tower.firerate = TOWER_FIRERATE_3;
 					}
 					break;

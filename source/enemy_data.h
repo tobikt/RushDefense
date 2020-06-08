@@ -24,18 +24,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { 6 * SF, 14 * SF}},
 			{DRAW, { -6 * SF, -14 * SF}},
 			{DRAW, { -20 * SF, -8 * SF}},
@@ -49,18 +37,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { 6 * SF, 15 * SF}},
 			{DRAW, { -8 * SF, 20 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -82,18 +58,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { 14 * SF, 6 * SF}},
 			{DRAW, { -14 * SF, -6 * SF}},
 			{DRAW, { -20 * SF, 8 * SF}},
@@ -107,18 +71,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { 15 * SF, 7 * SF}},
 			{DRAW, { 8 * SF, 20 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -140,18 +92,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { 14 * SF, -6 * SF}},
 			{DRAW, { -14 * SF, 6 * SF}},
 			{DRAW, { -8 * SF, 20 * SF}},
@@ -165,18 +105,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { 15 * SF, -6 * SF}},
 			{DRAW, { 20 * SF, 8 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -198,18 +126,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { 6 * SF, -14 * SF}},
 			{DRAW, { -6 * SF, 14 * SF}},
 			{DRAW, { 8 * SF, 20 * SF}},
@@ -223,18 +139,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { 7 * SF, -15 * SF}},
 			{DRAW, { 20 * SF, -8 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -256,18 +160,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { -6 * SF, -14 * SF}},
 			{DRAW, { 6 * SF, 14 * SF}},
 			{DRAW, { 20 * SF, 8 * SF}},
@@ -281,18 +173,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { -6 * SF, -15 * SF}},
 			{DRAW, { 8 * SF, -20 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -314,18 +194,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { -14 * SF, -6 * SF}},
 			{DRAW, { 14 * SF, 6 * SF}},
 			{DRAW, { 20 * SF, -8 * SF}},
@@ -339,18 +207,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { -15 * SF, -7 * SF}},
 			{DRAW, { -8 * SF, -20 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -372,18 +228,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { -14 * SF, 6 * SF}},
 			{DRAW, { 14 * SF, -6 * SF}},
 			{DRAW, { 8 * SF, -20 * SF}},
@@ -397,18 +241,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { -15 * SF, 6 * SF}},
 			{DRAW, { -20 * SF, -8 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 	{
@@ -430,18 +262,6 @@ const struct enemy_data_t enemy_data[] =
 	},
 	{
 		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 			{MOVE, { -6 * SF, 14 * SF}},
 			{DRAW, { 6 * SF, -14 * SF}},
 			{DRAW, { -8 * SF, -20 * SF}},
@@ -455,18 +275,6 @@ const struct enemy_data_t enemy_data[] =
 			{DRAW, { -7 * SF, 15 * SF}},
 			{DRAW, { -20 * SF, 8 * SF}},
 			{STOP, { 0, 0}},
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
-		},
-	},
-	{
-		{
 		},
 	},
 };

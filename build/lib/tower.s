@@ -8,20 +8,20 @@
 	.area .text
 _towercost:
 	.word	0
-	.word	0
-	.word	0
+	.word	10
 	.word	20
 	.word	20
-	.word	30
+	.word	40
 	.word	50
 	.word	50
-	.word	60
 	.word	100
-	.word	150
 	.word	200
+	.word	100
 	.word	200
 	.word	250
-	.word	300
+	.word	200
+	.word	400
+	.word	600
 	.word	500
 	.word	800
 	.word	900

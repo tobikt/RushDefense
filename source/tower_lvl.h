@@ -20,32 +20,32 @@ const struct tower_cost towercost[] =
 	// tower lvl 1
 	{
 		.lvl_cost = 0,
-		.firerate_2_cost = 0,
-		.firerate_3_cost = 0,
+		.firerate_2_cost = 10,
+		.firerate_3_cost = 20,
 	},
 	// tower lvl 2
 	{
 		.lvl_cost = 20,
-		.firerate_2_cost = 20,
-		.firerate_3_cost = 30,
+		.firerate_2_cost = 40,
+		.firerate_3_cost = 50,
 	},
 	// tower lvl 3
 	{
 		.lvl_cost = 50,
-		.firerate_2_cost = 50,
-		.firerate_3_cost = 60,
+		.firerate_2_cost = 100,
+		.firerate_3_cost = 200,
 	},
 	// tower lvl 4
 	{
 		.lvl_cost = 100,
-		.firerate_2_cost = 150,
-		.firerate_3_cost = 200,
+		.firerate_2_cost = 200,
+		.firerate_3_cost = 250,
 	},
 	// tower lvl 5
 	{
 		.lvl_cost = 200,
-		.firerate_2_cost = 250,
-		.firerate_3_cost = 300,
+		.firerate_2_cost = 400,
+		.firerate_3_cost = 600,
 	},
 	// tower lvl 6
 	{
