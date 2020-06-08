@@ -42,9 +42,9 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
           0100  l_direct                        
           014D  l_.data                         
           0210  l_.bss                          
-          6ADF  l_.text                         
-          6AFE  s_.text.unlikely                
-          6AFE  s_.text.hot                     
+          6AF3  l_.text                         
+          6B12  s_.text.unlikely                
+          6B12  s_.text.hot                     
           C800  s_.dpc8                         
           C880  s_.data                         
           C9CD  s_.bss                          
@@ -98,7 +98,7 @@ Hexidecimal  [16-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        6ADF =       27359. bytes (REL,CON,CSEG)
+.text                      001F        6AF3 =       27379. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
@@ -157,7 +157,7 @@ Hexidecimal  [16-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        6ADF =       27359. bytes (REL,CON,CSEG)
+.text                      001F        6AF3 =       27379. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
@@ -217,7 +217,7 @@ Hexidecimal  [16-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        6ADF =       27359. bytes (REL,CON,CSEG)
+.text                      001F        6AF3 =       27379. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
@@ -238,52 +238,52 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
           3FFD  _vectors_tower_lvl_6               menu.c
           4018  _menu_init                         menu.c
           4021  _menu_handle                       menu.c
-          433C  _menu_open                         menu.c
-          43C0  _menu_draw                         menu.c
-          4B90  _move_object                       object.c
-          4BBC  _vectors_player                    player.c
-          4BD7  _draw_player                       player.c
-          4C0B  _init_player                       player.c
-          4C1B  _rotate_player                     player.c
-          4C69  _shot_player                       player.c
-          4CE7  _handle_player                     player.c
-          4CF1  _print_string                      print.c
-          4D24  _print_unsigned_int                print.c
-          4D9C  _print_signed_int                  print.c
-          4E50  _print_long_unsigned_int           print.c
-          4F56  _print_long_signed_int             print.c
-          5017  _print_binary                      print.c
-          5088  _music_off                         sound.c
-          5090  _explosion_off                     sound.c
-          5094  _sound_init                        sound.c
-          50A1  _stop_explosion                    sound.c
-          50AE  _stop_music                        sound.c
-          50B8  _play_music                        sound.c
-          50CC  _play_explosion                    sound.c
-          50E3  _play_tune                         sound.c
-          5248  _draw_tower                        tower.c
-          5400  _init_tower                        tower.c
-          5415  _set_tower                         tower.c
-          5549  _tower_shot                        tower.c
-          55E0  _handle_tower                      tower.c
-          55F1  _bing                              tunes.c
-          55F9  _bang                              tunes.c
-          55FD  _Sync                              utils.c
-          69B1  _wave_init                         wave.c
-          6A46  _wave_play                         wave.c
+          433B  _menu_open                         menu.c
+          43BF  _menu_draw                         menu.c
+          4B8F  _move_object                       object.c
+          4BBB  _vectors_player                    player.c
+          4BD6  _draw_player                       player.c
+          4C0A  _init_player                       player.c
+          4C1A  _rotate_player                     player.c
+          4C68  _shot_player                       player.c
+          4CFB  _handle_player                     player.c
+          4D05  _print_string                      print.c
+          4D38  _print_unsigned_int                print.c
+          4DB0  _print_signed_int                  print.c
+          4E64  _print_long_unsigned_int           print.c
+          4F6A  _print_long_signed_int             print.c
+          502B  _print_binary                      print.c
+          509C  _music_off                         sound.c
+          50A4  _explosion_off                     sound.c
+          50A8  _sound_init                        sound.c
+          50B5  _stop_explosion                    sound.c
+          50C2  _stop_music                        sound.c
+          50CC  _play_music                        sound.c
+          50E0  _play_explosion                    sound.c
+          50F7  _play_tune                         sound.c
+          525C  _draw_tower                        tower.c
+          5414  _init_tower                        tower.c
+          5429  _set_tower                         tower.c
+          555D  _tower_shot                        tower.c
+          55F4  _handle_tower                      tower.c
+          5605  _bing                              tunes.c
+          560D  _bang                              tunes.c
+          5611  _Sync                              utils.c
+          69C5  _wave_init                         wave.c
+          6A5A  _wave_play                         wave.c
 ASxxxx Linker V05.00,  page 7.
 Hexidecimal  [16-Bits]
 [ Bank == rom ]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-.text                      001F        6ADF =       27359. bytes (REL,CON,CSEG)
+.text                      001F        6AF3 =       27379. bytes (REL,CON,CSEG)
 
          Value  Global                             Global Defined In Module
          -----  --------------------------------   ------------------------
-          6AAD  _umodhi3                           
-          6ABE  _udivhi3                           
-          6ACC  _euclid                            
+          6AC1  _umodhi3                           
+          6AD2  _udivhi3                           
+          6AE0  _euclid                            
 ASxxxx Linker V05.00,  page 8.
 Hexidecimal  [16-Bits]
 [ Bank == ram ]

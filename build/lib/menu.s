@@ -285,7 +285,7 @@ _menu_handle:
 	ldb	_limit.3290
 	decb
 	stb	_limit.3290
-	jmp	L51
+	jmp	L52
 L4:
 	ldb	#2
 	stb	_limit.3290
@@ -297,7 +297,7 @@ L4:
 	beq	L6
 	ldb	#1
 	stb	_Menu
-	jmp	L51
+	jmp	L52
 L6:
 	ldb	_Vec_Buttons
 	andb	#8
@@ -308,7 +308,7 @@ L6:
 	bne	L8
 	ldb	_player+4
 	cmpb	#2	;cmpqi:
-	lbne	L51
+	lbne	L52
 	ldb	_player
 	stb	10,s
 	; ldb	10,s	; optimization 5
@@ -319,80 +319,82 @@ L6:
 	blo	L11
 	; ldb	10,s; optimization 8
 	cmpb	#2	;cmpqi:
-	lbeq	L51
-	bra	L52
+	beq	L14
+	bra	L53
 L11:
 	ldb	#1
 	stb	_player
-	jmp	L51
+	bra	L14
 L12:
 	ldb	#2
 	stb	_player
-	jmp	L51
-L52:
+	bra	L14
+L53:
 	clr	_player
-	jmp	L51
+L14:
+	clr	_player+4
+	jmp	L52
 L8:
 	ldb	_Menu+1
 	cmpb	#1	;cmpqi:
-	bne	L15
+	bne	L16
 	ldb	_player+4
 	stb	11,s
 	; ldb	11,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L18
+	beq	L19
 	ldb	11,s
 	cmpb	#1	;cmpqi:
-	blo	L17
+	blo	L18
 	; ldb	11,s; optimization 8
 	cmpb	#2	;cmpqi:
-	lbeq	L51
-	bra	L53
-L17:
+	lbeq	L52
+	bra	L54
+L18:
 	ldb	#1
 	stb	_player+4
-	jmp	L51
-L18:
+	jmp	L52
+L19:
 	ldb	#2
 	stb	_player+4
-	jmp	L51
-L53:
+	jmp	L52
+L54:
 	clr	_player+4
-	jmp	L51
-L15:
+	jmp	L52
+L16:
 	ldb	_Menu+1
 	cmpb	#2	;cmpqi:
-	lbne	L21
+	lbne	L22
 	ldb	_tower+2
 	cmpb	#2	;cmpqi:
-	lbne	L51
+	lbne	L52
 	ldb	_tower+1
 	stb	12,s
 	; ldb	12,s	; optimization 5
 	cmpb	#4	;cmpqi:
-	lbhi	L51
+	lbhi	L52
 	ldb	12,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
 	; ldd	,s	; optimization 5
 	aslb
 	rola
-	ldu	#L28
+	ldu	#L29
 	leax	d,u
 	ldx	,x
 	jmp	,x
-L28:
-	.word L23
+L29:
 	.word L24
 	.word L25
 	.word L26
 	.word L27
-L23:
+	.word L28
+L24:
 	ldy	_player+2
 	ldx	_towercost+6
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldd	_player+2
 	ldx	_towercost+6
 	pshs	x	;subhi: R:d -= R:x
@@ -400,13 +402,13 @@ L23:
 	std	_player+2
 	ldb	#1
 	jsr	_set_tower
-	jmp	L51
-L24:
+	jmp	L52
+L25:
 	ldy	_player+2
 	ldx	_towercost+12
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldd	_player+2
 	ldx	_towercost+12
 	pshs	x	;subhi: R:d -= R:x
@@ -414,13 +416,13 @@ L24:
 	std	_player+2
 	ldb	#2
 	jsr	_set_tower
-	jmp	L51
-L25:
+	jmp	L52
+L26:
 	ldy	_player+2
 	ldx	_towercost+18
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldd	_player+2
 	ldx	_towercost+18
 	pshs	x	;subhi: R:d -= R:x
@@ -428,13 +430,13 @@ L25:
 	std	_player+2
 	ldb	#3
 	jsr	_set_tower
-	jmp	L51
-L26:
+	jmp	L52
+L27:
 	ldy	_player+2
 	ldx	_towercost+24
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldd	_player+2
 	ldx	_towercost+24
 	pshs	x	;subhi: R:d -= R:x
@@ -442,13 +444,13 @@ L26:
 	std	_player+2
 	ldb	#4
 	jsr	_set_tower
-	jmp	L51
-L27:
+	jmp	L52
+L28:
 	ldy	_player+2
 	ldx	_towercost+30
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldd	_player+2
 	ldx	_towercost+30
 	pshs	x	;subhi: R:d -= R:x
@@ -456,24 +458,24 @@ L27:
 	std	_player+2
 	ldb	#5
 	jsr	_set_tower
-	jmp	L51
-L21:
+	jmp	L52
+L22:
 	ldb	_Menu+1
 	cmpb	#3	;cmpqi:
-	lbne	L51
+	lbne	L52
 	ldb	_tower+2
 	stb	13,s
 	; ldb	13,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	lbeq	L35
+	lbeq	L36
 	ldb	13,s
 	cmpb	#1	;cmpqi:
-	blo	L34
+	blo	L35
 	; ldb	13,s; optimization 8
 	cmpb	#2	;cmpqi:
-	lbeq	L51
-	jmp	L54
-L34:
+	lbeq	L52
+	jmp	L55
+L35:
 	ldy	_player+2
 	ldb	_tower+1
 	clra		;zero_extendqihi: R:b -> R:d
@@ -495,7 +497,7 @@ L34:
 	ldx	,x
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldy	_player+2
 	ldb	_tower+1
 	clra		;zero_extendqihi: R:b -> R:d
@@ -521,8 +523,8 @@ L34:
 	std	_player+2
 	ldb	#1
 	stb	_tower+2
-	jmp	L51
-L35:
+	jmp	L52
+L36:
 	ldy	_player+2
 	ldb	_tower+1
 	clra		;zero_extendqihi: R:b -> R:d
@@ -544,7 +546,7 @@ L35:
 	ldx	,x
 	pshs	x	;cmphi: R:x with R:y
 	cmpy	,s++	;cmphi:
-	lbls	L51
+	lbls	L52
 	ldy	_player+2
 	ldb	_tower+1
 	clra		;zero_extendqihi: R:b -> R:d
@@ -570,102 +572,102 @@ L35:
 	std	_player+2
 	ldb	#2
 	stb	_tower+2
-	jmp	L51
-L54:
+	jmp	L52
+L55:
 	clr	_tower+2
-	jmp	L51
+	jmp	L52
 L7:
 	ldb	_Vec_Joy_1_Y
 	clr	16,s
 	tstb
-	ble	L39
+	ble	L40
 	ldb	#1
 	stb	16,s
-L39:
+L40:
 	ldb	16,s
 	; tstb	; optimization 6
-	beq	L40
+	beq	L41
 	ldb	_Menu+1
 	stb	14,s
 	; ldb	14,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L43
-	ldb	14,s
-	cmpb	#1	;cmpqi:
-	blo	L42
-	; ldb	14,s; optimization 8
-	cmpb	#2	;cmpqi:
 	beq	L44
 	ldb	14,s
-	cmpb	#3	;cmpqi:
+	cmpb	#1	;cmpqi:
+	blo	L43
+	; ldb	14,s; optimization 8
+	cmpb	#2	;cmpqi:
 	beq	L45
-	jmp	L51
-L42:
+	ldb	14,s
+	cmpb	#3	;cmpqi:
+	beq	L46
+	jmp	L52
+L43:
 	ldb	#3
 	stb	_Menu+1
-	jmp	L51
-L43:
-	clr	_Menu+1
-	jmp	L51
+	jmp	L52
 L44:
+	clr	_Menu+1
+	jmp	L52
+L45:
 	ldb	#1
 	stb	_Menu+1
-	bra	L51
-L45:
+	bra	L52
+L46:
 	ldb	#2
 	stb	_Menu+1
-	bra	L51
-L40:
+	bra	L52
+L41:
 	ldb	_Vec_Joy_1_Y
 	clr	17,s
 	tstb
-	bge	L46
+	bge	L47
 	ldb	#1
 	stb	17,s
-L46:
+L47:
 	ldb	17,s
 	; tstb	; optimization 6
-	beq	L51
+	beq	L52
 	ldb	_Menu+1
 	stb	15,s
 	; ldb	15,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L48
-	ldb	15,s
-	cmpb	#1	;cmpqi:
-	blo	L47
-	; ldb	15,s; optimization 8
-	cmpb	#2	;cmpqi:
 	beq	L49
 	ldb	15,s
-	cmpb	#3	;cmpqi:
+	cmpb	#1	;cmpqi:
+	blo	L48
+	; ldb	15,s; optimization 8
+	cmpb	#2	;cmpqi:
 	beq	L50
-	bra	L51
-L47:
+	ldb	15,s
+	cmpb	#3	;cmpqi:
+	beq	L51
+	bra	L52
+L48:
 	ldb	#1
 	stb	_Menu+1
-	bra	L51
-L48:
+	bra	L52
+L49:
 	ldb	#2
 	stb	_Menu+1
-	bra	L51
-L49:
+	bra	L52
+L50:
 	ldb	#3
 	stb	_Menu+1
-	bra	L51
-L50:
-	clr	_Menu+1
+	bra	L52
 L51:
+	clr	_Menu+1
+L52:
 	leas	18,s
 	puls	y,u,pc
 	.globl _menu_open
 _menu_open:
-L56:
+L57:
 	jsr	_menu_handle
 	jsr	_menu_draw
 	ldb	_Menu
 	; tstb	; optimization 6
-	beq	L56
+	beq	L57
 	rts
 LC0:
 	.byte	0x41
@@ -804,7 +806,7 @@ _menu_draw:
 	jsr	_Sync
 	ldb	_Menu+1
 	; tstb	; optimization 6
-	lbne	L59
+	lbne	L60
 	ldb	#-110
 	stb	,-s
 	ldx	#LC0
@@ -815,15 +817,15 @@ _menu_draw:
 	stb	2,s
 	; ldb	2,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L62
+	beq	L63
 	ldb	2,s
 	cmpb	#1	;cmpqi:
-	blo	L61
+	blo	L62
 	; ldb	2,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L63
-	bra	L159
-L61:
+	beq	L64
+	bra	L160
+L62:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -831,8 +833,8 @@ L61:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L64
-L62:
+	bra	L65
+L63:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -840,8 +842,8 @@ L62:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L64
-L63:
+	bra	L65
+L64:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -849,8 +851,8 @@ L63:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L64
-L159:
+	bra	L65
+L160:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -858,7 +860,7 @@ L159:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-L64:
+L65:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC1
@@ -869,15 +871,15 @@ L64:
 	stb	3,s
 	; ldb	3,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L67
+	beq	L68
 	ldb	3,s
 	cmpb	#1	;cmpqi:
-	blo	L66
+	blo	L67
 	; ldb	3,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L68
-	bra	L160
-L66:
+	beq	L69
+	bra	L161
+L67:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -885,8 +887,8 @@ L66:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L69
-L67:
+	bra	L70
+L68:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -894,8 +896,8 @@ L67:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L69
-L68:
+	bra	L70
+L69:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -903,8 +905,8 @@ L68:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L69
-L160:
+	bra	L70
+L161:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -912,7 +914,7 @@ L160:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-L69:
+L70:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC2
@@ -923,25 +925,25 @@ L69:
 	stb	4,s
 	; ldb	4,s	; optimization 5
 	cmpb	#5	;cmpqi:
-	lbhi	L70
+	lbhi	L71
 	ldb	4,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
 	; ldd	,s	; optimization 5
 	aslb
 	rola
-	ldu	#L77
+	ldu	#L78
 	leax	d,u
 	ldx	,x
 	jmp	,x
-L77:
-	.word L71
+L78:
 	.word L72
 	.word L73
 	.word L74
 	.word L75
 	.word L76
-L71:
+	.word L77
+L72:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -949,8 +951,8 @@ L71:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L78
-L72:
+	jmp	L79
+L73:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -958,8 +960,8 @@ L72:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L78
-L73:
+	jmp	L79
+L74:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -967,8 +969,8 @@ L73:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L78
-L74:
+	bra	L79
+L75:
 	ldb	#4
 	stb	,-s
 	ldb	#40
@@ -976,8 +978,8 @@ L74:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L78
-L75:
+	bra	L79
+L76:
 	ldb	#5
 	stb	,-s
 	ldb	#40
@@ -985,8 +987,8 @@ L75:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L78
-L76:
+	bra	L79
+L77:
 	ldb	#6
 	stb	,-s
 	ldb	#40
@@ -994,8 +996,8 @@ L76:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L78
-L70:
+	bra	L79
+L71:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1003,7 +1005,7 @@ L70:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-L78:
+L79:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC3
@@ -1014,15 +1016,15 @@ L78:
 	stb	5,s
 	; ldb	5,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L81
+	beq	L82
 	ldb	5,s
 	cmpb	#1	;cmpqi:
-	blo	L80
+	blo	L81
 	; ldb	5,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L82
-	bra	L161
-L80:
+	beq	L83
+	bra	L162
+L81:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1030,8 +1032,8 @@ L80:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L81:
+	jmp	L85
+L82:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1039,8 +1041,8 @@ L81:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L82:
+	jmp	L85
+L83:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1048,8 +1050,8 @@ L82:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L161:
+	jmp	L85
+L162:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1057,11 +1059,11 @@ L161:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L59:
+	jmp	L85
+L60:
 	ldb	_Menu+1
 	cmpb	#1	;cmpqi:
-	lbne	L85
+	lbne	L86
 	ldb	#-110
 	stb	,-s
 	ldx	#LC4
@@ -1072,15 +1074,15 @@ L59:
 	stb	6,s
 	; ldb	6,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L88
+	beq	L89
 	ldb	6,s
 	cmpb	#1	;cmpqi:
-	blo	L87
+	blo	L88
 	; ldb	6,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L89
-	bra	L162
-L87:
+	beq	L90
+	bra	L163
+L88:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1088,8 +1090,8 @@ L87:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L90
-L88:
+	bra	L91
+L89:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1097,8 +1099,8 @@ L88:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L90
-L89:
+	bra	L91
+L90:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1106,8 +1108,8 @@ L89:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L90
-L162:
+	bra	L91
+L163:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1115,7 +1117,7 @@ L162:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-L90:
+L91:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC5
@@ -1126,15 +1128,15 @@ L90:
 	stb	7,s
 	; ldb	7,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L93
+	beq	L94
 	ldb	7,s
 	cmpb	#1	;cmpqi:
-	blo	L92
+	blo	L93
 	; ldb	7,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L94
-	bra	L163
-L92:
+	beq	L95
+	bra	L164
+L93:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1142,8 +1144,8 @@ L92:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L95
-L93:
+	bra	L96
+L94:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1151,8 +1153,8 @@ L93:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L95
-L94:
+	bra	L96
+L95:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1160,8 +1162,8 @@ L94:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L95
-L163:
+	bra	L96
+L164:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1169,7 +1171,7 @@ L163:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-L95:
+L96:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC2
@@ -1180,25 +1182,25 @@ L95:
 	stb	8,s
 	; ldb	8,s	; optimization 5
 	cmpb	#5	;cmpqi:
-	lbhi	L96
+	lbhi	L97
 	ldb	8,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
 	; ldd	,s	; optimization 5
 	aslb
 	rola
-	ldu	#L103
+	ldu	#L104
 	leax	d,u
 	ldx	,x
 	jmp	,x
-L103:
-	.word L97
+L104:
 	.word L98
 	.word L99
 	.word L100
 	.word L101
 	.word L102
-L97:
+	.word L103
+L98:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1206,8 +1208,8 @@ L97:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L104
-L98:
+	jmp	L105
+L99:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1215,8 +1217,8 @@ L98:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L104
-L99:
+	jmp	L105
+L100:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1224,8 +1226,8 @@ L99:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L104
-L100:
+	bra	L105
+L101:
 	ldb	#4
 	stb	,-s
 	ldb	#40
@@ -1233,8 +1235,8 @@ L100:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L104
-L101:
+	bra	L105
+L102:
 	ldb	#5
 	stb	,-s
 	ldb	#40
@@ -1242,8 +1244,8 @@ L101:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L104
-L102:
+	bra	L105
+L103:
 	ldb	#6
 	stb	,-s
 	ldb	#40
@@ -1251,8 +1253,8 @@ L102:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L104
-L96:
+	bra	L105
+L97:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1260,7 +1262,7 @@ L96:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-L104:
+L105:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC3
@@ -1271,15 +1273,15 @@ L104:
 	stb	9,s
 	; ldb	9,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L107
+	beq	L108
 	ldb	9,s
 	cmpb	#1	;cmpqi:
-	blo	L106
+	blo	L107
 	; ldb	9,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L108
-	bra	L164
-L106:
+	beq	L109
+	bra	L165
+L107:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1287,8 +1289,8 @@ L106:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L107:
+	jmp	L85
+L108:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1296,8 +1298,8 @@ L107:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L108:
+	jmp	L85
+L109:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1305,8 +1307,8 @@ L108:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L164:
+	jmp	L85
+L165:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1314,11 +1316,11 @@ L164:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L85:
+	jmp	L85
+L86:
 	ldb	_Menu+1
 	cmpb	#2	;cmpqi:
-	lbne	L110
+	lbne	L111
 	ldb	#-110
 	stb	,-s
 	ldx	#LC4
@@ -1329,15 +1331,15 @@ L85:
 	stb	10,s
 	; ldb	10,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L113
+	beq	L114
 	ldb	10,s
 	cmpb	#1	;cmpqi:
-	blo	L112
+	blo	L113
 	; ldb	10,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L114
-	bra	L165
-L112:
+	beq	L115
+	bra	L166
+L113:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1345,8 +1347,8 @@ L112:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L115
-L113:
+	bra	L116
+L114:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1354,8 +1356,8 @@ L113:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L115
-L114:
+	bra	L116
+L115:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1363,8 +1365,8 @@ L114:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L115
-L165:
+	bra	L116
+L166:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1372,7 +1374,7 @@ L165:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-L115:
+L116:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC1
@@ -1383,15 +1385,15 @@ L115:
 	stb	11,s
 	; ldb	11,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L118
+	beq	L119
 	ldb	11,s
 	cmpb	#1	;cmpqi:
-	blo	L117
+	blo	L118
 	; ldb	11,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L119
-	bra	L166
-L117:
+	beq	L120
+	bra	L167
+L118:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1399,8 +1401,8 @@ L117:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L120
-L118:
+	bra	L121
+L119:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1408,8 +1410,8 @@ L118:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L120
-L119:
+	bra	L121
+L120:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1417,8 +1419,8 @@ L119:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L120
-L166:
+	bra	L121
+L167:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1426,7 +1428,7 @@ L166:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-L120:
+L121:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC6
@@ -1437,25 +1439,25 @@ L120:
 	stb	12,s
 	; ldb	12,s	; optimization 5
 	cmpb	#5	;cmpqi:
-	lbhi	L121
+	lbhi	L122
 	ldb	12,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
 	; ldd	,s	; optimization 5
 	aslb
 	rola
-	ldu	#L128
+	ldu	#L129
 	leax	d,u
 	ldx	,x
 	jmp	,x
-L128:
-	.word L122
+L129:
 	.word L123
 	.word L124
 	.word L125
 	.word L126
 	.word L127
-L122:
+	.word L128
+L123:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1463,8 +1465,8 @@ L122:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L129
-L123:
+	jmp	L130
+L124:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1472,8 +1474,8 @@ L123:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L129
-L124:
+	jmp	L130
+L125:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1481,8 +1483,8 @@ L124:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L129
-L125:
+	bra	L130
+L126:
 	ldb	#4
 	stb	,-s
 	ldb	#40
@@ -1490,8 +1492,8 @@ L125:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L129
-L126:
+	bra	L130
+L127:
 	ldb	#5
 	stb	,-s
 	ldb	#40
@@ -1499,8 +1501,8 @@ L126:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L129
-L127:
+	bra	L130
+L128:
 	ldb	#6
 	stb	,-s
 	ldb	#40
@@ -1508,8 +1510,8 @@ L127:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L129
-L121:
+	bra	L130
+L122:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1517,7 +1519,7 @@ L121:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-L129:
+L130:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC3
@@ -1528,15 +1530,15 @@ L129:
 	stb	13,s
 	; ldb	13,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L132
+	beq	L133
 	ldb	13,s
 	cmpb	#1	;cmpqi:
-	blo	L131
+	blo	L132
 	; ldb	13,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L133
-	bra	L167
-L131:
+	beq	L134
+	bra	L168
+L132:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1544,8 +1546,8 @@ L131:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L132:
+	jmp	L85
+L133:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1553,8 +1555,8 @@ L132:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L133:
+	jmp	L85
+L134:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1562,8 +1564,8 @@ L133:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L167:
+	jmp	L85
+L168:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1571,11 +1573,11 @@ L167:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L84
-L110:
+	jmp	L85
+L111:
 	ldb	_Menu+1
 	cmpb	#3	;cmpqi:
-	lbne	L84
+	lbne	L85
 	ldb	#-110
 	stb	,-s
 	ldx	#LC4
@@ -1586,15 +1588,15 @@ L110:
 	stb	14,s
 	; ldb	14,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L137
+	beq	L138
 	ldb	14,s
 	cmpb	#1	;cmpqi:
-	blo	L136
+	blo	L137
 	; ldb	14,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L138
-	bra	L168
-L136:
+	beq	L139
+	bra	L169
+L137:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1602,8 +1604,8 @@ L136:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L139
-L137:
+	bra	L140
+L138:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1611,8 +1613,8 @@ L137:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L139
-L138:
+	bra	L140
+L139:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1620,8 +1622,8 @@ L138:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L139
-L168:
+	bra	L140
+L169:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1629,7 +1631,7 @@ L168:
 	ldb	#100
 	jsr	_print_unsigned_int
 	leas	2,s
-L139:
+L140:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC1
@@ -1640,15 +1642,15 @@ L139:
 	stb	15,s
 	; ldb	15,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L142
+	beq	L143
 	ldb	15,s
 	cmpb	#1	;cmpqi:
-	blo	L141
+	blo	L142
 	; ldb	15,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L143
-	bra	L169
-L141:
+	beq	L144
+	bra	L170
+L142:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1656,8 +1658,8 @@ L141:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L144
-L142:
+	bra	L145
+L143:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1665,8 +1667,8 @@ L142:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L144
-L143:
+	bra	L145
+L144:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1674,8 +1676,8 @@ L143:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L144
-L169:
+	bra	L145
+L170:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1683,7 +1685,7 @@ L169:
 	ldb	#60
 	jsr	_print_unsigned_int
 	leas	2,s
-L144:
+L145:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC2
@@ -1694,25 +1696,25 @@ L144:
 	stb	16,s
 	; ldb	16,s	; optimization 5
 	cmpb	#5	;cmpqi:
-	lbhi	L145
+	lbhi	L146
 	ldb	16,s
 	clra		;zero_extendqihi: R:b -> R:d
 	std	,s
 	; ldd	,s	; optimization 5
 	aslb
 	rola
-	ldu	#L152
+	ldu	#L153
 	leax	d,u
 	ldx	,x
 	jmp	,x
-L152:
-	.word L146
+L153:
 	.word L147
 	.word L148
 	.word L149
 	.word L150
 	.word L151
-L146:
+	.word L152
+L147:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1720,8 +1722,8 @@ L146:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L153
-L147:
+	jmp	L154
+L148:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1729,8 +1731,8 @@ L147:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	jmp	L153
-L148:
+	jmp	L154
+L149:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1738,8 +1740,8 @@ L148:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L153
-L149:
+	bra	L154
+L150:
 	ldb	#4
 	stb	,-s
 	ldb	#40
@@ -1747,8 +1749,8 @@ L149:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L153
-L150:
+	bra	L154
+L151:
 	ldb	#5
 	stb	,-s
 	ldb	#40
@@ -1756,8 +1758,8 @@ L150:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L153
-L151:
+	bra	L154
+L152:
 	ldb	#6
 	stb	,-s
 	ldb	#40
@@ -1765,8 +1767,8 @@ L151:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L153
-L145:
+	bra	L154
+L146:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1774,7 +1776,7 @@ L145:
 	ldb	#20
 	jsr	_print_unsigned_int
 	leas	2,s
-L153:
+L154:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC7
@@ -1785,15 +1787,15 @@ L153:
 	stb	17,s
 	; ldb	17,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L156
+	beq	L157
 	ldb	17,s
 	cmpb	#1	;cmpqi:
-	blo	L155
+	blo	L156
 	; ldb	17,s; optimization 8
 	cmpb	#2	;cmpqi:
-	beq	L157
-	bra	L170
-L155:
+	beq	L158
+	bra	L171
+L156:
 	ldb	#1
 	stb	,-s
 	ldb	#40
@@ -1801,8 +1803,8 @@ L155:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L84
-L156:
+	bra	L85
+L157:
 	ldb	#2
 	stb	,-s
 	ldb	#40
@@ -1810,8 +1812,8 @@ L156:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L84
-L157:
+	bra	L85
+L158:
 	ldb	#3
 	stb	,-s
 	ldb	#40
@@ -1819,8 +1821,8 @@ L157:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-	bra	L84
-L170:
+	bra	L85
+L171:
 	ldb	#100
 	stb	,-s
 	ldb	#40
@@ -1828,7 +1830,7 @@ L170:
 	ldb	#-20
 	jsr	_print_unsigned_int
 	leas	2,s
-L84:
+L85:
 	ldb	#-110
 	stb	,-s
 	ldx	#LC8

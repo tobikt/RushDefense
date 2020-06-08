@@ -2379,9 +2379,15 @@ void shot_player(void)
  {
   if (button_1_4_pressed())
   {
-   fire_bullet(vec,1,player.angle -4);
-   fire_bullet(vec,1,player.angle);
-   fire_bullet(vec,1,player.angle +4);
+   switch(player.lvl)
+   {
+    case P_LEVEL_3:
+     fire_bullet(vec,1,player.angle -4);
+    case P_LEVEL_2:
+     fire_bullet(vec,1,player.angle +4);
+    case P_LEVEL_1:
+     fire_bullet(vec,1,player.angle);
+   };
    timerFireRate = 20;
   }
  }

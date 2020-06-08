@@ -125,75 +125,90 @@
                             125 	.area .text
                             126 	.globl _shot_player
    00AD                     127 _shot_player:
-   00AD 32 7E         [ 5]  128 	leas	-2,s
+   00AD 32 7D         [ 5]  128 	leas	-3,s
    00AF BD 00 00      [ 8]  129 	jsr	___Read_Btns
-   00B2 6F E4         [ 6]  130 	clr	,s
-   00B4 6F 61         [ 7]  131 	clr	1,s
+   00B2 6F 61         [ 7]  130 	clr	1,s
+   00B4 6F 62         [ 7]  131 	clr	2,s
    00B6 F6 00 05      [ 5]  132 	ldb	_timerFireRate.3285
                             133 	; tstb	; optimization 6
-   00B9 2E 3F         [ 3]  134 	bgt	L13
-   00BB F6 00 00      [ 5]  135 	ldb	_Vec_Buttons
-   00BE C4 08         [ 2]  136 	andb	#8
-   00C0 5D            [ 2]  137 	tstb
-   00C1 10 27 00 63   [ 6]  138 	lbeq	L18
-   00C5 F6 00 01      [ 5]  139 	ldb	_player+1
-   00C8 CB FC         [ 2]  140 	addb	#-4
-   00CA 34 04         [ 6]  141 	pshs	b
-   00CC C6 01         [ 2]  142 	ldb	#1
-   00CE AE 61         [ 6]  143 	ldx	1,s
-   00D0 BD 00 00      [ 8]  144 	jsr	_fire_bullet
-   00D3 32 61         [ 5]  145 	leas	1,s
-   00D5 F6 00 01      [ 5]  146 	ldb	_player+1
-   00D8 34 04         [ 6]  147 	pshs	b
-   00DA C6 01         [ 2]  148 	ldb	#1
-   00DC AE 61         [ 6]  149 	ldx	1,s
-   00DE BD 00 00      [ 8]  150 	jsr	_fire_bullet
-   00E1 32 61         [ 5]  151 	leas	1,s
-   00E3 F6 00 01      [ 5]  152 	ldb	_player+1
-   00E6 CB 04         [ 2]  153 	addb	#4
-   00E8 34 04         [ 6]  154 	pshs	b
-   00EA C6 01         [ 2]  155 	ldb	#1
-   00EC AE 61         [ 6]  156 	ldx	1,s
-   00EE BD 00 00      [ 8]  157 	jsr	_fire_bullet
-   00F1 32 61         [ 5]  158 	leas	1,s
-   00F3 C6 14         [ 2]  159 	ldb	#20
-   00F5 F7 00 05      [ 5]  160 	stb	_timerFireRate.3285
-   00F8 20 2E         [ 3]  161 	bra	L18
-   00FA                     162 L13:
-   00FA F6 00 04      [ 5]  163 	ldb	_player+4
-                            164 	; tstb	; optimization 6
-   00FD 26 09         [ 3]  165 	bne	L16
-   00FF F6 00 05      [ 5]  166 	ldb	_timerFireRate.3285
-   0102 5A            [ 2]  167 	decb
-   0103 F7 00 05      [ 5]  168 	stb	_timerFireRate.3285
-   0106 20 20         [ 3]  169 	bra	L18
-   0108                     170 L16:
-   0108 F6 00 04      [ 5]  171 	ldb	_player+4
-   010B C1 01         [ 2]  172 	cmpb	#1	;cmpqi:
-   010D 26 0A         [ 3]  173 	bne	L17
-   010F F6 00 05      [ 5]  174 	ldb	_timerFireRate.3285
-   0112 CB FE         [ 2]  175 	addb	#-2
-   0114 F7 00 05      [ 5]  176 	stb	_timerFireRate.3285
-   0117 20 0F         [ 3]  177 	bra	L18
-   0119                     178 L17:
-   0119 F6 00 04      [ 5]  179 	ldb	_player+4
-   011C C1 02         [ 2]  180 	cmpb	#2	;cmpqi:
-   011E 26 08         [ 3]  181 	bne	L18
-   0120 F6 00 05      [ 5]  182 	ldb	_timerFireRate.3285
-   0123 CB FB         [ 2]  183 	addb	#-5
-   0125 F7 00 05      [ 5]  184 	stb	_timerFireRate.3285
-   0128                     185 L18:
-   0128 32 62         [ 5]  186 	leas	2,s
-   012A 39            [ 5]  187 	rts
-                            188 	.globl _handle_player
-   012B                     189 _handle_player:
-   012B BD 00 5F      [ 8]  190 	jsr	_rotate_player
-   012E BD 00 1B      [ 8]  191 	jsr	_draw_player
-   0131 BD 00 AD      [ 8]  192 	jsr	_shot_player
-   0134 39            [ 5]  193 	rts
-                            194 	.area .bss
-                            195 	.globl	_bullets
-   0000                     196 _bullets:	.blkb	60
+   00B9 10 2E 00 52   [ 6]  134 	lbgt	L13
+   00BD F6 00 00      [ 5]  135 	ldb	_Vec_Buttons
+   00C0 C4 08         [ 2]  136 	andb	#8
+   00C2 5D            [ 2]  137 	tstb
+   00C3 10 27 00 76   [ 6]  138 	lbeq	L22
+   00C7 F6 00 00      [ 5]  139 	ldb	_player
+   00CA E7 E4         [ 4]  140 	stb	,s
+                            141 	; ldb	,s	; optimization 5
+   00CC C1 01         [ 2]  142 	cmpb	#1	;cmpqi:
+   00CE 27 1A         [ 3]  143 	beq	L17
+   00D0 E6 E4         [ 4]  144 	ldb	,s
+   00D2 C1 01         [ 2]  145 	cmpb	#1	;cmpqi:
+   00D4 25 24         [ 3]  146 	blo	L16
+                            147 	; ldb	,s; optimization 8
+   00D6 C1 02         [ 2]  148 	cmpb	#2	;cmpqi:
+   00D8 26 2E         [ 3]  149 	bne	L15
+   00DA                     150 L18:
+   00DA F6 00 01      [ 5]  151 	ldb	_player+1
+   00DD CB FC         [ 2]  152 	addb	#-4
+   00DF 34 04         [ 6]  153 	pshs	b
+   00E1 C6 01         [ 2]  154 	ldb	#1
+   00E3 AE 62         [ 6]  155 	ldx	2,s
+   00E5 BD 00 00      [ 8]  156 	jsr	_fire_bullet
+   00E8 32 61         [ 5]  157 	leas	1,s
+   00EA                     158 L17:
+   00EA F6 00 01      [ 5]  159 	ldb	_player+1
+   00ED CB 04         [ 2]  160 	addb	#4
+   00EF 34 04         [ 6]  161 	pshs	b
+   00F1 C6 01         [ 2]  162 	ldb	#1
+   00F3 AE 62         [ 6]  163 	ldx	2,s
+   00F5 BD 00 00      [ 8]  164 	jsr	_fire_bullet
+   00F8 32 61         [ 5]  165 	leas	1,s
+   00FA                     166 L16:
+   00FA F6 00 01      [ 5]  167 	ldb	_player+1
+   00FD 34 04         [ 6]  168 	pshs	b
+   00FF C6 01         [ 2]  169 	ldb	#1
+   0101 AE 62         [ 6]  170 	ldx	2,s
+   0103 BD 00 00      [ 8]  171 	jsr	_fire_bullet
+   0106 32 61         [ 5]  172 	leas	1,s
+   0108                     173 L15:
+   0108 C6 14         [ 2]  174 	ldb	#20
+   010A F7 00 05      [ 5]  175 	stb	_timerFireRate.3285
+   010D 20 2E         [ 3]  176 	bra	L22
+   010F                     177 L13:
+   010F F6 00 04      [ 5]  178 	ldb	_player+4
+                            179 	; tstb	; optimization 6
+   0112 26 09         [ 3]  180 	bne	L20
+   0114 F6 00 05      [ 5]  181 	ldb	_timerFireRate.3285
+   0117 5A            [ 2]  182 	decb
+   0118 F7 00 05      [ 5]  183 	stb	_timerFireRate.3285
+   011B 20 20         [ 3]  184 	bra	L22
+   011D                     185 L20:
+   011D F6 00 04      [ 5]  186 	ldb	_player+4
+   0120 C1 01         [ 2]  187 	cmpb	#1	;cmpqi:
+   0122 26 0A         [ 3]  188 	bne	L21
+   0124 F6 00 05      [ 5]  189 	ldb	_timerFireRate.3285
+   0127 CB FE         [ 2]  190 	addb	#-2
+   0129 F7 00 05      [ 5]  191 	stb	_timerFireRate.3285
+   012C 20 0F         [ 3]  192 	bra	L22
+   012E                     193 L21:
+   012E F6 00 04      [ 5]  194 	ldb	_player+4
+   0131 C1 02         [ 2]  195 	cmpb	#2	;cmpqi:
+   0133 26 08         [ 3]  196 	bne	L22
+   0135 F6 00 05      [ 5]  197 	ldb	_timerFireRate.3285
+   0138 CB FB         [ 2]  198 	addb	#-5
+   013A F7 00 05      [ 5]  199 	stb	_timerFireRate.3285
+   013D                     200 L22:
+   013D 32 63         [ 5]  201 	leas	3,s
+   013F 39            [ 5]  202 	rts
+                            203 	.globl _handle_player
+   0140                     204 _handle_player:
+   0140 BD 00 5F      [ 8]  205 	jsr	_rotate_player
+   0143 BD 00 1B      [ 8]  206 	jsr	_draw_player
+   0146 BD 00 AD      [ 8]  207 	jsr	_shot_player
+   0149 39            [ 5]  208 	rts
+                            209 	.area .bss
+                            210 	.globl	_bullets
+   0000                     211 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -202,8 +217,10 @@ Symbol Table
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
   2 L10                0095 R   |   2 L11                00AA R
-  2 L13                00FA R   |   2 L16                0108 R
-  2 L17                0119 R   |   2 L18                0128 R
+  2 L13                010F R   |   2 L15                0108 R
+  2 L16                00FA R   |   2 L17                00EA R
+  2 L18                00DA R   |   2 L20                011D R
+  2 L21                012E R   |   2 L22                013D R
   2 L6                 0074 R   |   2 L7                 0089 R
     _Vec_Buttons       **** GX  |     _Vec_Joy_1_X       **** GX
     __Moveto_d         **** GX  |     __Rot_VL_Mode      **** GX
@@ -211,7 +228,7 @@ Symbol Table
     ___Read_Btns       **** GX  |     ___Reset0Ref       **** GX
   4 _bullets           0000 GR  |     _dp_VIA_t1_cnt     **** GX
   2 _draw_player       001B GR  |     _fire_bullet       **** GX
-  2 _handle_player     012B GR  |   2 _init_player       004F GR
+  2 _handle_player     0140 GR  |   2 _init_player       004F GR
   3 _player            0000 GR  |   2 _rotate_player     005F GR
   2 _shot_player       00AD GR  |   3 _timerFireRate     0005 R
   2 _vectors_playe     0000 GR
@@ -223,7 +240,7 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .text            size  135   flags  100
+   2 .text            size  14A   flags  100
    3 .data            size    6   flags  100
    4 .bss             size   3C   flags    0
 [_DSEG]

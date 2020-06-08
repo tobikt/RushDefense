@@ -285,7 +285,7 @@
    0115 F6 00 02      [ 5]  285 	ldb	_limit.3290
    0118 5A            [ 2]  286 	decb
    0119 F7 00 02      [ 5]  287 	stb	_limit.3290
-   011C 7E 04 21      [ 4]  288 	jmp	L51
+   011C 7E 04 20      [ 4]  288 	jmp	L52
    011F                     289 L4:
    011F C6 02         [ 2]  290 	ldb	#2
    0121 F7 00 02      [ 5]  291 	stb	_limit.3290
@@ -297,1552 +297,1554 @@
    0130 27 08         [ 3]  297 	beq	L6
    0132 C6 01         [ 2]  298 	ldb	#1
    0134 F7 00 00      [ 5]  299 	stb	_Menu
-   0137 7E 04 21      [ 4]  300 	jmp	L51
+   0137 7E 04 20      [ 4]  300 	jmp	L52
    013A                     301 L6:
    013A F6 00 00      [ 5]  302 	ldb	_Vec_Buttons
    013D C4 08         [ 2]  303 	andb	#8
    013F 5D            [ 2]  304 	tstb
-   0140 10 27 02 4C   [ 6]  305 	lbeq	L7
+   0140 10 27 02 4B   [ 6]  305 	lbeq	L7
    0144 F6 00 01      [ 5]  306 	ldb	_Menu+1
                             307 	; tstb	; optimization 6
-   0147 26 36         [ 3]  308 	bne	L8
+   0147 26 35         [ 3]  308 	bne	L8
    0149 F6 00 04      [ 5]  309 	ldb	_player+4
    014C C1 02         [ 2]  310 	cmpb	#2	;cmpqi:
-   014E 10 26 02 CF   [ 6]  311 	lbne	L51
+   014E 10 26 02 CE   [ 6]  311 	lbne	L52
    0152 F6 00 00      [ 5]  312 	ldb	_player
    0155 E7 6A         [ 5]  313 	stb	10,s
                             314 	; ldb	10,s	; optimization 5
    0157 C1 01         [ 2]  315 	cmpb	#1	;cmpqi:
-   0159 27 16         [ 3]  316 	beq	L12
+   0159 27 13         [ 3]  316 	beq	L12
    015B E6 6A         [ 5]  317 	ldb	10,s
    015D C1 01         [ 2]  318 	cmpb	#1	;cmpqi:
-   015F 25 08         [ 3]  319 	blo	L11
+   015F 25 06         [ 3]  319 	blo	L11
                             320 	; ldb	10,s; optimization 8
    0161 C1 02         [ 2]  321 	cmpb	#2	;cmpqi:
-   0163 10 27 02 BA   [ 6]  322 	lbeq	L51
-   0167 20 10         [ 3]  323 	bra	L52
-   0169                     324 L11:
-   0169 C6 01         [ 2]  325 	ldb	#1
-   016B F7 00 00      [ 5]  326 	stb	_player
-   016E 7E 04 21      [ 4]  327 	jmp	L51
-   0171                     328 L12:
-   0171 C6 02         [ 2]  329 	ldb	#2
-   0173 F7 00 00      [ 5]  330 	stb	_player
-   0176 7E 04 21      [ 4]  331 	jmp	L51
-   0179                     332 L52:
-   0179 7F 00 00      [ 7]  333 	clr	_player
-   017C 7E 04 21      [ 4]  334 	jmp	L51
-   017F                     335 L8:
-   017F F6 00 01      [ 5]  336 	ldb	_Menu+1
-   0182 C1 01         [ 2]  337 	cmpb	#1	;cmpqi:
-   0184 26 2D         [ 3]  338 	bne	L15
-   0186 F6 00 04      [ 5]  339 	ldb	_player+4
-   0189 E7 6B         [ 5]  340 	stb	11,s
-                            341 	; ldb	11,s	; optimization 5
-   018B C1 01         [ 2]  342 	cmpb	#1	;cmpqi:
-   018D 27 16         [ 3]  343 	beq	L18
-   018F E6 6B         [ 5]  344 	ldb	11,s
-   0191 C1 01         [ 2]  345 	cmpb	#1	;cmpqi:
-   0193 25 08         [ 3]  346 	blo	L17
-                            347 	; ldb	11,s; optimization 8
-   0195 C1 02         [ 2]  348 	cmpb	#2	;cmpqi:
-   0197 10 27 02 86   [ 6]  349 	lbeq	L51
-   019B 20 10         [ 3]  350 	bra	L53
-   019D                     351 L17:
-   019D C6 01         [ 2]  352 	ldb	#1
-   019F F7 00 04      [ 5]  353 	stb	_player+4
-   01A2 7E 04 21      [ 4]  354 	jmp	L51
-   01A5                     355 L18:
-   01A5 C6 02         [ 2]  356 	ldb	#2
-   01A7 F7 00 04      [ 5]  357 	stb	_player+4
-   01AA 7E 04 21      [ 4]  358 	jmp	L51
-   01AD                     359 L53:
-   01AD 7F 00 04      [ 7]  360 	clr	_player+4
-   01B0 7E 04 21      [ 4]  361 	jmp	L51
-   01B3                     362 L15:
-   01B3 F6 00 01      [ 5]  363 	ldb	_Menu+1
-   01B6 C1 02         [ 2]  364 	cmpb	#2	;cmpqi:
-   01B8 10 26 00 E7   [ 6]  365 	lbne	L21
-   01BC F6 00 02      [ 5]  366 	ldb	_tower+2
-   01BF C1 02         [ 2]  367 	cmpb	#2	;cmpqi:
-   01C1 10 26 02 5C   [ 6]  368 	lbne	L51
-   01C5 F6 00 01      [ 5]  369 	ldb	_tower+1
-   01C8 E7 6C         [ 5]  370 	stb	12,s
-                            371 	; ldb	12,s	; optimization 5
-   01CA C1 04         [ 2]  372 	cmpb	#4	;cmpqi:
-   01CC 10 22 02 51   [ 6]  373 	lbhi	L51
-   01D0 E6 6C         [ 5]  374 	ldb	12,s
-   01D2 4F            [ 2]  375 	clra		;zero_extendqihi: R:b -> R:d
-   01D3 ED E4         [ 5]  376 	std	,s
-                            377 	; ldd	,s	; optimization 5
-   01D5 58            [ 2]  378 	aslb
-   01D6 49            [ 2]  379 	rola
-   01D7 CE 01 E0      [ 3]  380 	ldu	#L28
-   01DA 30 CB         [ 8]  381 	leax	d,u
-   01DC AE 84         [ 5]  382 	ldx	,x
-   01DE 6E 84         [ 3]  383 	jmp	,x
-   01E0                     384 L28:
-   01E0 01 EA               385 	.word L23
-   01E2 02 0F               386 	.word L24
-   01E4 02 34               387 	.word L25
-   01E6 02 59               388 	.word L26
-   01E8 02 7E               389 	.word L27
-   01EA                     390 L23:
-   01EA 10 BE 00 02   [ 7]  391 	ldy	_player+2
-   01EE BE 00 06      [ 6]  392 	ldx	_towercost+6
-   01F1 34 10         [ 6]  393 	pshs	x	;cmphi: R:x with R:y
-   01F3 10 AC E1      [10]  394 	cmpy	,s++	;cmphi:
-   01F6 10 23 02 27   [ 6]  395 	lbls	L51
-   01FA FC 00 02      [ 6]  396 	ldd	_player+2
-   01FD BE 00 06      [ 6]  397 	ldx	_towercost+6
-   0200 34 10         [ 6]  398 	pshs	x	;subhi: R:d -= R:x
-   0202 A3 E1         [ 9]  399 	subd	,s++
-   0204 FD 00 02      [ 6]  400 	std	_player+2
-   0207 C6 01         [ 2]  401 	ldb	#1
-   0209 BD 00 00      [ 8]  402 	jsr	_set_tower
-   020C 7E 04 21      [ 4]  403 	jmp	L51
-   020F                     404 L24:
-   020F 10 BE 00 02   [ 7]  405 	ldy	_player+2
-   0213 BE 00 0C      [ 6]  406 	ldx	_towercost+12
-   0216 34 10         [ 6]  407 	pshs	x	;cmphi: R:x with R:y
-   0218 10 AC E1      [10]  408 	cmpy	,s++	;cmphi:
-   021B 10 23 02 02   [ 6]  409 	lbls	L51
-   021F FC 00 02      [ 6]  410 	ldd	_player+2
-   0222 BE 00 0C      [ 6]  411 	ldx	_towercost+12
-   0225 34 10         [ 6]  412 	pshs	x	;subhi: R:d -= R:x
-   0227 A3 E1         [ 9]  413 	subd	,s++
-   0229 FD 00 02      [ 6]  414 	std	_player+2
-   022C C6 02         [ 2]  415 	ldb	#2
-   022E BD 00 00      [ 8]  416 	jsr	_set_tower
-   0231 7E 04 21      [ 4]  417 	jmp	L51
-   0234                     418 L25:
-   0234 10 BE 00 02   [ 7]  419 	ldy	_player+2
-   0238 BE 00 12      [ 6]  420 	ldx	_towercost+18
-   023B 34 10         [ 6]  421 	pshs	x	;cmphi: R:x with R:y
-   023D 10 AC E1      [10]  422 	cmpy	,s++	;cmphi:
-   0240 10 23 01 DD   [ 6]  423 	lbls	L51
-   0244 FC 00 02      [ 6]  424 	ldd	_player+2
-   0247 BE 00 12      [ 6]  425 	ldx	_towercost+18
-   024A 34 10         [ 6]  426 	pshs	x	;subhi: R:d -= R:x
-   024C A3 E1         [ 9]  427 	subd	,s++
-   024E FD 00 02      [ 6]  428 	std	_player+2
-   0251 C6 03         [ 2]  429 	ldb	#3
-   0253 BD 00 00      [ 8]  430 	jsr	_set_tower
-   0256 7E 04 21      [ 4]  431 	jmp	L51
-   0259                     432 L26:
-   0259 10 BE 00 02   [ 7]  433 	ldy	_player+2
-   025D BE 00 18      [ 6]  434 	ldx	_towercost+24
-   0260 34 10         [ 6]  435 	pshs	x	;cmphi: R:x with R:y
-   0262 10 AC E1      [10]  436 	cmpy	,s++	;cmphi:
-   0265 10 23 01 B8   [ 6]  437 	lbls	L51
-   0269 FC 00 02      [ 6]  438 	ldd	_player+2
-   026C BE 00 18      [ 6]  439 	ldx	_towercost+24
-   026F 34 10         [ 6]  440 	pshs	x	;subhi: R:d -= R:x
-   0271 A3 E1         [ 9]  441 	subd	,s++
-   0273 FD 00 02      [ 6]  442 	std	_player+2
-   0276 C6 04         [ 2]  443 	ldb	#4
-   0278 BD 00 00      [ 8]  444 	jsr	_set_tower
-   027B 7E 04 21      [ 4]  445 	jmp	L51
-   027E                     446 L27:
-   027E 10 BE 00 02   [ 7]  447 	ldy	_player+2
-   0282 BE 00 1E      [ 6]  448 	ldx	_towercost+30
-   0285 34 10         [ 6]  449 	pshs	x	;cmphi: R:x with R:y
-   0287 10 AC E1      [10]  450 	cmpy	,s++	;cmphi:
-   028A 10 23 01 93   [ 6]  451 	lbls	L51
-   028E FC 00 02      [ 6]  452 	ldd	_player+2
-   0291 BE 00 1E      [ 6]  453 	ldx	_towercost+30
-   0294 34 10         [ 6]  454 	pshs	x	;subhi: R:d -= R:x
-   0296 A3 E1         [ 9]  455 	subd	,s++
-   0298 FD 00 02      [ 6]  456 	std	_player+2
-   029B C6 05         [ 2]  457 	ldb	#5
-   029D BD 00 00      [ 8]  458 	jsr	_set_tower
-   02A0 7E 04 21      [ 4]  459 	jmp	L51
-   02A3                     460 L21:
-   02A3 F6 00 01      [ 5]  461 	ldb	_Menu+1
-   02A6 C1 03         [ 2]  462 	cmpb	#3	;cmpqi:
-   02A8 10 26 01 75   [ 6]  463 	lbne	L51
-   02AC F6 00 02      [ 5]  464 	ldb	_tower+2
-   02AF E7 6D         [ 5]  465 	stb	13,s
-                            466 	; ldb	13,s	; optimization 5
-   02B1 C1 01         [ 2]  467 	cmpb	#1	;cmpqi:
-   02B3 10 27 00 71   [ 6]  468 	lbeq	L35
-   02B7 E6 6D         [ 5]  469 	ldb	13,s
-   02B9 C1 01         [ 2]  470 	cmpb	#1	;cmpqi:
-   02BB 25 09         [ 3]  471 	blo	L34
-                            472 	; ldb	13,s; optimization 8
-   02BD C1 02         [ 2]  473 	cmpb	#2	;cmpqi:
-   02BF 10 27 01 5E   [ 6]  474 	lbeq	L51
-   02C3 7E 03 8A      [ 4]  475 	jmp	L54
-   02C6                     476 L34:
-   02C6 10 BE 00 02   [ 7]  477 	ldy	_player+2
-   02CA F6 00 01      [ 5]  478 	ldb	_tower+1
-   02CD 4F            [ 2]  479 	clra		;zero_extendqihi: R:b -> R:d
-   02CE 1F 01         [ 6]  480 	tfr	d,x
-   02D0 AF 68         [ 6]  481 	stx	8,s
-   02D2 EC 68         [ 6]  482 	ldd	8,s
-   02D4 58            [ 2]  483 	aslb
-   02D5 49            [ 2]  484 	rola
-   02D6 ED 68         [ 6]  485 	std	8,s
-                            486 	; ldd	8,s	; optimization 5
-   02D8 30 8B         [ 8]  487 	leax	d,x
-   02DA AF 68         [ 6]  488 	stx	8,s
-   02DC EC 68         [ 6]  489 	ldd	8,s
-   02DE C3 00 01      [ 4]  490 	addd	#1
-   02E1 58            [ 2]  491 	aslb
-   02E2 49            [ 2]  492 	rola
-   02E3 CE 00 00      [ 3]  493 	ldu	#_towercost
-   02E6 30 CB         [ 8]  494 	leax	d,u
-   02E8 AE 84         [ 5]  495 	ldx	,x
-   02EA 34 10         [ 6]  496 	pshs	x	;cmphi: R:x with R:y
-   02EC 10 AC E1      [10]  497 	cmpy	,s++	;cmphi:
-   02EF 10 23 01 2E   [ 6]  498 	lbls	L51
-   02F3 10 BE 00 02   [ 7]  499 	ldy	_player+2
-   02F7 F6 00 01      [ 5]  500 	ldb	_tower+1
-   02FA 4F            [ 2]  501 	clra		;zero_extendqihi: R:b -> R:d
-   02FB 1F 01         [ 6]  502 	tfr	d,x
-   02FD AF 66         [ 6]  503 	stx	6,s
-   02FF EC 66         [ 6]  504 	ldd	6,s
-   0301 58            [ 2]  505 	aslb
-   0302 49            [ 2]  506 	rola
-   0303 ED 66         [ 6]  507 	std	6,s
-                            508 	; ldd	6,s	; optimization 5
-   0305 30 8B         [ 8]  509 	leax	d,x
-   0307 AF 66         [ 6]  510 	stx	6,s
-   0309 EC 66         [ 6]  511 	ldd	6,s
-   030B C3 00 01      [ 4]  512 	addd	#1
-   030E 58            [ 2]  513 	aslb
-   030F 49            [ 2]  514 	rola
-   0310 CE 00 00      [ 3]  515 	ldu	#_towercost
-   0313 30 CB         [ 8]  516 	leax	d,u
-   0315 AE 84         [ 5]  517 	ldx	,x
-   0317 1F 20         [ 6]  518 	tfr	y,d
-   0319 34 10         [ 6]  519 	pshs	x	;subhi: R:d -= R:x
-   031B A3 E1         [ 9]  520 	subd	,s++
-   031D FD 00 02      [ 6]  521 	std	_player+2
-   0320 C6 01         [ 2]  522 	ldb	#1
-   0322 F7 00 02      [ 5]  523 	stb	_tower+2
-   0325 7E 04 21      [ 4]  524 	jmp	L51
-   0328                     525 L35:
-   0328 10 BE 00 02   [ 7]  526 	ldy	_player+2
-   032C F6 00 01      [ 5]  527 	ldb	_tower+1
-   032F 4F            [ 2]  528 	clra		;zero_extendqihi: R:b -> R:d
-   0330 1F 01         [ 6]  529 	tfr	d,x
-   0332 AF 64         [ 6]  530 	stx	4,s
-   0334 EC 64         [ 6]  531 	ldd	4,s
-   0336 58            [ 2]  532 	aslb
-   0337 49            [ 2]  533 	rola
-   0338 ED 64         [ 6]  534 	std	4,s
-                            535 	; ldd	4,s	; optimization 5
-   033A 30 8B         [ 8]  536 	leax	d,x
-   033C AF 64         [ 6]  537 	stx	4,s
-   033E EC 64         [ 6]  538 	ldd	4,s
-   0340 58            [ 2]  539 	aslb
-   0341 49            [ 2]  540 	rola
-   0342 ED 64         [ 6]  541 	std	4,s
-   0344 EE 64         [ 6]  542 	ldu	4,s
-   0346 30 C9 00 04   [ 8]  543 	leax	_towercost+4,u
-   034A AE 84         [ 5]  544 	ldx	,x
-   034C 34 10         [ 6]  545 	pshs	x	;cmphi: R:x with R:y
-   034E 10 AC E1      [10]  546 	cmpy	,s++	;cmphi:
-   0351 10 23 00 CC   [ 6]  547 	lbls	L51
-   0355 10 BE 00 02   [ 7]  548 	ldy	_player+2
-   0359 F6 00 01      [ 5]  549 	ldb	_tower+1
-   035C 4F            [ 2]  550 	clra		;zero_extendqihi: R:b -> R:d
-   035D 1F 01         [ 6]  551 	tfr	d,x
-   035F AF 62         [ 6]  552 	stx	2,s
-   0361 EC 62         [ 6]  553 	ldd	2,s
-   0363 58            [ 2]  554 	aslb
-   0364 49            [ 2]  555 	rola
-   0365 ED 62         [ 6]  556 	std	2,s
-                            557 	; ldd	2,s	; optimization 5
-   0367 30 8B         [ 8]  558 	leax	d,x
-   0369 AF 62         [ 6]  559 	stx	2,s
-   036B EC 62         [ 6]  560 	ldd	2,s
-   036D 58            [ 2]  561 	aslb
-   036E 49            [ 2]  562 	rola
-   036F ED 62         [ 6]  563 	std	2,s
-   0371 EE 62         [ 6]  564 	ldu	2,s
-   0373 30 C9 00 04   [ 8]  565 	leax	_towercost+4,u
-   0377 AE 84         [ 5]  566 	ldx	,x
-   0379 1F 20         [ 6]  567 	tfr	y,d
-   037B 34 10         [ 6]  568 	pshs	x	;subhi: R:d -= R:x
-   037D A3 E1         [ 9]  569 	subd	,s++
-   037F FD 00 02      [ 6]  570 	std	_player+2
-   0382 C6 02         [ 2]  571 	ldb	#2
-   0384 F7 00 02      [ 5]  572 	stb	_tower+2
-   0387 7E 04 21      [ 4]  573 	jmp	L51
-   038A                     574 L54:
-   038A 7F 00 02      [ 7]  575 	clr	_tower+2
-   038D 7E 04 21      [ 4]  576 	jmp	L51
-   0390                     577 L7:
-   0390 F6 00 00      [ 5]  578 	ldb	_Vec_Joy_1_Y
-   0393 6F E8 10      [ 7]  579 	clr	16,s
-   0396 5D            [ 2]  580 	tstb
-   0397 2F 05         [ 3]  581 	ble	L39
-   0399 C6 01         [ 2]  582 	ldb	#1
-   039B E7 E8 10      [ 5]  583 	stb	16,s
-   039E                     584 L39:
-   039E E6 E8 10      [ 5]  585 	ldb	16,s
-                            586 	; tstb	; optimization 6
-   03A1 27 38         [ 3]  587 	beq	L40
-   03A3 F6 00 01      [ 5]  588 	ldb	_Menu+1
-   03A6 E7 6E         [ 5]  589 	stb	14,s
-                            590 	; ldb	14,s	; optimization 5
-   03A8 C1 01         [ 2]  591 	cmpb	#1	;cmpqi:
-   03AA 27 1B         [ 3]  592 	beq	L43
-   03AC E6 6E         [ 5]  593 	ldb	14,s
-   03AE C1 01         [ 2]  594 	cmpb	#1	;cmpqi:
-   03B0 25 0D         [ 3]  595 	blo	L42
-                            596 	; ldb	14,s; optimization 8
-   03B2 C1 02         [ 2]  597 	cmpb	#2	;cmpqi:
-   03B4 27 17         [ 3]  598 	beq	L44
-   03B6 E6 6E         [ 5]  599 	ldb	14,s
-   03B8 C1 03         [ 2]  600 	cmpb	#3	;cmpqi:
-   03BA 27 18         [ 3]  601 	beq	L45
-   03BC 7E 04 21      [ 4]  602 	jmp	L51
-   03BF                     603 L42:
-   03BF C6 03         [ 2]  604 	ldb	#3
-   03C1 F7 00 01      [ 5]  605 	stb	_Menu+1
-   03C4 7E 04 21      [ 4]  606 	jmp	L51
-   03C7                     607 L43:
-   03C7 7F 00 01      [ 7]  608 	clr	_Menu+1
-   03CA 7E 04 21      [ 4]  609 	jmp	L51
-   03CD                     610 L44:
-   03CD C6 01         [ 2]  611 	ldb	#1
-   03CF F7 00 01      [ 5]  612 	stb	_Menu+1
-   03D2 20 4D         [ 3]  613 	bra	L51
-   03D4                     614 L45:
-   03D4 C6 02         [ 2]  615 	ldb	#2
-   03D6 F7 00 01      [ 5]  616 	stb	_Menu+1
-   03D9 20 46         [ 3]  617 	bra	L51
-   03DB                     618 L40:
-   03DB F6 00 00      [ 5]  619 	ldb	_Vec_Joy_1_Y
-   03DE 6F E8 11      [ 7]  620 	clr	17,s
-   03E1 5D            [ 2]  621 	tstb
-   03E2 2C 05         [ 3]  622 	bge	L46
-   03E4 C6 01         [ 2]  623 	ldb	#1
-   03E6 E7 E8 11      [ 5]  624 	stb	17,s
-   03E9                     625 L46:
-   03E9 E6 E8 11      [ 5]  626 	ldb	17,s
-                            627 	; tstb	; optimization 6
-   03EC 27 33         [ 3]  628 	beq	L51
-   03EE F6 00 01      [ 5]  629 	ldb	_Menu+1
-   03F1 E7 6F         [ 5]  630 	stb	15,s
-                            631 	; ldb	15,s	; optimization 5
-   03F3 C1 01         [ 2]  632 	cmpb	#1	;cmpqi:
-   03F5 27 19         [ 3]  633 	beq	L48
-   03F7 E6 6F         [ 5]  634 	ldb	15,s
-   03F9 C1 01         [ 2]  635 	cmpb	#1	;cmpqi:
-   03FB 25 0C         [ 3]  636 	blo	L47
-                            637 	; ldb	15,s; optimization 8
-   03FD C1 02         [ 2]  638 	cmpb	#2	;cmpqi:
-   03FF 27 16         [ 3]  639 	beq	L49
-   0401 E6 6F         [ 5]  640 	ldb	15,s
-   0403 C1 03         [ 2]  641 	cmpb	#3	;cmpqi:
-   0405 27 17         [ 3]  642 	beq	L50
-   0407 20 18         [ 3]  643 	bra	L51
-   0409                     644 L47:
-   0409 C6 01         [ 2]  645 	ldb	#1
-   040B F7 00 01      [ 5]  646 	stb	_Menu+1
-   040E 20 11         [ 3]  647 	bra	L51
-   0410                     648 L48:
-   0410 C6 02         [ 2]  649 	ldb	#2
-   0412 F7 00 01      [ 5]  650 	stb	_Menu+1
-   0415 20 0A         [ 3]  651 	bra	L51
-   0417                     652 L49:
-   0417 C6 03         [ 2]  653 	ldb	#3
-   0419 F7 00 01      [ 5]  654 	stb	_Menu+1
-   041C 20 03         [ 3]  655 	bra	L51
-   041E                     656 L50:
-   041E 7F 00 01      [ 7]  657 	clr	_Menu+1
-   0421                     658 L51:
-   0421 32 E8 12      [ 5]  659 	leas	18,s
-   0424 35 E0         [ 8]  660 	puls	y,u,pc
-                            661 	.globl _menu_open
-   0426                     662 _menu_open:
-   0426                     663 L56:
-   0426 BD 01 0B      [ 8]  664 	jsr	_menu_handle
-   0429 BD 04 AA      [ 8]  665 	jsr	_menu_draw
-   042C F6 00 00      [ 5]  666 	ldb	_Menu
-                            667 	; tstb	; optimization 6
-   042F 27 F5         [ 3]  668 	beq	L56
-   0431 39            [ 5]  669 	rts
-   0432                     670 LC0:
-   0432 41                  671 	.byte	0x41
-   0433 20                  672 	.byte	0x20
-   0434 50                  673 	.byte	0x50
-   0435 4C                  674 	.byte	0x4C
-   0436 41                  675 	.byte	0x41
-   0437 59                  676 	.byte	0x59
-   0438 45                  677 	.byte	0x45
-   0439 52                  678 	.byte	0x52
-   043A 20                  679 	.byte	0x20
-   043B 4C                  680 	.byte	0x4C
-   043C 56                  681 	.byte	0x56
-   043D 4C                  682 	.byte	0x4C
-   043E 80                  683 	.byte	0x80
-   043F 00                  684 	.byte	0x00
-   0440                     685 LC1:
-   0440 20                  686 	.byte	0x20
-   0441 20                  687 	.byte	0x20
-   0442 50                  688 	.byte	0x50
-   0443 4C                  689 	.byte	0x4C
-   0444 41                  690 	.byte	0x41
-   0445 59                  691 	.byte	0x59
-   0446 45                  692 	.byte	0x45
-   0447 52                  693 	.byte	0x52
-   0448 20                  694 	.byte	0x20
-   0449 52                  695 	.byte	0x52
-   044A 41                  696 	.byte	0x41
-   044B 54                  697 	.byte	0x54
-   044C 45                  698 	.byte	0x45
-   044D 80                  699 	.byte	0x80
-   044E 00                  700 	.byte	0x00
-   044F                     701 LC2:
-   044F 20                  702 	.byte	0x20
-   0450 20                  703 	.byte	0x20
-   0451 54                  704 	.byte	0x54
-   0452 4F                  705 	.byte	0x4F
-   0453 57                  706 	.byte	0x57
-   0454 45                  707 	.byte	0x45
-   0455 52                  708 	.byte	0x52
-   0456 20                  709 	.byte	0x20
-   0457 4C                  710 	.byte	0x4C
-   0458 56                  711 	.byte	0x56
-   0459 4C                  712 	.byte	0x4C
-   045A 80                  713 	.byte	0x80
-   045B 00                  714 	.byte	0x00
-   045C                     715 LC3:
-   045C 20                  716 	.byte	0x20
-   045D 20                  717 	.byte	0x20
-   045E 54                  718 	.byte	0x54
-   045F 4F                  719 	.byte	0x4F
-   0460 57                  720 	.byte	0x57
-   0461 45                  721 	.byte	0x45
-   0462 52                  722 	.byte	0x52
-   0463 20                  723 	.byte	0x20
-   0464 52                  724 	.byte	0x52
-   0465 41                  725 	.byte	0x41
-   0466 54                  726 	.byte	0x54
-   0467 45                  727 	.byte	0x45
-   0468 80                  728 	.byte	0x80
-   0469 00                  729 	.byte	0x00
-   046A                     730 LC4:
-   046A 20                  731 	.byte	0x20
-   046B 20                  732 	.byte	0x20
-   046C 50                  733 	.byte	0x50
-   046D 4C                  734 	.byte	0x4C
-   046E 41                  735 	.byte	0x41
-   046F 59                  736 	.byte	0x59
-   0470 45                  737 	.byte	0x45
-   0471 52                  738 	.byte	0x52
-   0472 20                  739 	.byte	0x20
-   0473 4C                  740 	.byte	0x4C
-   0474 56                  741 	.byte	0x56
-   0475 4C                  742 	.byte	0x4C
-   0476 80                  743 	.byte	0x80
-   0477 00                  744 	.byte	0x00
-   0478                     745 LC5:
-   0478 41                  746 	.byte	0x41
-   0479 20                  747 	.byte	0x20
-   047A 50                  748 	.byte	0x50
-   047B 4C                  749 	.byte	0x4C
-   047C 41                  750 	.byte	0x41
-   047D 59                  751 	.byte	0x59
-   047E 45                  752 	.byte	0x45
-   047F 52                  753 	.byte	0x52
-   0480 20                  754 	.byte	0x20
-   0481 52                  755 	.byte	0x52
-   0482 41                  756 	.byte	0x41
-   0483 54                  757 	.byte	0x54
-   0484 45                  758 	.byte	0x45
-   0485 80                  759 	.byte	0x80
-   0486 00                  760 	.byte	0x00
-   0487                     761 LC6:
-   0487 41                  762 	.byte	0x41
-   0488 20                  763 	.byte	0x20
-   0489 54                  764 	.byte	0x54
-   048A 4F                  765 	.byte	0x4F
-   048B 57                  766 	.byte	0x57
-   048C 45                  767 	.byte	0x45
-   048D 52                  768 	.byte	0x52
-   048E 20                  769 	.byte	0x20
-   048F 4C                  770 	.byte	0x4C
-   0490 56                  771 	.byte	0x56
-   0491 4C                  772 	.byte	0x4C
-   0492 80                  773 	.byte	0x80
-   0493 00                  774 	.byte	0x00
-   0494                     775 LC7:
-   0494 41                  776 	.byte	0x41
-   0495 20                  777 	.byte	0x20
-   0496 54                  778 	.byte	0x54
-   0497 4F                  779 	.byte	0x4F
-   0498 57                  780 	.byte	0x57
-   0499 45                  781 	.byte	0x45
-   049A 52                  782 	.byte	0x52
-   049B 20                  783 	.byte	0x20
-   049C 52                  784 	.byte	0x52
-   049D 41                  785 	.byte	0x41
-   049E 54                  786 	.byte	0x54
-   049F 45                  787 	.byte	0x45
-   04A0 80                  788 	.byte	0x80
-   04A1 00                  789 	.byte	0x00
-   04A2                     790 LC8:
-   04A2 4D                  791 	.byte	0x4D
-   04A3 4F                  792 	.byte	0x4F
-   04A4 4E                  793 	.byte	0x4E
-   04A5 45                  794 	.byte	0x45
-   04A6 59                  795 	.byte	0x59
-   04A7 20                  796 	.byte	0x20
-   04A8 80                  797 	.byte	0x80
-   04A9 00                  798 	.byte	0x00
-                            799 	.globl _menu_draw
-   04AA                     800 _menu_draw:
-   04AA 34 40         [ 6]  801 	pshs	u
-   04AC 32 E8 EE      [ 5]  802 	leas	-18,s
-   04AF BD 00 00      [ 8]  803 	jsr	___Reset0Ref
-   04B2 BD 00 00      [ 8]  804 	jsr	_Sync
-   04B5 F6 00 01      [ 5]  805 	ldb	_Menu+1
-                            806 	; tstb	; optimization 6
-   04B8 10 26 01 E1   [ 6]  807 	lbne	L59
-   04BC C6 92         [ 2]  808 	ldb	#-110
-   04BE E7 E2         [ 6]  809 	stb	,-s
-   04C0 8E 04 32      [ 3]  810 	ldx	#LC0
-   04C3 C6 64         [ 2]  811 	ldb	#100
-   04C5 BD 00 00      [ 8]  812 	jsr	_print_string
-   04C8 32 61         [ 5]  813 	leas	1,s
-   04CA F6 00 00      [ 5]  814 	ldb	_player
-   04CD E7 62         [ 5]  815 	stb	2,s
-                            816 	; ldb	2,s	; optimization 5
-   04CF C1 01         [ 2]  817 	cmpb	#1	;cmpqi:
-   04D1 27 1D         [ 3]  818 	beq	L62
-   04D3 E6 62         [ 5]  819 	ldb	2,s
-   04D5 C1 01         [ 2]  820 	cmpb	#1	;cmpqi:
-   04D7 25 06         [ 3]  821 	blo	L61
-                            822 	; ldb	2,s; optimization 8
-   04D9 C1 02         [ 2]  823 	cmpb	#2	;cmpqi:
-   04DB 27 24         [ 3]  824 	beq	L63
-   04DD 20 33         [ 3]  825 	bra	L159
-   04DF                     826 L61:
-   04DF C6 01         [ 2]  827 	ldb	#1
-   04E1 E7 E2         [ 6]  828 	stb	,-s
-   04E3 C6 28         [ 2]  829 	ldb	#40
-   04E5 E7 E2         [ 6]  830 	stb	,-s
-   04E7 C6 64         [ 2]  831 	ldb	#100
-   04E9 BD 00 00      [ 8]  832 	jsr	_print_unsigned_int
-   04EC 32 62         [ 5]  833 	leas	2,s
-   04EE 20 31         [ 3]  834 	bra	L64
-   04F0                     835 L62:
-   04F0 C6 02         [ 2]  836 	ldb	#2
-   04F2 E7 E2         [ 6]  837 	stb	,-s
-   04F4 C6 28         [ 2]  838 	ldb	#40
-   04F6 E7 E2         [ 6]  839 	stb	,-s
-   04F8 C6 64         [ 2]  840 	ldb	#100
-   04FA BD 00 00      [ 8]  841 	jsr	_print_unsigned_int
-   04FD 32 62         [ 5]  842 	leas	2,s
-   04FF 20 20         [ 3]  843 	bra	L64
-   0501                     844 L63:
-   0501 C6 03         [ 2]  845 	ldb	#3
-   0503 E7 E2         [ 6]  846 	stb	,-s
-   0505 C6 28         [ 2]  847 	ldb	#40
-   0507 E7 E2         [ 6]  848 	stb	,-s
-   0509 C6 64         [ 2]  849 	ldb	#100
-   050B BD 00 00      [ 8]  850 	jsr	_print_unsigned_int
-   050E 32 62         [ 5]  851 	leas	2,s
-   0510 20 0F         [ 3]  852 	bra	L64
-   0512                     853 L159:
-   0512 C6 64         [ 2]  854 	ldb	#100
-   0514 E7 E2         [ 6]  855 	stb	,-s
-   0516 C6 28         [ 2]  856 	ldb	#40
-   0518 E7 E2         [ 6]  857 	stb	,-s
-   051A C6 64         [ 2]  858 	ldb	#100
-   051C BD 00 00      [ 8]  859 	jsr	_print_unsigned_int
-   051F 32 62         [ 5]  860 	leas	2,s
-   0521                     861 L64:
-   0521 C6 92         [ 2]  862 	ldb	#-110
-   0523 E7 E2         [ 6]  863 	stb	,-s
-   0525 8E 04 40      [ 3]  864 	ldx	#LC1
-   0528 C6 3C         [ 2]  865 	ldb	#60
-   052A BD 00 00      [ 8]  866 	jsr	_print_string
-   052D 32 61         [ 5]  867 	leas	1,s
-   052F F6 00 04      [ 5]  868 	ldb	_player+4
-   0532 E7 63         [ 5]  869 	stb	3,s
-                            870 	; ldb	3,s	; optimization 5
-   0534 C1 01         [ 2]  871 	cmpb	#1	;cmpqi:
-   0536 27 1D         [ 3]  872 	beq	L67
-   0538 E6 63         [ 5]  873 	ldb	3,s
-   053A C1 01         [ 2]  874 	cmpb	#1	;cmpqi:
-   053C 25 06         [ 3]  875 	blo	L66
-                            876 	; ldb	3,s; optimization 8
-   053E C1 02         [ 2]  877 	cmpb	#2	;cmpqi:
-   0540 27 24         [ 3]  878 	beq	L68
-   0542 20 33         [ 3]  879 	bra	L160
-   0544                     880 L66:
-   0544 C6 01         [ 2]  881 	ldb	#1
-   0546 E7 E2         [ 6]  882 	stb	,-s
-   0548 C6 28         [ 2]  883 	ldb	#40
-   054A E7 E2         [ 6]  884 	stb	,-s
-   054C C6 3C         [ 2]  885 	ldb	#60
-   054E BD 00 00      [ 8]  886 	jsr	_print_unsigned_int
-   0551 32 62         [ 5]  887 	leas	2,s
-   0553 20 31         [ 3]  888 	bra	L69
-   0555                     889 L67:
-   0555 C6 02         [ 2]  890 	ldb	#2
-   0557 E7 E2         [ 6]  891 	stb	,-s
-   0559 C6 28         [ 2]  892 	ldb	#40
-   055B E7 E2         [ 6]  893 	stb	,-s
-   055D C6 3C         [ 2]  894 	ldb	#60
-   055F BD 00 00      [ 8]  895 	jsr	_print_unsigned_int
-   0562 32 62         [ 5]  896 	leas	2,s
-   0564 20 20         [ 3]  897 	bra	L69
-   0566                     898 L68:
-   0566 C6 03         [ 2]  899 	ldb	#3
-   0568 E7 E2         [ 6]  900 	stb	,-s
-   056A C6 28         [ 2]  901 	ldb	#40
-   056C E7 E2         [ 6]  902 	stb	,-s
-   056E C6 3C         [ 2]  903 	ldb	#60
-   0570 BD 00 00      [ 8]  904 	jsr	_print_unsigned_int
-   0573 32 62         [ 5]  905 	leas	2,s
-   0575 20 0F         [ 3]  906 	bra	L69
-   0577                     907 L160:
-   0577 C6 64         [ 2]  908 	ldb	#100
-   0579 E7 E2         [ 6]  909 	stb	,-s
-   057B C6 28         [ 2]  910 	ldb	#40
-   057D E7 E2         [ 6]  911 	stb	,-s
-   057F C6 3C         [ 2]  912 	ldb	#60
-   0581 BD 00 00      [ 8]  913 	jsr	_print_unsigned_int
-   0584 32 62         [ 5]  914 	leas	2,s
-   0586                     915 L69:
-   0586 C6 92         [ 2]  916 	ldb	#-110
-   0588 E7 E2         [ 6]  917 	stb	,-s
-   058A 8E 04 4F      [ 3]  918 	ldx	#LC2
-   058D C6 14         [ 2]  919 	ldb	#20
-   058F BD 00 00      [ 8]  920 	jsr	_print_string
-   0592 32 61         [ 5]  921 	leas	1,s
-   0594 F6 00 01      [ 5]  922 	ldb	_tower+1
-   0597 E7 64         [ 5]  923 	stb	4,s
-                            924 	; ldb	4,s	; optimization 5
-   0599 C1 05         [ 2]  925 	cmpb	#5	;cmpqi:
-   059B 10 22 00 84   [ 6]  926 	lbhi	L70
-   059F E6 64         [ 5]  927 	ldb	4,s
-   05A1 4F            [ 2]  928 	clra		;zero_extendqihi: R:b -> R:d
-   05A2 ED E4         [ 5]  929 	std	,s
-                            930 	; ldd	,s	; optimization 5
-   05A4 58            [ 2]  931 	aslb
-   05A5 49            [ 2]  932 	rola
-   05A6 CE 05 AF      [ 3]  933 	ldu	#L77
-   05A9 30 CB         [ 8]  934 	leax	d,u
-   05AB AE 84         [ 5]  935 	ldx	,x
-   05AD 6E 84         [ 3]  936 	jmp	,x
-   05AF                     937 L77:
-   05AF 05 BB               938 	.word L71
-   05B1 05 CD               939 	.word L72
-   05B3 05 DF               940 	.word L73
-   05B5 05 F0               941 	.word L74
-   05B7 06 01               942 	.word L75
-   05B9 06 12               943 	.word L76
-   05BB                     944 L71:
-   05BB C6 01         [ 2]  945 	ldb	#1
-   05BD E7 E2         [ 6]  946 	stb	,-s
-   05BF C6 28         [ 2]  947 	ldb	#40
-   05C1 E7 E2         [ 6]  948 	stb	,-s
-   05C3 C6 14         [ 2]  949 	ldb	#20
-   05C5 BD 00 00      [ 8]  950 	jsr	_print_unsigned_int
-   05C8 32 62         [ 5]  951 	leas	2,s
-   05CA 7E 06 32      [ 4]  952 	jmp	L78
-   05CD                     953 L72:
-   05CD C6 02         [ 2]  954 	ldb	#2
-   05CF E7 E2         [ 6]  955 	stb	,-s
-   05D1 C6 28         [ 2]  956 	ldb	#40
-   05D3 E7 E2         [ 6]  957 	stb	,-s
-   05D5 C6 14         [ 2]  958 	ldb	#20
-   05D7 BD 00 00      [ 8]  959 	jsr	_print_unsigned_int
-   05DA 32 62         [ 5]  960 	leas	2,s
-   05DC 7E 06 32      [ 4]  961 	jmp	L78
-   05DF                     962 L73:
-   05DF C6 03         [ 2]  963 	ldb	#3
-   05E1 E7 E2         [ 6]  964 	stb	,-s
-   05E3 C6 28         [ 2]  965 	ldb	#40
-   05E5 E7 E2         [ 6]  966 	stb	,-s
-   05E7 C6 14         [ 2]  967 	ldb	#20
-   05E9 BD 00 00      [ 8]  968 	jsr	_print_unsigned_int
-   05EC 32 62         [ 5]  969 	leas	2,s
-   05EE 20 42         [ 3]  970 	bra	L78
-   05F0                     971 L74:
-   05F0 C6 04         [ 2]  972 	ldb	#4
-   05F2 E7 E2         [ 6]  973 	stb	,-s
-   05F4 C6 28         [ 2]  974 	ldb	#40
-   05F6 E7 E2         [ 6]  975 	stb	,-s
-   05F8 C6 14         [ 2]  976 	ldb	#20
-   05FA BD 00 00      [ 8]  977 	jsr	_print_unsigned_int
-   05FD 32 62         [ 5]  978 	leas	2,s
-   05FF 20 31         [ 3]  979 	bra	L78
-   0601                     980 L75:
-   0601 C6 05         [ 2]  981 	ldb	#5
-   0603 E7 E2         [ 6]  982 	stb	,-s
-   0605 C6 28         [ 2]  983 	ldb	#40
-   0607 E7 E2         [ 6]  984 	stb	,-s
-   0609 C6 14         [ 2]  985 	ldb	#20
-   060B BD 00 00      [ 8]  986 	jsr	_print_unsigned_int
-   060E 32 62         [ 5]  987 	leas	2,s
-   0610 20 20         [ 3]  988 	bra	L78
-   0612                     989 L76:
-   0612 C6 06         [ 2]  990 	ldb	#6
-   0614 E7 E2         [ 6]  991 	stb	,-s
-   0616 C6 28         [ 2]  992 	ldb	#40
-   0618 E7 E2         [ 6]  993 	stb	,-s
-   061A C6 14         [ 2]  994 	ldb	#20
-   061C BD 00 00      [ 8]  995 	jsr	_print_unsigned_int
-   061F 32 62         [ 5]  996 	leas	2,s
-   0621 20 0F         [ 3]  997 	bra	L78
-   0623                     998 L70:
-   0623 C6 64         [ 2]  999 	ldb	#100
-   0625 E7 E2         [ 6] 1000 	stb	,-s
-   0627 C6 28         [ 2] 1001 	ldb	#40
-   0629 E7 E2         [ 6] 1002 	stb	,-s
-   062B C6 14         [ 2] 1003 	ldb	#20
-   062D BD 00 00      [ 8] 1004 	jsr	_print_unsigned_int
-   0630 32 62         [ 5] 1005 	leas	2,s
-   0632                    1006 L78:
-   0632 C6 92         [ 2] 1007 	ldb	#-110
-   0634 E7 E2         [ 6] 1008 	stb	,-s
-   0636 8E 04 5C      [ 3] 1009 	ldx	#LC3
-   0639 C6 EC         [ 2] 1010 	ldb	#-20
-   063B BD 00 00      [ 8] 1011 	jsr	_print_string
-   063E 32 61         [ 5] 1012 	leas	1,s
-   0640 F6 00 02      [ 5] 1013 	ldb	_tower+2
-   0643 E7 65         [ 5] 1014 	stb	5,s
-                           1015 	; ldb	5,s	; optimization 5
-   0645 C1 01         [ 2] 1016 	cmpb	#1	;cmpqi:
-   0647 27 1E         [ 3] 1017 	beq	L81
-   0649 E6 65         [ 5] 1018 	ldb	5,s
-   064B C1 01         [ 2] 1019 	cmpb	#1	;cmpqi:
-   064D 25 06         [ 3] 1020 	blo	L80
-                           1021 	; ldb	5,s; optimization 8
-   064F C1 02         [ 2] 1022 	cmpb	#2	;cmpqi:
-   0651 27 26         [ 3] 1023 	beq	L82
-   0653 20 36         [ 3] 1024 	bra	L161
-   0655                    1025 L80:
-   0655 C6 01         [ 2] 1026 	ldb	#1
-   0657 E7 E2         [ 6] 1027 	stb	,-s
-   0659 C6 28         [ 2] 1028 	ldb	#40
-   065B E7 E2         [ 6] 1029 	stb	,-s
-   065D C6 EC         [ 2] 1030 	ldb	#-20
-   065F BD 00 00      [ 8] 1031 	jsr	_print_unsigned_int
-   0662 32 62         [ 5] 1032 	leas	2,s
-   0664 7E 0C 59      [ 4] 1033 	jmp	L84
-   0667                    1034 L81:
-   0667 C6 02         [ 2] 1035 	ldb	#2
-   0669 E7 E2         [ 6] 1036 	stb	,-s
-   066B C6 28         [ 2] 1037 	ldb	#40
-   066D E7 E2         [ 6] 1038 	stb	,-s
-   066F C6 EC         [ 2] 1039 	ldb	#-20
-   0671 BD 00 00      [ 8] 1040 	jsr	_print_unsigned_int
-   0674 32 62         [ 5] 1041 	leas	2,s
-   0676 7E 0C 59      [ 4] 1042 	jmp	L84
-   0679                    1043 L82:
-   0679 C6 03         [ 2] 1044 	ldb	#3
-   067B E7 E2         [ 6] 1045 	stb	,-s
-   067D C6 28         [ 2] 1046 	ldb	#40
-   067F E7 E2         [ 6] 1047 	stb	,-s
-   0681 C6 EC         [ 2] 1048 	ldb	#-20
-   0683 BD 00 00      [ 8] 1049 	jsr	_print_unsigned_int
-   0686 32 62         [ 5] 1050 	leas	2,s
-   0688 7E 0C 59      [ 4] 1051 	jmp	L84
-   068B                    1052 L161:
-   068B C6 64         [ 2] 1053 	ldb	#100
-   068D E7 E2         [ 6] 1054 	stb	,-s
-   068F C6 28         [ 2] 1055 	ldb	#40
-   0691 E7 E2         [ 6] 1056 	stb	,-s
-   0693 C6 EC         [ 2] 1057 	ldb	#-20
-   0695 BD 00 00      [ 8] 1058 	jsr	_print_unsigned_int
-   0698 32 62         [ 5] 1059 	leas	2,s
-   069A 7E 0C 59      [ 4] 1060 	jmp	L84
-   069D                    1061 L59:
-   069D F6 00 01      [ 5] 1062 	ldb	_Menu+1
-   06A0 C1 01         [ 2] 1063 	cmpb	#1	;cmpqi:
-   06A2 10 26 01 E1   [ 6] 1064 	lbne	L85
-   06A6 C6 92         [ 2] 1065 	ldb	#-110
-   06A8 E7 E2         [ 6] 1066 	stb	,-s
-   06AA 8E 04 6A      [ 3] 1067 	ldx	#LC4
-   06AD C6 64         [ 2] 1068 	ldb	#100
-   06AF BD 00 00      [ 8] 1069 	jsr	_print_string
-   06B2 32 61         [ 5] 1070 	leas	1,s
-   06B4 F6 00 00      [ 5] 1071 	ldb	_player
-   06B7 E7 66         [ 5] 1072 	stb	6,s
-                           1073 	; ldb	6,s	; optimization 5
-   06B9 C1 01         [ 2] 1074 	cmpb	#1	;cmpqi:
-   06BB 27 1D         [ 3] 1075 	beq	L88
-   06BD E6 66         [ 5] 1076 	ldb	6,s
-   06BF C1 01         [ 2] 1077 	cmpb	#1	;cmpqi:
-   06C1 25 06         [ 3] 1078 	blo	L87
-                           1079 	; ldb	6,s; optimization 8
-   06C3 C1 02         [ 2] 1080 	cmpb	#2	;cmpqi:
-   06C5 27 24         [ 3] 1081 	beq	L89
-   06C7 20 33         [ 3] 1082 	bra	L162
-   06C9                    1083 L87:
-   06C9 C6 01         [ 2] 1084 	ldb	#1
-   06CB E7 E2         [ 6] 1085 	stb	,-s
-   06CD C6 28         [ 2] 1086 	ldb	#40
-   06CF E7 E2         [ 6] 1087 	stb	,-s
-   06D1 C6 64         [ 2] 1088 	ldb	#100
-   06D3 BD 00 00      [ 8] 1089 	jsr	_print_unsigned_int
-   06D6 32 62         [ 5] 1090 	leas	2,s
-   06D8 20 31         [ 3] 1091 	bra	L90
-   06DA                    1092 L88:
-   06DA C6 02         [ 2] 1093 	ldb	#2
-   06DC E7 E2         [ 6] 1094 	stb	,-s
-   06DE C6 28         [ 2] 1095 	ldb	#40
-   06E0 E7 E2         [ 6] 1096 	stb	,-s
-   06E2 C6 64         [ 2] 1097 	ldb	#100
-   06E4 BD 00 00      [ 8] 1098 	jsr	_print_unsigned_int
-   06E7 32 62         [ 5] 1099 	leas	2,s
-   06E9 20 20         [ 3] 1100 	bra	L90
-   06EB                    1101 L89:
-   06EB C6 03         [ 2] 1102 	ldb	#3
-   06ED E7 E2         [ 6] 1103 	stb	,-s
-   06EF C6 28         [ 2] 1104 	ldb	#40
-   06F1 E7 E2         [ 6] 1105 	stb	,-s
-   06F3 C6 64         [ 2] 1106 	ldb	#100
-   06F5 BD 00 00      [ 8] 1107 	jsr	_print_unsigned_int
-   06F8 32 62         [ 5] 1108 	leas	2,s
-   06FA 20 0F         [ 3] 1109 	bra	L90
-   06FC                    1110 L162:
-   06FC C6 64         [ 2] 1111 	ldb	#100
-   06FE E7 E2         [ 6] 1112 	stb	,-s
-   0700 C6 28         [ 2] 1113 	ldb	#40
-   0702 E7 E2         [ 6] 1114 	stb	,-s
-   0704 C6 64         [ 2] 1115 	ldb	#100
-   0706 BD 00 00      [ 8] 1116 	jsr	_print_unsigned_int
-   0709 32 62         [ 5] 1117 	leas	2,s
-   070B                    1118 L90:
-   070B C6 92         [ 2] 1119 	ldb	#-110
-   070D E7 E2         [ 6] 1120 	stb	,-s
-   070F 8E 04 78      [ 3] 1121 	ldx	#LC5
-   0712 C6 3C         [ 2] 1122 	ldb	#60
-   0714 BD 00 00      [ 8] 1123 	jsr	_print_string
-   0717 32 61         [ 5] 1124 	leas	1,s
-   0719 F6 00 04      [ 5] 1125 	ldb	_player+4
-   071C E7 67         [ 5] 1126 	stb	7,s
-                           1127 	; ldb	7,s	; optimization 5
-   071E C1 01         [ 2] 1128 	cmpb	#1	;cmpqi:
-   0720 27 1D         [ 3] 1129 	beq	L93
-   0722 E6 67         [ 5] 1130 	ldb	7,s
-   0724 C1 01         [ 2] 1131 	cmpb	#1	;cmpqi:
-   0726 25 06         [ 3] 1132 	blo	L92
-                           1133 	; ldb	7,s; optimization 8
-   0728 C1 02         [ 2] 1134 	cmpb	#2	;cmpqi:
-   072A 27 24         [ 3] 1135 	beq	L94
-   072C 20 33         [ 3] 1136 	bra	L163
-   072E                    1137 L92:
-   072E C6 01         [ 2] 1138 	ldb	#1
-   0730 E7 E2         [ 6] 1139 	stb	,-s
-   0732 C6 28         [ 2] 1140 	ldb	#40
-   0734 E7 E2         [ 6] 1141 	stb	,-s
-   0736 C6 3C         [ 2] 1142 	ldb	#60
-   0738 BD 00 00      [ 8] 1143 	jsr	_print_unsigned_int
-   073B 32 62         [ 5] 1144 	leas	2,s
-   073D 20 31         [ 3] 1145 	bra	L95
-   073F                    1146 L93:
-   073F C6 02         [ 2] 1147 	ldb	#2
-   0741 E7 E2         [ 6] 1148 	stb	,-s
-   0743 C6 28         [ 2] 1149 	ldb	#40
-   0745 E7 E2         [ 6] 1150 	stb	,-s
-   0747 C6 3C         [ 2] 1151 	ldb	#60
-   0749 BD 00 00      [ 8] 1152 	jsr	_print_unsigned_int
-   074C 32 62         [ 5] 1153 	leas	2,s
-   074E 20 20         [ 3] 1154 	bra	L95
-   0750                    1155 L94:
-   0750 C6 03         [ 2] 1156 	ldb	#3
-   0752 E7 E2         [ 6] 1157 	stb	,-s
-   0754 C6 28         [ 2] 1158 	ldb	#40
-   0756 E7 E2         [ 6] 1159 	stb	,-s
-   0758 C6 3C         [ 2] 1160 	ldb	#60
-   075A BD 00 00      [ 8] 1161 	jsr	_print_unsigned_int
-   075D 32 62         [ 5] 1162 	leas	2,s
-   075F 20 0F         [ 3] 1163 	bra	L95
-   0761                    1164 L163:
-   0761 C6 64         [ 2] 1165 	ldb	#100
-   0763 E7 E2         [ 6] 1166 	stb	,-s
-   0765 C6 28         [ 2] 1167 	ldb	#40
-   0767 E7 E2         [ 6] 1168 	stb	,-s
-   0769 C6 3C         [ 2] 1169 	ldb	#60
-   076B BD 00 00      [ 8] 1170 	jsr	_print_unsigned_int
-   076E 32 62         [ 5] 1171 	leas	2,s
-   0770                    1172 L95:
-   0770 C6 92         [ 2] 1173 	ldb	#-110
-   0772 E7 E2         [ 6] 1174 	stb	,-s
-   0774 8E 04 4F      [ 3] 1175 	ldx	#LC2
-   0777 C6 14         [ 2] 1176 	ldb	#20
-   0779 BD 00 00      [ 8] 1177 	jsr	_print_string
-   077C 32 61         [ 5] 1178 	leas	1,s
-   077E F6 00 01      [ 5] 1179 	ldb	_tower+1
-   0781 E7 68         [ 5] 1180 	stb	8,s
-                           1181 	; ldb	8,s	; optimization 5
-   0783 C1 05         [ 2] 1182 	cmpb	#5	;cmpqi:
-   0785 10 22 00 84   [ 6] 1183 	lbhi	L96
-   0789 E6 68         [ 5] 1184 	ldb	8,s
-   078B 4F            [ 2] 1185 	clra		;zero_extendqihi: R:b -> R:d
-   078C ED E4         [ 5] 1186 	std	,s
-                           1187 	; ldd	,s	; optimization 5
-   078E 58            [ 2] 1188 	aslb
-   078F 49            [ 2] 1189 	rola
-   0790 CE 07 99      [ 3] 1190 	ldu	#L103
-   0793 30 CB         [ 8] 1191 	leax	d,u
-   0795 AE 84         [ 5] 1192 	ldx	,x
-   0797 6E 84         [ 3] 1193 	jmp	,x
-   0799                    1194 L103:
-   0799 07 A5              1195 	.word L97
-   079B 07 B7              1196 	.word L98
-   079D 07 C9              1197 	.word L99
-   079F 07 DA              1198 	.word L100
-   07A1 07 EB              1199 	.word L101
-   07A3 07 FC              1200 	.word L102
-   07A5                    1201 L97:
-   07A5 C6 01         [ 2] 1202 	ldb	#1
-   07A7 E7 E2         [ 6] 1203 	stb	,-s
-   07A9 C6 28         [ 2] 1204 	ldb	#40
-   07AB E7 E2         [ 6] 1205 	stb	,-s
-   07AD C6 14         [ 2] 1206 	ldb	#20
-   07AF BD 00 00      [ 8] 1207 	jsr	_print_unsigned_int
-   07B2 32 62         [ 5] 1208 	leas	2,s
-   07B4 7E 08 1C      [ 4] 1209 	jmp	L104
-   07B7                    1210 L98:
-   07B7 C6 02         [ 2] 1211 	ldb	#2
-   07B9 E7 E2         [ 6] 1212 	stb	,-s
-   07BB C6 28         [ 2] 1213 	ldb	#40
-   07BD E7 E2         [ 6] 1214 	stb	,-s
-   07BF C6 14         [ 2] 1215 	ldb	#20
-   07C1 BD 00 00      [ 8] 1216 	jsr	_print_unsigned_int
-   07C4 32 62         [ 5] 1217 	leas	2,s
-   07C6 7E 08 1C      [ 4] 1218 	jmp	L104
-   07C9                    1219 L99:
-   07C9 C6 03         [ 2] 1220 	ldb	#3
-   07CB E7 E2         [ 6] 1221 	stb	,-s
-   07CD C6 28         [ 2] 1222 	ldb	#40
-   07CF E7 E2         [ 6] 1223 	stb	,-s
-   07D1 C6 14         [ 2] 1224 	ldb	#20
-   07D3 BD 00 00      [ 8] 1225 	jsr	_print_unsigned_int
-   07D6 32 62         [ 5] 1226 	leas	2,s
-   07D8 20 42         [ 3] 1227 	bra	L104
-   07DA                    1228 L100:
-   07DA C6 04         [ 2] 1229 	ldb	#4
-   07DC E7 E2         [ 6] 1230 	stb	,-s
-   07DE C6 28         [ 2] 1231 	ldb	#40
-   07E0 E7 E2         [ 6] 1232 	stb	,-s
-   07E2 C6 14         [ 2] 1233 	ldb	#20
-   07E4 BD 00 00      [ 8] 1234 	jsr	_print_unsigned_int
-   07E7 32 62         [ 5] 1235 	leas	2,s
-   07E9 20 31         [ 3] 1236 	bra	L104
-   07EB                    1237 L101:
-   07EB C6 05         [ 2] 1238 	ldb	#5
-   07ED E7 E2         [ 6] 1239 	stb	,-s
-   07EF C6 28         [ 2] 1240 	ldb	#40
-   07F1 E7 E2         [ 6] 1241 	stb	,-s
-   07F3 C6 14         [ 2] 1242 	ldb	#20
-   07F5 BD 00 00      [ 8] 1243 	jsr	_print_unsigned_int
-   07F8 32 62         [ 5] 1244 	leas	2,s
-   07FA 20 20         [ 3] 1245 	bra	L104
-   07FC                    1246 L102:
-   07FC C6 06         [ 2] 1247 	ldb	#6
-   07FE E7 E2         [ 6] 1248 	stb	,-s
-   0800 C6 28         [ 2] 1249 	ldb	#40
-   0802 E7 E2         [ 6] 1250 	stb	,-s
-   0804 C6 14         [ 2] 1251 	ldb	#20
-   0806 BD 00 00      [ 8] 1252 	jsr	_print_unsigned_int
-   0809 32 62         [ 5] 1253 	leas	2,s
-   080B 20 0F         [ 3] 1254 	bra	L104
-   080D                    1255 L96:
-   080D C6 64         [ 2] 1256 	ldb	#100
-   080F E7 E2         [ 6] 1257 	stb	,-s
-   0811 C6 28         [ 2] 1258 	ldb	#40
-   0813 E7 E2         [ 6] 1259 	stb	,-s
-   0815 C6 14         [ 2] 1260 	ldb	#20
-   0817 BD 00 00      [ 8] 1261 	jsr	_print_unsigned_int
-   081A 32 62         [ 5] 1262 	leas	2,s
-   081C                    1263 L104:
-   081C C6 92         [ 2] 1264 	ldb	#-110
-   081E E7 E2         [ 6] 1265 	stb	,-s
-   0820 8E 04 5C      [ 3] 1266 	ldx	#LC3
-   0823 C6 EC         [ 2] 1267 	ldb	#-20
-   0825 BD 00 00      [ 8] 1268 	jsr	_print_string
-   0828 32 61         [ 5] 1269 	leas	1,s
-   082A F6 00 02      [ 5] 1270 	ldb	_tower+2
-   082D E7 69         [ 5] 1271 	stb	9,s
-                           1272 	; ldb	9,s	; optimization 5
-   082F C1 01         [ 2] 1273 	cmpb	#1	;cmpqi:
-   0831 27 1E         [ 3] 1274 	beq	L107
-   0833 E6 69         [ 5] 1275 	ldb	9,s
-   0835 C1 01         [ 2] 1276 	cmpb	#1	;cmpqi:
-   0837 25 06         [ 3] 1277 	blo	L106
-                           1278 	; ldb	9,s; optimization 8
-   0839 C1 02         [ 2] 1279 	cmpb	#2	;cmpqi:
-   083B 27 26         [ 3] 1280 	beq	L108
-   083D 20 36         [ 3] 1281 	bra	L164
-   083F                    1282 L106:
-   083F C6 01         [ 2] 1283 	ldb	#1
-   0841 E7 E2         [ 6] 1284 	stb	,-s
-   0843 C6 28         [ 2] 1285 	ldb	#40
-   0845 E7 E2         [ 6] 1286 	stb	,-s
-   0847 C6 EC         [ 2] 1287 	ldb	#-20
-   0849 BD 00 00      [ 8] 1288 	jsr	_print_unsigned_int
-   084C 32 62         [ 5] 1289 	leas	2,s
-   084E 7E 0C 59      [ 4] 1290 	jmp	L84
-   0851                    1291 L107:
-   0851 C6 02         [ 2] 1292 	ldb	#2
-   0853 E7 E2         [ 6] 1293 	stb	,-s
-   0855 C6 28         [ 2] 1294 	ldb	#40
-   0857 E7 E2         [ 6] 1295 	stb	,-s
-   0859 C6 EC         [ 2] 1296 	ldb	#-20
-   085B BD 00 00      [ 8] 1297 	jsr	_print_unsigned_int
-   085E 32 62         [ 5] 1298 	leas	2,s
-   0860 7E 0C 59      [ 4] 1299 	jmp	L84
-   0863                    1300 L108:
-   0863 C6 03         [ 2] 1301 	ldb	#3
-   0865 E7 E2         [ 6] 1302 	stb	,-s
-   0867 C6 28         [ 2] 1303 	ldb	#40
-   0869 E7 E2         [ 6] 1304 	stb	,-s
-   086B C6 EC         [ 2] 1305 	ldb	#-20
-   086D BD 00 00      [ 8] 1306 	jsr	_print_unsigned_int
-   0870 32 62         [ 5] 1307 	leas	2,s
-   0872 7E 0C 59      [ 4] 1308 	jmp	L84
-   0875                    1309 L164:
-   0875 C6 64         [ 2] 1310 	ldb	#100
-   0877 E7 E2         [ 6] 1311 	stb	,-s
-   0879 C6 28         [ 2] 1312 	ldb	#40
-   087B E7 E2         [ 6] 1313 	stb	,-s
-   087D C6 EC         [ 2] 1314 	ldb	#-20
-   087F BD 00 00      [ 8] 1315 	jsr	_print_unsigned_int
-   0882 32 62         [ 5] 1316 	leas	2,s
-   0884 7E 0C 59      [ 4] 1317 	jmp	L84
-   0887                    1318 L85:
-   0887 F6 00 01      [ 5] 1319 	ldb	_Menu+1
-   088A C1 02         [ 2] 1320 	cmpb	#2	;cmpqi:
-   088C 10 26 01 E1   [ 6] 1321 	lbne	L110
-   0890 C6 92         [ 2] 1322 	ldb	#-110
-   0892 E7 E2         [ 6] 1323 	stb	,-s
-   0894 8E 04 6A      [ 3] 1324 	ldx	#LC4
-   0897 C6 64         [ 2] 1325 	ldb	#100
-   0899 BD 00 00      [ 8] 1326 	jsr	_print_string
-   089C 32 61         [ 5] 1327 	leas	1,s
-   089E F6 00 00      [ 5] 1328 	ldb	_player
-   08A1 E7 6A         [ 5] 1329 	stb	10,s
-                           1330 	; ldb	10,s	; optimization 5
-   08A3 C1 01         [ 2] 1331 	cmpb	#1	;cmpqi:
-   08A5 27 1D         [ 3] 1332 	beq	L113
-   08A7 E6 6A         [ 5] 1333 	ldb	10,s
-   08A9 C1 01         [ 2] 1334 	cmpb	#1	;cmpqi:
-   08AB 25 06         [ 3] 1335 	blo	L112
-                           1336 	; ldb	10,s; optimization 8
-   08AD C1 02         [ 2] 1337 	cmpb	#2	;cmpqi:
-   08AF 27 24         [ 3] 1338 	beq	L114
-   08B1 20 33         [ 3] 1339 	bra	L165
-   08B3                    1340 L112:
-   08B3 C6 01         [ 2] 1341 	ldb	#1
-   08B5 E7 E2         [ 6] 1342 	stb	,-s
-   08B7 C6 28         [ 2] 1343 	ldb	#40
-   08B9 E7 E2         [ 6] 1344 	stb	,-s
-   08BB C6 64         [ 2] 1345 	ldb	#100
-   08BD BD 00 00      [ 8] 1346 	jsr	_print_unsigned_int
-   08C0 32 62         [ 5] 1347 	leas	2,s
-   08C2 20 31         [ 3] 1348 	bra	L115
-   08C4                    1349 L113:
-   08C4 C6 02         [ 2] 1350 	ldb	#2
-   08C6 E7 E2         [ 6] 1351 	stb	,-s
-   08C8 C6 28         [ 2] 1352 	ldb	#40
-   08CA E7 E2         [ 6] 1353 	stb	,-s
-   08CC C6 64         [ 2] 1354 	ldb	#100
-   08CE BD 00 00      [ 8] 1355 	jsr	_print_unsigned_int
-   08D1 32 62         [ 5] 1356 	leas	2,s
-   08D3 20 20         [ 3] 1357 	bra	L115
-   08D5                    1358 L114:
-   08D5 C6 03         [ 2] 1359 	ldb	#3
-   08D7 E7 E2         [ 6] 1360 	stb	,-s
-   08D9 C6 28         [ 2] 1361 	ldb	#40
-   08DB E7 E2         [ 6] 1362 	stb	,-s
-   08DD C6 64         [ 2] 1363 	ldb	#100
-   08DF BD 00 00      [ 8] 1364 	jsr	_print_unsigned_int
-   08E2 32 62         [ 5] 1365 	leas	2,s
-   08E4 20 0F         [ 3] 1366 	bra	L115
-   08E6                    1367 L165:
-   08E6 C6 64         [ 2] 1368 	ldb	#100
-   08E8 E7 E2         [ 6] 1369 	stb	,-s
-   08EA C6 28         [ 2] 1370 	ldb	#40
-   08EC E7 E2         [ 6] 1371 	stb	,-s
-   08EE C6 64         [ 2] 1372 	ldb	#100
-   08F0 BD 00 00      [ 8] 1373 	jsr	_print_unsigned_int
-   08F3 32 62         [ 5] 1374 	leas	2,s
-   08F5                    1375 L115:
-   08F5 C6 92         [ 2] 1376 	ldb	#-110
-   08F7 E7 E2         [ 6] 1377 	stb	,-s
-   08F9 8E 04 40      [ 3] 1378 	ldx	#LC1
-   08FC C6 3C         [ 2] 1379 	ldb	#60
-   08FE BD 00 00      [ 8] 1380 	jsr	_print_string
-   0901 32 61         [ 5] 1381 	leas	1,s
-   0903 F6 00 04      [ 5] 1382 	ldb	_player+4
-   0906 E7 6B         [ 5] 1383 	stb	11,s
-                           1384 	; ldb	11,s	; optimization 5
-   0908 C1 01         [ 2] 1385 	cmpb	#1	;cmpqi:
-   090A 27 1D         [ 3] 1386 	beq	L118
-   090C E6 6B         [ 5] 1387 	ldb	11,s
-   090E C1 01         [ 2] 1388 	cmpb	#1	;cmpqi:
-   0910 25 06         [ 3] 1389 	blo	L117
-                           1390 	; ldb	11,s; optimization 8
-   0912 C1 02         [ 2] 1391 	cmpb	#2	;cmpqi:
-   0914 27 24         [ 3] 1392 	beq	L119
-   0916 20 33         [ 3] 1393 	bra	L166
-   0918                    1394 L117:
-   0918 C6 01         [ 2] 1395 	ldb	#1
-   091A E7 E2         [ 6] 1396 	stb	,-s
-   091C C6 28         [ 2] 1397 	ldb	#40
-   091E E7 E2         [ 6] 1398 	stb	,-s
-   0920 C6 3C         [ 2] 1399 	ldb	#60
-   0922 BD 00 00      [ 8] 1400 	jsr	_print_unsigned_int
-   0925 32 62         [ 5] 1401 	leas	2,s
-   0927 20 31         [ 3] 1402 	bra	L120
-   0929                    1403 L118:
-   0929 C6 02         [ 2] 1404 	ldb	#2
-   092B E7 E2         [ 6] 1405 	stb	,-s
-   092D C6 28         [ 2] 1406 	ldb	#40
-   092F E7 E2         [ 6] 1407 	stb	,-s
-   0931 C6 3C         [ 2] 1408 	ldb	#60
-   0933 BD 00 00      [ 8] 1409 	jsr	_print_unsigned_int
-   0936 32 62         [ 5] 1410 	leas	2,s
-   0938 20 20         [ 3] 1411 	bra	L120
-   093A                    1412 L119:
-   093A C6 03         [ 2] 1413 	ldb	#3
-   093C E7 E2         [ 6] 1414 	stb	,-s
-   093E C6 28         [ 2] 1415 	ldb	#40
-   0940 E7 E2         [ 6] 1416 	stb	,-s
-   0942 C6 3C         [ 2] 1417 	ldb	#60
-   0944 BD 00 00      [ 8] 1418 	jsr	_print_unsigned_int
-   0947 32 62         [ 5] 1419 	leas	2,s
-   0949 20 0F         [ 3] 1420 	bra	L120
-   094B                    1421 L166:
-   094B C6 64         [ 2] 1422 	ldb	#100
-   094D E7 E2         [ 6] 1423 	stb	,-s
-   094F C6 28         [ 2] 1424 	ldb	#40
-   0951 E7 E2         [ 6] 1425 	stb	,-s
-   0953 C6 3C         [ 2] 1426 	ldb	#60
-   0955 BD 00 00      [ 8] 1427 	jsr	_print_unsigned_int
-   0958 32 62         [ 5] 1428 	leas	2,s
-   095A                    1429 L120:
-   095A C6 92         [ 2] 1430 	ldb	#-110
-   095C E7 E2         [ 6] 1431 	stb	,-s
-   095E 8E 04 87      [ 3] 1432 	ldx	#LC6
-   0961 C6 14         [ 2] 1433 	ldb	#20
-   0963 BD 00 00      [ 8] 1434 	jsr	_print_string
-   0966 32 61         [ 5] 1435 	leas	1,s
-   0968 F6 00 01      [ 5] 1436 	ldb	_tower+1
-   096B E7 6C         [ 5] 1437 	stb	12,s
-                           1438 	; ldb	12,s	; optimization 5
-   096D C1 05         [ 2] 1439 	cmpb	#5	;cmpqi:
-   096F 10 22 00 84   [ 6] 1440 	lbhi	L121
-   0973 E6 6C         [ 5] 1441 	ldb	12,s
-   0975 4F            [ 2] 1442 	clra		;zero_extendqihi: R:b -> R:d
-   0976 ED E4         [ 5] 1443 	std	,s
-                           1444 	; ldd	,s	; optimization 5
-   0978 58            [ 2] 1445 	aslb
-   0979 49            [ 2] 1446 	rola
-   097A CE 09 83      [ 3] 1447 	ldu	#L128
-   097D 30 CB         [ 8] 1448 	leax	d,u
-   097F AE 84         [ 5] 1449 	ldx	,x
-   0981 6E 84         [ 3] 1450 	jmp	,x
-   0983                    1451 L128:
-   0983 09 8F              1452 	.word L122
-   0985 09 A1              1453 	.word L123
-   0987 09 B3              1454 	.word L124
-   0989 09 C4              1455 	.word L125
-   098B 09 D5              1456 	.word L126
-   098D 09 E6              1457 	.word L127
-   098F                    1458 L122:
-   098F C6 01         [ 2] 1459 	ldb	#1
-   0991 E7 E2         [ 6] 1460 	stb	,-s
-   0993 C6 28         [ 2] 1461 	ldb	#40
-   0995 E7 E2         [ 6] 1462 	stb	,-s
-   0997 C6 14         [ 2] 1463 	ldb	#20
-   0999 BD 00 00      [ 8] 1464 	jsr	_print_unsigned_int
-   099C 32 62         [ 5] 1465 	leas	2,s
-   099E 7E 0A 06      [ 4] 1466 	jmp	L129
-   09A1                    1467 L123:
-   09A1 C6 02         [ 2] 1468 	ldb	#2
-   09A3 E7 E2         [ 6] 1469 	stb	,-s
-   09A5 C6 28         [ 2] 1470 	ldb	#40
-   09A7 E7 E2         [ 6] 1471 	stb	,-s
-   09A9 C6 14         [ 2] 1472 	ldb	#20
-   09AB BD 00 00      [ 8] 1473 	jsr	_print_unsigned_int
-   09AE 32 62         [ 5] 1474 	leas	2,s
-   09B0 7E 0A 06      [ 4] 1475 	jmp	L129
-   09B3                    1476 L124:
-   09B3 C6 03         [ 2] 1477 	ldb	#3
-   09B5 E7 E2         [ 6] 1478 	stb	,-s
-   09B7 C6 28         [ 2] 1479 	ldb	#40
-   09B9 E7 E2         [ 6] 1480 	stb	,-s
-   09BB C6 14         [ 2] 1481 	ldb	#20
-   09BD BD 00 00      [ 8] 1482 	jsr	_print_unsigned_int
-   09C0 32 62         [ 5] 1483 	leas	2,s
-   09C2 20 42         [ 3] 1484 	bra	L129
-   09C4                    1485 L125:
-   09C4 C6 04         [ 2] 1486 	ldb	#4
-   09C6 E7 E2         [ 6] 1487 	stb	,-s
-   09C8 C6 28         [ 2] 1488 	ldb	#40
-   09CA E7 E2         [ 6] 1489 	stb	,-s
-   09CC C6 14         [ 2] 1490 	ldb	#20
-   09CE BD 00 00      [ 8] 1491 	jsr	_print_unsigned_int
-   09D1 32 62         [ 5] 1492 	leas	2,s
-   09D3 20 31         [ 3] 1493 	bra	L129
-   09D5                    1494 L126:
-   09D5 C6 05         [ 2] 1495 	ldb	#5
-   09D7 E7 E2         [ 6] 1496 	stb	,-s
-   09D9 C6 28         [ 2] 1497 	ldb	#40
-   09DB E7 E2         [ 6] 1498 	stb	,-s
-   09DD C6 14         [ 2] 1499 	ldb	#20
-   09DF BD 00 00      [ 8] 1500 	jsr	_print_unsigned_int
-   09E2 32 62         [ 5] 1501 	leas	2,s
-   09E4 20 20         [ 3] 1502 	bra	L129
-   09E6                    1503 L127:
-   09E6 C6 06         [ 2] 1504 	ldb	#6
-   09E8 E7 E2         [ 6] 1505 	stb	,-s
-   09EA C6 28         [ 2] 1506 	ldb	#40
-   09EC E7 E2         [ 6] 1507 	stb	,-s
-   09EE C6 14         [ 2] 1508 	ldb	#20
-   09F0 BD 00 00      [ 8] 1509 	jsr	_print_unsigned_int
-   09F3 32 62         [ 5] 1510 	leas	2,s
-   09F5 20 0F         [ 3] 1511 	bra	L129
-   09F7                    1512 L121:
-   09F7 C6 64         [ 2] 1513 	ldb	#100
-   09F9 E7 E2         [ 6] 1514 	stb	,-s
-   09FB C6 28         [ 2] 1515 	ldb	#40
-   09FD E7 E2         [ 6] 1516 	stb	,-s
-   09FF C6 14         [ 2] 1517 	ldb	#20
-   0A01 BD 00 00      [ 8] 1518 	jsr	_print_unsigned_int
-   0A04 32 62         [ 5] 1519 	leas	2,s
-   0A06                    1520 L129:
-   0A06 C6 92         [ 2] 1521 	ldb	#-110
-   0A08 E7 E2         [ 6] 1522 	stb	,-s
-   0A0A 8E 04 5C      [ 3] 1523 	ldx	#LC3
-   0A0D C6 EC         [ 2] 1524 	ldb	#-20
-   0A0F BD 00 00      [ 8] 1525 	jsr	_print_string
-   0A12 32 61         [ 5] 1526 	leas	1,s
-   0A14 F6 00 02      [ 5] 1527 	ldb	_tower+2
-   0A17 E7 6D         [ 5] 1528 	stb	13,s
-                           1529 	; ldb	13,s	; optimization 5
-   0A19 C1 01         [ 2] 1530 	cmpb	#1	;cmpqi:
-   0A1B 27 1E         [ 3] 1531 	beq	L132
-   0A1D E6 6D         [ 5] 1532 	ldb	13,s
-   0A1F C1 01         [ 2] 1533 	cmpb	#1	;cmpqi:
-   0A21 25 06         [ 3] 1534 	blo	L131
-                           1535 	; ldb	13,s; optimization 8
-   0A23 C1 02         [ 2] 1536 	cmpb	#2	;cmpqi:
-   0A25 27 26         [ 3] 1537 	beq	L133
-   0A27 20 36         [ 3] 1538 	bra	L167
-   0A29                    1539 L131:
-   0A29 C6 01         [ 2] 1540 	ldb	#1
-   0A2B E7 E2         [ 6] 1541 	stb	,-s
-   0A2D C6 28         [ 2] 1542 	ldb	#40
-   0A2F E7 E2         [ 6] 1543 	stb	,-s
-   0A31 C6 EC         [ 2] 1544 	ldb	#-20
-   0A33 BD 00 00      [ 8] 1545 	jsr	_print_unsigned_int
-   0A36 32 62         [ 5] 1546 	leas	2,s
-   0A38 7E 0C 59      [ 4] 1547 	jmp	L84
-   0A3B                    1548 L132:
-   0A3B C6 02         [ 2] 1549 	ldb	#2
-   0A3D E7 E2         [ 6] 1550 	stb	,-s
-   0A3F C6 28         [ 2] 1551 	ldb	#40
-   0A41 E7 E2         [ 6] 1552 	stb	,-s
-   0A43 C6 EC         [ 2] 1553 	ldb	#-20
-   0A45 BD 00 00      [ 8] 1554 	jsr	_print_unsigned_int
-   0A48 32 62         [ 5] 1555 	leas	2,s
-   0A4A 7E 0C 59      [ 4] 1556 	jmp	L84
-   0A4D                    1557 L133:
-   0A4D C6 03         [ 2] 1558 	ldb	#3
-   0A4F E7 E2         [ 6] 1559 	stb	,-s
-   0A51 C6 28         [ 2] 1560 	ldb	#40
-   0A53 E7 E2         [ 6] 1561 	stb	,-s
-   0A55 C6 EC         [ 2] 1562 	ldb	#-20
-   0A57 BD 00 00      [ 8] 1563 	jsr	_print_unsigned_int
-   0A5A 32 62         [ 5] 1564 	leas	2,s
-   0A5C 7E 0C 59      [ 4] 1565 	jmp	L84
-   0A5F                    1566 L167:
-   0A5F C6 64         [ 2] 1567 	ldb	#100
-   0A61 E7 E2         [ 6] 1568 	stb	,-s
-   0A63 C6 28         [ 2] 1569 	ldb	#40
-   0A65 E7 E2         [ 6] 1570 	stb	,-s
-   0A67 C6 EC         [ 2] 1571 	ldb	#-20
-   0A69 BD 00 00      [ 8] 1572 	jsr	_print_unsigned_int
-   0A6C 32 62         [ 5] 1573 	leas	2,s
-   0A6E 7E 0C 59      [ 4] 1574 	jmp	L84
-   0A71                    1575 L110:
-   0A71 F6 00 01      [ 5] 1576 	ldb	_Menu+1
-   0A74 C1 03         [ 2] 1577 	cmpb	#3	;cmpqi:
-   0A76 10 26 01 DF   [ 6] 1578 	lbne	L84
-   0A7A C6 92         [ 2] 1579 	ldb	#-110
-   0A7C E7 E2         [ 6] 1580 	stb	,-s
-   0A7E 8E 04 6A      [ 3] 1581 	ldx	#LC4
-   0A81 C6 64         [ 2] 1582 	ldb	#100
-   0A83 BD 00 00      [ 8] 1583 	jsr	_print_string
-   0A86 32 61         [ 5] 1584 	leas	1,s
-   0A88 F6 00 00      [ 5] 1585 	ldb	_player
-   0A8B E7 6E         [ 5] 1586 	stb	14,s
-                           1587 	; ldb	14,s	; optimization 5
-   0A8D C1 01         [ 2] 1588 	cmpb	#1	;cmpqi:
-   0A8F 27 1D         [ 3] 1589 	beq	L137
-   0A91 E6 6E         [ 5] 1590 	ldb	14,s
-   0A93 C1 01         [ 2] 1591 	cmpb	#1	;cmpqi:
-   0A95 25 06         [ 3] 1592 	blo	L136
-                           1593 	; ldb	14,s; optimization 8
-   0A97 C1 02         [ 2] 1594 	cmpb	#2	;cmpqi:
-   0A99 27 24         [ 3] 1595 	beq	L138
-   0A9B 20 33         [ 3] 1596 	bra	L168
-   0A9D                    1597 L136:
-   0A9D C6 01         [ 2] 1598 	ldb	#1
-   0A9F E7 E2         [ 6] 1599 	stb	,-s
-   0AA1 C6 28         [ 2] 1600 	ldb	#40
-   0AA3 E7 E2         [ 6] 1601 	stb	,-s
-   0AA5 C6 64         [ 2] 1602 	ldb	#100
-   0AA7 BD 00 00      [ 8] 1603 	jsr	_print_unsigned_int
-   0AAA 32 62         [ 5] 1604 	leas	2,s
-   0AAC 20 31         [ 3] 1605 	bra	L139
-   0AAE                    1606 L137:
-   0AAE C6 02         [ 2] 1607 	ldb	#2
-   0AB0 E7 E2         [ 6] 1608 	stb	,-s
-   0AB2 C6 28         [ 2] 1609 	ldb	#40
-   0AB4 E7 E2         [ 6] 1610 	stb	,-s
-   0AB6 C6 64         [ 2] 1611 	ldb	#100
-   0AB8 BD 00 00      [ 8] 1612 	jsr	_print_unsigned_int
-   0ABB 32 62         [ 5] 1613 	leas	2,s
-   0ABD 20 20         [ 3] 1614 	bra	L139
-   0ABF                    1615 L138:
-   0ABF C6 03         [ 2] 1616 	ldb	#3
-   0AC1 E7 E2         [ 6] 1617 	stb	,-s
-   0AC3 C6 28         [ 2] 1618 	ldb	#40
-   0AC5 E7 E2         [ 6] 1619 	stb	,-s
-   0AC7 C6 64         [ 2] 1620 	ldb	#100
-   0AC9 BD 00 00      [ 8] 1621 	jsr	_print_unsigned_int
-   0ACC 32 62         [ 5] 1622 	leas	2,s
-   0ACE 20 0F         [ 3] 1623 	bra	L139
-   0AD0                    1624 L168:
-   0AD0 C6 64         [ 2] 1625 	ldb	#100
-   0AD2 E7 E2         [ 6] 1626 	stb	,-s
-   0AD4 C6 28         [ 2] 1627 	ldb	#40
-   0AD6 E7 E2         [ 6] 1628 	stb	,-s
-   0AD8 C6 64         [ 2] 1629 	ldb	#100
-   0ADA BD 00 00      [ 8] 1630 	jsr	_print_unsigned_int
-   0ADD 32 62         [ 5] 1631 	leas	2,s
-   0ADF                    1632 L139:
-   0ADF C6 92         [ 2] 1633 	ldb	#-110
-   0AE1 E7 E2         [ 6] 1634 	stb	,-s
-   0AE3 8E 04 40      [ 3] 1635 	ldx	#LC1
-   0AE6 C6 3C         [ 2] 1636 	ldb	#60
-   0AE8 BD 00 00      [ 8] 1637 	jsr	_print_string
-   0AEB 32 61         [ 5] 1638 	leas	1,s
-   0AED F6 00 04      [ 5] 1639 	ldb	_player+4
-   0AF0 E7 6F         [ 5] 1640 	stb	15,s
-                           1641 	; ldb	15,s	; optimization 5
-   0AF2 C1 01         [ 2] 1642 	cmpb	#1	;cmpqi:
-   0AF4 27 1D         [ 3] 1643 	beq	L142
-   0AF6 E6 6F         [ 5] 1644 	ldb	15,s
-   0AF8 C1 01         [ 2] 1645 	cmpb	#1	;cmpqi:
-   0AFA 25 06         [ 3] 1646 	blo	L141
-                           1647 	; ldb	15,s; optimization 8
-   0AFC C1 02         [ 2] 1648 	cmpb	#2	;cmpqi:
-   0AFE 27 24         [ 3] 1649 	beq	L143
-   0B00 20 33         [ 3] 1650 	bra	L169
-   0B02                    1651 L141:
-   0B02 C6 01         [ 2] 1652 	ldb	#1
-   0B04 E7 E2         [ 6] 1653 	stb	,-s
-   0B06 C6 28         [ 2] 1654 	ldb	#40
-   0B08 E7 E2         [ 6] 1655 	stb	,-s
-   0B0A C6 3C         [ 2] 1656 	ldb	#60
-   0B0C BD 00 00      [ 8] 1657 	jsr	_print_unsigned_int
-   0B0F 32 62         [ 5] 1658 	leas	2,s
-   0B11 20 31         [ 3] 1659 	bra	L144
-   0B13                    1660 L142:
-   0B13 C6 02         [ 2] 1661 	ldb	#2
-   0B15 E7 E2         [ 6] 1662 	stb	,-s
-   0B17 C6 28         [ 2] 1663 	ldb	#40
-   0B19 E7 E2         [ 6] 1664 	stb	,-s
-   0B1B C6 3C         [ 2] 1665 	ldb	#60
-   0B1D BD 00 00      [ 8] 1666 	jsr	_print_unsigned_int
-   0B20 32 62         [ 5] 1667 	leas	2,s
-   0B22 20 20         [ 3] 1668 	bra	L144
-   0B24                    1669 L143:
-   0B24 C6 03         [ 2] 1670 	ldb	#3
-   0B26 E7 E2         [ 6] 1671 	stb	,-s
-   0B28 C6 28         [ 2] 1672 	ldb	#40
-   0B2A E7 E2         [ 6] 1673 	stb	,-s
-   0B2C C6 3C         [ 2] 1674 	ldb	#60
-   0B2E BD 00 00      [ 8] 1675 	jsr	_print_unsigned_int
-   0B31 32 62         [ 5] 1676 	leas	2,s
-   0B33 20 0F         [ 3] 1677 	bra	L144
-   0B35                    1678 L169:
-   0B35 C6 64         [ 2] 1679 	ldb	#100
-   0B37 E7 E2         [ 6] 1680 	stb	,-s
-   0B39 C6 28         [ 2] 1681 	ldb	#40
-   0B3B E7 E2         [ 6] 1682 	stb	,-s
-   0B3D C6 3C         [ 2] 1683 	ldb	#60
-   0B3F BD 00 00      [ 8] 1684 	jsr	_print_unsigned_int
-   0B42 32 62         [ 5] 1685 	leas	2,s
-   0B44                    1686 L144:
-   0B44 C6 92         [ 2] 1687 	ldb	#-110
-   0B46 E7 E2         [ 6] 1688 	stb	,-s
-   0B48 8E 04 4F      [ 3] 1689 	ldx	#LC2
-   0B4B C6 14         [ 2] 1690 	ldb	#20
-   0B4D BD 00 00      [ 8] 1691 	jsr	_print_string
-   0B50 32 61         [ 5] 1692 	leas	1,s
-   0B52 F6 00 01      [ 5] 1693 	ldb	_tower+1
-   0B55 E7 E8 10      [ 5] 1694 	stb	16,s
-                           1695 	; ldb	16,s	; optimization 5
-   0B58 C1 05         [ 2] 1696 	cmpb	#5	;cmpqi:
-   0B5A 10 22 00 85   [ 6] 1697 	lbhi	L145
-   0B5E E6 E8 10      [ 5] 1698 	ldb	16,s
-   0B61 4F            [ 2] 1699 	clra		;zero_extendqihi: R:b -> R:d
-   0B62 ED E4         [ 5] 1700 	std	,s
-                           1701 	; ldd	,s	; optimization 5
-   0B64 58            [ 2] 1702 	aslb
-   0B65 49            [ 2] 1703 	rola
-   0B66 CE 0B 6F      [ 3] 1704 	ldu	#L152
-   0B69 30 CB         [ 8] 1705 	leax	d,u
-   0B6B AE 84         [ 5] 1706 	ldx	,x
-   0B6D 6E 84         [ 3] 1707 	jmp	,x
-   0B6F                    1708 L152:
-   0B6F 0B 7B              1709 	.word L146
-   0B71 0B 8D              1710 	.word L147
-   0B73 0B 9F              1711 	.word L148
-   0B75 0B B0              1712 	.word L149
-   0B77 0B C1              1713 	.word L150
-   0B79 0B D2              1714 	.word L151
-   0B7B                    1715 L146:
-   0B7B C6 01         [ 2] 1716 	ldb	#1
-   0B7D E7 E2         [ 6] 1717 	stb	,-s
-   0B7F C6 28         [ 2] 1718 	ldb	#40
-   0B81 E7 E2         [ 6] 1719 	stb	,-s
-   0B83 C6 14         [ 2] 1720 	ldb	#20
-   0B85 BD 00 00      [ 8] 1721 	jsr	_print_unsigned_int
-   0B88 32 62         [ 5] 1722 	leas	2,s
-   0B8A 7E 0B F2      [ 4] 1723 	jmp	L153
-   0B8D                    1724 L147:
-   0B8D C6 02         [ 2] 1725 	ldb	#2
-   0B8F E7 E2         [ 6] 1726 	stb	,-s
-   0B91 C6 28         [ 2] 1727 	ldb	#40
-   0B93 E7 E2         [ 6] 1728 	stb	,-s
-   0B95 C6 14         [ 2] 1729 	ldb	#20
-   0B97 BD 00 00      [ 8] 1730 	jsr	_print_unsigned_int
-   0B9A 32 62         [ 5] 1731 	leas	2,s
-   0B9C 7E 0B F2      [ 4] 1732 	jmp	L153
-   0B9F                    1733 L148:
-   0B9F C6 03         [ 2] 1734 	ldb	#3
-   0BA1 E7 E2         [ 6] 1735 	stb	,-s
-   0BA3 C6 28         [ 2] 1736 	ldb	#40
-   0BA5 E7 E2         [ 6] 1737 	stb	,-s
-   0BA7 C6 14         [ 2] 1738 	ldb	#20
-   0BA9 BD 00 00      [ 8] 1739 	jsr	_print_unsigned_int
-   0BAC 32 62         [ 5] 1740 	leas	2,s
-   0BAE 20 42         [ 3] 1741 	bra	L153
-   0BB0                    1742 L149:
-   0BB0 C6 04         [ 2] 1743 	ldb	#4
-   0BB2 E7 E2         [ 6] 1744 	stb	,-s
-   0BB4 C6 28         [ 2] 1745 	ldb	#40
-   0BB6 E7 E2         [ 6] 1746 	stb	,-s
-   0BB8 C6 14         [ 2] 1747 	ldb	#20
-   0BBA BD 00 00      [ 8] 1748 	jsr	_print_unsigned_int
-   0BBD 32 62         [ 5] 1749 	leas	2,s
-   0BBF 20 31         [ 3] 1750 	bra	L153
-   0BC1                    1751 L150:
-   0BC1 C6 05         [ 2] 1752 	ldb	#5
-   0BC3 E7 E2         [ 6] 1753 	stb	,-s
-   0BC5 C6 28         [ 2] 1754 	ldb	#40
-   0BC7 E7 E2         [ 6] 1755 	stb	,-s
-   0BC9 C6 14         [ 2] 1756 	ldb	#20
-   0BCB BD 00 00      [ 8] 1757 	jsr	_print_unsigned_int
-   0BCE 32 62         [ 5] 1758 	leas	2,s
-   0BD0 20 20         [ 3] 1759 	bra	L153
-   0BD2                    1760 L151:
-   0BD2 C6 06         [ 2] 1761 	ldb	#6
-   0BD4 E7 E2         [ 6] 1762 	stb	,-s
-   0BD6 C6 28         [ 2] 1763 	ldb	#40
-   0BD8 E7 E2         [ 6] 1764 	stb	,-s
-   0BDA C6 14         [ 2] 1765 	ldb	#20
-   0BDC BD 00 00      [ 8] 1766 	jsr	_print_unsigned_int
-   0BDF 32 62         [ 5] 1767 	leas	2,s
-   0BE1 20 0F         [ 3] 1768 	bra	L153
-   0BE3                    1769 L145:
-   0BE3 C6 64         [ 2] 1770 	ldb	#100
-   0BE5 E7 E2         [ 6] 1771 	stb	,-s
-   0BE7 C6 28         [ 2] 1772 	ldb	#40
-   0BE9 E7 E2         [ 6] 1773 	stb	,-s
-   0BEB C6 14         [ 2] 1774 	ldb	#20
-   0BED BD 00 00      [ 8] 1775 	jsr	_print_unsigned_int
-   0BF0 32 62         [ 5] 1776 	leas	2,s
-   0BF2                    1777 L153:
-   0BF2 C6 92         [ 2] 1778 	ldb	#-110
-   0BF4 E7 E2         [ 6] 1779 	stb	,-s
-   0BF6 8E 04 94      [ 3] 1780 	ldx	#LC7
-   0BF9 C6 EC         [ 2] 1781 	ldb	#-20
-   0BFB BD 00 00      [ 8] 1782 	jsr	_print_string
-   0BFE 32 61         [ 5] 1783 	leas	1,s
-   0C00 F6 00 02      [ 5] 1784 	ldb	_tower+2
-   0C03 E7 E8 11      [ 5] 1785 	stb	17,s
-                           1786 	; ldb	17,s	; optimization 5
-   0C06 C1 01         [ 2] 1787 	cmpb	#1	;cmpqi:
-   0C08 27 1E         [ 3] 1788 	beq	L156
-   0C0A E6 E8 11      [ 5] 1789 	ldb	17,s
-   0C0D C1 01         [ 2] 1790 	cmpb	#1	;cmpqi:
-   0C0F 25 06         [ 3] 1791 	blo	L155
-                           1792 	; ldb	17,s; optimization 8
-   0C11 C1 02         [ 2] 1793 	cmpb	#2	;cmpqi:
-   0C13 27 24         [ 3] 1794 	beq	L157
-   0C15 20 33         [ 3] 1795 	bra	L170
-   0C17                    1796 L155:
-   0C17 C6 01         [ 2] 1797 	ldb	#1
-   0C19 E7 E2         [ 6] 1798 	stb	,-s
-   0C1B C6 28         [ 2] 1799 	ldb	#40
-   0C1D E7 E2         [ 6] 1800 	stb	,-s
-   0C1F C6 EC         [ 2] 1801 	ldb	#-20
-   0C21 BD 00 00      [ 8] 1802 	jsr	_print_unsigned_int
-   0C24 32 62         [ 5] 1803 	leas	2,s
-   0C26 20 31         [ 3] 1804 	bra	L84
-   0C28                    1805 L156:
-   0C28 C6 02         [ 2] 1806 	ldb	#2
-   0C2A E7 E2         [ 6] 1807 	stb	,-s
-   0C2C C6 28         [ 2] 1808 	ldb	#40
-   0C2E E7 E2         [ 6] 1809 	stb	,-s
-   0C30 C6 EC         [ 2] 1810 	ldb	#-20
-   0C32 BD 00 00      [ 8] 1811 	jsr	_print_unsigned_int
-   0C35 32 62         [ 5] 1812 	leas	2,s
-   0C37 20 20         [ 3] 1813 	bra	L84
-   0C39                    1814 L157:
-   0C39 C6 03         [ 2] 1815 	ldb	#3
-   0C3B E7 E2         [ 6] 1816 	stb	,-s
-   0C3D C6 28         [ 2] 1817 	ldb	#40
-   0C3F E7 E2         [ 6] 1818 	stb	,-s
-   0C41 C6 EC         [ 2] 1819 	ldb	#-20
-   0C43 BD 00 00      [ 8] 1820 	jsr	_print_unsigned_int
-   0C46 32 62         [ 5] 1821 	leas	2,s
-   0C48 20 0F         [ 3] 1822 	bra	L84
-   0C4A                    1823 L170:
-   0C4A C6 64         [ 2] 1824 	ldb	#100
-   0C4C E7 E2         [ 6] 1825 	stb	,-s
-   0C4E C6 28         [ 2] 1826 	ldb	#40
-   0C50 E7 E2         [ 6] 1827 	stb	,-s
-   0C52 C6 EC         [ 2] 1828 	ldb	#-20
-   0C54 BD 00 00      [ 8] 1829 	jsr	_print_unsigned_int
-   0C57 32 62         [ 5] 1830 	leas	2,s
-   0C59                    1831 L84:
-   0C59 C6 92         [ 2] 1832 	ldb	#-110
-   0C5B E7 E2         [ 6] 1833 	stb	,-s
-   0C5D 8E 04 A2      [ 3] 1834 	ldx	#LC8
-   0C60 C6 B0         [ 2] 1835 	ldb	#-80
-   0C62 BD 00 00      [ 8] 1836 	jsr	_print_string
-   0C65 32 61         [ 5] 1837 	leas	1,s
-   0C67 BE 00 02      [ 6] 1838 	ldx	_player+2
-   0C6A C6 28         [ 2] 1839 	ldb	#40
-   0C6C E7 E2         [ 6] 1840 	stb	,-s
-   0C6E C6 B0         [ 2] 1841 	ldb	#-80
-   0C70 BD 00 00      [ 8] 1842 	jsr	_print_long_unsigned_int
-   0C73 32 61         [ 5] 1843 	leas	1,s
-   0C75 32 E8 12      [ 5] 1844 	leas	18,s
-   0C78 35 C0         [ 7] 1845 	puls	u,pc
+   0163 27 13         [ 3]  322 	beq	L14
+   0165 20 0E         [ 3]  323 	bra	L53
+   0167                     324 L11:
+   0167 C6 01         [ 2]  325 	ldb	#1
+   0169 F7 00 00      [ 5]  326 	stb	_player
+   016C 20 0A         [ 3]  327 	bra	L14
+   016E                     328 L12:
+   016E C6 02         [ 2]  329 	ldb	#2
+   0170 F7 00 00      [ 5]  330 	stb	_player
+   0173 20 03         [ 3]  331 	bra	L14
+   0175                     332 L53:
+   0175 7F 00 00      [ 7]  333 	clr	_player
+   0178                     334 L14:
+   0178 7F 00 04      [ 7]  335 	clr	_player+4
+   017B 7E 04 20      [ 4]  336 	jmp	L52
+   017E                     337 L8:
+   017E F6 00 01      [ 5]  338 	ldb	_Menu+1
+   0181 C1 01         [ 2]  339 	cmpb	#1	;cmpqi:
+   0183 26 2D         [ 3]  340 	bne	L16
+   0185 F6 00 04      [ 5]  341 	ldb	_player+4
+   0188 E7 6B         [ 5]  342 	stb	11,s
+                            343 	; ldb	11,s	; optimization 5
+   018A C1 01         [ 2]  344 	cmpb	#1	;cmpqi:
+   018C 27 16         [ 3]  345 	beq	L19
+   018E E6 6B         [ 5]  346 	ldb	11,s
+   0190 C1 01         [ 2]  347 	cmpb	#1	;cmpqi:
+   0192 25 08         [ 3]  348 	blo	L18
+                            349 	; ldb	11,s; optimization 8
+   0194 C1 02         [ 2]  350 	cmpb	#2	;cmpqi:
+   0196 10 27 02 86   [ 6]  351 	lbeq	L52
+   019A 20 10         [ 3]  352 	bra	L54
+   019C                     353 L18:
+   019C C6 01         [ 2]  354 	ldb	#1
+   019E F7 00 04      [ 5]  355 	stb	_player+4
+   01A1 7E 04 20      [ 4]  356 	jmp	L52
+   01A4                     357 L19:
+   01A4 C6 02         [ 2]  358 	ldb	#2
+   01A6 F7 00 04      [ 5]  359 	stb	_player+4
+   01A9 7E 04 20      [ 4]  360 	jmp	L52
+   01AC                     361 L54:
+   01AC 7F 00 04      [ 7]  362 	clr	_player+4
+   01AF 7E 04 20      [ 4]  363 	jmp	L52
+   01B2                     364 L16:
+   01B2 F6 00 01      [ 5]  365 	ldb	_Menu+1
+   01B5 C1 02         [ 2]  366 	cmpb	#2	;cmpqi:
+   01B7 10 26 00 E7   [ 6]  367 	lbne	L22
+   01BB F6 00 02      [ 5]  368 	ldb	_tower+2
+   01BE C1 02         [ 2]  369 	cmpb	#2	;cmpqi:
+   01C0 10 26 02 5C   [ 6]  370 	lbne	L52
+   01C4 F6 00 01      [ 5]  371 	ldb	_tower+1
+   01C7 E7 6C         [ 5]  372 	stb	12,s
+                            373 	; ldb	12,s	; optimization 5
+   01C9 C1 04         [ 2]  374 	cmpb	#4	;cmpqi:
+   01CB 10 22 02 51   [ 6]  375 	lbhi	L52
+   01CF E6 6C         [ 5]  376 	ldb	12,s
+   01D1 4F            [ 2]  377 	clra		;zero_extendqihi: R:b -> R:d
+   01D2 ED E4         [ 5]  378 	std	,s
+                            379 	; ldd	,s	; optimization 5
+   01D4 58            [ 2]  380 	aslb
+   01D5 49            [ 2]  381 	rola
+   01D6 CE 01 DF      [ 3]  382 	ldu	#L29
+   01D9 30 CB         [ 8]  383 	leax	d,u
+   01DB AE 84         [ 5]  384 	ldx	,x
+   01DD 6E 84         [ 3]  385 	jmp	,x
+   01DF                     386 L29:
+   01DF 01 E9               387 	.word L24
+   01E1 02 0E               388 	.word L25
+   01E3 02 33               389 	.word L26
+   01E5 02 58               390 	.word L27
+   01E7 02 7D               391 	.word L28
+   01E9                     392 L24:
+   01E9 10 BE 00 02   [ 7]  393 	ldy	_player+2
+   01ED BE 00 06      [ 6]  394 	ldx	_towercost+6
+   01F0 34 10         [ 6]  395 	pshs	x	;cmphi: R:x with R:y
+   01F2 10 AC E1      [10]  396 	cmpy	,s++	;cmphi:
+   01F5 10 23 02 27   [ 6]  397 	lbls	L52
+   01F9 FC 00 02      [ 6]  398 	ldd	_player+2
+   01FC BE 00 06      [ 6]  399 	ldx	_towercost+6
+   01FF 34 10         [ 6]  400 	pshs	x	;subhi: R:d -= R:x
+   0201 A3 E1         [ 9]  401 	subd	,s++
+   0203 FD 00 02      [ 6]  402 	std	_player+2
+   0206 C6 01         [ 2]  403 	ldb	#1
+   0208 BD 00 00      [ 8]  404 	jsr	_set_tower
+   020B 7E 04 20      [ 4]  405 	jmp	L52
+   020E                     406 L25:
+   020E 10 BE 00 02   [ 7]  407 	ldy	_player+2
+   0212 BE 00 0C      [ 6]  408 	ldx	_towercost+12
+   0215 34 10         [ 6]  409 	pshs	x	;cmphi: R:x with R:y
+   0217 10 AC E1      [10]  410 	cmpy	,s++	;cmphi:
+   021A 10 23 02 02   [ 6]  411 	lbls	L52
+   021E FC 00 02      [ 6]  412 	ldd	_player+2
+   0221 BE 00 0C      [ 6]  413 	ldx	_towercost+12
+   0224 34 10         [ 6]  414 	pshs	x	;subhi: R:d -= R:x
+   0226 A3 E1         [ 9]  415 	subd	,s++
+   0228 FD 00 02      [ 6]  416 	std	_player+2
+   022B C6 02         [ 2]  417 	ldb	#2
+   022D BD 00 00      [ 8]  418 	jsr	_set_tower
+   0230 7E 04 20      [ 4]  419 	jmp	L52
+   0233                     420 L26:
+   0233 10 BE 00 02   [ 7]  421 	ldy	_player+2
+   0237 BE 00 12      [ 6]  422 	ldx	_towercost+18
+   023A 34 10         [ 6]  423 	pshs	x	;cmphi: R:x with R:y
+   023C 10 AC E1      [10]  424 	cmpy	,s++	;cmphi:
+   023F 10 23 01 DD   [ 6]  425 	lbls	L52
+   0243 FC 00 02      [ 6]  426 	ldd	_player+2
+   0246 BE 00 12      [ 6]  427 	ldx	_towercost+18
+   0249 34 10         [ 6]  428 	pshs	x	;subhi: R:d -= R:x
+   024B A3 E1         [ 9]  429 	subd	,s++
+   024D FD 00 02      [ 6]  430 	std	_player+2
+   0250 C6 03         [ 2]  431 	ldb	#3
+   0252 BD 00 00      [ 8]  432 	jsr	_set_tower
+   0255 7E 04 20      [ 4]  433 	jmp	L52
+   0258                     434 L27:
+   0258 10 BE 00 02   [ 7]  435 	ldy	_player+2
+   025C BE 00 18      [ 6]  436 	ldx	_towercost+24
+   025F 34 10         [ 6]  437 	pshs	x	;cmphi: R:x with R:y
+   0261 10 AC E1      [10]  438 	cmpy	,s++	;cmphi:
+   0264 10 23 01 B8   [ 6]  439 	lbls	L52
+   0268 FC 00 02      [ 6]  440 	ldd	_player+2
+   026B BE 00 18      [ 6]  441 	ldx	_towercost+24
+   026E 34 10         [ 6]  442 	pshs	x	;subhi: R:d -= R:x
+   0270 A3 E1         [ 9]  443 	subd	,s++
+   0272 FD 00 02      [ 6]  444 	std	_player+2
+   0275 C6 04         [ 2]  445 	ldb	#4
+   0277 BD 00 00      [ 8]  446 	jsr	_set_tower
+   027A 7E 04 20      [ 4]  447 	jmp	L52
+   027D                     448 L28:
+   027D 10 BE 00 02   [ 7]  449 	ldy	_player+2
+   0281 BE 00 1E      [ 6]  450 	ldx	_towercost+30
+   0284 34 10         [ 6]  451 	pshs	x	;cmphi: R:x with R:y
+   0286 10 AC E1      [10]  452 	cmpy	,s++	;cmphi:
+   0289 10 23 01 93   [ 6]  453 	lbls	L52
+   028D FC 00 02      [ 6]  454 	ldd	_player+2
+   0290 BE 00 1E      [ 6]  455 	ldx	_towercost+30
+   0293 34 10         [ 6]  456 	pshs	x	;subhi: R:d -= R:x
+   0295 A3 E1         [ 9]  457 	subd	,s++
+   0297 FD 00 02      [ 6]  458 	std	_player+2
+   029A C6 05         [ 2]  459 	ldb	#5
+   029C BD 00 00      [ 8]  460 	jsr	_set_tower
+   029F 7E 04 20      [ 4]  461 	jmp	L52
+   02A2                     462 L22:
+   02A2 F6 00 01      [ 5]  463 	ldb	_Menu+1
+   02A5 C1 03         [ 2]  464 	cmpb	#3	;cmpqi:
+   02A7 10 26 01 75   [ 6]  465 	lbne	L52
+   02AB F6 00 02      [ 5]  466 	ldb	_tower+2
+   02AE E7 6D         [ 5]  467 	stb	13,s
+                            468 	; ldb	13,s	; optimization 5
+   02B0 C1 01         [ 2]  469 	cmpb	#1	;cmpqi:
+   02B2 10 27 00 71   [ 6]  470 	lbeq	L36
+   02B6 E6 6D         [ 5]  471 	ldb	13,s
+   02B8 C1 01         [ 2]  472 	cmpb	#1	;cmpqi:
+   02BA 25 09         [ 3]  473 	blo	L35
+                            474 	; ldb	13,s; optimization 8
+   02BC C1 02         [ 2]  475 	cmpb	#2	;cmpqi:
+   02BE 10 27 01 5E   [ 6]  476 	lbeq	L52
+   02C2 7E 03 89      [ 4]  477 	jmp	L55
+   02C5                     478 L35:
+   02C5 10 BE 00 02   [ 7]  479 	ldy	_player+2
+   02C9 F6 00 01      [ 5]  480 	ldb	_tower+1
+   02CC 4F            [ 2]  481 	clra		;zero_extendqihi: R:b -> R:d
+   02CD 1F 01         [ 6]  482 	tfr	d,x
+   02CF AF 68         [ 6]  483 	stx	8,s
+   02D1 EC 68         [ 6]  484 	ldd	8,s
+   02D3 58            [ 2]  485 	aslb
+   02D4 49            [ 2]  486 	rola
+   02D5 ED 68         [ 6]  487 	std	8,s
+                            488 	; ldd	8,s	; optimization 5
+   02D7 30 8B         [ 8]  489 	leax	d,x
+   02D9 AF 68         [ 6]  490 	stx	8,s
+   02DB EC 68         [ 6]  491 	ldd	8,s
+   02DD C3 00 01      [ 4]  492 	addd	#1
+   02E0 58            [ 2]  493 	aslb
+   02E1 49            [ 2]  494 	rola
+   02E2 CE 00 00      [ 3]  495 	ldu	#_towercost
+   02E5 30 CB         [ 8]  496 	leax	d,u
+   02E7 AE 84         [ 5]  497 	ldx	,x
+   02E9 34 10         [ 6]  498 	pshs	x	;cmphi: R:x with R:y
+   02EB 10 AC E1      [10]  499 	cmpy	,s++	;cmphi:
+   02EE 10 23 01 2E   [ 6]  500 	lbls	L52
+   02F2 10 BE 00 02   [ 7]  501 	ldy	_player+2
+   02F6 F6 00 01      [ 5]  502 	ldb	_tower+1
+   02F9 4F            [ 2]  503 	clra		;zero_extendqihi: R:b -> R:d
+   02FA 1F 01         [ 6]  504 	tfr	d,x
+   02FC AF 66         [ 6]  505 	stx	6,s
+   02FE EC 66         [ 6]  506 	ldd	6,s
+   0300 58            [ 2]  507 	aslb
+   0301 49            [ 2]  508 	rola
+   0302 ED 66         [ 6]  509 	std	6,s
+                            510 	; ldd	6,s	; optimization 5
+   0304 30 8B         [ 8]  511 	leax	d,x
+   0306 AF 66         [ 6]  512 	stx	6,s
+   0308 EC 66         [ 6]  513 	ldd	6,s
+   030A C3 00 01      [ 4]  514 	addd	#1
+   030D 58            [ 2]  515 	aslb
+   030E 49            [ 2]  516 	rola
+   030F CE 00 00      [ 3]  517 	ldu	#_towercost
+   0312 30 CB         [ 8]  518 	leax	d,u
+   0314 AE 84         [ 5]  519 	ldx	,x
+   0316 1F 20         [ 6]  520 	tfr	y,d
+   0318 34 10         [ 6]  521 	pshs	x	;subhi: R:d -= R:x
+   031A A3 E1         [ 9]  522 	subd	,s++
+   031C FD 00 02      [ 6]  523 	std	_player+2
+   031F C6 01         [ 2]  524 	ldb	#1
+   0321 F7 00 02      [ 5]  525 	stb	_tower+2
+   0324 7E 04 20      [ 4]  526 	jmp	L52
+   0327                     527 L36:
+   0327 10 BE 00 02   [ 7]  528 	ldy	_player+2
+   032B F6 00 01      [ 5]  529 	ldb	_tower+1
+   032E 4F            [ 2]  530 	clra		;zero_extendqihi: R:b -> R:d
+   032F 1F 01         [ 6]  531 	tfr	d,x
+   0331 AF 64         [ 6]  532 	stx	4,s
+   0333 EC 64         [ 6]  533 	ldd	4,s
+   0335 58            [ 2]  534 	aslb
+   0336 49            [ 2]  535 	rola
+   0337 ED 64         [ 6]  536 	std	4,s
+                            537 	; ldd	4,s	; optimization 5
+   0339 30 8B         [ 8]  538 	leax	d,x
+   033B AF 64         [ 6]  539 	stx	4,s
+   033D EC 64         [ 6]  540 	ldd	4,s
+   033F 58            [ 2]  541 	aslb
+   0340 49            [ 2]  542 	rola
+   0341 ED 64         [ 6]  543 	std	4,s
+   0343 EE 64         [ 6]  544 	ldu	4,s
+   0345 30 C9 00 04   [ 8]  545 	leax	_towercost+4,u
+   0349 AE 84         [ 5]  546 	ldx	,x
+   034B 34 10         [ 6]  547 	pshs	x	;cmphi: R:x with R:y
+   034D 10 AC E1      [10]  548 	cmpy	,s++	;cmphi:
+   0350 10 23 00 CC   [ 6]  549 	lbls	L52
+   0354 10 BE 00 02   [ 7]  550 	ldy	_player+2
+   0358 F6 00 01      [ 5]  551 	ldb	_tower+1
+   035B 4F            [ 2]  552 	clra		;zero_extendqihi: R:b -> R:d
+   035C 1F 01         [ 6]  553 	tfr	d,x
+   035E AF 62         [ 6]  554 	stx	2,s
+   0360 EC 62         [ 6]  555 	ldd	2,s
+   0362 58            [ 2]  556 	aslb
+   0363 49            [ 2]  557 	rola
+   0364 ED 62         [ 6]  558 	std	2,s
+                            559 	; ldd	2,s	; optimization 5
+   0366 30 8B         [ 8]  560 	leax	d,x
+   0368 AF 62         [ 6]  561 	stx	2,s
+   036A EC 62         [ 6]  562 	ldd	2,s
+   036C 58            [ 2]  563 	aslb
+   036D 49            [ 2]  564 	rola
+   036E ED 62         [ 6]  565 	std	2,s
+   0370 EE 62         [ 6]  566 	ldu	2,s
+   0372 30 C9 00 04   [ 8]  567 	leax	_towercost+4,u
+   0376 AE 84         [ 5]  568 	ldx	,x
+   0378 1F 20         [ 6]  569 	tfr	y,d
+   037A 34 10         [ 6]  570 	pshs	x	;subhi: R:d -= R:x
+   037C A3 E1         [ 9]  571 	subd	,s++
+   037E FD 00 02      [ 6]  572 	std	_player+2
+   0381 C6 02         [ 2]  573 	ldb	#2
+   0383 F7 00 02      [ 5]  574 	stb	_tower+2
+   0386 7E 04 20      [ 4]  575 	jmp	L52
+   0389                     576 L55:
+   0389 7F 00 02      [ 7]  577 	clr	_tower+2
+   038C 7E 04 20      [ 4]  578 	jmp	L52
+   038F                     579 L7:
+   038F F6 00 00      [ 5]  580 	ldb	_Vec_Joy_1_Y
+   0392 6F E8 10      [ 7]  581 	clr	16,s
+   0395 5D            [ 2]  582 	tstb
+   0396 2F 05         [ 3]  583 	ble	L40
+   0398 C6 01         [ 2]  584 	ldb	#1
+   039A E7 E8 10      [ 5]  585 	stb	16,s
+   039D                     586 L40:
+   039D E6 E8 10      [ 5]  587 	ldb	16,s
+                            588 	; tstb	; optimization 6
+   03A0 27 38         [ 3]  589 	beq	L41
+   03A2 F6 00 01      [ 5]  590 	ldb	_Menu+1
+   03A5 E7 6E         [ 5]  591 	stb	14,s
+                            592 	; ldb	14,s	; optimization 5
+   03A7 C1 01         [ 2]  593 	cmpb	#1	;cmpqi:
+   03A9 27 1B         [ 3]  594 	beq	L44
+   03AB E6 6E         [ 5]  595 	ldb	14,s
+   03AD C1 01         [ 2]  596 	cmpb	#1	;cmpqi:
+   03AF 25 0D         [ 3]  597 	blo	L43
+                            598 	; ldb	14,s; optimization 8
+   03B1 C1 02         [ 2]  599 	cmpb	#2	;cmpqi:
+   03B3 27 17         [ 3]  600 	beq	L45
+   03B5 E6 6E         [ 5]  601 	ldb	14,s
+   03B7 C1 03         [ 2]  602 	cmpb	#3	;cmpqi:
+   03B9 27 18         [ 3]  603 	beq	L46
+   03BB 7E 04 20      [ 4]  604 	jmp	L52
+   03BE                     605 L43:
+   03BE C6 03         [ 2]  606 	ldb	#3
+   03C0 F7 00 01      [ 5]  607 	stb	_Menu+1
+   03C3 7E 04 20      [ 4]  608 	jmp	L52
+   03C6                     609 L44:
+   03C6 7F 00 01      [ 7]  610 	clr	_Menu+1
+   03C9 7E 04 20      [ 4]  611 	jmp	L52
+   03CC                     612 L45:
+   03CC C6 01         [ 2]  613 	ldb	#1
+   03CE F7 00 01      [ 5]  614 	stb	_Menu+1
+   03D1 20 4D         [ 3]  615 	bra	L52
+   03D3                     616 L46:
+   03D3 C6 02         [ 2]  617 	ldb	#2
+   03D5 F7 00 01      [ 5]  618 	stb	_Menu+1
+   03D8 20 46         [ 3]  619 	bra	L52
+   03DA                     620 L41:
+   03DA F6 00 00      [ 5]  621 	ldb	_Vec_Joy_1_Y
+   03DD 6F E8 11      [ 7]  622 	clr	17,s
+   03E0 5D            [ 2]  623 	tstb
+   03E1 2C 05         [ 3]  624 	bge	L47
+   03E3 C6 01         [ 2]  625 	ldb	#1
+   03E5 E7 E8 11      [ 5]  626 	stb	17,s
+   03E8                     627 L47:
+   03E8 E6 E8 11      [ 5]  628 	ldb	17,s
+                            629 	; tstb	; optimization 6
+   03EB 27 33         [ 3]  630 	beq	L52
+   03ED F6 00 01      [ 5]  631 	ldb	_Menu+1
+   03F0 E7 6F         [ 5]  632 	stb	15,s
+                            633 	; ldb	15,s	; optimization 5
+   03F2 C1 01         [ 2]  634 	cmpb	#1	;cmpqi:
+   03F4 27 19         [ 3]  635 	beq	L49
+   03F6 E6 6F         [ 5]  636 	ldb	15,s
+   03F8 C1 01         [ 2]  637 	cmpb	#1	;cmpqi:
+   03FA 25 0C         [ 3]  638 	blo	L48
+                            639 	; ldb	15,s; optimization 8
+   03FC C1 02         [ 2]  640 	cmpb	#2	;cmpqi:
+   03FE 27 16         [ 3]  641 	beq	L50
+   0400 E6 6F         [ 5]  642 	ldb	15,s
+   0402 C1 03         [ 2]  643 	cmpb	#3	;cmpqi:
+   0404 27 17         [ 3]  644 	beq	L51
+   0406 20 18         [ 3]  645 	bra	L52
+   0408                     646 L48:
+   0408 C6 01         [ 2]  647 	ldb	#1
+   040A F7 00 01      [ 5]  648 	stb	_Menu+1
+   040D 20 11         [ 3]  649 	bra	L52
+   040F                     650 L49:
+   040F C6 02         [ 2]  651 	ldb	#2
+   0411 F7 00 01      [ 5]  652 	stb	_Menu+1
+   0414 20 0A         [ 3]  653 	bra	L52
+   0416                     654 L50:
+   0416 C6 03         [ 2]  655 	ldb	#3
+   0418 F7 00 01      [ 5]  656 	stb	_Menu+1
+   041B 20 03         [ 3]  657 	bra	L52
+   041D                     658 L51:
+   041D 7F 00 01      [ 7]  659 	clr	_Menu+1
+   0420                     660 L52:
+   0420 32 E8 12      [ 5]  661 	leas	18,s
+   0423 35 E0         [ 8]  662 	puls	y,u,pc
+                            663 	.globl _menu_open
+   0425                     664 _menu_open:
+   0425                     665 L57:
+   0425 BD 01 0B      [ 8]  666 	jsr	_menu_handle
+   0428 BD 04 A9      [ 8]  667 	jsr	_menu_draw
+   042B F6 00 00      [ 5]  668 	ldb	_Menu
+                            669 	; tstb	; optimization 6
+   042E 27 F5         [ 3]  670 	beq	L57
+   0430 39            [ 5]  671 	rts
+   0431                     672 LC0:
+   0431 41                  673 	.byte	0x41
+   0432 20                  674 	.byte	0x20
+   0433 50                  675 	.byte	0x50
+   0434 4C                  676 	.byte	0x4C
+   0435 41                  677 	.byte	0x41
+   0436 59                  678 	.byte	0x59
+   0437 45                  679 	.byte	0x45
+   0438 52                  680 	.byte	0x52
+   0439 20                  681 	.byte	0x20
+   043A 4C                  682 	.byte	0x4C
+   043B 56                  683 	.byte	0x56
+   043C 4C                  684 	.byte	0x4C
+   043D 80                  685 	.byte	0x80
+   043E 00                  686 	.byte	0x00
+   043F                     687 LC1:
+   043F 20                  688 	.byte	0x20
+   0440 20                  689 	.byte	0x20
+   0441 50                  690 	.byte	0x50
+   0442 4C                  691 	.byte	0x4C
+   0443 41                  692 	.byte	0x41
+   0444 59                  693 	.byte	0x59
+   0445 45                  694 	.byte	0x45
+   0446 52                  695 	.byte	0x52
+   0447 20                  696 	.byte	0x20
+   0448 52                  697 	.byte	0x52
+   0449 41                  698 	.byte	0x41
+   044A 54                  699 	.byte	0x54
+   044B 45                  700 	.byte	0x45
+   044C 80                  701 	.byte	0x80
+   044D 00                  702 	.byte	0x00
+   044E                     703 LC2:
+   044E 20                  704 	.byte	0x20
+   044F 20                  705 	.byte	0x20
+   0450 54                  706 	.byte	0x54
+   0451 4F                  707 	.byte	0x4F
+   0452 57                  708 	.byte	0x57
+   0453 45                  709 	.byte	0x45
+   0454 52                  710 	.byte	0x52
+   0455 20                  711 	.byte	0x20
+   0456 4C                  712 	.byte	0x4C
+   0457 56                  713 	.byte	0x56
+   0458 4C                  714 	.byte	0x4C
+   0459 80                  715 	.byte	0x80
+   045A 00                  716 	.byte	0x00
+   045B                     717 LC3:
+   045B 20                  718 	.byte	0x20
+   045C 20                  719 	.byte	0x20
+   045D 54                  720 	.byte	0x54
+   045E 4F                  721 	.byte	0x4F
+   045F 57                  722 	.byte	0x57
+   0460 45                  723 	.byte	0x45
+   0461 52                  724 	.byte	0x52
+   0462 20                  725 	.byte	0x20
+   0463 52                  726 	.byte	0x52
+   0464 41                  727 	.byte	0x41
+   0465 54                  728 	.byte	0x54
+   0466 45                  729 	.byte	0x45
+   0467 80                  730 	.byte	0x80
+   0468 00                  731 	.byte	0x00
+   0469                     732 LC4:
+   0469 20                  733 	.byte	0x20
+   046A 20                  734 	.byte	0x20
+   046B 50                  735 	.byte	0x50
+   046C 4C                  736 	.byte	0x4C
+   046D 41                  737 	.byte	0x41
+   046E 59                  738 	.byte	0x59
+   046F 45                  739 	.byte	0x45
+   0470 52                  740 	.byte	0x52
+   0471 20                  741 	.byte	0x20
+   0472 4C                  742 	.byte	0x4C
+   0473 56                  743 	.byte	0x56
+   0474 4C                  744 	.byte	0x4C
+   0475 80                  745 	.byte	0x80
+   0476 00                  746 	.byte	0x00
+   0477                     747 LC5:
+   0477 41                  748 	.byte	0x41
+   0478 20                  749 	.byte	0x20
+   0479 50                  750 	.byte	0x50
+   047A 4C                  751 	.byte	0x4C
+   047B 41                  752 	.byte	0x41
+   047C 59                  753 	.byte	0x59
+   047D 45                  754 	.byte	0x45
+   047E 52                  755 	.byte	0x52
+   047F 20                  756 	.byte	0x20
+   0480 52                  757 	.byte	0x52
+   0481 41                  758 	.byte	0x41
+   0482 54                  759 	.byte	0x54
+   0483 45                  760 	.byte	0x45
+   0484 80                  761 	.byte	0x80
+   0485 00                  762 	.byte	0x00
+   0486                     763 LC6:
+   0486 41                  764 	.byte	0x41
+   0487 20                  765 	.byte	0x20
+   0488 54                  766 	.byte	0x54
+   0489 4F                  767 	.byte	0x4F
+   048A 57                  768 	.byte	0x57
+   048B 45                  769 	.byte	0x45
+   048C 52                  770 	.byte	0x52
+   048D 20                  771 	.byte	0x20
+   048E 4C                  772 	.byte	0x4C
+   048F 56                  773 	.byte	0x56
+   0490 4C                  774 	.byte	0x4C
+   0491 80                  775 	.byte	0x80
+   0492 00                  776 	.byte	0x00
+   0493                     777 LC7:
+   0493 41                  778 	.byte	0x41
+   0494 20                  779 	.byte	0x20
+   0495 54                  780 	.byte	0x54
+   0496 4F                  781 	.byte	0x4F
+   0497 57                  782 	.byte	0x57
+   0498 45                  783 	.byte	0x45
+   0499 52                  784 	.byte	0x52
+   049A 20                  785 	.byte	0x20
+   049B 52                  786 	.byte	0x52
+   049C 41                  787 	.byte	0x41
+   049D 54                  788 	.byte	0x54
+   049E 45                  789 	.byte	0x45
+   049F 80                  790 	.byte	0x80
+   04A0 00                  791 	.byte	0x00
+   04A1                     792 LC8:
+   04A1 4D                  793 	.byte	0x4D
+   04A2 4F                  794 	.byte	0x4F
+   04A3 4E                  795 	.byte	0x4E
+   04A4 45                  796 	.byte	0x45
+   04A5 59                  797 	.byte	0x59
+   04A6 20                  798 	.byte	0x20
+   04A7 80                  799 	.byte	0x80
+   04A8 00                  800 	.byte	0x00
+                            801 	.globl _menu_draw
+   04A9                     802 _menu_draw:
+   04A9 34 40         [ 6]  803 	pshs	u
+   04AB 32 E8 EE      [ 5]  804 	leas	-18,s
+   04AE BD 00 00      [ 8]  805 	jsr	___Reset0Ref
+   04B1 BD 00 00      [ 8]  806 	jsr	_Sync
+   04B4 F6 00 01      [ 5]  807 	ldb	_Menu+1
+                            808 	; tstb	; optimization 6
+   04B7 10 26 01 E1   [ 6]  809 	lbne	L60
+   04BB C6 92         [ 2]  810 	ldb	#-110
+   04BD E7 E2         [ 6]  811 	stb	,-s
+   04BF 8E 04 31      [ 3]  812 	ldx	#LC0
+   04C2 C6 64         [ 2]  813 	ldb	#100
+   04C4 BD 00 00      [ 8]  814 	jsr	_print_string
+   04C7 32 61         [ 5]  815 	leas	1,s
+   04C9 F6 00 00      [ 5]  816 	ldb	_player
+   04CC E7 62         [ 5]  817 	stb	2,s
+                            818 	; ldb	2,s	; optimization 5
+   04CE C1 01         [ 2]  819 	cmpb	#1	;cmpqi:
+   04D0 27 1D         [ 3]  820 	beq	L63
+   04D2 E6 62         [ 5]  821 	ldb	2,s
+   04D4 C1 01         [ 2]  822 	cmpb	#1	;cmpqi:
+   04D6 25 06         [ 3]  823 	blo	L62
+                            824 	; ldb	2,s; optimization 8
+   04D8 C1 02         [ 2]  825 	cmpb	#2	;cmpqi:
+   04DA 27 24         [ 3]  826 	beq	L64
+   04DC 20 33         [ 3]  827 	bra	L160
+   04DE                     828 L62:
+   04DE C6 01         [ 2]  829 	ldb	#1
+   04E0 E7 E2         [ 6]  830 	stb	,-s
+   04E2 C6 28         [ 2]  831 	ldb	#40
+   04E4 E7 E2         [ 6]  832 	stb	,-s
+   04E6 C6 64         [ 2]  833 	ldb	#100
+   04E8 BD 00 00      [ 8]  834 	jsr	_print_unsigned_int
+   04EB 32 62         [ 5]  835 	leas	2,s
+   04ED 20 31         [ 3]  836 	bra	L65
+   04EF                     837 L63:
+   04EF C6 02         [ 2]  838 	ldb	#2
+   04F1 E7 E2         [ 6]  839 	stb	,-s
+   04F3 C6 28         [ 2]  840 	ldb	#40
+   04F5 E7 E2         [ 6]  841 	stb	,-s
+   04F7 C6 64         [ 2]  842 	ldb	#100
+   04F9 BD 00 00      [ 8]  843 	jsr	_print_unsigned_int
+   04FC 32 62         [ 5]  844 	leas	2,s
+   04FE 20 20         [ 3]  845 	bra	L65
+   0500                     846 L64:
+   0500 C6 03         [ 2]  847 	ldb	#3
+   0502 E7 E2         [ 6]  848 	stb	,-s
+   0504 C6 28         [ 2]  849 	ldb	#40
+   0506 E7 E2         [ 6]  850 	stb	,-s
+   0508 C6 64         [ 2]  851 	ldb	#100
+   050A BD 00 00      [ 8]  852 	jsr	_print_unsigned_int
+   050D 32 62         [ 5]  853 	leas	2,s
+   050F 20 0F         [ 3]  854 	bra	L65
+   0511                     855 L160:
+   0511 C6 64         [ 2]  856 	ldb	#100
+   0513 E7 E2         [ 6]  857 	stb	,-s
+   0515 C6 28         [ 2]  858 	ldb	#40
+   0517 E7 E2         [ 6]  859 	stb	,-s
+   0519 C6 64         [ 2]  860 	ldb	#100
+   051B BD 00 00      [ 8]  861 	jsr	_print_unsigned_int
+   051E 32 62         [ 5]  862 	leas	2,s
+   0520                     863 L65:
+   0520 C6 92         [ 2]  864 	ldb	#-110
+   0522 E7 E2         [ 6]  865 	stb	,-s
+   0524 8E 04 3F      [ 3]  866 	ldx	#LC1
+   0527 C6 3C         [ 2]  867 	ldb	#60
+   0529 BD 00 00      [ 8]  868 	jsr	_print_string
+   052C 32 61         [ 5]  869 	leas	1,s
+   052E F6 00 04      [ 5]  870 	ldb	_player+4
+   0531 E7 63         [ 5]  871 	stb	3,s
+                            872 	; ldb	3,s	; optimization 5
+   0533 C1 01         [ 2]  873 	cmpb	#1	;cmpqi:
+   0535 27 1D         [ 3]  874 	beq	L68
+   0537 E6 63         [ 5]  875 	ldb	3,s
+   0539 C1 01         [ 2]  876 	cmpb	#1	;cmpqi:
+   053B 25 06         [ 3]  877 	blo	L67
+                            878 	; ldb	3,s; optimization 8
+   053D C1 02         [ 2]  879 	cmpb	#2	;cmpqi:
+   053F 27 24         [ 3]  880 	beq	L69
+   0541 20 33         [ 3]  881 	bra	L161
+   0543                     882 L67:
+   0543 C6 01         [ 2]  883 	ldb	#1
+   0545 E7 E2         [ 6]  884 	stb	,-s
+   0547 C6 28         [ 2]  885 	ldb	#40
+   0549 E7 E2         [ 6]  886 	stb	,-s
+   054B C6 3C         [ 2]  887 	ldb	#60
+   054D BD 00 00      [ 8]  888 	jsr	_print_unsigned_int
+   0550 32 62         [ 5]  889 	leas	2,s
+   0552 20 31         [ 3]  890 	bra	L70
+   0554                     891 L68:
+   0554 C6 02         [ 2]  892 	ldb	#2
+   0556 E7 E2         [ 6]  893 	stb	,-s
+   0558 C6 28         [ 2]  894 	ldb	#40
+   055A E7 E2         [ 6]  895 	stb	,-s
+   055C C6 3C         [ 2]  896 	ldb	#60
+   055E BD 00 00      [ 8]  897 	jsr	_print_unsigned_int
+   0561 32 62         [ 5]  898 	leas	2,s
+   0563 20 20         [ 3]  899 	bra	L70
+   0565                     900 L69:
+   0565 C6 03         [ 2]  901 	ldb	#3
+   0567 E7 E2         [ 6]  902 	stb	,-s
+   0569 C6 28         [ 2]  903 	ldb	#40
+   056B E7 E2         [ 6]  904 	stb	,-s
+   056D C6 3C         [ 2]  905 	ldb	#60
+   056F BD 00 00      [ 8]  906 	jsr	_print_unsigned_int
+   0572 32 62         [ 5]  907 	leas	2,s
+   0574 20 0F         [ 3]  908 	bra	L70
+   0576                     909 L161:
+   0576 C6 64         [ 2]  910 	ldb	#100
+   0578 E7 E2         [ 6]  911 	stb	,-s
+   057A C6 28         [ 2]  912 	ldb	#40
+   057C E7 E2         [ 6]  913 	stb	,-s
+   057E C6 3C         [ 2]  914 	ldb	#60
+   0580 BD 00 00      [ 8]  915 	jsr	_print_unsigned_int
+   0583 32 62         [ 5]  916 	leas	2,s
+   0585                     917 L70:
+   0585 C6 92         [ 2]  918 	ldb	#-110
+   0587 E7 E2         [ 6]  919 	stb	,-s
+   0589 8E 04 4E      [ 3]  920 	ldx	#LC2
+   058C C6 14         [ 2]  921 	ldb	#20
+   058E BD 00 00      [ 8]  922 	jsr	_print_string
+   0591 32 61         [ 5]  923 	leas	1,s
+   0593 F6 00 01      [ 5]  924 	ldb	_tower+1
+   0596 E7 64         [ 5]  925 	stb	4,s
+                            926 	; ldb	4,s	; optimization 5
+   0598 C1 05         [ 2]  927 	cmpb	#5	;cmpqi:
+   059A 10 22 00 84   [ 6]  928 	lbhi	L71
+   059E E6 64         [ 5]  929 	ldb	4,s
+   05A0 4F            [ 2]  930 	clra		;zero_extendqihi: R:b -> R:d
+   05A1 ED E4         [ 5]  931 	std	,s
+                            932 	; ldd	,s	; optimization 5
+   05A3 58            [ 2]  933 	aslb
+   05A4 49            [ 2]  934 	rola
+   05A5 CE 05 AE      [ 3]  935 	ldu	#L78
+   05A8 30 CB         [ 8]  936 	leax	d,u
+   05AA AE 84         [ 5]  937 	ldx	,x
+   05AC 6E 84         [ 3]  938 	jmp	,x
+   05AE                     939 L78:
+   05AE 05 BA               940 	.word L72
+   05B0 05 CC               941 	.word L73
+   05B2 05 DE               942 	.word L74
+   05B4 05 EF               943 	.word L75
+   05B6 06 00               944 	.word L76
+   05B8 06 11               945 	.word L77
+   05BA                     946 L72:
+   05BA C6 01         [ 2]  947 	ldb	#1
+   05BC E7 E2         [ 6]  948 	stb	,-s
+   05BE C6 28         [ 2]  949 	ldb	#40
+   05C0 E7 E2         [ 6]  950 	stb	,-s
+   05C2 C6 14         [ 2]  951 	ldb	#20
+   05C4 BD 00 00      [ 8]  952 	jsr	_print_unsigned_int
+   05C7 32 62         [ 5]  953 	leas	2,s
+   05C9 7E 06 31      [ 4]  954 	jmp	L79
+   05CC                     955 L73:
+   05CC C6 02         [ 2]  956 	ldb	#2
+   05CE E7 E2         [ 6]  957 	stb	,-s
+   05D0 C6 28         [ 2]  958 	ldb	#40
+   05D2 E7 E2         [ 6]  959 	stb	,-s
+   05D4 C6 14         [ 2]  960 	ldb	#20
+   05D6 BD 00 00      [ 8]  961 	jsr	_print_unsigned_int
+   05D9 32 62         [ 5]  962 	leas	2,s
+   05DB 7E 06 31      [ 4]  963 	jmp	L79
+   05DE                     964 L74:
+   05DE C6 03         [ 2]  965 	ldb	#3
+   05E0 E7 E2         [ 6]  966 	stb	,-s
+   05E2 C6 28         [ 2]  967 	ldb	#40
+   05E4 E7 E2         [ 6]  968 	stb	,-s
+   05E6 C6 14         [ 2]  969 	ldb	#20
+   05E8 BD 00 00      [ 8]  970 	jsr	_print_unsigned_int
+   05EB 32 62         [ 5]  971 	leas	2,s
+   05ED 20 42         [ 3]  972 	bra	L79
+   05EF                     973 L75:
+   05EF C6 04         [ 2]  974 	ldb	#4
+   05F1 E7 E2         [ 6]  975 	stb	,-s
+   05F3 C6 28         [ 2]  976 	ldb	#40
+   05F5 E7 E2         [ 6]  977 	stb	,-s
+   05F7 C6 14         [ 2]  978 	ldb	#20
+   05F9 BD 00 00      [ 8]  979 	jsr	_print_unsigned_int
+   05FC 32 62         [ 5]  980 	leas	2,s
+   05FE 20 31         [ 3]  981 	bra	L79
+   0600                     982 L76:
+   0600 C6 05         [ 2]  983 	ldb	#5
+   0602 E7 E2         [ 6]  984 	stb	,-s
+   0604 C6 28         [ 2]  985 	ldb	#40
+   0606 E7 E2         [ 6]  986 	stb	,-s
+   0608 C6 14         [ 2]  987 	ldb	#20
+   060A BD 00 00      [ 8]  988 	jsr	_print_unsigned_int
+   060D 32 62         [ 5]  989 	leas	2,s
+   060F 20 20         [ 3]  990 	bra	L79
+   0611                     991 L77:
+   0611 C6 06         [ 2]  992 	ldb	#6
+   0613 E7 E2         [ 6]  993 	stb	,-s
+   0615 C6 28         [ 2]  994 	ldb	#40
+   0617 E7 E2         [ 6]  995 	stb	,-s
+   0619 C6 14         [ 2]  996 	ldb	#20
+   061B BD 00 00      [ 8]  997 	jsr	_print_unsigned_int
+   061E 32 62         [ 5]  998 	leas	2,s
+   0620 20 0F         [ 3]  999 	bra	L79
+   0622                    1000 L71:
+   0622 C6 64         [ 2] 1001 	ldb	#100
+   0624 E7 E2         [ 6] 1002 	stb	,-s
+   0626 C6 28         [ 2] 1003 	ldb	#40
+   0628 E7 E2         [ 6] 1004 	stb	,-s
+   062A C6 14         [ 2] 1005 	ldb	#20
+   062C BD 00 00      [ 8] 1006 	jsr	_print_unsigned_int
+   062F 32 62         [ 5] 1007 	leas	2,s
+   0631                    1008 L79:
+   0631 C6 92         [ 2] 1009 	ldb	#-110
+   0633 E7 E2         [ 6] 1010 	stb	,-s
+   0635 8E 04 5B      [ 3] 1011 	ldx	#LC3
+   0638 C6 EC         [ 2] 1012 	ldb	#-20
+   063A BD 00 00      [ 8] 1013 	jsr	_print_string
+   063D 32 61         [ 5] 1014 	leas	1,s
+   063F F6 00 02      [ 5] 1015 	ldb	_tower+2
+   0642 E7 65         [ 5] 1016 	stb	5,s
+                           1017 	; ldb	5,s	; optimization 5
+   0644 C1 01         [ 2] 1018 	cmpb	#1	;cmpqi:
+   0646 27 1E         [ 3] 1019 	beq	L82
+   0648 E6 65         [ 5] 1020 	ldb	5,s
+   064A C1 01         [ 2] 1021 	cmpb	#1	;cmpqi:
+   064C 25 06         [ 3] 1022 	blo	L81
+                           1023 	; ldb	5,s; optimization 8
+   064E C1 02         [ 2] 1024 	cmpb	#2	;cmpqi:
+   0650 27 26         [ 3] 1025 	beq	L83
+   0652 20 36         [ 3] 1026 	bra	L162
+   0654                    1027 L81:
+   0654 C6 01         [ 2] 1028 	ldb	#1
+   0656 E7 E2         [ 6] 1029 	stb	,-s
+   0658 C6 28         [ 2] 1030 	ldb	#40
+   065A E7 E2         [ 6] 1031 	stb	,-s
+   065C C6 EC         [ 2] 1032 	ldb	#-20
+   065E BD 00 00      [ 8] 1033 	jsr	_print_unsigned_int
+   0661 32 62         [ 5] 1034 	leas	2,s
+   0663 7E 0C 58      [ 4] 1035 	jmp	L85
+   0666                    1036 L82:
+   0666 C6 02         [ 2] 1037 	ldb	#2
+   0668 E7 E2         [ 6] 1038 	stb	,-s
+   066A C6 28         [ 2] 1039 	ldb	#40
+   066C E7 E2         [ 6] 1040 	stb	,-s
+   066E C6 EC         [ 2] 1041 	ldb	#-20
+   0670 BD 00 00      [ 8] 1042 	jsr	_print_unsigned_int
+   0673 32 62         [ 5] 1043 	leas	2,s
+   0675 7E 0C 58      [ 4] 1044 	jmp	L85
+   0678                    1045 L83:
+   0678 C6 03         [ 2] 1046 	ldb	#3
+   067A E7 E2         [ 6] 1047 	stb	,-s
+   067C C6 28         [ 2] 1048 	ldb	#40
+   067E E7 E2         [ 6] 1049 	stb	,-s
+   0680 C6 EC         [ 2] 1050 	ldb	#-20
+   0682 BD 00 00      [ 8] 1051 	jsr	_print_unsigned_int
+   0685 32 62         [ 5] 1052 	leas	2,s
+   0687 7E 0C 58      [ 4] 1053 	jmp	L85
+   068A                    1054 L162:
+   068A C6 64         [ 2] 1055 	ldb	#100
+   068C E7 E2         [ 6] 1056 	stb	,-s
+   068E C6 28         [ 2] 1057 	ldb	#40
+   0690 E7 E2         [ 6] 1058 	stb	,-s
+   0692 C6 EC         [ 2] 1059 	ldb	#-20
+   0694 BD 00 00      [ 8] 1060 	jsr	_print_unsigned_int
+   0697 32 62         [ 5] 1061 	leas	2,s
+   0699 7E 0C 58      [ 4] 1062 	jmp	L85
+   069C                    1063 L60:
+   069C F6 00 01      [ 5] 1064 	ldb	_Menu+1
+   069F C1 01         [ 2] 1065 	cmpb	#1	;cmpqi:
+   06A1 10 26 01 E1   [ 6] 1066 	lbne	L86
+   06A5 C6 92         [ 2] 1067 	ldb	#-110
+   06A7 E7 E2         [ 6] 1068 	stb	,-s
+   06A9 8E 04 69      [ 3] 1069 	ldx	#LC4
+   06AC C6 64         [ 2] 1070 	ldb	#100
+   06AE BD 00 00      [ 8] 1071 	jsr	_print_string
+   06B1 32 61         [ 5] 1072 	leas	1,s
+   06B3 F6 00 00      [ 5] 1073 	ldb	_player
+   06B6 E7 66         [ 5] 1074 	stb	6,s
+                           1075 	; ldb	6,s	; optimization 5
+   06B8 C1 01         [ 2] 1076 	cmpb	#1	;cmpqi:
+   06BA 27 1D         [ 3] 1077 	beq	L89
+   06BC E6 66         [ 5] 1078 	ldb	6,s
+   06BE C1 01         [ 2] 1079 	cmpb	#1	;cmpqi:
+   06C0 25 06         [ 3] 1080 	blo	L88
+                           1081 	; ldb	6,s; optimization 8
+   06C2 C1 02         [ 2] 1082 	cmpb	#2	;cmpqi:
+   06C4 27 24         [ 3] 1083 	beq	L90
+   06C6 20 33         [ 3] 1084 	bra	L163
+   06C8                    1085 L88:
+   06C8 C6 01         [ 2] 1086 	ldb	#1
+   06CA E7 E2         [ 6] 1087 	stb	,-s
+   06CC C6 28         [ 2] 1088 	ldb	#40
+   06CE E7 E2         [ 6] 1089 	stb	,-s
+   06D0 C6 64         [ 2] 1090 	ldb	#100
+   06D2 BD 00 00      [ 8] 1091 	jsr	_print_unsigned_int
+   06D5 32 62         [ 5] 1092 	leas	2,s
+   06D7 20 31         [ 3] 1093 	bra	L91
+   06D9                    1094 L89:
+   06D9 C6 02         [ 2] 1095 	ldb	#2
+   06DB E7 E2         [ 6] 1096 	stb	,-s
+   06DD C6 28         [ 2] 1097 	ldb	#40
+   06DF E7 E2         [ 6] 1098 	stb	,-s
+   06E1 C6 64         [ 2] 1099 	ldb	#100
+   06E3 BD 00 00      [ 8] 1100 	jsr	_print_unsigned_int
+   06E6 32 62         [ 5] 1101 	leas	2,s
+   06E8 20 20         [ 3] 1102 	bra	L91
+   06EA                    1103 L90:
+   06EA C6 03         [ 2] 1104 	ldb	#3
+   06EC E7 E2         [ 6] 1105 	stb	,-s
+   06EE C6 28         [ 2] 1106 	ldb	#40
+   06F0 E7 E2         [ 6] 1107 	stb	,-s
+   06F2 C6 64         [ 2] 1108 	ldb	#100
+   06F4 BD 00 00      [ 8] 1109 	jsr	_print_unsigned_int
+   06F7 32 62         [ 5] 1110 	leas	2,s
+   06F9 20 0F         [ 3] 1111 	bra	L91
+   06FB                    1112 L163:
+   06FB C6 64         [ 2] 1113 	ldb	#100
+   06FD E7 E2         [ 6] 1114 	stb	,-s
+   06FF C6 28         [ 2] 1115 	ldb	#40
+   0701 E7 E2         [ 6] 1116 	stb	,-s
+   0703 C6 64         [ 2] 1117 	ldb	#100
+   0705 BD 00 00      [ 8] 1118 	jsr	_print_unsigned_int
+   0708 32 62         [ 5] 1119 	leas	2,s
+   070A                    1120 L91:
+   070A C6 92         [ 2] 1121 	ldb	#-110
+   070C E7 E2         [ 6] 1122 	stb	,-s
+   070E 8E 04 77      [ 3] 1123 	ldx	#LC5
+   0711 C6 3C         [ 2] 1124 	ldb	#60
+   0713 BD 00 00      [ 8] 1125 	jsr	_print_string
+   0716 32 61         [ 5] 1126 	leas	1,s
+   0718 F6 00 04      [ 5] 1127 	ldb	_player+4
+   071B E7 67         [ 5] 1128 	stb	7,s
+                           1129 	; ldb	7,s	; optimization 5
+   071D C1 01         [ 2] 1130 	cmpb	#1	;cmpqi:
+   071F 27 1D         [ 3] 1131 	beq	L94
+   0721 E6 67         [ 5] 1132 	ldb	7,s
+   0723 C1 01         [ 2] 1133 	cmpb	#1	;cmpqi:
+   0725 25 06         [ 3] 1134 	blo	L93
+                           1135 	; ldb	7,s; optimization 8
+   0727 C1 02         [ 2] 1136 	cmpb	#2	;cmpqi:
+   0729 27 24         [ 3] 1137 	beq	L95
+   072B 20 33         [ 3] 1138 	bra	L164
+   072D                    1139 L93:
+   072D C6 01         [ 2] 1140 	ldb	#1
+   072F E7 E2         [ 6] 1141 	stb	,-s
+   0731 C6 28         [ 2] 1142 	ldb	#40
+   0733 E7 E2         [ 6] 1143 	stb	,-s
+   0735 C6 3C         [ 2] 1144 	ldb	#60
+   0737 BD 00 00      [ 8] 1145 	jsr	_print_unsigned_int
+   073A 32 62         [ 5] 1146 	leas	2,s
+   073C 20 31         [ 3] 1147 	bra	L96
+   073E                    1148 L94:
+   073E C6 02         [ 2] 1149 	ldb	#2
+   0740 E7 E2         [ 6] 1150 	stb	,-s
+   0742 C6 28         [ 2] 1151 	ldb	#40
+   0744 E7 E2         [ 6] 1152 	stb	,-s
+   0746 C6 3C         [ 2] 1153 	ldb	#60
+   0748 BD 00 00      [ 8] 1154 	jsr	_print_unsigned_int
+   074B 32 62         [ 5] 1155 	leas	2,s
+   074D 20 20         [ 3] 1156 	bra	L96
+   074F                    1157 L95:
+   074F C6 03         [ 2] 1158 	ldb	#3
+   0751 E7 E2         [ 6] 1159 	stb	,-s
+   0753 C6 28         [ 2] 1160 	ldb	#40
+   0755 E7 E2         [ 6] 1161 	stb	,-s
+   0757 C6 3C         [ 2] 1162 	ldb	#60
+   0759 BD 00 00      [ 8] 1163 	jsr	_print_unsigned_int
+   075C 32 62         [ 5] 1164 	leas	2,s
+   075E 20 0F         [ 3] 1165 	bra	L96
+   0760                    1166 L164:
+   0760 C6 64         [ 2] 1167 	ldb	#100
+   0762 E7 E2         [ 6] 1168 	stb	,-s
+   0764 C6 28         [ 2] 1169 	ldb	#40
+   0766 E7 E2         [ 6] 1170 	stb	,-s
+   0768 C6 3C         [ 2] 1171 	ldb	#60
+   076A BD 00 00      [ 8] 1172 	jsr	_print_unsigned_int
+   076D 32 62         [ 5] 1173 	leas	2,s
+   076F                    1174 L96:
+   076F C6 92         [ 2] 1175 	ldb	#-110
+   0771 E7 E2         [ 6] 1176 	stb	,-s
+   0773 8E 04 4E      [ 3] 1177 	ldx	#LC2
+   0776 C6 14         [ 2] 1178 	ldb	#20
+   0778 BD 00 00      [ 8] 1179 	jsr	_print_string
+   077B 32 61         [ 5] 1180 	leas	1,s
+   077D F6 00 01      [ 5] 1181 	ldb	_tower+1
+   0780 E7 68         [ 5] 1182 	stb	8,s
+                           1183 	; ldb	8,s	; optimization 5
+   0782 C1 05         [ 2] 1184 	cmpb	#5	;cmpqi:
+   0784 10 22 00 84   [ 6] 1185 	lbhi	L97
+   0788 E6 68         [ 5] 1186 	ldb	8,s
+   078A 4F            [ 2] 1187 	clra		;zero_extendqihi: R:b -> R:d
+   078B ED E4         [ 5] 1188 	std	,s
+                           1189 	; ldd	,s	; optimization 5
+   078D 58            [ 2] 1190 	aslb
+   078E 49            [ 2] 1191 	rola
+   078F CE 07 98      [ 3] 1192 	ldu	#L104
+   0792 30 CB         [ 8] 1193 	leax	d,u
+   0794 AE 84         [ 5] 1194 	ldx	,x
+   0796 6E 84         [ 3] 1195 	jmp	,x
+   0798                    1196 L104:
+   0798 07 A4              1197 	.word L98
+   079A 07 B6              1198 	.word L99
+   079C 07 C8              1199 	.word L100
+   079E 07 D9              1200 	.word L101
+   07A0 07 EA              1201 	.word L102
+   07A2 07 FB              1202 	.word L103
+   07A4                    1203 L98:
+   07A4 C6 01         [ 2] 1204 	ldb	#1
+   07A6 E7 E2         [ 6] 1205 	stb	,-s
+   07A8 C6 28         [ 2] 1206 	ldb	#40
+   07AA E7 E2         [ 6] 1207 	stb	,-s
+   07AC C6 14         [ 2] 1208 	ldb	#20
+   07AE BD 00 00      [ 8] 1209 	jsr	_print_unsigned_int
+   07B1 32 62         [ 5] 1210 	leas	2,s
+   07B3 7E 08 1B      [ 4] 1211 	jmp	L105
+   07B6                    1212 L99:
+   07B6 C6 02         [ 2] 1213 	ldb	#2
+   07B8 E7 E2         [ 6] 1214 	stb	,-s
+   07BA C6 28         [ 2] 1215 	ldb	#40
+   07BC E7 E2         [ 6] 1216 	stb	,-s
+   07BE C6 14         [ 2] 1217 	ldb	#20
+   07C0 BD 00 00      [ 8] 1218 	jsr	_print_unsigned_int
+   07C3 32 62         [ 5] 1219 	leas	2,s
+   07C5 7E 08 1B      [ 4] 1220 	jmp	L105
+   07C8                    1221 L100:
+   07C8 C6 03         [ 2] 1222 	ldb	#3
+   07CA E7 E2         [ 6] 1223 	stb	,-s
+   07CC C6 28         [ 2] 1224 	ldb	#40
+   07CE E7 E2         [ 6] 1225 	stb	,-s
+   07D0 C6 14         [ 2] 1226 	ldb	#20
+   07D2 BD 00 00      [ 8] 1227 	jsr	_print_unsigned_int
+   07D5 32 62         [ 5] 1228 	leas	2,s
+   07D7 20 42         [ 3] 1229 	bra	L105
+   07D9                    1230 L101:
+   07D9 C6 04         [ 2] 1231 	ldb	#4
+   07DB E7 E2         [ 6] 1232 	stb	,-s
+   07DD C6 28         [ 2] 1233 	ldb	#40
+   07DF E7 E2         [ 6] 1234 	stb	,-s
+   07E1 C6 14         [ 2] 1235 	ldb	#20
+   07E3 BD 00 00      [ 8] 1236 	jsr	_print_unsigned_int
+   07E6 32 62         [ 5] 1237 	leas	2,s
+   07E8 20 31         [ 3] 1238 	bra	L105
+   07EA                    1239 L102:
+   07EA C6 05         [ 2] 1240 	ldb	#5
+   07EC E7 E2         [ 6] 1241 	stb	,-s
+   07EE C6 28         [ 2] 1242 	ldb	#40
+   07F0 E7 E2         [ 6] 1243 	stb	,-s
+   07F2 C6 14         [ 2] 1244 	ldb	#20
+   07F4 BD 00 00      [ 8] 1245 	jsr	_print_unsigned_int
+   07F7 32 62         [ 5] 1246 	leas	2,s
+   07F9 20 20         [ 3] 1247 	bra	L105
+   07FB                    1248 L103:
+   07FB C6 06         [ 2] 1249 	ldb	#6
+   07FD E7 E2         [ 6] 1250 	stb	,-s
+   07FF C6 28         [ 2] 1251 	ldb	#40
+   0801 E7 E2         [ 6] 1252 	stb	,-s
+   0803 C6 14         [ 2] 1253 	ldb	#20
+   0805 BD 00 00      [ 8] 1254 	jsr	_print_unsigned_int
+   0808 32 62         [ 5] 1255 	leas	2,s
+   080A 20 0F         [ 3] 1256 	bra	L105
+   080C                    1257 L97:
+   080C C6 64         [ 2] 1258 	ldb	#100
+   080E E7 E2         [ 6] 1259 	stb	,-s
+   0810 C6 28         [ 2] 1260 	ldb	#40
+   0812 E7 E2         [ 6] 1261 	stb	,-s
+   0814 C6 14         [ 2] 1262 	ldb	#20
+   0816 BD 00 00      [ 8] 1263 	jsr	_print_unsigned_int
+   0819 32 62         [ 5] 1264 	leas	2,s
+   081B                    1265 L105:
+   081B C6 92         [ 2] 1266 	ldb	#-110
+   081D E7 E2         [ 6] 1267 	stb	,-s
+   081F 8E 04 5B      [ 3] 1268 	ldx	#LC3
+   0822 C6 EC         [ 2] 1269 	ldb	#-20
+   0824 BD 00 00      [ 8] 1270 	jsr	_print_string
+   0827 32 61         [ 5] 1271 	leas	1,s
+   0829 F6 00 02      [ 5] 1272 	ldb	_tower+2
+   082C E7 69         [ 5] 1273 	stb	9,s
+                           1274 	; ldb	9,s	; optimization 5
+   082E C1 01         [ 2] 1275 	cmpb	#1	;cmpqi:
+   0830 27 1E         [ 3] 1276 	beq	L108
+   0832 E6 69         [ 5] 1277 	ldb	9,s
+   0834 C1 01         [ 2] 1278 	cmpb	#1	;cmpqi:
+   0836 25 06         [ 3] 1279 	blo	L107
+                           1280 	; ldb	9,s; optimization 8
+   0838 C1 02         [ 2] 1281 	cmpb	#2	;cmpqi:
+   083A 27 26         [ 3] 1282 	beq	L109
+   083C 20 36         [ 3] 1283 	bra	L165
+   083E                    1284 L107:
+   083E C6 01         [ 2] 1285 	ldb	#1
+   0840 E7 E2         [ 6] 1286 	stb	,-s
+   0842 C6 28         [ 2] 1287 	ldb	#40
+   0844 E7 E2         [ 6] 1288 	stb	,-s
+   0846 C6 EC         [ 2] 1289 	ldb	#-20
+   0848 BD 00 00      [ 8] 1290 	jsr	_print_unsigned_int
+   084B 32 62         [ 5] 1291 	leas	2,s
+   084D 7E 0C 58      [ 4] 1292 	jmp	L85
+   0850                    1293 L108:
+   0850 C6 02         [ 2] 1294 	ldb	#2
+   0852 E7 E2         [ 6] 1295 	stb	,-s
+   0854 C6 28         [ 2] 1296 	ldb	#40
+   0856 E7 E2         [ 6] 1297 	stb	,-s
+   0858 C6 EC         [ 2] 1298 	ldb	#-20
+   085A BD 00 00      [ 8] 1299 	jsr	_print_unsigned_int
+   085D 32 62         [ 5] 1300 	leas	2,s
+   085F 7E 0C 58      [ 4] 1301 	jmp	L85
+   0862                    1302 L109:
+   0862 C6 03         [ 2] 1303 	ldb	#3
+   0864 E7 E2         [ 6] 1304 	stb	,-s
+   0866 C6 28         [ 2] 1305 	ldb	#40
+   0868 E7 E2         [ 6] 1306 	stb	,-s
+   086A C6 EC         [ 2] 1307 	ldb	#-20
+   086C BD 00 00      [ 8] 1308 	jsr	_print_unsigned_int
+   086F 32 62         [ 5] 1309 	leas	2,s
+   0871 7E 0C 58      [ 4] 1310 	jmp	L85
+   0874                    1311 L165:
+   0874 C6 64         [ 2] 1312 	ldb	#100
+   0876 E7 E2         [ 6] 1313 	stb	,-s
+   0878 C6 28         [ 2] 1314 	ldb	#40
+   087A E7 E2         [ 6] 1315 	stb	,-s
+   087C C6 EC         [ 2] 1316 	ldb	#-20
+   087E BD 00 00      [ 8] 1317 	jsr	_print_unsigned_int
+   0881 32 62         [ 5] 1318 	leas	2,s
+   0883 7E 0C 58      [ 4] 1319 	jmp	L85
+   0886                    1320 L86:
+   0886 F6 00 01      [ 5] 1321 	ldb	_Menu+1
+   0889 C1 02         [ 2] 1322 	cmpb	#2	;cmpqi:
+   088B 10 26 01 E1   [ 6] 1323 	lbne	L111
+   088F C6 92         [ 2] 1324 	ldb	#-110
+   0891 E7 E2         [ 6] 1325 	stb	,-s
+   0893 8E 04 69      [ 3] 1326 	ldx	#LC4
+   0896 C6 64         [ 2] 1327 	ldb	#100
+   0898 BD 00 00      [ 8] 1328 	jsr	_print_string
+   089B 32 61         [ 5] 1329 	leas	1,s
+   089D F6 00 00      [ 5] 1330 	ldb	_player
+   08A0 E7 6A         [ 5] 1331 	stb	10,s
+                           1332 	; ldb	10,s	; optimization 5
+   08A2 C1 01         [ 2] 1333 	cmpb	#1	;cmpqi:
+   08A4 27 1D         [ 3] 1334 	beq	L114
+   08A6 E6 6A         [ 5] 1335 	ldb	10,s
+   08A8 C1 01         [ 2] 1336 	cmpb	#1	;cmpqi:
+   08AA 25 06         [ 3] 1337 	blo	L113
+                           1338 	; ldb	10,s; optimization 8
+   08AC C1 02         [ 2] 1339 	cmpb	#2	;cmpqi:
+   08AE 27 24         [ 3] 1340 	beq	L115
+   08B0 20 33         [ 3] 1341 	bra	L166
+   08B2                    1342 L113:
+   08B2 C6 01         [ 2] 1343 	ldb	#1
+   08B4 E7 E2         [ 6] 1344 	stb	,-s
+   08B6 C6 28         [ 2] 1345 	ldb	#40
+   08B8 E7 E2         [ 6] 1346 	stb	,-s
+   08BA C6 64         [ 2] 1347 	ldb	#100
+   08BC BD 00 00      [ 8] 1348 	jsr	_print_unsigned_int
+   08BF 32 62         [ 5] 1349 	leas	2,s
+   08C1 20 31         [ 3] 1350 	bra	L116
+   08C3                    1351 L114:
+   08C3 C6 02         [ 2] 1352 	ldb	#2
+   08C5 E7 E2         [ 6] 1353 	stb	,-s
+   08C7 C6 28         [ 2] 1354 	ldb	#40
+   08C9 E7 E2         [ 6] 1355 	stb	,-s
+   08CB C6 64         [ 2] 1356 	ldb	#100
+   08CD BD 00 00      [ 8] 1357 	jsr	_print_unsigned_int
+   08D0 32 62         [ 5] 1358 	leas	2,s
+   08D2 20 20         [ 3] 1359 	bra	L116
+   08D4                    1360 L115:
+   08D4 C6 03         [ 2] 1361 	ldb	#3
+   08D6 E7 E2         [ 6] 1362 	stb	,-s
+   08D8 C6 28         [ 2] 1363 	ldb	#40
+   08DA E7 E2         [ 6] 1364 	stb	,-s
+   08DC C6 64         [ 2] 1365 	ldb	#100
+   08DE BD 00 00      [ 8] 1366 	jsr	_print_unsigned_int
+   08E1 32 62         [ 5] 1367 	leas	2,s
+   08E3 20 0F         [ 3] 1368 	bra	L116
+   08E5                    1369 L166:
+   08E5 C6 64         [ 2] 1370 	ldb	#100
+   08E7 E7 E2         [ 6] 1371 	stb	,-s
+   08E9 C6 28         [ 2] 1372 	ldb	#40
+   08EB E7 E2         [ 6] 1373 	stb	,-s
+   08ED C6 64         [ 2] 1374 	ldb	#100
+   08EF BD 00 00      [ 8] 1375 	jsr	_print_unsigned_int
+   08F2 32 62         [ 5] 1376 	leas	2,s
+   08F4                    1377 L116:
+   08F4 C6 92         [ 2] 1378 	ldb	#-110
+   08F6 E7 E2         [ 6] 1379 	stb	,-s
+   08F8 8E 04 3F      [ 3] 1380 	ldx	#LC1
+   08FB C6 3C         [ 2] 1381 	ldb	#60
+   08FD BD 00 00      [ 8] 1382 	jsr	_print_string
+   0900 32 61         [ 5] 1383 	leas	1,s
+   0902 F6 00 04      [ 5] 1384 	ldb	_player+4
+   0905 E7 6B         [ 5] 1385 	stb	11,s
+                           1386 	; ldb	11,s	; optimization 5
+   0907 C1 01         [ 2] 1387 	cmpb	#1	;cmpqi:
+   0909 27 1D         [ 3] 1388 	beq	L119
+   090B E6 6B         [ 5] 1389 	ldb	11,s
+   090D C1 01         [ 2] 1390 	cmpb	#1	;cmpqi:
+   090F 25 06         [ 3] 1391 	blo	L118
+                           1392 	; ldb	11,s; optimization 8
+   0911 C1 02         [ 2] 1393 	cmpb	#2	;cmpqi:
+   0913 27 24         [ 3] 1394 	beq	L120
+   0915 20 33         [ 3] 1395 	bra	L167
+   0917                    1396 L118:
+   0917 C6 01         [ 2] 1397 	ldb	#1
+   0919 E7 E2         [ 6] 1398 	stb	,-s
+   091B C6 28         [ 2] 1399 	ldb	#40
+   091D E7 E2         [ 6] 1400 	stb	,-s
+   091F C6 3C         [ 2] 1401 	ldb	#60
+   0921 BD 00 00      [ 8] 1402 	jsr	_print_unsigned_int
+   0924 32 62         [ 5] 1403 	leas	2,s
+   0926 20 31         [ 3] 1404 	bra	L121
+   0928                    1405 L119:
+   0928 C6 02         [ 2] 1406 	ldb	#2
+   092A E7 E2         [ 6] 1407 	stb	,-s
+   092C C6 28         [ 2] 1408 	ldb	#40
+   092E E7 E2         [ 6] 1409 	stb	,-s
+   0930 C6 3C         [ 2] 1410 	ldb	#60
+   0932 BD 00 00      [ 8] 1411 	jsr	_print_unsigned_int
+   0935 32 62         [ 5] 1412 	leas	2,s
+   0937 20 20         [ 3] 1413 	bra	L121
+   0939                    1414 L120:
+   0939 C6 03         [ 2] 1415 	ldb	#3
+   093B E7 E2         [ 6] 1416 	stb	,-s
+   093D C6 28         [ 2] 1417 	ldb	#40
+   093F E7 E2         [ 6] 1418 	stb	,-s
+   0941 C6 3C         [ 2] 1419 	ldb	#60
+   0943 BD 00 00      [ 8] 1420 	jsr	_print_unsigned_int
+   0946 32 62         [ 5] 1421 	leas	2,s
+   0948 20 0F         [ 3] 1422 	bra	L121
+   094A                    1423 L167:
+   094A C6 64         [ 2] 1424 	ldb	#100
+   094C E7 E2         [ 6] 1425 	stb	,-s
+   094E C6 28         [ 2] 1426 	ldb	#40
+   0950 E7 E2         [ 6] 1427 	stb	,-s
+   0952 C6 3C         [ 2] 1428 	ldb	#60
+   0954 BD 00 00      [ 8] 1429 	jsr	_print_unsigned_int
+   0957 32 62         [ 5] 1430 	leas	2,s
+   0959                    1431 L121:
+   0959 C6 92         [ 2] 1432 	ldb	#-110
+   095B E7 E2         [ 6] 1433 	stb	,-s
+   095D 8E 04 86      [ 3] 1434 	ldx	#LC6
+   0960 C6 14         [ 2] 1435 	ldb	#20
+   0962 BD 00 00      [ 8] 1436 	jsr	_print_string
+   0965 32 61         [ 5] 1437 	leas	1,s
+   0967 F6 00 01      [ 5] 1438 	ldb	_tower+1
+   096A E7 6C         [ 5] 1439 	stb	12,s
+                           1440 	; ldb	12,s	; optimization 5
+   096C C1 05         [ 2] 1441 	cmpb	#5	;cmpqi:
+   096E 10 22 00 84   [ 6] 1442 	lbhi	L122
+   0972 E6 6C         [ 5] 1443 	ldb	12,s
+   0974 4F            [ 2] 1444 	clra		;zero_extendqihi: R:b -> R:d
+   0975 ED E4         [ 5] 1445 	std	,s
+                           1446 	; ldd	,s	; optimization 5
+   0977 58            [ 2] 1447 	aslb
+   0978 49            [ 2] 1448 	rola
+   0979 CE 09 82      [ 3] 1449 	ldu	#L129
+   097C 30 CB         [ 8] 1450 	leax	d,u
+   097E AE 84         [ 5] 1451 	ldx	,x
+   0980 6E 84         [ 3] 1452 	jmp	,x
+   0982                    1453 L129:
+   0982 09 8E              1454 	.word L123
+   0984 09 A0              1455 	.word L124
+   0986 09 B2              1456 	.word L125
+   0988 09 C3              1457 	.word L126
+   098A 09 D4              1458 	.word L127
+   098C 09 E5              1459 	.word L128
+   098E                    1460 L123:
+   098E C6 01         [ 2] 1461 	ldb	#1
+   0990 E7 E2         [ 6] 1462 	stb	,-s
+   0992 C6 28         [ 2] 1463 	ldb	#40
+   0994 E7 E2         [ 6] 1464 	stb	,-s
+   0996 C6 14         [ 2] 1465 	ldb	#20
+   0998 BD 00 00      [ 8] 1466 	jsr	_print_unsigned_int
+   099B 32 62         [ 5] 1467 	leas	2,s
+   099D 7E 0A 05      [ 4] 1468 	jmp	L130
+   09A0                    1469 L124:
+   09A0 C6 02         [ 2] 1470 	ldb	#2
+   09A2 E7 E2         [ 6] 1471 	stb	,-s
+   09A4 C6 28         [ 2] 1472 	ldb	#40
+   09A6 E7 E2         [ 6] 1473 	stb	,-s
+   09A8 C6 14         [ 2] 1474 	ldb	#20
+   09AA BD 00 00      [ 8] 1475 	jsr	_print_unsigned_int
+   09AD 32 62         [ 5] 1476 	leas	2,s
+   09AF 7E 0A 05      [ 4] 1477 	jmp	L130
+   09B2                    1478 L125:
+   09B2 C6 03         [ 2] 1479 	ldb	#3
+   09B4 E7 E2         [ 6] 1480 	stb	,-s
+   09B6 C6 28         [ 2] 1481 	ldb	#40
+   09B8 E7 E2         [ 6] 1482 	stb	,-s
+   09BA C6 14         [ 2] 1483 	ldb	#20
+   09BC BD 00 00      [ 8] 1484 	jsr	_print_unsigned_int
+   09BF 32 62         [ 5] 1485 	leas	2,s
+   09C1 20 42         [ 3] 1486 	bra	L130
+   09C3                    1487 L126:
+   09C3 C6 04         [ 2] 1488 	ldb	#4
+   09C5 E7 E2         [ 6] 1489 	stb	,-s
+   09C7 C6 28         [ 2] 1490 	ldb	#40
+   09C9 E7 E2         [ 6] 1491 	stb	,-s
+   09CB C6 14         [ 2] 1492 	ldb	#20
+   09CD BD 00 00      [ 8] 1493 	jsr	_print_unsigned_int
+   09D0 32 62         [ 5] 1494 	leas	2,s
+   09D2 20 31         [ 3] 1495 	bra	L130
+   09D4                    1496 L127:
+   09D4 C6 05         [ 2] 1497 	ldb	#5
+   09D6 E7 E2         [ 6] 1498 	stb	,-s
+   09D8 C6 28         [ 2] 1499 	ldb	#40
+   09DA E7 E2         [ 6] 1500 	stb	,-s
+   09DC C6 14         [ 2] 1501 	ldb	#20
+   09DE BD 00 00      [ 8] 1502 	jsr	_print_unsigned_int
+   09E1 32 62         [ 5] 1503 	leas	2,s
+   09E3 20 20         [ 3] 1504 	bra	L130
+   09E5                    1505 L128:
+   09E5 C6 06         [ 2] 1506 	ldb	#6
+   09E7 E7 E2         [ 6] 1507 	stb	,-s
+   09E9 C6 28         [ 2] 1508 	ldb	#40
+   09EB E7 E2         [ 6] 1509 	stb	,-s
+   09ED C6 14         [ 2] 1510 	ldb	#20
+   09EF BD 00 00      [ 8] 1511 	jsr	_print_unsigned_int
+   09F2 32 62         [ 5] 1512 	leas	2,s
+   09F4 20 0F         [ 3] 1513 	bra	L130
+   09F6                    1514 L122:
+   09F6 C6 64         [ 2] 1515 	ldb	#100
+   09F8 E7 E2         [ 6] 1516 	stb	,-s
+   09FA C6 28         [ 2] 1517 	ldb	#40
+   09FC E7 E2         [ 6] 1518 	stb	,-s
+   09FE C6 14         [ 2] 1519 	ldb	#20
+   0A00 BD 00 00      [ 8] 1520 	jsr	_print_unsigned_int
+   0A03 32 62         [ 5] 1521 	leas	2,s
+   0A05                    1522 L130:
+   0A05 C6 92         [ 2] 1523 	ldb	#-110
+   0A07 E7 E2         [ 6] 1524 	stb	,-s
+   0A09 8E 04 5B      [ 3] 1525 	ldx	#LC3
+   0A0C C6 EC         [ 2] 1526 	ldb	#-20
+   0A0E BD 00 00      [ 8] 1527 	jsr	_print_string
+   0A11 32 61         [ 5] 1528 	leas	1,s
+   0A13 F6 00 02      [ 5] 1529 	ldb	_tower+2
+   0A16 E7 6D         [ 5] 1530 	stb	13,s
+                           1531 	; ldb	13,s	; optimization 5
+   0A18 C1 01         [ 2] 1532 	cmpb	#1	;cmpqi:
+   0A1A 27 1E         [ 3] 1533 	beq	L133
+   0A1C E6 6D         [ 5] 1534 	ldb	13,s
+   0A1E C1 01         [ 2] 1535 	cmpb	#1	;cmpqi:
+   0A20 25 06         [ 3] 1536 	blo	L132
+                           1537 	; ldb	13,s; optimization 8
+   0A22 C1 02         [ 2] 1538 	cmpb	#2	;cmpqi:
+   0A24 27 26         [ 3] 1539 	beq	L134
+   0A26 20 36         [ 3] 1540 	bra	L168
+   0A28                    1541 L132:
+   0A28 C6 01         [ 2] 1542 	ldb	#1
+   0A2A E7 E2         [ 6] 1543 	stb	,-s
+   0A2C C6 28         [ 2] 1544 	ldb	#40
+   0A2E E7 E2         [ 6] 1545 	stb	,-s
+   0A30 C6 EC         [ 2] 1546 	ldb	#-20
+   0A32 BD 00 00      [ 8] 1547 	jsr	_print_unsigned_int
+   0A35 32 62         [ 5] 1548 	leas	2,s
+   0A37 7E 0C 58      [ 4] 1549 	jmp	L85
+   0A3A                    1550 L133:
+   0A3A C6 02         [ 2] 1551 	ldb	#2
+   0A3C E7 E2         [ 6] 1552 	stb	,-s
+   0A3E C6 28         [ 2] 1553 	ldb	#40
+   0A40 E7 E2         [ 6] 1554 	stb	,-s
+   0A42 C6 EC         [ 2] 1555 	ldb	#-20
+   0A44 BD 00 00      [ 8] 1556 	jsr	_print_unsigned_int
+   0A47 32 62         [ 5] 1557 	leas	2,s
+   0A49 7E 0C 58      [ 4] 1558 	jmp	L85
+   0A4C                    1559 L134:
+   0A4C C6 03         [ 2] 1560 	ldb	#3
+   0A4E E7 E2         [ 6] 1561 	stb	,-s
+   0A50 C6 28         [ 2] 1562 	ldb	#40
+   0A52 E7 E2         [ 6] 1563 	stb	,-s
+   0A54 C6 EC         [ 2] 1564 	ldb	#-20
+   0A56 BD 00 00      [ 8] 1565 	jsr	_print_unsigned_int
+   0A59 32 62         [ 5] 1566 	leas	2,s
+   0A5B 7E 0C 58      [ 4] 1567 	jmp	L85
+   0A5E                    1568 L168:
+   0A5E C6 64         [ 2] 1569 	ldb	#100
+   0A60 E7 E2         [ 6] 1570 	stb	,-s
+   0A62 C6 28         [ 2] 1571 	ldb	#40
+   0A64 E7 E2         [ 6] 1572 	stb	,-s
+   0A66 C6 EC         [ 2] 1573 	ldb	#-20
+   0A68 BD 00 00      [ 8] 1574 	jsr	_print_unsigned_int
+   0A6B 32 62         [ 5] 1575 	leas	2,s
+   0A6D 7E 0C 58      [ 4] 1576 	jmp	L85
+   0A70                    1577 L111:
+   0A70 F6 00 01      [ 5] 1578 	ldb	_Menu+1
+   0A73 C1 03         [ 2] 1579 	cmpb	#3	;cmpqi:
+   0A75 10 26 01 DF   [ 6] 1580 	lbne	L85
+   0A79 C6 92         [ 2] 1581 	ldb	#-110
+   0A7B E7 E2         [ 6] 1582 	stb	,-s
+   0A7D 8E 04 69      [ 3] 1583 	ldx	#LC4
+   0A80 C6 64         [ 2] 1584 	ldb	#100
+   0A82 BD 00 00      [ 8] 1585 	jsr	_print_string
+   0A85 32 61         [ 5] 1586 	leas	1,s
+   0A87 F6 00 00      [ 5] 1587 	ldb	_player
+   0A8A E7 6E         [ 5] 1588 	stb	14,s
+                           1589 	; ldb	14,s	; optimization 5
+   0A8C C1 01         [ 2] 1590 	cmpb	#1	;cmpqi:
+   0A8E 27 1D         [ 3] 1591 	beq	L138
+   0A90 E6 6E         [ 5] 1592 	ldb	14,s
+   0A92 C1 01         [ 2] 1593 	cmpb	#1	;cmpqi:
+   0A94 25 06         [ 3] 1594 	blo	L137
+                           1595 	; ldb	14,s; optimization 8
+   0A96 C1 02         [ 2] 1596 	cmpb	#2	;cmpqi:
+   0A98 27 24         [ 3] 1597 	beq	L139
+   0A9A 20 33         [ 3] 1598 	bra	L169
+   0A9C                    1599 L137:
+   0A9C C6 01         [ 2] 1600 	ldb	#1
+   0A9E E7 E2         [ 6] 1601 	stb	,-s
+   0AA0 C6 28         [ 2] 1602 	ldb	#40
+   0AA2 E7 E2         [ 6] 1603 	stb	,-s
+   0AA4 C6 64         [ 2] 1604 	ldb	#100
+   0AA6 BD 00 00      [ 8] 1605 	jsr	_print_unsigned_int
+   0AA9 32 62         [ 5] 1606 	leas	2,s
+   0AAB 20 31         [ 3] 1607 	bra	L140
+   0AAD                    1608 L138:
+   0AAD C6 02         [ 2] 1609 	ldb	#2
+   0AAF E7 E2         [ 6] 1610 	stb	,-s
+   0AB1 C6 28         [ 2] 1611 	ldb	#40
+   0AB3 E7 E2         [ 6] 1612 	stb	,-s
+   0AB5 C6 64         [ 2] 1613 	ldb	#100
+   0AB7 BD 00 00      [ 8] 1614 	jsr	_print_unsigned_int
+   0ABA 32 62         [ 5] 1615 	leas	2,s
+   0ABC 20 20         [ 3] 1616 	bra	L140
+   0ABE                    1617 L139:
+   0ABE C6 03         [ 2] 1618 	ldb	#3
+   0AC0 E7 E2         [ 6] 1619 	stb	,-s
+   0AC2 C6 28         [ 2] 1620 	ldb	#40
+   0AC4 E7 E2         [ 6] 1621 	stb	,-s
+   0AC6 C6 64         [ 2] 1622 	ldb	#100
+   0AC8 BD 00 00      [ 8] 1623 	jsr	_print_unsigned_int
+   0ACB 32 62         [ 5] 1624 	leas	2,s
+   0ACD 20 0F         [ 3] 1625 	bra	L140
+   0ACF                    1626 L169:
+   0ACF C6 64         [ 2] 1627 	ldb	#100
+   0AD1 E7 E2         [ 6] 1628 	stb	,-s
+   0AD3 C6 28         [ 2] 1629 	ldb	#40
+   0AD5 E7 E2         [ 6] 1630 	stb	,-s
+   0AD7 C6 64         [ 2] 1631 	ldb	#100
+   0AD9 BD 00 00      [ 8] 1632 	jsr	_print_unsigned_int
+   0ADC 32 62         [ 5] 1633 	leas	2,s
+   0ADE                    1634 L140:
+   0ADE C6 92         [ 2] 1635 	ldb	#-110
+   0AE0 E7 E2         [ 6] 1636 	stb	,-s
+   0AE2 8E 04 3F      [ 3] 1637 	ldx	#LC1
+   0AE5 C6 3C         [ 2] 1638 	ldb	#60
+   0AE7 BD 00 00      [ 8] 1639 	jsr	_print_string
+   0AEA 32 61         [ 5] 1640 	leas	1,s
+   0AEC F6 00 04      [ 5] 1641 	ldb	_player+4
+   0AEF E7 6F         [ 5] 1642 	stb	15,s
+                           1643 	; ldb	15,s	; optimization 5
+   0AF1 C1 01         [ 2] 1644 	cmpb	#1	;cmpqi:
+   0AF3 27 1D         [ 3] 1645 	beq	L143
+   0AF5 E6 6F         [ 5] 1646 	ldb	15,s
+   0AF7 C1 01         [ 2] 1647 	cmpb	#1	;cmpqi:
+   0AF9 25 06         [ 3] 1648 	blo	L142
+                           1649 	; ldb	15,s; optimization 8
+   0AFB C1 02         [ 2] 1650 	cmpb	#2	;cmpqi:
+   0AFD 27 24         [ 3] 1651 	beq	L144
+   0AFF 20 33         [ 3] 1652 	bra	L170
+   0B01                    1653 L142:
+   0B01 C6 01         [ 2] 1654 	ldb	#1
+   0B03 E7 E2         [ 6] 1655 	stb	,-s
+   0B05 C6 28         [ 2] 1656 	ldb	#40
+   0B07 E7 E2         [ 6] 1657 	stb	,-s
+   0B09 C6 3C         [ 2] 1658 	ldb	#60
+   0B0B BD 00 00      [ 8] 1659 	jsr	_print_unsigned_int
+   0B0E 32 62         [ 5] 1660 	leas	2,s
+   0B10 20 31         [ 3] 1661 	bra	L145
+   0B12                    1662 L143:
+   0B12 C6 02         [ 2] 1663 	ldb	#2
+   0B14 E7 E2         [ 6] 1664 	stb	,-s
+   0B16 C6 28         [ 2] 1665 	ldb	#40
+   0B18 E7 E2         [ 6] 1666 	stb	,-s
+   0B1A C6 3C         [ 2] 1667 	ldb	#60
+   0B1C BD 00 00      [ 8] 1668 	jsr	_print_unsigned_int
+   0B1F 32 62         [ 5] 1669 	leas	2,s
+   0B21 20 20         [ 3] 1670 	bra	L145
+   0B23                    1671 L144:
+   0B23 C6 03         [ 2] 1672 	ldb	#3
+   0B25 E7 E2         [ 6] 1673 	stb	,-s
+   0B27 C6 28         [ 2] 1674 	ldb	#40
+   0B29 E7 E2         [ 6] 1675 	stb	,-s
+   0B2B C6 3C         [ 2] 1676 	ldb	#60
+   0B2D BD 00 00      [ 8] 1677 	jsr	_print_unsigned_int
+   0B30 32 62         [ 5] 1678 	leas	2,s
+   0B32 20 0F         [ 3] 1679 	bra	L145
+   0B34                    1680 L170:
+   0B34 C6 64         [ 2] 1681 	ldb	#100
+   0B36 E7 E2         [ 6] 1682 	stb	,-s
+   0B38 C6 28         [ 2] 1683 	ldb	#40
+   0B3A E7 E2         [ 6] 1684 	stb	,-s
+   0B3C C6 3C         [ 2] 1685 	ldb	#60
+   0B3E BD 00 00      [ 8] 1686 	jsr	_print_unsigned_int
+   0B41 32 62         [ 5] 1687 	leas	2,s
+   0B43                    1688 L145:
+   0B43 C6 92         [ 2] 1689 	ldb	#-110
+   0B45 E7 E2         [ 6] 1690 	stb	,-s
+   0B47 8E 04 4E      [ 3] 1691 	ldx	#LC2
+   0B4A C6 14         [ 2] 1692 	ldb	#20
+   0B4C BD 00 00      [ 8] 1693 	jsr	_print_string
+   0B4F 32 61         [ 5] 1694 	leas	1,s
+   0B51 F6 00 01      [ 5] 1695 	ldb	_tower+1
+   0B54 E7 E8 10      [ 5] 1696 	stb	16,s
+                           1697 	; ldb	16,s	; optimization 5
+   0B57 C1 05         [ 2] 1698 	cmpb	#5	;cmpqi:
+   0B59 10 22 00 85   [ 6] 1699 	lbhi	L146
+   0B5D E6 E8 10      [ 5] 1700 	ldb	16,s
+   0B60 4F            [ 2] 1701 	clra		;zero_extendqihi: R:b -> R:d
+   0B61 ED E4         [ 5] 1702 	std	,s
+                           1703 	; ldd	,s	; optimization 5
+   0B63 58            [ 2] 1704 	aslb
+   0B64 49            [ 2] 1705 	rola
+   0B65 CE 0B 6E      [ 3] 1706 	ldu	#L153
+   0B68 30 CB         [ 8] 1707 	leax	d,u
+   0B6A AE 84         [ 5] 1708 	ldx	,x
+   0B6C 6E 84         [ 3] 1709 	jmp	,x
+   0B6E                    1710 L153:
+   0B6E 0B 7A              1711 	.word L147
+   0B70 0B 8C              1712 	.word L148
+   0B72 0B 9E              1713 	.word L149
+   0B74 0B AF              1714 	.word L150
+   0B76 0B C0              1715 	.word L151
+   0B78 0B D1              1716 	.word L152
+   0B7A                    1717 L147:
+   0B7A C6 01         [ 2] 1718 	ldb	#1
+   0B7C E7 E2         [ 6] 1719 	stb	,-s
+   0B7E C6 28         [ 2] 1720 	ldb	#40
+   0B80 E7 E2         [ 6] 1721 	stb	,-s
+   0B82 C6 14         [ 2] 1722 	ldb	#20
+   0B84 BD 00 00      [ 8] 1723 	jsr	_print_unsigned_int
+   0B87 32 62         [ 5] 1724 	leas	2,s
+   0B89 7E 0B F1      [ 4] 1725 	jmp	L154
+   0B8C                    1726 L148:
+   0B8C C6 02         [ 2] 1727 	ldb	#2
+   0B8E E7 E2         [ 6] 1728 	stb	,-s
+   0B90 C6 28         [ 2] 1729 	ldb	#40
+   0B92 E7 E2         [ 6] 1730 	stb	,-s
+   0B94 C6 14         [ 2] 1731 	ldb	#20
+   0B96 BD 00 00      [ 8] 1732 	jsr	_print_unsigned_int
+   0B99 32 62         [ 5] 1733 	leas	2,s
+   0B9B 7E 0B F1      [ 4] 1734 	jmp	L154
+   0B9E                    1735 L149:
+   0B9E C6 03         [ 2] 1736 	ldb	#3
+   0BA0 E7 E2         [ 6] 1737 	stb	,-s
+   0BA2 C6 28         [ 2] 1738 	ldb	#40
+   0BA4 E7 E2         [ 6] 1739 	stb	,-s
+   0BA6 C6 14         [ 2] 1740 	ldb	#20
+   0BA8 BD 00 00      [ 8] 1741 	jsr	_print_unsigned_int
+   0BAB 32 62         [ 5] 1742 	leas	2,s
+   0BAD 20 42         [ 3] 1743 	bra	L154
+   0BAF                    1744 L150:
+   0BAF C6 04         [ 2] 1745 	ldb	#4
+   0BB1 E7 E2         [ 6] 1746 	stb	,-s
+   0BB3 C6 28         [ 2] 1747 	ldb	#40
+   0BB5 E7 E2         [ 6] 1748 	stb	,-s
+   0BB7 C6 14         [ 2] 1749 	ldb	#20
+   0BB9 BD 00 00      [ 8] 1750 	jsr	_print_unsigned_int
+   0BBC 32 62         [ 5] 1751 	leas	2,s
+   0BBE 20 31         [ 3] 1752 	bra	L154
+   0BC0                    1753 L151:
+   0BC0 C6 05         [ 2] 1754 	ldb	#5
+   0BC2 E7 E2         [ 6] 1755 	stb	,-s
+   0BC4 C6 28         [ 2] 1756 	ldb	#40
+   0BC6 E7 E2         [ 6] 1757 	stb	,-s
+   0BC8 C6 14         [ 2] 1758 	ldb	#20
+   0BCA BD 00 00      [ 8] 1759 	jsr	_print_unsigned_int
+   0BCD 32 62         [ 5] 1760 	leas	2,s
+   0BCF 20 20         [ 3] 1761 	bra	L154
+   0BD1                    1762 L152:
+   0BD1 C6 06         [ 2] 1763 	ldb	#6
+   0BD3 E7 E2         [ 6] 1764 	stb	,-s
+   0BD5 C6 28         [ 2] 1765 	ldb	#40
+   0BD7 E7 E2         [ 6] 1766 	stb	,-s
+   0BD9 C6 14         [ 2] 1767 	ldb	#20
+   0BDB BD 00 00      [ 8] 1768 	jsr	_print_unsigned_int
+   0BDE 32 62         [ 5] 1769 	leas	2,s
+   0BE0 20 0F         [ 3] 1770 	bra	L154
+   0BE2                    1771 L146:
+   0BE2 C6 64         [ 2] 1772 	ldb	#100
+   0BE4 E7 E2         [ 6] 1773 	stb	,-s
+   0BE6 C6 28         [ 2] 1774 	ldb	#40
+   0BE8 E7 E2         [ 6] 1775 	stb	,-s
+   0BEA C6 14         [ 2] 1776 	ldb	#20
+   0BEC BD 00 00      [ 8] 1777 	jsr	_print_unsigned_int
+   0BEF 32 62         [ 5] 1778 	leas	2,s
+   0BF1                    1779 L154:
+   0BF1 C6 92         [ 2] 1780 	ldb	#-110
+   0BF3 E7 E2         [ 6] 1781 	stb	,-s
+   0BF5 8E 04 93      [ 3] 1782 	ldx	#LC7
+   0BF8 C6 EC         [ 2] 1783 	ldb	#-20
+   0BFA BD 00 00      [ 8] 1784 	jsr	_print_string
+   0BFD 32 61         [ 5] 1785 	leas	1,s
+   0BFF F6 00 02      [ 5] 1786 	ldb	_tower+2
+   0C02 E7 E8 11      [ 5] 1787 	stb	17,s
+                           1788 	; ldb	17,s	; optimization 5
+   0C05 C1 01         [ 2] 1789 	cmpb	#1	;cmpqi:
+   0C07 27 1E         [ 3] 1790 	beq	L157
+   0C09 E6 E8 11      [ 5] 1791 	ldb	17,s
+   0C0C C1 01         [ 2] 1792 	cmpb	#1	;cmpqi:
+   0C0E 25 06         [ 3] 1793 	blo	L156
+                           1794 	; ldb	17,s; optimization 8
+   0C10 C1 02         [ 2] 1795 	cmpb	#2	;cmpqi:
+   0C12 27 24         [ 3] 1796 	beq	L158
+   0C14 20 33         [ 3] 1797 	bra	L171
+   0C16                    1798 L156:
+   0C16 C6 01         [ 2] 1799 	ldb	#1
+   0C18 E7 E2         [ 6] 1800 	stb	,-s
+   0C1A C6 28         [ 2] 1801 	ldb	#40
+   0C1C E7 E2         [ 6] 1802 	stb	,-s
+   0C1E C6 EC         [ 2] 1803 	ldb	#-20
+   0C20 BD 00 00      [ 8] 1804 	jsr	_print_unsigned_int
+   0C23 32 62         [ 5] 1805 	leas	2,s
+   0C25 20 31         [ 3] 1806 	bra	L85
+   0C27                    1807 L157:
+   0C27 C6 02         [ 2] 1808 	ldb	#2
+   0C29 E7 E2         [ 6] 1809 	stb	,-s
+   0C2B C6 28         [ 2] 1810 	ldb	#40
+   0C2D E7 E2         [ 6] 1811 	stb	,-s
+   0C2F C6 EC         [ 2] 1812 	ldb	#-20
+   0C31 BD 00 00      [ 8] 1813 	jsr	_print_unsigned_int
+   0C34 32 62         [ 5] 1814 	leas	2,s
+   0C36 20 20         [ 3] 1815 	bra	L85
+   0C38                    1816 L158:
+   0C38 C6 03         [ 2] 1817 	ldb	#3
+   0C3A E7 E2         [ 6] 1818 	stb	,-s
+   0C3C C6 28         [ 2] 1819 	ldb	#40
+   0C3E E7 E2         [ 6] 1820 	stb	,-s
+   0C40 C6 EC         [ 2] 1821 	ldb	#-20
+   0C42 BD 00 00      [ 8] 1822 	jsr	_print_unsigned_int
+   0C45 32 62         [ 5] 1823 	leas	2,s
+   0C47 20 0F         [ 3] 1824 	bra	L85
+   0C49                    1825 L171:
+   0C49 C6 64         [ 2] 1826 	ldb	#100
+   0C4B E7 E2         [ 6] 1827 	stb	,-s
+   0C4D C6 28         [ 2] 1828 	ldb	#40
+   0C4F E7 E2         [ 6] 1829 	stb	,-s
+   0C51 C6 EC         [ 2] 1830 	ldb	#-20
+   0C53 BD 00 00      [ 8] 1831 	jsr	_print_unsigned_int
+   0C56 32 62         [ 5] 1832 	leas	2,s
+   0C58                    1833 L85:
+   0C58 C6 92         [ 2] 1834 	ldb	#-110
+   0C5A E7 E2         [ 6] 1835 	stb	,-s
+   0C5C 8E 04 A1      [ 3] 1836 	ldx	#LC8
+   0C5F C6 B0         [ 2] 1837 	ldb	#-80
+   0C61 BD 00 00      [ 8] 1838 	jsr	_print_string
+   0C64 32 61         [ 5] 1839 	leas	1,s
+   0C66 BE 00 02      [ 6] 1840 	ldx	_player+2
+   0C69 C6 28         [ 2] 1841 	ldb	#40
+   0C6B E7 E2         [ 6] 1842 	stb	,-s
+   0C6D C6 B0         [ 2] 1843 	ldb	#-80
+   0C6F BD 00 00      [ 8] 1844 	jsr	_print_long_unsigned_int
+   0C72 32 61         [ 5] 1845 	leas	1,s
+   0C74 32 E8 12      [ 5] 1846 	leas	18,s
+   0C77 35 C0         [ 7] 1847 	puls	u,pc
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -1850,88 +1852,89 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  2 L100               07DA R   |   2 L101               07EB R
-  2 L102               07FC R   |   2 L103               0799 R
-  2 L104               081C R   |   2 L106               083F R
-  2 L107               0851 R   |   2 L108               0863 R
-  2 L11                0169 R   |   2 L110               0A71 R
-  2 L112               08B3 R   |   2 L113               08C4 R
-  2 L114               08D5 R   |   2 L115               08F5 R
-  2 L117               0918 R   |   2 L118               0929 R
-  2 L119               093A R   |   2 L12                0171 R
-  2 L120               095A R   |   2 L121               09F7 R
-  2 L122               098F R   |   2 L123               09A1 R
-  2 L124               09B3 R   |   2 L125               09C4 R
-  2 L126               09D5 R   |   2 L127               09E6 R
-  2 L128               0983 R   |   2 L129               0A06 R
-  2 L131               0A29 R   |   2 L132               0A3B R
-  2 L133               0A4D R   |   2 L136               0A9D R
-  2 L137               0AAE R   |   2 L138               0ABF R
-  2 L139               0ADF R   |   2 L141               0B02 R
-  2 L142               0B13 R   |   2 L143               0B24 R
-  2 L144               0B44 R   |   2 L145               0BE3 R
-  2 L146               0B7B R   |   2 L147               0B8D R
-  2 L148               0B9F R   |   2 L149               0BB0 R
-  2 L15                01B3 R   |   2 L150               0BC1 R
-  2 L151               0BD2 R   |   2 L152               0B6F R
-  2 L153               0BF2 R   |   2 L155               0C17 R
-  2 L156               0C28 R   |   2 L157               0C39 R
-  2 L159               0512 R   |   2 L160               0577 R
-  2 L161               068B R   |   2 L162               06FC R
-  2 L163               0761 R   |   2 L164               0875 R
-  2 L165               08E6 R   |   2 L166               094B R
-  2 L167               0A5F R   |   2 L168               0AD0 R
-  2 L169               0B35 R   |   2 L17                019D R
-  2 L170               0C4A R   |   2 L18                01A5 R
-  2 L21                02A3 R   |   2 L23                01EA R
-  2 L24                020F R   |   2 L25                0234 R
-  2 L26                0259 R   |   2 L27                027E R
-  2 L28                01E0 R   |   2 L34                02C6 R
-  2 L35                0328 R   |   2 L39                039E R
-  2 L4                 011F R   |   2 L40                03DB R
-  2 L42                03BF R   |   2 L43                03C7 R
-  2 L44                03CD R   |   2 L45                03D4 R
-  2 L46                03E9 R   |   2 L47                0409 R
-  2 L48                0410 R   |   2 L49                0417 R
-  2 L50                041E R   |   2 L51                0421 R
-  2 L52                0179 R   |   2 L53                01AD R
-  2 L54                038A R   |   2 L56                0426 R
-  2 L59                069D R   |   2 L6                 013A R
-  2 L61                04DF R   |   2 L62                04F0 R
-  2 L63                0501 R   |   2 L64                0521 R
-  2 L66                0544 R   |   2 L67                0555 R
-  2 L68                0566 R   |   2 L69                0586 R
-  2 L7                 0390 R   |   2 L70                0623 R
-  2 L71                05BB R   |   2 L72                05CD R
-  2 L73                05DF R   |   2 L74                05F0 R
-  2 L75                0601 R   |   2 L76                0612 R
-  2 L77                05AF R   |   2 L78                0632 R
-  2 L8                 017F R   |   2 L80                0655 R
-  2 L81                0667 R   |   2 L82                0679 R
-  2 L84                0C59 R   |   2 L85                0887 R
-  2 L87                06C9 R   |   2 L88                06DA R
-  2 L89                06EB R   |   2 L90                070B R
-  2 L92                072E R   |   2 L93                073F R
-  2 L94                0750 R   |   2 L95                0770 R
-  2 L96                080D R   |   2 L97                07A5 R
-  2 L98                07B7 R   |   2 L99                07C9 R
-  2 LC0                0432 R   |   2 LC1                0440 R
-  2 LC2                044F R   |   2 LC3                045C R
-  2 LC4                046A R   |   2 LC5                0478 R
-  2 LC6                0487 R   |   2 LC7                0494 R
-  2 LC8                04A2 R   |   3 _Menu              0000 GR
-    _Sync              **** GX  |     _Vec_Buttons       **** GX
-    _Vec_Joy_1_Y       **** GX  |     ___Joy_Digital     **** GX
-    ___Read_Btns       **** GX  |     ___Reset0Ref       **** GX
-  3 _limit.3290        0002 R   |   2 _menu_draw         04AA GR
-  2 _menu_handle       010B GR  |   2 _menu_init         0102 GR
-  2 _menu_open         0426 GR  |     _player            **** GX
-    _print_long_un     **** GX  |     _print_string      **** GX
-    _print_unsigne     **** GX  |     _set_tower         **** GX
-    _tower             **** GX  |   2 _towercost         0000 GR
-  2 _vectors_tower     0024 GR  |   2 _vectors_tower     0042 GR
-  2 _vectors_tower     0069 GR  |   2 _vectors_tower     0096 GR
-  2 _vectors_tower     00CC GR  |   2 _vectors_tower     00E7 GR
+  2 L100               07C8 R   |   2 L101               07D9 R
+  2 L102               07EA R   |   2 L103               07FB R
+  2 L104               0798 R   |   2 L105               081B R
+  2 L107               083E R   |   2 L108               0850 R
+  2 L109               0862 R   |   2 L11                0167 R
+  2 L111               0A70 R   |   2 L113               08B2 R
+  2 L114               08C3 R   |   2 L115               08D4 R
+  2 L116               08F4 R   |   2 L118               0917 R
+  2 L119               0928 R   |   2 L12                016E R
+  2 L120               0939 R   |   2 L121               0959 R
+  2 L122               09F6 R   |   2 L123               098E R
+  2 L124               09A0 R   |   2 L125               09B2 R
+  2 L126               09C3 R   |   2 L127               09D4 R
+  2 L128               09E5 R   |   2 L129               0982 R
+  2 L130               0A05 R   |   2 L132               0A28 R
+  2 L133               0A3A R   |   2 L134               0A4C R
+  2 L137               0A9C R   |   2 L138               0AAD R
+  2 L139               0ABE R   |   2 L14                0178 R
+  2 L140               0ADE R   |   2 L142               0B01 R
+  2 L143               0B12 R   |   2 L144               0B23 R
+  2 L145               0B43 R   |   2 L146               0BE2 R
+  2 L147               0B7A R   |   2 L148               0B8C R
+  2 L149               0B9E R   |   2 L150               0BAF R
+  2 L151               0BC0 R   |   2 L152               0BD1 R
+  2 L153               0B6E R   |   2 L154               0BF1 R
+  2 L156               0C16 R   |   2 L157               0C27 R
+  2 L158               0C38 R   |   2 L16                01B2 R
+  2 L160               0511 R   |   2 L161               0576 R
+  2 L162               068A R   |   2 L163               06FB R
+  2 L164               0760 R   |   2 L165               0874 R
+  2 L166               08E5 R   |   2 L167               094A R
+  2 L168               0A5E R   |   2 L169               0ACF R
+  2 L170               0B34 R   |   2 L171               0C49 R
+  2 L18                019C R   |   2 L19                01A4 R
+  2 L22                02A2 R   |   2 L24                01E9 R
+  2 L25                020E R   |   2 L26                0233 R
+  2 L27                0258 R   |   2 L28                027D R
+  2 L29                01DF R   |   2 L35                02C5 R
+  2 L36                0327 R   |   2 L4                 011F R
+  2 L40                039D R   |   2 L41                03DA R
+  2 L43                03BE R   |   2 L44                03C6 R
+  2 L45                03CC R   |   2 L46                03D3 R
+  2 L47                03E8 R   |   2 L48                0408 R
+  2 L49                040F R   |   2 L50                0416 R
+  2 L51                041D R   |   2 L52                0420 R
+  2 L53                0175 R   |   2 L54                01AC R
+  2 L55                0389 R   |   2 L57                0425 R
+  2 L6                 013A R   |   2 L60                069C R
+  2 L62                04DE R   |   2 L63                04EF R
+  2 L64                0500 R   |   2 L65                0520 R
+  2 L67                0543 R   |   2 L68                0554 R
+  2 L69                0565 R   |   2 L7                 038F R
+  2 L70                0585 R   |   2 L71                0622 R
+  2 L72                05BA R   |   2 L73                05CC R
+  2 L74                05DE R   |   2 L75                05EF R
+  2 L76                0600 R   |   2 L77                0611 R
+  2 L78                05AE R   |   2 L79                0631 R
+  2 L8                 017E R   |   2 L81                0654 R
+  2 L82                0666 R   |   2 L83                0678 R
+  2 L85                0C58 R   |   2 L86                0886 R
+  2 L88                06C8 R   |   2 L89                06D9 R
+  2 L90                06EA R   |   2 L91                070A R
+  2 L93                072D R   |   2 L94                073E R
+  2 L95                074F R   |   2 L96                076F R
+  2 L97                080C R   |   2 L98                07A4 R
+  2 L99                07B6 R   |   2 LC0                0431 R
+  2 LC1                043F R   |   2 LC2                044E R
+  2 LC3                045B R   |   2 LC4                0469 R
+  2 LC5                0477 R   |   2 LC6                0486 R
+  2 LC7                0493 R   |   2 LC8                04A1 R
+  3 _Menu              0000 GR  |     _Sync              **** GX
+    _Vec_Buttons       **** GX  |     _Vec_Joy_1_Y       **** GX
+    ___Joy_Digital     **** GX  |     ___Read_Btns       **** GX
+    ___Reset0Ref       **** GX  |   3 _limit.3290        0002 R
+  2 _menu_draw         04A9 GR  |   2 _menu_handle       010B GR
+  2 _menu_init         0102 GR  |   2 _menu_open         0425 GR
+    _player            **** GX  |     _print_long_un     **** GX
+    _print_string      **** GX  |     _print_unsigne     **** GX
+    _set_tower         **** GX  |     _tower             **** GX
+  2 _towercost         0000 GR  |   2 _vectors_tower     0024 GR
+  2 _vectors_tower     0042 GR  |   2 _vectors_tower     0069 GR
+  2 _vectors_tower     0096 GR  |   2 _vectors_tower     00CC GR
+  2 _vectors_tower     00E7 GR
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -1940,7 +1943,7 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .text            size  C7A   flags  100
+   2 .text            size  C79   flags  100
    3 .data            size    3   flags  100
 [_DSEG]
    1 _DATA            size    0   flags C0C0

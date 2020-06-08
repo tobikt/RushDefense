@@ -4194,8 +4194,8 @@
    222F 32 65         [ 5] 4194 	leas	5,s
    2231 5D            [ 2] 4195 	tstb
    2232 27 30         [ 3] 4196 	beq	L6
-   2234 8E 55 F9      [ 3] 4197 	ldx	#_bang
-   2237 BD 50 CC      [ 8] 4198 	jsr	_play_explosion
+   2234 8E 56 0D      [ 3] 4197 	ldx	#_bang
+   2237 BD 50 E0      [ 8] 4198 	jsr	_play_explosion
    223A F6 C9 BE      [ 5] 4199 	ldb	_tower+4
    223D E7 E4         [ 4] 4200 	stb	,s
    223F AE 64         [ 6] 4201 	ldx	4,s
@@ -4971,7 +4971,7 @@
    277D 49            [ 2] 4971 	rola
    277E CE C9 00      [ 3] 4972 	ldu	#_enemies
    2781 30 CB         [ 8] 4973 	leax	d,u
-   2783 BD 4B 90      [ 8] 4974 	jsr	_move_object
+   2783 BD 4B 8F      [ 8] 4974 	jsr	_move_object
    2786 E6 62         [ 5] 4975 	ldb	2,s
    2788 4F            [ 2] 4976 	clra		;zero_extendqihi: R:b -> R:d
    2789 ED E4         [ 5] 4977 	std	,s

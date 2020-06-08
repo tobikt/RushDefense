@@ -3493,16 +3493,16 @@
                            3493 	.globl _game_play
    3BAD                    3494 _game_play:
    3BAD 32 7F         [ 5] 3495 	leas	-1,s
-   3BAF BD 4C 0B      [ 8] 3496 	jsr	_init_player
-   3BB2 BD 54 00      [ 8] 3497 	jsr	_init_tower
-   3BB5 BD 69 B1      [ 8] 3498 	jsr	_wave_init
+   3BAF BD 4C 0A      [ 8] 3496 	jsr	_init_player
+   3BB2 BD 54 14      [ 8] 3497 	jsr	_init_tower
+   3BB5 BD 69 C5      [ 8] 3498 	jsr	_wave_init
    3BB8 BD 40 18      [ 8] 3499 	jsr	_menu_init
    3BBB 7E 3C 22      [ 4] 3500 	jmp	L4
    3BBE                    3501 L10:
    3BBE F6 C9 28      [ 5] 3502 	ldb	_current_game
                            3503 	; tstb	; optimization 6
    3BC1 26 4C         [ 3] 3504 	bne	L5
-   3BC3 BD 6A 46      [ 8] 3505 	jsr	_wave_play
+   3BC3 BD 6A 5A      [ 8] 3505 	jsr	_wave_play
    3BC6 F6 C9 CA      [ 5] 3506 	ldb	_current_wave+3
    3BC9 C1 02         [ 2] 3507 	cmpb	#2	;cmpqi:
    3BCB 26 20         [ 3] 3508 	bne	L6
@@ -3526,7 +3526,7 @@
    3BF4 F6 C9 C8      [ 5] 3526 	ldb	_current_wave+1
    3BF7 5C            [ 2] 3527 	incb
    3BF8 F7 C9 C8      [ 5] 3528 	stb	_current_wave+1
-   3BFB BD 69 B1      [ 8] 3529 	jsr	_wave_init
+   3BFB BD 69 C5      [ 8] 3529 	jsr	_wave_init
    3BFE 20 22         [ 3] 3530 	bra	L4
    3C00                    3531 L9:
    3C00 F6 C9 2A      [ 5] 3532 	ldb	_current_game+2
@@ -3542,9 +3542,9 @@
    3C12 C1 01         [ 2] 3542 	cmpb	#1	;cmpqi:
    3C14 26 0C         [ 3] 3543 	bne	L4
    3C16 7F C9 2D      [ 7] 3544 	clr	_Menu
-   3C19 BD 43 3C      [ 8] 3545 	jsr	_menu_open
+   3C19 BD 43 3B      [ 8] 3545 	jsr	_menu_open
    3C1C 7F C9 28      [ 7] 3546 	clr	_current_game
-   3C1F BD 69 B1      [ 8] 3547 	jsr	_wave_init
+   3C1F BD 69 C5      [ 8] 3547 	jsr	_wave_init
    3C22                    3548 L4:
    3C22 F6 C9 2A      [ 5] 3549 	ldb	_current_game+2
                            3550 	; tstb	; optimization 6
@@ -3583,13 +3583,13 @@
    3C5A C6 96         [ 2] 3583 	ldb	#-106
    3C5C E7 67         [ 5] 3584 	stb	7,s
    3C5E                    3585 L14:
-   3C5E BD 55 FD      [ 8] 3586 	jsr	_Sync
+   3C5E BD 56 11      [ 8] 3586 	jsr	_Sync
    3C61 BD F2 A5      [ 8] 3587 	jsr	___Intensity_5F
    3C64 C6 C0         [ 2] 3588 	ldb	#-64
    3C66 E7 E2         [ 6] 3589 	stb	,-s
    3C68 8E 3C 2C      [ 3] 3590 	ldx	#LC0
    3C6B 5F            [ 2] 3591 	clrb
-   3C6C BD 4C F1      [ 8] 3592 	jsr	_print_string
+   3C6C BD 4D 05      [ 8] 3592 	jsr	_print_string
    3C6F 32 61         [ 5] 3593 	leas	1,s
    3C71 BD F1 BA      [ 8] 3594 	jsr	___Read_Btns
    3C74 6A 67         [ 7] 3595 	dec	7,s
@@ -3632,13 +3632,13 @@
    3CB0 C6 96         [ 2] 3632 	ldb	#-106
    3CB2 E7 67         [ 5] 3633 	stb	7,s
    3CB4                    3634 L18:
-   3CB4 BD 55 FD      [ 8] 3635 	jsr	_Sync
+   3CB4 BD 56 11      [ 8] 3635 	jsr	_Sync
    3CB7 BD F2 A5      [ 8] 3636 	jsr	___Intensity_5F
    3CBA C6 C0         [ 2] 3637 	ldb	#-64
    3CBC E7 E2         [ 6] 3638 	stb	,-s
    3CBE 8E 3C 84      [ 3] 3639 	ldx	#LC1
    3CC1 5F            [ 2] 3640 	clrb
-   3CC2 BD 4C F1      [ 8] 3641 	jsr	_print_string
+   3CC2 BD 4D 05      [ 8] 3641 	jsr	_print_string
    3CC5 32 61         [ 5] 3642 	leas	1,s
    3CC7 BD F1 BA      [ 8] 3643 	jsr	___Read_Btns
    3CCA 6A 67         [ 7] 3644 	dec	7,s

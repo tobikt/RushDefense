@@ -70,6 +70,7 @@ void menu_handle(void)
 						player.lvl = P_LEVEL_1;
 						break;
 				};
+				player.firerate = PLAYER_FIRERATE_1;
 			}	
 		}
 		else if(Menu.selectedItem == SELECTEDITEM_PLAYER_RATE)

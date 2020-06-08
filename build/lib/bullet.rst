@@ -926,8 +926,8 @@
    0979 32 65         [ 5]  926 	leas	5,s
    097B 5D            [ 2]  927 	tstb
    097C 27 32         [ 3]  928 	beq	L26
-   097E 8E 55 F9      [ 3]  929 	ldx	#_bang
-   0981 BD 50 CC      [ 8]  930 	jsr	_play_explosion
+   097E 8E 56 0D      [ 3]  929 	ldx	#_bang
+   0981 BD 50 E0      [ 8]  930 	jsr	_play_explosion
    0984 10 BE C9 B2   [ 7]  931 	ldy	_player+2
    0988 E6 6B         [ 5]  932 	ldb	11,s
    098A 4F            [ 2]  933 	clra		;zero_extendqihi: R:b -> R:d
