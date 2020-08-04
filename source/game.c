@@ -27,12 +27,10 @@ struct game_t current_game =
 
 // ---------------------------------------------------------------------------
 
-//TO-DO two game modes one is staic lvls and the other is random lvls
 static inline __attribute__((always_inline))
 void game_options(void)
 {
-	Select_Game(1 /* max_players */, 2 /* max_options */);
-	//current_game.option_player = Vec_Num_Players;
+	Select_Game(1 /* max_players */, 0 /* max_options */);
 	current_game.option_mode = Vec_Num_Game;
 }
 
@@ -75,13 +73,13 @@ void game_play(void)
 			wave_play();
 			
 			if (current_wave.status == WAVE_WON)
-			{
-				++current_wave.wave_lvl;
+			{			
+				if(++current_wave.wave_lvl >= MAX_LEVELS)
+					game_win();
+				
 				current_wave.phase = 0;
 				current_game.gamePhase = GAMEPHASE_MENUE;
-				
-				if(current_wave.wave_lvl >= MAX_LEVELS)
-					game_win();
+
 			}
 			else if(current_wave.status == PHASE_WON)
 			{
@@ -101,8 +99,7 @@ void game_play(void)
 			Menu.status = MENU_OPEN;
 			menu_open();
 			current_game.gamePhase = GAMEPHASE_ATTACK;
-			
-			// Next WAVE ...
+
 			wave_init();	
 		}
 	}

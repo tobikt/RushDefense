@@ -159,7 +159,7 @@
    03F4 49            [ 2]  159 	rola
    03F5 ED 6A         [ 6]  160 	std	10,s
    03F7 EE 6A         [ 6]  161 	ldu	10,s
-   03F9 30 C9 C9 CD   [ 8]  162 	leax	_bullets,u
+   03F9 30 C9 C9 CB   [ 8]  162 	leax	_bullets,u
    03FD C6 01         [ 2]  163 	ldb	#1
    03FF E7 84         [ 4]  164 	stb	,x
    0401 E6 6C         [ 5]  165 	ldb	12,s
@@ -178,7 +178,7 @@
    0415 49            [ 2]  178 	rola
    0416 ED 68         [ 6]  179 	std	8,s
    0418 EE 68         [ 6]  180 	ldu	8,s
-   041A 30 C9 C9 CE   [ 8]  181 	leax	_bullets+1,u
+   041A 30 C9 C9 CC   [ 8]  181 	leax	_bullets+1,u
    041E 6F 84         [ 6]  182 	clr	,x
    0420 E6 6C         [ 5]  183 	ldb	12,s
    0422 4F            [ 2]  184 	clra		;zero_extendqihi: R:b -> R:d
@@ -195,7 +195,7 @@
    0433 C3 00 01      [ 4]  195 	addd	#1
    0436 58            [ 2]  196 	aslb
    0437 49            [ 2]  197 	rola
-   0438 CE C9 CD      [ 3]  198 	ldu	#_bullets
+   0438 CE C9 CB      [ 3]  198 	ldu	#_bullets
    043B 30 CB         [ 8]  199 	leax	d,u
    043D 6F 84         [ 6]  200 	clr	,x
    043F E6 6C         [ 5]  201 	ldb	12,s
@@ -214,7 +214,7 @@
    0453 49            [ 2]  214 	rola
    0454 ED 64         [ 6]  215 	std	4,s
    0456 EE 64         [ 6]  216 	ldu	4,s
-   0458 30 C9 C9 D2   [ 8]  217 	leax	_bullets+5,u
+   0458 30 C9 C9 D0   [ 8]  217 	leax	_bullets+5,u
    045C 6F 84         [ 6]  218 	clr	,x
    045E E6 6C         [ 5]  219 	ldb	12,s
    0460 4F            [ 2]  220 	clra		;zero_extendqihi: R:b -> R:d
@@ -232,7 +232,7 @@
    0472 49            [ 2]  232 	rola
    0473 ED 62         [ 6]  233 	std	2,s
    0475 EE 62         [ 6]  234 	ldu	2,s
-   0477 30 C9 C9 D1   [ 8]  235 	leax	_bullets+4,u
+   0477 30 C9 C9 CF   [ 8]  235 	leax	_bullets+4,u
    047B 6F 84         [ 6]  236 	clr	,x
    047D E6 6C         [ 5]  237 	ldb	12,s
    047F 4F            [ 2]  238 	clra		;zero_extendqihi: R:b -> R:d
@@ -250,7 +250,7 @@
    0491 49            [ 2]  250 	rola
    0492 ED E4         [ 5]  251 	std	,s
    0494 EE E4         [ 5]  252 	ldu	,s
-   0496 30 C9 C9 D0   [ 8]  253 	leax	_bullets+3,u
+   0496 30 C9 C9 CE   [ 8]  253 	leax	_bullets+3,u
    049A 6F 84         [ 6]  254 	clr	,x
    049C 6C 6C         [ 7]  255 	inc	12,s
    049E                     256 L2:
@@ -282,7 +282,7 @@
    04C6 49            [ 2]  282 	rola
    04C7 ED E4         [ 5]  283 	std	,s
    04C9 EE E4         [ 5]  284 	ldu	,s
-   04CB 30 C9 C9 CD   [ 8]  285 	leax	_bullets,u
+   04CB 30 C9 C9 CB   [ 8]  285 	leax	_bullets,u
    04CF E6 84         [ 4]  286 	ldb	,x
                             287 	; tstb	; optimization 6
    04D1 26 0A         [ 3]  288 	bne	L7
@@ -322,7 +322,7 @@
    050C C3 00 01      [ 4]  322 	addd	#1
    050F 58            [ 2]  323 	aslb
    0510 49            [ 2]  324 	rola
-   0511 CE C9 CD      [ 3]  325 	ldu	#_bullets
+   0511 CE C9 CB      [ 3]  325 	ldu	#_bullets
    0514 30 CB         [ 8]  326 	leax	d,u
    0516 E6 84         [ 4]  327 	ldb	,x
    0518 E7 64         [ 5]  328 	stb	4,s
@@ -342,7 +342,7 @@
    052E 49            [ 2]  342 	rola
    052F ED E4         [ 5]  343 	std	,s
    0531 EE E4         [ 5]  344 	ldu	,s
-   0533 30 C9 C9 CE   [ 8]  345 	leax	_bullets+1,u
+   0533 30 C9 C9 CC   [ 8]  345 	leax	_bullets+1,u
    0537 E6 84         [ 4]  346 	ldb	,x
    0539 E7 67         [ 5]  347 	stb	7,s
    053B E6 64         [ 5]  348 	ldb	4,s
@@ -381,7 +381,7 @@
    057D 49            [ 2]  381 	rola
    057E ED E8 1F      [ 6]  382 	std	31,s
    0581 EE E8 1F      [ 6]  383 	ldu	31,s
-   0584 30 C9 C9 CE   [ 8]  384 	leax	_bullets+1,u
+   0584 30 C9 C9 CC   [ 8]  384 	leax	_bullets+1,u
    0588 E6 84         [ 4]  385 	ldb	,x
    058A E7 E8 22      [ 5]  386 	stb	34,s
    058D E6 E8 27      [ 5]  387 	ldb	39,s
@@ -400,7 +400,7 @@
    05A7 49            [ 2]  400 	rola
    05A8 ED E8 1D      [ 6]  401 	std	29,s
    05AB EE E8 1D      [ 6]  402 	ldu	29,s
-   05AE 30 C9 C9 D0   [ 8]  403 	leax	_bullets+3,u
+   05AE 30 C9 C9 CE   [ 8]  403 	leax	_bullets+3,u
    05B2 E6 84         [ 4]  404 	ldb	,x
    05B4 E7 E4         [ 4]  405 	stb	,s
                             406 	; ldb	,s	; optimization 5
@@ -422,7 +422,7 @@
    05D6 49            [ 2]  422 	rola
    05D7 ED E8 1B      [ 6]  423 	std	27,s
    05DA EE E8 1B      [ 6]  424 	ldu	27,s
-   05DD 30 C9 C9 CE   [ 8]  425 	leax	_bullets+1,u
+   05DD 30 C9 C9 CC   [ 8]  425 	leax	_bullets+1,u
    05E1 E6 E8 23      [ 5]  426 	ldb	35,s
    05E4 E7 84         [ 4]  427 	stb	,x
    05E6 E6 E8 27      [ 5]  428 	ldb	39,s
@@ -442,7 +442,7 @@
    0605 C3 00 01      [ 4]  442 	addd	#1
    0608 58            [ 2]  443 	aslb
    0609 49            [ 2]  444 	rola
-   060A CE C9 CD      [ 3]  445 	ldu	#_bullets
+   060A CE C9 CB      [ 3]  445 	ldu	#_bullets
    060D 30 CB         [ 8]  446 	leax	d,u
    060F E6 84         [ 4]  447 	ldb	,x
    0611 E7 E8 25      [ 5]  448 	stb	37,s
@@ -462,7 +462,7 @@
    062E 49            [ 2]  462 	rola
    062F ED E8 17      [ 6]  463 	std	23,s
    0632 EE E8 17      [ 6]  464 	ldu	23,s
-   0635 30 C9 C9 D1   [ 8]  465 	leax	_bullets+4,u
+   0635 30 C9 C9 CF   [ 8]  465 	leax	_bullets+4,u
    0639 E6 84         [ 4]  466 	ldb	,x
    063B E7 E4         [ 4]  467 	stb	,s
                             468 	; ldb	,s	; optimization 5
@@ -483,7 +483,7 @@
    065C C3 00 01      [ 4]  483 	addd	#1
    065F 58            [ 2]  484 	aslb
    0660 49            [ 2]  485 	rola
-   0661 CE C9 CD      [ 3]  486 	ldu	#_bullets
+   0661 CE C9 CB      [ 3]  486 	ldu	#_bullets
    0664 30 CB         [ 8]  487 	leax	d,u
    0666 E6 E8 26      [ 5]  488 	ldb	38,s
    0669 E7 84         [ 4]  489 	stb	,x
@@ -503,7 +503,7 @@
    0685 49            [ 2]  503 	rola
    0686 ED E8 13      [ 6]  504 	std	19,s
    0689 EE E8 13      [ 6]  505 	ldu	19,s
-   068C 30 C9 C9 CE   [ 8]  506 	leax	_bullets+1,u
+   068C 30 C9 C9 CC   [ 8]  506 	leax	_bullets+1,u
    0690 E6 84         [ 4]  507 	ldb	,x
    0692 C1 78         [ 2]  508 	cmpb	#120	;cmpqi:
    0694 10 2E 00 75   [ 6]  509 	lbgt	L13
@@ -523,7 +523,7 @@
    06B2 49            [ 2]  523 	rola
    06B3 ED E8 11      [ 6]  524 	std	17,s
    06B6 EE E8 11      [ 6]  525 	ldu	17,s
-   06B9 30 C9 C9 CE   [ 8]  526 	leax	_bullets+1,u
+   06B9 30 C9 C9 CC   [ 8]  526 	leax	_bullets+1,u
    06BD E6 84         [ 4]  527 	ldb	,x
    06BF C1 88         [ 2]  528 	cmpb	#-120	;cmpqi:
    06C1 2D 4A         [ 3]  529 	blt	L13
@@ -542,7 +542,7 @@
    06D7 C3 00 01      [ 4]  542 	addd	#1
    06DA 58            [ 2]  543 	aslb
    06DB 49            [ 2]  544 	rola
-   06DC CE C9 CD      [ 3]  545 	ldu	#_bullets
+   06DC CE C9 CB      [ 3]  545 	ldu	#_bullets
    06DF 30 CB         [ 8]  546 	leax	d,u
    06E1 E6 84         [ 4]  547 	ldb	,x
    06E3 C1 78         [ 2]  548 	cmpb	#120	;cmpqi:
@@ -562,7 +562,7 @@
    06FB C3 00 01      [ 4]  562 	addd	#1
    06FE 58            [ 2]  563 	aslb
    06FF 49            [ 2]  564 	rola
-   0700 CE C9 CD      [ 3]  565 	ldu	#_bullets
+   0700 CE C9 CB      [ 3]  565 	ldu	#_bullets
    0703 30 CB         [ 8]  566 	leax	d,u
    0705 E6 84         [ 4]  567 	ldb	,x
    0707 C1 88         [ 2]  568 	cmpb	#-120	;cmpqi:
@@ -584,7 +584,7 @@
    0722 49            [ 2]  584 	rola
    0723 ED 6B         [ 6]  585 	std	11,s
    0725 EE 6B         [ 6]  586 	ldu	11,s
-   0727 30 C9 C9 CD   [ 8]  587 	leax	_bullets,u
+   0727 30 C9 C9 CB   [ 8]  587 	leax	_bullets,u
    072B C6 01         [ 2]  588 	ldb	#1
    072D E7 84         [ 4]  589 	stb	,x
    072F E6 E8 27      [ 5]  590 	ldb	39,s
@@ -603,7 +603,7 @@
    0744 49            [ 2]  603 	rola
    0745 ED 69         [ 6]  604 	std	9,s
    0747 EE 69         [ 6]  605 	ldu	9,s
-   0749 30 C9 C9 CE   [ 8]  606 	leax	_bullets+1,u
+   0749 30 C9 C9 CC   [ 8]  606 	leax	_bullets+1,u
    074D 6F 84         [ 6]  607 	clr	,x
    074F E6 E8 27      [ 5]  608 	ldb	39,s
    0752 4F            [ 2]  609 	clra		;zero_extendqihi: R:b -> R:d
@@ -620,7 +620,7 @@
    0763 C3 00 01      [ 4]  620 	addd	#1
    0766 58            [ 2]  621 	aslb
    0767 49            [ 2]  622 	rola
-   0768 CE C9 CD      [ 3]  623 	ldu	#_bullets
+   0768 CE C9 CB      [ 3]  623 	ldu	#_bullets
    076B 30 CB         [ 8]  624 	leax	d,u
    076D 6F 84         [ 6]  625 	clr	,x
    076F E6 E8 27      [ 5]  626 	ldb	39,s
@@ -639,7 +639,7 @@
    0784 49            [ 2]  639 	rola
    0785 ED 65         [ 6]  640 	std	5,s
    0787 EE 65         [ 6]  641 	ldu	5,s
-   0789 30 C9 C9 D2   [ 8]  642 	leax	_bullets+5,u
+   0789 30 C9 C9 D0   [ 8]  642 	leax	_bullets+5,u
    078D 6F 84         [ 6]  643 	clr	,x
    078F E6 E8 27      [ 5]  644 	ldb	39,s
    0792 4F            [ 2]  645 	clra		;zero_extendqihi: R:b -> R:d
@@ -657,7 +657,7 @@
    07A4 49            [ 2]  657 	rola
    07A5 ED 63         [ 6]  658 	std	3,s
    07A7 EE 63         [ 6]  659 	ldu	3,s
-   07A9 30 C9 C9 D1   [ 8]  660 	leax	_bullets+4,u
+   07A9 30 C9 C9 CF   [ 8]  660 	leax	_bullets+4,u
    07AD 6F 84         [ 6]  661 	clr	,x
    07AF E6 E8 27      [ 5]  662 	ldb	39,s
    07B2 4F            [ 2]  663 	clra		;zero_extendqihi: R:b -> R:d
@@ -675,7 +675,7 @@
    07C4 49            [ 2]  675 	rola
    07C5 ED 61         [ 6]  676 	std	1,s
    07C7 EE 61         [ 6]  677 	ldu	1,s
-   07C9 30 C9 C9 D0   [ 8]  678 	leax	_bullets+3,u
+   07C9 30 C9 C9 CE   [ 8]  678 	leax	_bullets+3,u
    07CD 6F 84         [ 6]  679 	clr	,x
    07CF                     680 L15:
    07CF 32 E8 28      [ 5]  681 	leas	40,s
@@ -708,7 +708,7 @@
    07FE 49            [ 2]  708 	rola
    07FF ED 68         [ 6]  709 	std	8,s
    0801 EE 68         [ 6]  710 	ldu	8,s
-   0803 30 C9 C9 CD   [ 8]  711 	leax	_bullets,u
+   0803 30 C9 C9 CB   [ 8]  711 	leax	_bullets,u
    0807 E6 84         [ 4]  712 	ldb	,x
    0809 C1 01         [ 2]  713 	cmpb	#1	;cmpqi:
    080B 10 26 00 95   [ 6]  714 	lbne	L19
@@ -728,7 +728,7 @@
    0823 49            [ 2]  728 	rola
    0824 ED 66         [ 6]  729 	std	6,s
    0826 EE 66         [ 6]  730 	ldu	6,s
-   0828 30 C9 C9 CD   [ 8]  731 	leax	_bullets,u
+   0828 30 C9 C9 CB   [ 8]  731 	leax	_bullets,u
    082C 6F 84         [ 6]  732 	clr	,x
    082E E6 6E         [ 5]  733 	ldb	14,s
    0830 4F            [ 2]  734 	clra		;zero_extendqihi: R:b -> R:d
@@ -746,7 +746,7 @@
    0842 49            [ 2]  746 	rola
    0843 ED 64         [ 6]  747 	std	4,s
    0845 AE 64         [ 6]  748 	ldx	4,s
-   0847 31 89 C9 CE   [ 8]  749 	leay	_bullets+1,x
+   0847 31 89 C9 CC   [ 8]  749 	leay	_bullets+1,x
    084B AE 6C         [ 6]  750 	ldx	12,s
    084D AF A4         [ 5]  751 	stx	,y
    084F E6 6E         [ 5]  752 	ldb	14,s
@@ -765,7 +765,7 @@
    0863 49            [ 2]  765 	rola
    0864 ED 62         [ 6]  766 	std	2,s
    0866 EE 62         [ 6]  767 	ldu	2,s
-   0868 30 C9 C9 D2   [ 8]  768 	leax	_bullets+5,u
+   0868 30 C9 C9 D0   [ 8]  768 	leax	_bullets+5,u
    086C E6 6B         [ 5]  769 	ldb	11,s
    086E E7 84         [ 4]  770 	stb	,x
    0870 E6 6E         [ 5]  771 	ldb	14,s
@@ -793,7 +793,7 @@
    0896 49            [ 2]  793 	rola
    0897 ED E4         [ 5]  794 	std	,s
    0899 EE E4         [ 5]  795 	ldu	,s
-   089B 30 C9 C9 D0   [ 8]  796 	leax	_bullets+3,u
+   089B 30 C9 C9 CE   [ 8]  796 	leax	_bullets+3,u
    089F 10 AF 84      [ 6]  797 	sty	,x
    08A2 20 0A         [ 3]  798 	bra	L21
    08A4                     799 L19:
@@ -828,7 +828,7 @@
    08CF 49            [ 2]  828 	rola
    08D0 ED 65         [ 6]  829 	std	5,s
    08D2 EE 65         [ 6]  830 	ldu	5,s
-   08D4 30 C9 C9 CD   [ 8]  831 	leax	_bullets,u
+   08D4 30 C9 C9 CB   [ 8]  831 	leax	_bullets,u
    08D8 E6 84         [ 4]  832 	ldb	,x
                             833 	; tstb	; optimization 6
    08DA 10 26 00 DC   [ 6]  834 	lbne	L24
@@ -888,7 +888,7 @@
    0931 C3 00 01      [ 4]  888 	addd	#1
    0934 58            [ 2]  889 	aslb
    0935 49            [ 2]  890 	rola
-   0936 CE C9 CD      [ 3]  891 	ldu	#_bullets
+   0936 CE C9 CB      [ 3]  891 	ldu	#_bullets
    0939 30 CB         [ 8]  892 	leax	d,u
    093B E6 84         [ 4]  893 	ldb	,x
    093D E7 69         [ 5]  894 	stb	9,s
@@ -908,7 +908,7 @@
    0953 49            [ 2]  908 	rola
    0954 ED 61         [ 6]  909 	std	1,s
    0956 EE 61         [ 6]  910 	ldu	1,s
-   0958 30 C9 C9 CE   [ 8]  911 	leax	_bullets+1,u
+   0958 30 C9 C9 CC   [ 8]  911 	leax	_bullets+1,u
    095C E6 84         [ 4]  912 	ldb	,x
    095E E7 E4         [ 4]  913 	stb	,s
    0960 C6 08         [ 2]  914 	ldb	#8
@@ -926,8 +926,8 @@
    0979 32 65         [ 5]  926 	leas	5,s
    097B 5D            [ 2]  927 	tstb
    097C 27 32         [ 3]  928 	beq	L26
-   097E 8E 56 0D      [ 3]  929 	ldx	#_bang
-   0981 BD 50 E0      [ 8]  930 	jsr	_play_explosion
+   097E 8E 53 D1      [ 3]  929 	ldx	#_bang
+   0981 BD 50 03      [ 8]  930 	jsr	_play_explosion
    0984 10 BE C9 B2   [ 7]  931 	ldy	_player+2
    0988 E6 6B         [ 5]  932 	ldb	11,s
    098A 4F            [ 2]  933 	clra		;zero_extendqihi: R:b -> R:d
@@ -971,7 +971,7 @@
    09C6 35 E0         [ 8]  971 	puls	y,u,pc
                             972 	.area .bss
                             973 	.globl	_bullets
-   C9CD                     974 _bullets:	.blkb	60
+   C9CB                     974 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 

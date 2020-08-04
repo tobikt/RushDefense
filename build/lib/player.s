@@ -73,6 +73,15 @@ _init_player:
 	stx	_player+2
 	clr	_player+4
 	rts
+	.globl _set_player
+_set_player:
+	leas	-1,s
+	stb	,s
+	; ldb	,s	; optimization 5
+	stb	_player
+	clr	_player+4
+	leas	1,s
+	rts
 	.globl _rotate_player
 _rotate_player:
 	leas	-3,s
@@ -82,45 +91,45 @@ _rotate_player:
 	ldb	_Vec_Joy_1_X
 	clr	,s
 	tstb
-	bge	L6
+	bge	L8
 	ldb	#1
 	stb	,s
-L6:
+L8:
 	ldb	,s
 	; tstb	; optimization 6
-	beq	L7
+	beq	L9
 	ldb	_player+1
 	addb	2,s
 	stb	_player+1
 	; ldb	_player+1	; optimization 5
 	cmpb	#62	;cmpqi:
-	bls	L11
+	bls	L13
 	clr	_player+1
-	bra	L11
-L7:
+	bra	L13
+L9:
 	ldb	_Vec_Joy_1_X
 	clr	1,s
 	tstb
-	ble	L10
+	ble	L12
 	ldb	#1
 	stb	1,s
-L10:
+L12:
 	ldb	1,s
 	; tstb	; optimization 6
-	beq	L11
+	beq	L13
 	ldb	_player+1
 	subb	2,s
 	stb	_player+1
 	; ldb	_player+1	; optimization 5
 	cmpb	#64	;cmpqi:
-	bls	L11
+	bls	L13
 	ldb	#63
 	stb	_player+1
-L11:
+L13:
 	leas	3,s
 	rts
 	.area .data
-_timerFireRate.3285:
+_timerFireRate.3290:
 	.byte	20
 	.area .text
 	.globl _shot_player
@@ -129,25 +138,25 @@ _shot_player:
 	jsr	___Read_Btns
 	clr	1,s
 	clr	2,s
-	ldb	_timerFireRate.3285
+	ldb	_timerFireRate.3290
 	; tstb	; optimization 6
-	lbgt	L13
+	lbgt	L15
 	ldb	_Vec_Buttons
 	andb	#8
 	tstb
-	lbeq	L22
+	lbeq	L24
 	ldb	_player
 	stb	,s
 	; ldb	,s	; optimization 5
 	cmpb	#1	;cmpqi:
-	beq	L17
+	beq	L19
 	ldb	,s
 	cmpb	#1	;cmpqi:
-	blo	L16
+	blo	L18
 	; ldb	,s; optimization 8
 	cmpb	#2	;cmpqi:
-	bne	L15
-L18:
+	bne	L17
+L20:
 	ldb	_player+1
 	addb	#-4
 	pshs	b
@@ -155,7 +164,7 @@ L18:
 	ldx	2,s
 	jsr	_fire_bullet
 	leas	1,s
-L17:
+L19:
 	ldb	_player+1
 	addb	#4
 	pshs	b
@@ -163,41 +172,41 @@ L17:
 	ldx	2,s
 	jsr	_fire_bullet
 	leas	1,s
-L16:
+L18:
 	ldb	_player+1
 	pshs	b
 	ldb	#1
 	ldx	2,s
 	jsr	_fire_bullet
 	leas	1,s
-L15:
+L17:
 	ldb	#20
-	stb	_timerFireRate.3285
-	bra	L22
-L13:
+	stb	_timerFireRate.3290
+	bra	L24
+L15:
 	ldb	_player+4
 	; tstb	; optimization 6
-	bne	L20
-	ldb	_timerFireRate.3285
+	bne	L22
+	ldb	_timerFireRate.3290
 	decb
-	stb	_timerFireRate.3285
-	bra	L22
-L20:
+	stb	_timerFireRate.3290
+	bra	L24
+L22:
 	ldb	_player+4
 	cmpb	#1	;cmpqi:
-	bne	L21
-	ldb	_timerFireRate.3285
+	bne	L23
+	ldb	_timerFireRate.3290
 	addb	#-2
-	stb	_timerFireRate.3285
-	bra	L22
-L21:
+	stb	_timerFireRate.3290
+	bra	L24
+L23:
 	ldb	_player+4
 	cmpb	#2	;cmpqi:
-	bne	L22
-	ldb	_timerFireRate.3285
+	bne	L24
+	ldb	_timerFireRate.3290
 	addb	#-5
-	stb	_timerFireRate.3285
-L22:
+	stb	_timerFireRate.3290
+L24:
 	leas	3,s
 	rts
 	.globl _handle_player

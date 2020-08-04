@@ -6,34 +6,34 @@
                               6 	.module	player.c
                               7 	.globl _vectors_player
                               8 	.area .text
-   4BBB                       9 _vectors_player:
-   4BBB FF                   10 	.byte	-1
-   4BBC 04                   11 	.byte	4
-   4BBD 00                   12 	.byte	0
-   4BBE FF                   13 	.byte	-1
-   4BBF 00                   14 	.byte	0
-   4BC0 0C                   15 	.byte	12
-   4BC1 FF                   16 	.byte	-1
-   4BC2 04                   17 	.byte	4
-   4BC3 00                   18 	.byte	0
-   4BC4 FF                   19 	.byte	-1
-   4BC5 F8                   20 	.byte	-8
-   4BC6 28                   21 	.byte	40
-   4BC7 FF                   22 	.byte	-1
-   4BC8 F8                   23 	.byte	-8
-   4BC9 D8                   24 	.byte	-40
-   4BCA FF                   25 	.byte	-1
-   4BCB 04                   26 	.byte	4
-   4BCC 00                   27 	.byte	0
-   4BCD FF                   28 	.byte	-1
-   4BCE 00                   29 	.byte	0
-   4BCF F4                   30 	.byte	-12
-   4BD0 FF                   31 	.byte	-1
-   4BD1 04                   32 	.byte	4
-   4BD2 00                   33 	.byte	0
-   4BD3 01                   34 	.byte	1
-   4BD4 00                   35 	.byte	0
-   4BD5 00                   36 	.byte	0
+   4AD1                       9 _vectors_player:
+   4AD1 FF                   10 	.byte	-1
+   4AD2 04                   11 	.byte	4
+   4AD3 00                   12 	.byte	0
+   4AD4 FF                   13 	.byte	-1
+   4AD5 00                   14 	.byte	0
+   4AD6 0C                   15 	.byte	12
+   4AD7 FF                   16 	.byte	-1
+   4AD8 04                   17 	.byte	4
+   4AD9 00                   18 	.byte	0
+   4ADA FF                   19 	.byte	-1
+   4ADB F8                   20 	.byte	-8
+   4ADC 28                   21 	.byte	40
+   4ADD FF                   22 	.byte	-1
+   4ADE F8                   23 	.byte	-8
+   4ADF D8                   24 	.byte	-40
+   4AE0 FF                   25 	.byte	-1
+   4AE1 04                   26 	.byte	4
+   4AE2 00                   27 	.byte	0
+   4AE3 FF                   28 	.byte	-1
+   4AE4 00                   29 	.byte	0
+   4AE5 F4                   30 	.byte	-12
+   4AE6 FF                   31 	.byte	-1
+   4AE7 04                   32 	.byte	4
+   4AE8 00                   33 	.byte	0
+   4AE9 01                   34 	.byte	1
+   4AEA 00                   35 	.byte	0
+   4AEB 00                   36 	.byte	0
                              37 	.globl _player
                              38 	.area .data
    C9B0                      39 _player:
@@ -42,173 +42,182 @@
    C9B4 00                   42 	.byte	0	;skip space
                              43 	.area .text
                              44 	.globl _draw_player
-   4BD6                      45 _draw_player:
-   4BD6 32 E8 E4      [ 5]   46 	leas	-28,s
-   4BD9 BD F3 54      [ 8]   47 	jsr	___Reset0Ref
-   4BDC C6 7F         [ 2]   48 	ldb	#127
-   4BDE D7 04         [ 4]   49 	stb	*_dp_VIA_t1_cnt_lo
-   4BE0 6F E2         [ 8]   50 	clr	,-s
-   4BE2 5F            [ 2]   51 	clrb
-   4BE3 BD 03 01      [ 8]   52 	jsr	__Moveto_d
-   4BE6 32 61         [ 5]   53 	leas	1,s
-   4BE8 C6 22         [ 2]   54 	ldb	#34
-   4BEA D7 04         [ 4]   55 	stb	*_dp_VIA_t1_cnt_lo
-   4BEC F6 C9 B1      [ 5]   56 	ldb	_player+1
-   4BEF E7 E8 1B      [ 5]   57 	stb	27,s
-   4BF2 30 E4         [ 4]   58 	leax	,s
-   4BF4 34 10         [ 6]   59 	pshs	x
-   4BF6 8E 4B BB      [ 3]   60 	ldx	#_vectors_player
-   4BF9 E6 E8 1D      [ 5]   61 	ldb	29,s
-   4BFC BD 01 E9      [ 8]   62 	jsr	__Rot_VL_Mode
-   4BFF 32 62         [ 5]   63 	leas	2,s
-   4C01 30 E4         [ 4]   64 	leax	,s
-   4C03 BD F4 10      [ 8]   65 	jsr	___Draw_VLp
-   4C06 32 E8 1C      [ 5]   66 	leas	28,s
-   4C09 39            [ 5]   67 	rts
+   4AEC                      45 _draw_player:
+   4AEC 32 E8 E4      [ 5]   46 	leas	-28,s
+   4AEF BD F3 54      [ 8]   47 	jsr	___Reset0Ref
+   4AF2 C6 7F         [ 2]   48 	ldb	#127
+   4AF4 D7 04         [ 4]   49 	stb	*_dp_VIA_t1_cnt_lo
+   4AF6 6F E2         [ 8]   50 	clr	,-s
+   4AF8 5F            [ 2]   51 	clrb
+   4AF9 BD 03 01      [ 8]   52 	jsr	__Moveto_d
+   4AFC 32 61         [ 5]   53 	leas	1,s
+   4AFE C6 22         [ 2]   54 	ldb	#34
+   4B00 D7 04         [ 4]   55 	stb	*_dp_VIA_t1_cnt_lo
+   4B02 F6 C9 B1      [ 5]   56 	ldb	_player+1
+   4B05 E7 E8 1B      [ 5]   57 	stb	27,s
+   4B08 30 E4         [ 4]   58 	leax	,s
+   4B0A 34 10         [ 6]   59 	pshs	x
+   4B0C 8E 4A D1      [ 3]   60 	ldx	#_vectors_player
+   4B0F E6 E8 1D      [ 5]   61 	ldb	29,s
+   4B12 BD 01 E9      [ 8]   62 	jsr	__Rot_VL_Mode
+   4B15 32 62         [ 5]   63 	leas	2,s
+   4B17 30 E4         [ 4]   64 	leax	,s
+   4B19 BD F4 10      [ 8]   65 	jsr	___Draw_VLp
+   4B1C 32 E8 1C      [ 5]   66 	leas	28,s
+   4B1F 39            [ 5]   67 	rts
                              68 	.globl _init_player
-   4C0A                      69 _init_player:
-   4C0A 7F C9 B0      [ 7]   70 	clr	_player
-   4C0D 7F C9 B1      [ 7]   71 	clr	_player+1
-   4C10 8E 00 00      [ 3]   72 	ldx	#0
-   4C13 BF C9 B2      [ 6]   73 	stx	_player+2
-   4C16 7F C9 B4      [ 7]   74 	clr	_player+4
-   4C19 39            [ 5]   75 	rts
-                             76 	.globl _rotate_player
-   4C1A                      77 _rotate_player:
-   4C1A 32 7D         [ 5]   78 	leas	-3,s
-   4C1C C6 01         [ 2]   79 	ldb	#1
-   4C1E E7 62         [ 5]   80 	stb	2,s
-   4C20 BD F1 F8      [ 8]   81 	jsr	___Joy_Digital
-   4C23 F6 C8 1B      [ 5]   82 	ldb	_Vec_Joy_1_X
-   4C26 6F E4         [ 6]   83 	clr	,s
-   4C28 5D            [ 2]   84 	tstb
-   4C29 2C 04         [ 3]   85 	bge	L6
-   4C2B C6 01         [ 2]   86 	ldb	#1
-   4C2D E7 E4         [ 4]   87 	stb	,s
-   4C2F                      88 L6:
-   4C2F E6 E4         [ 4]   89 	ldb	,s
-                             90 	; tstb	; optimization 6
-   4C31 27 11         [ 3]   91 	beq	L7
-   4C33 F6 C9 B1      [ 5]   92 	ldb	_player+1
-   4C36 EB 62         [ 5]   93 	addb	2,s
-   4C38 F7 C9 B1      [ 5]   94 	stb	_player+1
-                             95 	; ldb	_player+1	; optimization 5
-   4C3B C1 3E         [ 2]   96 	cmpb	#62	;cmpqi:
-   4C3D 23 26         [ 3]   97 	bls	L11
-   4C3F 7F C9 B1      [ 7]   98 	clr	_player+1
-   4C42 20 21         [ 3]   99 	bra	L11
-   4C44                     100 L7:
-   4C44 F6 C8 1B      [ 5]  101 	ldb	_Vec_Joy_1_X
-   4C47 6F 61         [ 7]  102 	clr	1,s
-   4C49 5D            [ 2]  103 	tstb
-   4C4A 2F 04         [ 3]  104 	ble	L10
-   4C4C C6 01         [ 2]  105 	ldb	#1
-   4C4E E7 61         [ 5]  106 	stb	1,s
-   4C50                     107 L10:
-   4C50 E6 61         [ 5]  108 	ldb	1,s
-                            109 	; tstb	; optimization 6
-   4C52 27 11         [ 3]  110 	beq	L11
-   4C54 F6 C9 B1      [ 5]  111 	ldb	_player+1
-   4C57 E0 62         [ 5]  112 	subb	2,s
-   4C59 F7 C9 B1      [ 5]  113 	stb	_player+1
-                            114 	; ldb	_player+1	; optimization 5
-   4C5C C1 40         [ 2]  115 	cmpb	#64	;cmpqi:
-   4C5E 23 05         [ 3]  116 	bls	L11
-   4C60 C6 3F         [ 2]  117 	ldb	#63
-   4C62 F7 C9 B1      [ 5]  118 	stb	_player+1
-   4C65                     119 L11:
-   4C65 32 63         [ 5]  120 	leas	3,s
-   4C67 39            [ 5]  121 	rts
-                            122 	.area .data
-   C9B5                     123 _timerFireRate.3285:
-   C9B5 14                  124 	.byte	20
-                            125 	.area .text
-                            126 	.globl _shot_player
-   4C68                     127 _shot_player:
-   4C68 32 7D         [ 5]  128 	leas	-3,s
-   4C6A BD F1 BA      [ 8]  129 	jsr	___Read_Btns
-   4C6D 6F 61         [ 7]  130 	clr	1,s
-   4C6F 6F 62         [ 7]  131 	clr	2,s
-   4C71 F6 C9 B5      [ 5]  132 	ldb	_timerFireRate.3285
-                            133 	; tstb	; optimization 6
-   4C74 10 2E 00 52   [ 6]  134 	lbgt	L13
-   4C78 F6 C8 11      [ 5]  135 	ldb	_Vec_Buttons
-   4C7B C4 08         [ 2]  136 	andb	#8
-   4C7D 5D            [ 2]  137 	tstb
-   4C7E 10 27 00 76   [ 6]  138 	lbeq	L22
-   4C82 F6 C9 B0      [ 5]  139 	ldb	_player
-   4C85 E7 E4         [ 4]  140 	stb	,s
-                            141 	; ldb	,s	; optimization 5
-   4C87 C1 01         [ 2]  142 	cmpb	#1	;cmpqi:
-   4C89 27 1A         [ 3]  143 	beq	L17
-   4C8B E6 E4         [ 4]  144 	ldb	,s
-   4C8D C1 01         [ 2]  145 	cmpb	#1	;cmpqi:
-   4C8F 25 24         [ 3]  146 	blo	L16
-                            147 	; ldb	,s; optimization 8
-   4C91 C1 02         [ 2]  148 	cmpb	#2	;cmpqi:
-   4C93 26 2E         [ 3]  149 	bne	L15
-   4C95                     150 L18:
-   4C95 F6 C9 B1      [ 5]  151 	ldb	_player+1
-   4C98 CB FC         [ 2]  152 	addb	#-4
-   4C9A 34 04         [ 6]  153 	pshs	b
-   4C9C C6 01         [ 2]  154 	ldb	#1
-   4C9E AE 62         [ 6]  155 	ldx	2,s
-   4CA0 BD 07 D4      [ 8]  156 	jsr	_fire_bullet
-   4CA3 32 61         [ 5]  157 	leas	1,s
-   4CA5                     158 L17:
-   4CA5 F6 C9 B1      [ 5]  159 	ldb	_player+1
-   4CA8 CB 04         [ 2]  160 	addb	#4
-   4CAA 34 04         [ 6]  161 	pshs	b
-   4CAC C6 01         [ 2]  162 	ldb	#1
-   4CAE AE 62         [ 6]  163 	ldx	2,s
-   4CB0 BD 07 D4      [ 8]  164 	jsr	_fire_bullet
-   4CB3 32 61         [ 5]  165 	leas	1,s
-   4CB5                     166 L16:
-   4CB5 F6 C9 B1      [ 5]  167 	ldb	_player+1
-   4CB8 34 04         [ 6]  168 	pshs	b
-   4CBA C6 01         [ 2]  169 	ldb	#1
-   4CBC AE 62         [ 6]  170 	ldx	2,s
-   4CBE BD 07 D4      [ 8]  171 	jsr	_fire_bullet
-   4CC1 32 61         [ 5]  172 	leas	1,s
-   4CC3                     173 L15:
-   4CC3 C6 14         [ 2]  174 	ldb	#20
-   4CC5 F7 C9 B5      [ 5]  175 	stb	_timerFireRate.3285
-   4CC8 20 2E         [ 3]  176 	bra	L22
-   4CCA                     177 L13:
-   4CCA F6 C9 B4      [ 5]  178 	ldb	_player+4
-                            179 	; tstb	; optimization 6
-   4CCD 26 09         [ 3]  180 	bne	L20
-   4CCF F6 C9 B5      [ 5]  181 	ldb	_timerFireRate.3285
-   4CD2 5A            [ 2]  182 	decb
-   4CD3 F7 C9 B5      [ 5]  183 	stb	_timerFireRate.3285
-   4CD6 20 20         [ 3]  184 	bra	L22
-   4CD8                     185 L20:
-   4CD8 F6 C9 B4      [ 5]  186 	ldb	_player+4
-   4CDB C1 01         [ 2]  187 	cmpb	#1	;cmpqi:
-   4CDD 26 0A         [ 3]  188 	bne	L21
-   4CDF F6 C9 B5      [ 5]  189 	ldb	_timerFireRate.3285
-   4CE2 CB FE         [ 2]  190 	addb	#-2
-   4CE4 F7 C9 B5      [ 5]  191 	stb	_timerFireRate.3285
-   4CE7 20 0F         [ 3]  192 	bra	L22
-   4CE9                     193 L21:
-   4CE9 F6 C9 B4      [ 5]  194 	ldb	_player+4
-   4CEC C1 02         [ 2]  195 	cmpb	#2	;cmpqi:
-   4CEE 26 08         [ 3]  196 	bne	L22
-   4CF0 F6 C9 B5      [ 5]  197 	ldb	_timerFireRate.3285
-   4CF3 CB FB         [ 2]  198 	addb	#-5
-   4CF5 F7 C9 B5      [ 5]  199 	stb	_timerFireRate.3285
-   4CF8                     200 L22:
-   4CF8 32 63         [ 5]  201 	leas	3,s
-   4CFA 39            [ 5]  202 	rts
-                            203 	.globl _handle_player
-   4CFB                     204 _handle_player:
-   4CFB BD 4C 1A      [ 8]  205 	jsr	_rotate_player
-   4CFE BD 4B D6      [ 8]  206 	jsr	_draw_player
-   4D01 BD 4C 68      [ 8]  207 	jsr	_shot_player
-   4D04 39            [ 5]  208 	rts
-                            209 	.area .bss
-                            210 	.globl	_bullets
-   CA81                     211 _bullets:	.blkb	60
+   4B20                      69 _init_player:
+   4B20 7F C9 B0      [ 7]   70 	clr	_player
+   4B23 7F C9 B1      [ 7]   71 	clr	_player+1
+   4B26 8E 00 00      [ 3]   72 	ldx	#0
+   4B29 BF C9 B2      [ 6]   73 	stx	_player+2
+   4B2C 7F C9 B4      [ 7]   74 	clr	_player+4
+   4B2F 39            [ 5]   75 	rts
+                             76 	.globl _set_player
+   4B30                      77 _set_player:
+   4B30 32 7F         [ 5]   78 	leas	-1,s
+   4B32 E7 E4         [ 4]   79 	stb	,s
+                             80 	; ldb	,s	; optimization 5
+   4B34 F7 C9 B0      [ 5]   81 	stb	_player
+   4B37 7F C9 B4      [ 7]   82 	clr	_player+4
+   4B3A 32 61         [ 5]   83 	leas	1,s
+   4B3C 39            [ 5]   84 	rts
+                             85 	.globl _rotate_player
+   4B3D                      86 _rotate_player:
+   4B3D 32 7D         [ 5]   87 	leas	-3,s
+   4B3F C6 01         [ 2]   88 	ldb	#1
+   4B41 E7 62         [ 5]   89 	stb	2,s
+   4B43 BD F1 F8      [ 8]   90 	jsr	___Joy_Digital
+   4B46 F6 C8 1B      [ 5]   91 	ldb	_Vec_Joy_1_X
+   4B49 6F E4         [ 6]   92 	clr	,s
+   4B4B 5D            [ 2]   93 	tstb
+   4B4C 2C 04         [ 3]   94 	bge	L8
+   4B4E C6 01         [ 2]   95 	ldb	#1
+   4B50 E7 E4         [ 4]   96 	stb	,s
+   4B52                      97 L8:
+   4B52 E6 E4         [ 4]   98 	ldb	,s
+                             99 	; tstb	; optimization 6
+   4B54 27 11         [ 3]  100 	beq	L9
+   4B56 F6 C9 B1      [ 5]  101 	ldb	_player+1
+   4B59 EB 62         [ 5]  102 	addb	2,s
+   4B5B F7 C9 B1      [ 5]  103 	stb	_player+1
+                            104 	; ldb	_player+1	; optimization 5
+   4B5E C1 3E         [ 2]  105 	cmpb	#62	;cmpqi:
+   4B60 23 26         [ 3]  106 	bls	L13
+   4B62 7F C9 B1      [ 7]  107 	clr	_player+1
+   4B65 20 21         [ 3]  108 	bra	L13
+   4B67                     109 L9:
+   4B67 F6 C8 1B      [ 5]  110 	ldb	_Vec_Joy_1_X
+   4B6A 6F 61         [ 7]  111 	clr	1,s
+   4B6C 5D            [ 2]  112 	tstb
+   4B6D 2F 04         [ 3]  113 	ble	L12
+   4B6F C6 01         [ 2]  114 	ldb	#1
+   4B71 E7 61         [ 5]  115 	stb	1,s
+   4B73                     116 L12:
+   4B73 E6 61         [ 5]  117 	ldb	1,s
+                            118 	; tstb	; optimization 6
+   4B75 27 11         [ 3]  119 	beq	L13
+   4B77 F6 C9 B1      [ 5]  120 	ldb	_player+1
+   4B7A E0 62         [ 5]  121 	subb	2,s
+   4B7C F7 C9 B1      [ 5]  122 	stb	_player+1
+                            123 	; ldb	_player+1	; optimization 5
+   4B7F C1 40         [ 2]  124 	cmpb	#64	;cmpqi:
+   4B81 23 05         [ 3]  125 	bls	L13
+   4B83 C6 3F         [ 2]  126 	ldb	#63
+   4B85 F7 C9 B1      [ 5]  127 	stb	_player+1
+   4B88                     128 L13:
+   4B88 32 63         [ 5]  129 	leas	3,s
+   4B8A 39            [ 5]  130 	rts
+                            131 	.area .data
+   C9B5                     132 _timerFireRate.3290:
+   C9B5 14                  133 	.byte	20
+                            134 	.area .text
+                            135 	.globl _shot_player
+   4B8B                     136 _shot_player:
+   4B8B 32 7D         [ 5]  137 	leas	-3,s
+   4B8D BD F1 BA      [ 8]  138 	jsr	___Read_Btns
+   4B90 6F 61         [ 7]  139 	clr	1,s
+   4B92 6F 62         [ 7]  140 	clr	2,s
+   4B94 F6 C9 B5      [ 5]  141 	ldb	_timerFireRate.3290
+                            142 	; tstb	; optimization 6
+   4B97 10 2E 00 52   [ 6]  143 	lbgt	L15
+   4B9B F6 C8 11      [ 5]  144 	ldb	_Vec_Buttons
+   4B9E C4 08         [ 2]  145 	andb	#8
+   4BA0 5D            [ 2]  146 	tstb
+   4BA1 10 27 00 76   [ 6]  147 	lbeq	L24
+   4BA5 F6 C9 B0      [ 5]  148 	ldb	_player
+   4BA8 E7 E4         [ 4]  149 	stb	,s
+                            150 	; ldb	,s	; optimization 5
+   4BAA C1 01         [ 2]  151 	cmpb	#1	;cmpqi:
+   4BAC 27 1A         [ 3]  152 	beq	L19
+   4BAE E6 E4         [ 4]  153 	ldb	,s
+   4BB0 C1 01         [ 2]  154 	cmpb	#1	;cmpqi:
+   4BB2 25 24         [ 3]  155 	blo	L18
+                            156 	; ldb	,s; optimization 8
+   4BB4 C1 02         [ 2]  157 	cmpb	#2	;cmpqi:
+   4BB6 26 2E         [ 3]  158 	bne	L17
+   4BB8                     159 L20:
+   4BB8 F6 C9 B1      [ 5]  160 	ldb	_player+1
+   4BBB CB FC         [ 2]  161 	addb	#-4
+   4BBD 34 04         [ 6]  162 	pshs	b
+   4BBF C6 01         [ 2]  163 	ldb	#1
+   4BC1 AE 62         [ 6]  164 	ldx	2,s
+   4BC3 BD 07 D4      [ 8]  165 	jsr	_fire_bullet
+   4BC6 32 61         [ 5]  166 	leas	1,s
+   4BC8                     167 L19:
+   4BC8 F6 C9 B1      [ 5]  168 	ldb	_player+1
+   4BCB CB 04         [ 2]  169 	addb	#4
+   4BCD 34 04         [ 6]  170 	pshs	b
+   4BCF C6 01         [ 2]  171 	ldb	#1
+   4BD1 AE 62         [ 6]  172 	ldx	2,s
+   4BD3 BD 07 D4      [ 8]  173 	jsr	_fire_bullet
+   4BD6 32 61         [ 5]  174 	leas	1,s
+   4BD8                     175 L18:
+   4BD8 F6 C9 B1      [ 5]  176 	ldb	_player+1
+   4BDB 34 04         [ 6]  177 	pshs	b
+   4BDD C6 01         [ 2]  178 	ldb	#1
+   4BDF AE 62         [ 6]  179 	ldx	2,s
+   4BE1 BD 07 D4      [ 8]  180 	jsr	_fire_bullet
+   4BE4 32 61         [ 5]  181 	leas	1,s
+   4BE6                     182 L17:
+   4BE6 C6 14         [ 2]  183 	ldb	#20
+   4BE8 F7 C9 B5      [ 5]  184 	stb	_timerFireRate.3290
+   4BEB 20 2E         [ 3]  185 	bra	L24
+   4BED                     186 L15:
+   4BED F6 C9 B4      [ 5]  187 	ldb	_player+4
+                            188 	; tstb	; optimization 6
+   4BF0 26 09         [ 3]  189 	bne	L22
+   4BF2 F6 C9 B5      [ 5]  190 	ldb	_timerFireRate.3290
+   4BF5 5A            [ 2]  191 	decb
+   4BF6 F7 C9 B5      [ 5]  192 	stb	_timerFireRate.3290
+   4BF9 20 20         [ 3]  193 	bra	L24
+   4BFB                     194 L22:
+   4BFB F6 C9 B4      [ 5]  195 	ldb	_player+4
+   4BFE C1 01         [ 2]  196 	cmpb	#1	;cmpqi:
+   4C00 26 0A         [ 3]  197 	bne	L23
+   4C02 F6 C9 B5      [ 5]  198 	ldb	_timerFireRate.3290
+   4C05 CB FE         [ 2]  199 	addb	#-2
+   4C07 F7 C9 B5      [ 5]  200 	stb	_timerFireRate.3290
+   4C0A 20 0F         [ 3]  201 	bra	L24
+   4C0C                     202 L23:
+   4C0C F6 C9 B4      [ 5]  203 	ldb	_player+4
+   4C0F C1 02         [ 2]  204 	cmpb	#2	;cmpqi:
+   4C11 26 08         [ 3]  205 	bne	L24
+   4C13 F6 C9 B5      [ 5]  206 	ldb	_timerFireRate.3290
+   4C16 CB FB         [ 2]  207 	addb	#-5
+   4C18 F7 C9 B5      [ 5]  208 	stb	_timerFireRate.3290
+   4C1B                     209 L24:
+   4C1B 32 63         [ 5]  210 	leas	3,s
+   4C1D 39            [ 5]  211 	rts
+                            212 	.globl _handle_player
+   4C1E                     213 _handle_player:
+   4C1E BD 4B 3D      [ 8]  214 	jsr	_rotate_player
+   4C21 BD 4A EC      [ 8]  215 	jsr	_draw_player
+   4C24 BD 4B 8B      [ 8]  216 	jsr	_shot_player
+   4C27 39            [ 5]  217 	rts
+                            218 	.area .bss
+                            219 	.globl	_bullets
+   CA7F                     220 _bullets:	.blkb	60
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 
@@ -216,22 +225,22 @@ Symbol Table
 
     .__.$$$.       =   2710 L   |     .__.ABS.       =   0000 G
     .__.CPU.       =   0000 L   |     .__.H$L.       =   0001 L
-  2 L10                0095 R   |   2 L11                00AA R
-  2 L13                010F R   |   2 L15                0108 R
-  2 L16                00FA R   |   2 L17                00EA R
-  2 L18                00DA R   |   2 L20                011D R
-  2 L21                012E R   |   2 L22                013D R
-  2 L6                 0074 R   |   2 L7                 0089 R
+  2 L12                00A2 R   |   2 L13                00B7 R
+  2 L15                011C R   |   2 L17                0115 R
+  2 L18                0107 R   |   2 L19                00F7 R
+  2 L20                00E7 R   |   2 L22                012A R
+  2 L23                013B R   |   2 L24                014A R
+  2 L8                 0081 R   |   2 L9                 0096 R
     _Vec_Buttons       **** GX  |     _Vec_Joy_1_X       **** GX
     __Moveto_d         **** GX  |     __Rot_VL_Mode      **** GX
     ___Draw_VLp        **** GX  |     ___Joy_Digital     **** GX
     ___Read_Btns       **** GX  |     ___Reset0Ref       **** GX
   4 _bullets           0000 GR  |     _dp_VIA_t1_cnt     **** GX
   2 _draw_player       001B GR  |     _fire_bullet       **** GX
-  2 _handle_player     0140 GR  |   2 _init_player       004F GR
-  3 _player            0000 GR  |   2 _rotate_player     005F GR
-  2 _shot_player       00AD GR  |   3 _timerFireRate     0005 R
-  2 _vectors_playe     0000 GR
+  2 _handle_player     014D GR  |   2 _init_player       004F GR
+  3 _player            0000 GR  |   2 _rotate_player     006C GR
+  2 _set_player        005F GR  |   2 _shot_player       00BA GR
+  3 _timerFireRate     0005 R   |   2 _vectors_playe     0000 GR
 
 ASxxxx Assembler V05.00  (Motorola 6809), page 2.
 Hexidecimal [16-Bits]
@@ -240,7 +249,7 @@ Area Table
 
 [_CSEG]
    0 _CODE            size    0   flags C080
-   2 .text            size  14A   flags  100
+   2 .text            size  157   flags  100
    3 .data            size    6   flags  100
    4 .bss             size   3C   flags    0
 [_DSEG]

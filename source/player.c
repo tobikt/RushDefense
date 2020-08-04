@@ -6,10 +6,13 @@
 #include "utils/controller.h"
 #include "utils/utils.h"
 #include "utils/vector.h"
+
 #include "game.h"
+
 #include "player.h"
-#include "player_lvl.h"
 #include "bullet.h"
+#include "player_lvl.h"
+#include "RushDefenseDefine.h"
 
 // ---------------------------------------------------------------------------
 
@@ -51,6 +54,14 @@ void init_player(void)
 
 // ---------------------------------------------------------------------------
 
+void set_player(enum player_lvl_t lvl)
+{
+	player.lvl = lvl;
+	player.firerate = PLAYER_FIRERATE_1;
+}
+
+// ---------------------------------------------------------------------------
+
 void rotate_player(void)
 {
 	const unsigned int speed = 1;
@@ -76,7 +87,7 @@ void rotate_player(void)
 
 void shot_player(void)
 {
-	static int timerFireRate = 20;
+	static int timerFireRate = PLAYER_FIRE_RATE_TIME;
 
 	check_buttons();
 	
@@ -97,7 +108,7 @@ void shot_player(void)
 				case P_LEVEL_1:
 					fire_bullet(vec,1,player.angle);
 			};
-			timerFireRate = 20;
+			timerFireRate = PLAYER_FIRE_RATE_TIME;
 		}
 	}
 	else

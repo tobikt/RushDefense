@@ -1,3 +1,8 @@
+#pragma once
+#include <vectrex.h>
+#include "utils/controller.h"
+#include "utils/utils.h"
+#include "utils/vector.h"
 
 #undef SF
 #define SF 4
@@ -14,3 +19,4 @@ const struct packet_t vectors_player[] =
 	{DRAW, {  1 * SF, 0 * SF}},
 	{STOP, { 0, 0}},
 };
+

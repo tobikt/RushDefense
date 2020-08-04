@@ -2139,6 +2139,7 @@ struct packet_t
  struct vector_t vector;
 };
 # 9 "source\\player.c" 2
+
 # 1 "source\\/game.h" 1
 
 
@@ -2177,7 +2178,8 @@ void game_init(void);
 void game_play(void);
 void game_over(void);
 void game_win(void);
-# 10 "source\\player.c" 2
+# 11 "source\\player.c" 2
+
 # 1 "source\\/player.h" 1
 
 
@@ -2217,27 +2219,10 @@ extern struct player_t player;
 
 
 
+void set_player(enum player_lvl_t lvl);
 void init_player(void);
 void handle_player(void);
-# 11 "source\\player.c" 2
-# 1 "source\\/player_lvl.h" 1
-
-
-
-
-const struct packet_t vectors_player[] =
-{
- {DRAW, { 1 * 4, 0 * 4}},
- {DRAW, { 0 * 4, 3 * 4}},
- {DRAW, { 1 * 4, 0 * 4}},
- {DRAW, { -2 * 4, 10 * 4}},
- {DRAW, { -2 * 4, -10 * 4}},
- {DRAW, { 1 * 4, 0 * 4}},
- {DRAW, { 0 * 4, -3 * 4}},
- {DRAW, { 1 * 4, 0 * 4}},
- {STOP, { 0, 0}},
-};
-# 12 "source\\player.c" 2
+# 13 "source\\player.c" 2
 # 1 "source\\/bullet.h" 1
 
 
@@ -2300,7 +2285,30 @@ void move_bullet(unsigned int i);
 
 void fire_bullet(struct vector2 coor, int speed, unsigned int angle);
 void check_bulletCollision(void);
-# 13 "source\\player.c" 2
+# 14 "source\\player.c" 2
+# 1 "source\\/player_lvl.h" 1
+       
+# 10 "source\\/player_lvl.h"
+const struct packet_t vectors_player[] =
+{
+ {DRAW, { 1 * 4, 0 * 4}},
+ {DRAW, { 0 * 4, 3 * 4}},
+ {DRAW, { 1 * 4, 0 * 4}},
+ {DRAW, { -2 * 4, 10 * 4}},
+ {DRAW, { -2 * 4, -10 * 4}},
+ {DRAW, { 1 * 4, 0 * 4}},
+ {DRAW, { 0 * 4, -3 * 4}},
+ {DRAW, { 1 * 4, 0 * 4}},
+ {STOP, { 0, 0}},
+};
+# 15 "source\\player.c" 2
+# 1 "source\\/RushDefenseDefine.h" 1
+
+
+
+
+       
+# 16 "source\\player.c" 2
 
 
 
@@ -2337,6 +2345,14 @@ void init_player(void)
  player.lvl = P_LEVEL_1;
  player.angle = 0;
  player.money = 0;
+ player.firerate = PLAYER_FIRERATE_1;
+}
+
+
+
+void set_player(enum player_lvl_t lvl)
+{
+ player.lvl = lvl;
  player.firerate = PLAYER_FIRERATE_1;
 }
 

@@ -6,10 +6,15 @@
 #include "utils/utils.h"
 #include "utils/controller.h"
 #include "utils/print.h"
+
 #include "menu.h"
+
 #include "player.h"
 #include "tower.h"
-#include "tower_lvl.h"
+#include "tower_costs.h"
+#include "player_costs.h"
+
+
 
 // ---------------------------------------------------------------------------
 
@@ -42,12 +47,20 @@ void menu_handle(void)
 	check_joysticks();
 	check_buttons();
 	
+	// ------  CHEAT CODE ----------
 	if (button_1_3_pressed())
+	{	
+		player.money = 9999;
+	}
+	// ------  CHEAT CODE ----------
+	
+		
+	if (button_1_1_pressed())
 	{
 		//BACK TO GAME
 		Menu.status = MENU_CLOSE;
 	}
-	else if (button_1_4_pressed())
+	else if (button_1_2_pressed())
 	{
 		//LVL UP
 		if(Menu.selectedItem == SELECTEDITEM_PLAYER_LVL)
@@ -59,18 +72,25 @@ void menu_handle(void)
 				switch(player.lvl)
 				{
 					case P_LEVEL_1:
-						player.lvl = P_LEVEL_2;
+						if(player.money > playercost[1].lvl_cost)
+						{
+							player.money -= playercost[1].lvl_cost;
+							set_player(P_LEVEL_2);
+						}	
 						break;
 					case P_LEVEL_2:
-						player.lvl = P_LEVEL_3;
+						if(player.money > playercost[2].lvl_cost)
+						{
+							player.money -= playercost[2].lvl_cost;
+							set_player(P_LEVEL_3);
+						}
 						break;
 					case P_LEVEL_3:	
 						break;
 					default:
-						player.lvl = P_LEVEL_1;
+						set_player(P_LEVEL_1);
 						break;
 				};
-				player.firerate = PLAYER_FIRERATE_1;
 			}	
 		}
 		else if(Menu.selectedItem == SELECTEDITEM_PLAYER_RATE)
@@ -79,10 +99,18 @@ void menu_handle(void)
 			switch(player.firerate)
 			{
 				case PLAYER_FIRERATE_1:
-					player.firerate = PLAYER_FIRERATE_2;
+					if(player.money > playercost[player.lvl].firerate_2_cost)
+					{
+						player.money -= playercost[player.lvl].firerate_2_cost;
+						player.firerate = PLAYER_FIRERATE_2;
+					}
 					break;
 				case PLAYER_FIRERATE_2:
-					player.firerate = PLAYER_FIRERATE_3;
+					if(player.money > playercost[player.lvl].firerate_3_cost)
+					{
+						player.money -= playercost[player.lvl].firerate_3_cost;
+						player.firerate = PLAYER_FIRERATE_3;
+					}
 					break;
 				case PLAYER_FIRERATE_3:
 					break;
@@ -121,20 +149,6 @@ void menu_handle(void)
 						}
 						break;
 					case LEVEL_4:
-						if(player.money > towercost[4].lvl_cost)
-						{
-							player.money -= towercost[4].lvl_cost;	
-							set_tower(LEVEL_5);
-						}
-						break;
-					case LEVEL_5:
-						if(player.money > towercost[5].lvl_cost)
-						{
-							player.money -= towercost[5].lvl_cost;	
-							set_tower(LEVEL_6);
-						}
-						break;
-					case LEVEL_6:
 						break;
 					default:
 						break;
@@ -278,12 +292,6 @@ void menu_draw(void)
 			case LEVEL_4:
 				print_unsigned_int(20, 40, 4);
 				break;
-			case LEVEL_5:
-				print_unsigned_int(20, 40, 5);
-				break;
-			case LEVEL_6:
-				print_unsigned_int(20, 40, 6);
-				break;
 			default:
 				print_unsigned_int(20, 40, 100);
 				break;
@@ -356,12 +364,6 @@ void menu_draw(void)
 				break;
 			case LEVEL_4:
 				print_unsigned_int(20, 40, 4);
-				break;
-			case LEVEL_5:
-				print_unsigned_int(20, 40, 5);
-				break;
-			case LEVEL_6:
-				print_unsigned_int(20, 40, 6);
 				break;
 			default:
 				print_unsigned_int(20, 40, 100);
@@ -436,12 +438,6 @@ void menu_draw(void)
 			case LEVEL_4:
 				print_unsigned_int(20, 40, 4);
 				break;
-			case LEVEL_5:
-				print_unsigned_int(20, 40, 5);
-				break;
-			case LEVEL_6:
-				print_unsigned_int(20, 40, 6);
-				break;
 			default:
 				print_unsigned_int(20, 40, 100);
 				break;
@@ -514,12 +510,6 @@ void menu_draw(void)
 				break;
 			case LEVEL_4:
 				print_unsigned_int(20, 40, 4);
-				break;
-			case LEVEL_5:
-				print_unsigned_int(20, 40, 5);
-				break;
-			case LEVEL_6:
-				print_unsigned_int(20, 40, 6);
 				break;
 			default:
 				print_unsigned_int(20, 40, 100);

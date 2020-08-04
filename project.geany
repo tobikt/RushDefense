@@ -18,7 +18,7 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=Game Demo
+name=Rush Defense
 base_path=.\\
 description=
 file_patterns=*.c;*.h;
@@ -28,13 +28,22 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=7603;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cenemy_data.h;0;4
-FILE_NAME_1=2376;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cwaves_data.h;0;4
-FILE_NAME_2=1413;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cenemy.c;0;4
-FILE_NAME_3=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cenemy.h;0;4
-FILE_NAME_4=625;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cobject.h;0;4
-FILE_NAME_5=0;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cobject.c;0;4
+current_page=14
+FILE_NAME_0=208;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower.h;0;4
+FILE_NAME_1=0;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cwave.c;0;4
+FILE_NAME_2=147;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer_lvl.h;0;4
+FILE_NAME_3=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower_lvl.h;0;4
+FILE_NAME_4=2002;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer.c;0;4
+FILE_NAME_5=209;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer.h;0;4
+FILE_NAME_6=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cmenu.h;0;4
+FILE_NAME_7=1186;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cmenu.c;0;4
+FILE_NAME_8=303;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower.c;0;4
+FILE_NAME_9=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower_costs.h;0;4
+FILE_NAME_10=211;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer_costs.h;0;4
+FILE_NAME_11=241;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cbullet.h;0;4
+FILE_NAME_12=1770;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cgame.c;0;4
+FILE_NAME_13=550;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cgame.h;0;4
+FILE_NAME_14=21694;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cwaves_data.h;0;4
 
 [build-menu]
 NF_00_LB=_Make

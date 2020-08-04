@@ -2118,6 +2118,7 @@ void print_long_unsigned_int(int y, int x, long unsigned int z);
 void print_long_signed_int(int y, int x, long signed int z);
 void print_binary(int y, int x, unsigned int z);
 # 9 "source\\menu.c" 2
+
 # 1 "source\\/menu.h" 1
 
 
@@ -2157,7 +2158,8 @@ void menu_init(void);
 void menu_handle(void);
 void menu_open(void);
 void menu_draw(void);
-# 10 "source\\menu.c" 2
+# 11 "source\\menu.c" 2
+
 # 1 "source\\/player.h" 1
 
 
@@ -2197,15 +2199,17 @@ extern struct player_t player;
 
 
 
+void set_player(enum player_lvl_t lvl);
 void init_player(void);
 void handle_player(void);
-# 11 "source\\menu.c" 2
+# 13 "source\\menu.c" 2
 # 1 "source\\/tower.h" 1
 
 
 
 
        
+
 
 
 
@@ -2222,8 +2226,6 @@ enum tower_lvl_t
  LEVEL_2,
  LEVEL_3,
  LEVEL_4,
- LEVEL_5,
- LEVEL_6,
 };
 
 enum tower_firerate_t
@@ -2254,51 +2256,8 @@ extern struct tower_t tower;
 void set_tower(enum tower_lvl_t lvl);
 void init_tower(void);
 void handle_tower(void);
-# 12 "source\\menu.c" 2
-# 1 "source\\/tower_lvl.h" 1
-
-
-
-
-# 1 "source\\/utils/vector.h" 1
-
-
-
-
-       
-
-
-
-
-struct vector_t
-{
- int y;
- int x;
-};
-
-
-
-
-enum mode_t
-{
- MOVE = 0,
- STOP = 1,
- DRAW = 255
-};
-
-
-
-
-struct packet_t
-{
- enum mode_t mode;
- struct vector_t vector;
-};
-# 6 "source\\/tower_lvl.h" 2
-
-
-
-
+# 14 "source\\menu.c" 2
+# 1 "source\\/tower_costs.h" 1
 struct tower_cost
 {
  unsigned long lvl_cost;
@@ -2333,121 +2292,41 @@ const struct tower_cost towercost[] =
   .firerate_2_cost = 200,
   .firerate_3_cost = 250,
  },
+};
+# 15 "source\\menu.c" 2
+# 1 "source\\/player_costs.h" 1
+struct player_cost
+{
+ unsigned long lvl_cost;
+ unsigned long firerate_2_cost;
+ unsigned long firerate_3_cost;
+};
+
+
+const struct player_cost playercost[] =
+{
 
  {
-  .lvl_cost = 200,
-  .firerate_2_cost = 400,
+  .lvl_cost = 0,
+  .firerate_2_cost = 50,
+  .firerate_3_cost = 100,
+ },
+
+ {
+  .lvl_cost = 300,
+  .firerate_2_cost = 500,
   .firerate_3_cost = 600,
  },
 
  {
-  .lvl_cost = 500,
-  .firerate_2_cost = 800,
-  .firerate_3_cost = 900,
- }
+  .lvl_cost = 1500,
+  .firerate_2_cost = 2000,
+  .firerate_3_cost = 3000,
+ },
 };
-
-const struct packet_t vectors_tower_lvl_1[] =
-{
- {MOVE, { 1 * 16, 0 * 16}},
- {DRAW, { 0 * 16, 1 * 16}},
- {DRAW, { -2 * 16, 0 * 16}},
- {MOVE, { 2 * 16, 0 * 16}},
- {DRAW, { -1 * 16, 1 * 16}},
- {DRAW, { -1 * 16, -1 * 16}},
- {DRAW, { 0 * 16, -2 * 16}},
- {DRAW, { 2 * 16, 0 * 16}},
- {DRAW, { 0 * 16, 1 * 16}},
- {STOP, { 0, 0}},
-};
-
-const struct packet_t vectors_tower_lvl_2[] =
-{
- {MOVE, { 1 * 16, 0 * 16}},
- {DRAW, { 0 * 16, 1 * 16}},
- {DRAW, { -2 * 16, 0 * 16}},
- {MOVE, { 2 * 16, 0 * 16}},
- {DRAW, { -1 * 16, 1 * 16}},
- {DRAW, { -1 * 16, -1 * 16}},
- {DRAW, { 0 * 16, -2 * 16}},
- {DRAW, { 2 * 16, 0 * 16}},
- {MOVE, { -2 * 16, 0 * 16}},
- {DRAW, { 1 * 16, -1 * 16}},
- {DRAW, { 1 * 16, 1 * 16}},
- {DRAW, { 0 * 16, 1 * 16}},
- {STOP, { 0, 0}},
-};
-
-const struct packet_t vectors_tower_lvl_3[] =
-{
- {MOVE, { 2 * 16, 0 * 16}},
- {DRAW, { -1 * 16, 1 * 16}},
- {DRAW, { 0 * 16, -2 * 16}},
- {MOVE, { 0 * 16, 2 * 16}},
- {DRAW, { -2 * 16, 0 * 16}},
- {MOVE, { 2 * 16, 0 * 16}},
- {DRAW, { -1 * 16, 1 * 16}},
- {DRAW, { -1 * 16, -1 * 16}},
- {DRAW, { 0 * 16, -2 * 16}},
- {DRAW, { 2 * 16, 0 * 16}},
- {MOVE, { -2 * 16, 0 * 16}},
- {DRAW, { 1 * 16, -1 * 16}},
- {DRAW, { 1 * 16, 1 * 16}},
- {DRAW, { 1 * 16, 1 * 16}},
- {STOP, { 0, 0}},
-};
-
-const struct packet_t vectors_tower_lvl_4[] =
-{
- {MOVE, { 2 * 16, 0 * 16}},
- {DRAW, { -1 * 16, 1 * 16}},
- {DRAW, { 0 * 16, -2 * 16}},
- {MOVE, { 0 * 16, 2 * 16}},
- {DRAW, { -2 * 16, 0 * 16}},
- {MOVE, { 2 * 16, 0 * 16}},
- {DRAW, { -1 * 16, 1 * 16}},
- {DRAW, { -1 * 16, -1 * 16}},
- {DRAW, { 0 * 16, -2 * 16}},
- {MOVE, { 0 * 16, 2 * 16}},
- {DRAW, { -1 * 16, -1 * 16}},
- {DRAW, { 1 * 16, -1 * 16}},
- {DRAW, { 2 * 16, 0 * 16}},
- {MOVE, { -2 * 16, 0 * 16}},
- {DRAW, { 1 * 16, -1 * 16}},
- {DRAW, { 1 * 16, 1 * 16}},
- {DRAW, { 1 * 16, 1 * 16}},
- {STOP, { 0, 0}},
-};
-
-const struct packet_t vectors_tower_lvl_5[] =
-{
- {MOVE, { 2.5 * 16, 0 * 16}},
- {DRAW, { 0 * 16, 1.5 * 16}},
- {DRAW, { -2.5 * 16, 1.5 * 16}},
- {DRAW, { -2.5 * 16, -1.5 * 16}},
- {DRAW, { 0 * 16, -3 * 16}},
- {DRAW, { 2.5 * 16, -1.5 * 16}},
- {DRAW, { 2.5 * 16, 1.5 * 16}},
- {DRAW, { 0 * 16, 1.5 * 16}},
- {STOP, { 0, 0}},
-};
+# 16 "source\\menu.c" 2
 
 
-
-
-const struct packet_t vectors_tower_lvl_6[] =
-{
- {MOVE, { 2.5 * 32, 0 * 32}},
- {DRAW, { 0 * 32, 1.5 * 32}},
- {DRAW, { -2.5 * 32, 1.5 * 32}},
- {DRAW, { -2.5 * 32, -1.5 * 32}},
- {DRAW, { 0 * 32, -3 * 32}},
- {DRAW, { 2.5 * 32, -1.5 * 32}},
- {DRAW, { 2.5 * 32, 1.5 * 32}},
- {DRAW, { 0 * 32, 1.5 * 32}},
- {STOP, { 0, 0}},
-};
-# 13 "source\\menu.c" 2
 
 
 
@@ -2480,12 +2359,20 @@ void menu_handle(void)
  check_joysticks();
  check_buttons();
 
+
  if (button_1_3_pressed())
+ {
+  player.money = 9999;
+ }
+
+
+
+ if (button_1_1_pressed())
  {
 
   Menu.status = MENU_CLOSE;
  }
- else if (button_1_4_pressed())
+ else if (button_1_2_pressed())
  {
 
   if(Menu.selectedItem == SELECTEDITEM_PLAYER_LVL)
@@ -2497,18 +2384,25 @@ void menu_handle(void)
     switch(player.lvl)
     {
      case P_LEVEL_1:
-      player.lvl = P_LEVEL_2;
+      if(player.money > playercost[1].lvl_cost)
+      {
+       player.money -= playercost[1].lvl_cost;
+       set_player(P_LEVEL_2);
+      }
       break;
      case P_LEVEL_2:
-      player.lvl = P_LEVEL_3;
+      if(player.money > playercost[2].lvl_cost)
+      {
+       player.money -= playercost[2].lvl_cost;
+       set_player(P_LEVEL_3);
+      }
       break;
      case P_LEVEL_3:
       break;
      default:
-      player.lvl = P_LEVEL_1;
+      set_player(P_LEVEL_1);
       break;
     };
-    player.firerate = PLAYER_FIRERATE_1;
    }
   }
   else if(Menu.selectedItem == SELECTEDITEM_PLAYER_RATE)
@@ -2517,10 +2411,18 @@ void menu_handle(void)
    switch(player.firerate)
    {
     case PLAYER_FIRERATE_1:
-     player.firerate = PLAYER_FIRERATE_2;
+     if(player.money > playercost[player.lvl].firerate_2_cost)
+     {
+      player.money -= playercost[player.lvl].firerate_2_cost;
+      player.firerate = PLAYER_FIRERATE_2;
+     }
      break;
     case PLAYER_FIRERATE_2:
-     player.firerate = PLAYER_FIRERATE_3;
+     if(player.money > playercost[player.lvl].firerate_3_cost)
+     {
+      player.money -= playercost[player.lvl].firerate_3_cost;
+      player.firerate = PLAYER_FIRERATE_3;
+     }
      break;
     case PLAYER_FIRERATE_3:
      break;
@@ -2559,20 +2461,6 @@ void menu_handle(void)
       }
       break;
      case LEVEL_4:
-      if(player.money > towercost[4].lvl_cost)
-      {
-       player.money -= towercost[4].lvl_cost;
-       set_tower(LEVEL_5);
-      }
-      break;
-     case LEVEL_5:
-      if(player.money > towercost[5].lvl_cost)
-      {
-       player.money -= towercost[5].lvl_cost;
-       set_tower(LEVEL_6);
-      }
-      break;
-     case LEVEL_6:
       break;
      default:
       break;
@@ -2716,12 +2604,6 @@ void menu_draw(void)
    case LEVEL_4:
     print_unsigned_int(20, 40, 4);
     break;
-   case LEVEL_5:
-    print_unsigned_int(20, 40, 5);
-    break;
-   case LEVEL_6:
-    print_unsigned_int(20, 40, 6);
-    break;
    default:
     print_unsigned_int(20, 40, 100);
     break;
@@ -2794,12 +2676,6 @@ void menu_draw(void)
     break;
    case LEVEL_4:
     print_unsigned_int(20, 40, 4);
-    break;
-   case LEVEL_5:
-    print_unsigned_int(20, 40, 5);
-    break;
-   case LEVEL_6:
-    print_unsigned_int(20, 40, 6);
     break;
    default:
     print_unsigned_int(20, 40, 100);
@@ -2874,12 +2750,6 @@ void menu_draw(void)
    case LEVEL_4:
     print_unsigned_int(20, 40, 4);
     break;
-   case LEVEL_5:
-    print_unsigned_int(20, 40, 5);
-    break;
-   case LEVEL_6:
-    print_unsigned_int(20, 40, 6);
-    break;
    default:
     print_unsigned_int(20, 40, 100);
     break;
@@ -2952,12 +2822,6 @@ void menu_draw(void)
     break;
    case LEVEL_4:
     print_unsigned_int(20, 40, 4);
-    break;
-   case LEVEL_5:
-    print_unsigned_int(20, 40, 5);
-    break;
-   case LEVEL_6:
-    print_unsigned_int(20, 40, 6);
     break;
    default:
     print_unsigned_int(20, 40, 100);

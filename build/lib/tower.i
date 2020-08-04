@@ -2139,6 +2139,62 @@ struct packet_t
  struct vector_t vector;
 };
 # 9 "source\\tower.c" 2
+
+# 1 "source\\/tower.h" 1
+
+
+
+
+       
+
+
+
+
+
+enum tower_status_t
+{
+ DEAD,
+ ALIVE,
+};
+
+enum tower_lvl_t
+{
+ LEVEL_1,
+ LEVEL_2,
+ LEVEL_3,
+ LEVEL_4,
+};
+
+enum tower_firerate_t
+{
+ TOWER_FIRERATE_1,
+ TOWER_FIRERATE_2,
+ TOWER_FIRERATE_3,
+};
+
+
+
+struct tower_t
+{
+ enum tower_status_t status;
+ enum tower_lvl_t lvl;
+ enum tower_firerate_t firerate;
+ unsigned int angle;
+ unsigned int healtPoints;
+ unsigned int towerBullets[];
+};
+
+
+
+extern struct tower_t tower;
+
+
+
+void set_tower(enum tower_lvl_t lvl);
+void init_tower(void);
+void handle_tower(void);
+# 11 "source\\tower.c" 2
+
 # 1 "source\\/game.h" 1
 
 
@@ -2177,7 +2233,7 @@ void game_init(void);
 void game_play(void);
 void game_over(void);
 void game_win(void);
-# 10 "source\\tower.c" 2
+# 13 "source\\tower.c" 2
 # 1 "source\\/wave.h" 1
 
 
@@ -2216,8 +2272,30 @@ extern struct wave_t current_wave;
 
 void wave_init(void);
 void wave_play(void);
-# 11 "source\\tower.c" 2
-# 1 "source\\/tower.h" 1
+# 14 "source\\tower.c" 2
+# 1 "source\\/vector2.h" 1
+
+
+
+
+       
+
+
+
+struct vector2
+{
+
+
+
+
+   int Y;
+   int X;
+
+
+
+};
+# 15 "source\\tower.c" 2
+# 1 "source\\/bullet.h" 1
 
 
 
@@ -2227,101 +2305,48 @@ void wave_play(void);
 
 
 
-enum tower_status_t
-{
- DEAD,
- ALIVE,
-};
 
-enum tower_lvl_t
-{
- LEVEL_1,
- LEVEL_2,
- LEVEL_3,
- LEVEL_4,
- LEVEL_5,
- LEVEL_6,
-};
 
-enum tower_firerate_t
+enum bullet_state_t
 {
- TOWER_FIRERATE_1,
- TOWER_FIRERATE_2,
- TOWER_FIRERATE_3,
+ BULLET_SHOT,
+ BULLET_UNSHOT,
 };
 
 
 
-struct tower_t
+struct bullet_t
 {
- enum tower_status_t status;
- enum tower_lvl_t lvl;
- enum tower_firerate_t firerate;
- unsigned int angle;
- unsigned int healtPoints;
- unsigned int towerBullets[];
+ enum bullet_state_t state;
+ struct vector2 coor;
+ struct vector2 angle;
+ int speed;
 };
 
 
 
-extern struct tower_t tower;
+struct bullet_t bullets[10];
+
+
+void init_bullets();
+void draw_bullets();
+
+void draw_bullet(unsigned int i);
+void move_bullet(unsigned int i);
+
+void fire_bullet(struct vector2 coor, int speed, unsigned int angle);
+void check_bulletCollision(void);
+# 16 "source\\tower.c" 2
+# 1 "source\\/RushDefenseDefine.h" 1
 
 
 
-void set_tower(enum tower_lvl_t lvl);
-void init_tower(void);
-void handle_tower(void);
-# 12 "source\\tower.c" 2
+
+       
+# 17 "source\\tower.c" 2
 # 1 "source\\/tower_lvl.h" 1
+       
 # 10 "source\\/tower_lvl.h"
-struct tower_cost
-{
- unsigned long lvl_cost;
- unsigned long firerate_2_cost;
- unsigned long firerate_3_cost;
-};
-
-
-const struct tower_cost towercost[] =
-{
-
- {
-  .lvl_cost = 0,
-  .firerate_2_cost = 10,
-  .firerate_3_cost = 20,
- },
-
- {
-  .lvl_cost = 20,
-  .firerate_2_cost = 40,
-  .firerate_3_cost = 50,
- },
-
- {
-  .lvl_cost = 50,
-  .firerate_2_cost = 100,
-  .firerate_3_cost = 200,
- },
-
- {
-  .lvl_cost = 100,
-  .firerate_2_cost = 200,
-  .firerate_3_cost = 250,
- },
-
- {
-  .lvl_cost = 200,
-  .firerate_2_cost = 400,
-  .firerate_3_cost = 600,
- },
-
- {
-  .lvl_cost = 500,
-  .firerate_2_cost = 800,
-  .firerate_3_cost = 900,
- }
-};
-
 const struct packet_t vectors_tower_lvl_1[] =
 {
  {MOVE, { 1 * 16, 0 * 16}},
@@ -2393,107 +2418,7 @@ const struct packet_t vectors_tower_lvl_4[] =
  {DRAW, { 1 * 16, 1 * 16}},
  {STOP, { 0, 0}},
 };
-
-const struct packet_t vectors_tower_lvl_5[] =
-{
- {MOVE, { 2.5 * 16, 0 * 16}},
- {DRAW, { 0 * 16, 1.5 * 16}},
- {DRAW, { -2.5 * 16, 1.5 * 16}},
- {DRAW, { -2.5 * 16, -1.5 * 16}},
- {DRAW, { 0 * 16, -3 * 16}},
- {DRAW, { 2.5 * 16, -1.5 * 16}},
- {DRAW, { 2.5 * 16, 1.5 * 16}},
- {DRAW, { 0 * 16, 1.5 * 16}},
- {STOP, { 0, 0}},
-};
-
-
-
-
-const struct packet_t vectors_tower_lvl_6[] =
-{
- {MOVE, { 2.5 * 32, 0 * 32}},
- {DRAW, { 0 * 32, 1.5 * 32}},
- {DRAW, { -2.5 * 32, 1.5 * 32}},
- {DRAW, { -2.5 * 32, -1.5 * 32}},
- {DRAW, { 0 * 32, -3 * 32}},
- {DRAW, { 2.5 * 32, -1.5 * 32}},
- {DRAW, { 2.5 * 32, 1.5 * 32}},
- {DRAW, { 0 * 32, 1.5 * 32}},
- {STOP, { 0, 0}},
-};
-# 13 "source\\tower.c" 2
-# 1 "source\\/vector2.h" 1
-
-
-
-
-       
-
-
-
-struct vector2
-{
-
-
-
-
-   int Y;
-   int X;
-
-
-
-};
-# 14 "source\\tower.c" 2
-# 1 "source\\/bullet.h" 1
-
-
-
-
-       
-
-
-
-
-
-
-enum bullet_state_t
-{
- BULLET_SHOT,
- BULLET_UNSHOT,
-};
-
-
-
-struct bullet_t
-{
- enum bullet_state_t state;
- struct vector2 coor;
- struct vector2 angle;
- int speed;
-};
-
-
-
-struct bullet_t bullets[10];
-
-
-void init_bullets();
-void draw_bullets();
-
-void draw_bullet(unsigned int i);
-void move_bullet(unsigned int i);
-
-void fire_bullet(struct vector2 coor, int speed, unsigned int angle);
-void check_bulletCollision(void);
-# 15 "source\\tower.c" 2
-# 1 "source\\/RushDefenseDefine.h" 1
-
-
-
-
-       
-# 16 "source\\tower.c" 2
+# 18 "source\\tower.c" 2
 
 
 
@@ -2504,7 +2429,7 @@ struct tower_t tower =
  .angle = 0,
  .firerate = TOWER_FIRERATE_1,
  .healtPoints = 0,
- .towerBullets = {0,0,0,0,0,0},
+ .towerBullets = {0,0,0,0},
 };
 
 
@@ -2514,8 +2439,6 @@ struct packet_t rotated_tower1[sizeof (vectors_tower_lvl_1) / sizeof(struct pack
 struct packet_t rotated_tower2[sizeof (vectors_tower_lvl_2) / sizeof(struct packet_t)];
 struct packet_t rotated_tower3[sizeof (vectors_tower_lvl_3) / sizeof(struct packet_t)];
 struct packet_t rotated_tower4[sizeof (vectors_tower_lvl_4) / sizeof(struct packet_t)];
-
-
 
 void draw_tower(void)
 {
@@ -2545,14 +2468,6 @@ void draw_tower(void)
    Rot_VL_Mode(tower.angle,&vectors_tower_lvl_4,rotated_tower4);
    Draw_VLp(&rotated_tower4);
   break;
-  case LEVEL_5:
-
-
-  break;
-  case LEVEL_6:
-
-
-  break;
   default:
    Rot_VL_Mode(tower.angle,&vectors_tower_lvl_1,rotated_tower1);
    Draw_VLp(&rotated_tower1);
@@ -2570,12 +2485,6 @@ void draw_tower(void)
 
   switch(tower.lvl)
   {
-   case LEVEL_6:
-    if((tower.towerBullets[5] + 2) >= 63) tower.towerBullets[5] = (tower.towerBullets[5] + 2) - 64;
-    else tower.towerBullets[5] += 2;
-   case LEVEL_5:
-    if((tower.towerBullets[4] + 2) >= 63) tower.towerBullets[4] = (tower.towerBullets[4] + 2) - 64;
-    else tower.towerBullets[4] += 2;
    case LEVEL_4:
     if((tower.towerBullets[3] + 2) >= 63) tower.towerBullets[3] = (tower.towerBullets[3] + 2) - 64;
     else tower.towerBullets[3] += 2;
@@ -2623,48 +2532,25 @@ void set_tower(enum tower_lvl_t lvl)
    tower.towerBullets[1] = 100;
    tower.towerBullets[2] = 100;
    tower.towerBullets[3] = 100;
-   tower.towerBullets[4] = 100;
-   tower.towerBullets[5] = 100;
    break;
   case LEVEL_2:
    tower.towerBullets[0] = tower.angle;
    tower.towerBullets[1] = tower.angle + 32;
    tower.towerBullets[2] = 100;
    tower.towerBullets[3] = 100;
-   tower.towerBullets[4] = 100;
-   tower.towerBullets[5] = 100;
+
    break;
   case LEVEL_3:
    tower.towerBullets[0] = tower.angle;
    tower.towerBullets[1] = tower.angle + 16;
    tower.towerBullets[2] = tower.angle + 32;
    tower.towerBullets[3] = 100;
-   tower.towerBullets[4] = 100;
-   tower.towerBullets[5] = 100;
    break;
   case LEVEL_4:
    tower.towerBullets[0] = tower.angle;
    tower.towerBullets[1] = tower.angle + 16;
    tower.towerBullets[2] = tower.angle + 32;
    tower.towerBullets[3] = tower.angle + 48;
-   tower.towerBullets[4] = 100;
-   tower.towerBullets[5] = 100;
-   break;
-  case LEVEL_5:
-   tower.towerBullets[0] = tower.angle;
-   tower.towerBullets[1] = tower.angle + 11;
-   tower.towerBullets[2] = tower.angle + 21;
-   tower.towerBullets[3] = tower.angle + 32;
-   tower.towerBullets[4] = tower.angle + 43;
-   tower.towerBullets[5] = 100;
-   break;
-  case LEVEL_6:
-   tower.towerBullets[0] = tower.angle;
-   tower.towerBullets[1] = tower.angle + 11;
-   tower.towerBullets[2] = tower.angle + 21;
-   tower.towerBullets[3] = tower.angle + 32;
-   tower.towerBullets[4] = tower.angle + 43;
-   tower.towerBullets[5] = tower.angle + 53;
    break;
   default:
    break;
@@ -2688,8 +2574,6 @@ void tower_shot(void)
   fire_bullet(vec,1,tower.towerBullets[1]);
   fire_bullet(vec,1,tower.towerBullets[2]);
   fire_bullet(vec,1,tower.towerBullets[3]);
-  fire_bullet(vec,1,tower.towerBullets[4]);
-  fire_bullet(vec,1,tower.towerBullets[5]);
 
   rate = 50;
  }

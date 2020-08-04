@@ -5,6 +5,7 @@
 #pragma once
 #include <vectrex.h>
 
+
 // ---------------------------------------------------------------------------
 
 enum tower_status_t
@@ -19,8 +20,6 @@ enum tower_lvl_t
 	LEVEL_2,
 	LEVEL_3,
 	LEVEL_4,
-	LEVEL_5,
-	LEVEL_6,
 };
 
 enum tower_firerate_t

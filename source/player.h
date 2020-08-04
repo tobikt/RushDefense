@@ -36,6 +36,7 @@ extern struct player_t player;
 
 // ---------------------------------------------------------------------------
 
+void set_player(enum player_lvl_t lvl);
 void init_player(void);
 void handle_player(void);
 
