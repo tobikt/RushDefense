@@ -137,31 +137,31 @@
    C9AF 0A                  137 	.byte	10
                             138 	.area .text
                             139 	.globl _move_object
-   4AA5                     140 _move_object:
-   4AA5 32 7C         [ 5]  141 	leas	-4,s
-   4AA7 AF 62         [ 6]  142 	stx	2,s
-   4AA9 F6 C9 CA      [ 5]  143 	ldb	_current_wave+5
+   4A97                     140 _move_object:
+   4A97 32 7C         [ 5]  141 	leas	-4,s
+   4A99 AF 62         [ 6]  142 	stx	2,s
+   4A9B F6 C9 CA      [ 5]  143 	ldb	_current_wave+5
                             144 	; tstb	; optimization 6
-   4AAC 27 20         [ 3]  145 	beq	L3
-   4AAE AE 62         [ 6]  146 	ldx	2,s
-   4AB0 E6 01         [ 5]  147 	ldb	1,x
-   4AB2 E7 E4         [ 4]  148 	stb	,s
-   4AB4 AE 62         [ 6]  149 	ldx	2,s
-   4AB6 E6 03         [ 5]  150 	ldb	3,x
-   4AB8 EB E4         [ 4]  151 	addb	,s
-   4ABA AE 62         [ 6]  152 	ldx	2,s
-   4ABC E7 01         [ 5]  153 	stb	1,x
-   4ABE AE 62         [ 6]  154 	ldx	2,s
-   4AC0 E6 02         [ 5]  155 	ldb	2,x
-   4AC2 E7 61         [ 5]  156 	stb	1,s
-   4AC4 AE 62         [ 6]  157 	ldx	2,s
-   4AC6 E6 04         [ 5]  158 	ldb	4,x
-   4AC8 EB 61         [ 5]  159 	addb	1,s
-   4ACA AE 62         [ 6]  160 	ldx	2,s
-   4ACC E7 02         [ 5]  161 	stb	2,x
-   4ACE                     162 L3:
-   4ACE 32 64         [ 5]  163 	leas	4,s
-   4AD0 39            [ 5]  164 	rts
+   4A9E 27 20         [ 3]  145 	beq	L3
+   4AA0 AE 62         [ 6]  146 	ldx	2,s
+   4AA2 E6 01         [ 5]  147 	ldb	1,x
+   4AA4 E7 E4         [ 4]  148 	stb	,s
+   4AA6 AE 62         [ 6]  149 	ldx	2,s
+   4AA8 E6 03         [ 5]  150 	ldb	3,x
+   4AAA EB E4         [ 4]  151 	addb	,s
+   4AAC AE 62         [ 6]  152 	ldx	2,s
+   4AAE E7 01         [ 5]  153 	stb	1,x
+   4AB0 AE 62         [ 6]  154 	ldx	2,s
+   4AB2 E6 02         [ 5]  155 	ldb	2,x
+   4AB4 E7 61         [ 5]  156 	stb	1,s
+   4AB6 AE 62         [ 6]  157 	ldx	2,s
+   4AB8 E6 04         [ 5]  158 	ldb	4,x
+   4ABA EB 61         [ 5]  159 	addb	1,s
+   4ABC AE 62         [ 6]  160 	ldx	2,s
+   4ABE E7 02         [ 5]  161 	stb	2,x
+   4AC0                     162 L3:
+   4AC0 32 64         [ 5]  163 	leas	4,s
+   4AC2 39            [ 5]  164 	rts
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 

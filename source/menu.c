@@ -48,10 +48,10 @@ void menu_handle(void)
 	check_buttons();
 	
 	// ------  CHEAT CODE ----------
-	if (button_1_3_pressed())
-	{	
-		player.money = 9999;
-	}
+	//if (button_1_3_pressed())
+	//{	
+	//	player.money = 9999;
+	//}
 	// ------  CHEAT CODE ----------
 	
 		

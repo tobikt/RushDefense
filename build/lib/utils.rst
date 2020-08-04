@@ -6,21 +6,21 @@
                               6 	.module	utils.c
                               7 	.area .text
                               8 	.globl _Sync
-   53D5                       9 _Sync:
-   53D5 32 7C         [ 5]   10 	leas	-4,s
-   53D7 BD F1 AF      [ 8]   11 	jsr	___DP_to_C8
-   53DA BE C9 B8      [ 6]   12 	ldx	_current_explosion
-   53DD AF E4         [ 5]   13 	stx	,s
+   53C7                       9 _Sync:
+   53C7 32 7C         [ 5]   10 	leas	-4,s
+   53C9 BD F1 AF      [ 8]   11 	jsr	___DP_to_C8
+   53CC BE C9 B8      [ 6]   12 	ldx	_current_explosion
+   53CF AF E4         [ 5]   13 	stx	,s
                              14 	; ldx	,s	; optimization 5
-   53DF BD 02 EE      [ 8]   15 	jsr	__Explosion_Snd
-   53E2 BE C9 B6      [ 6]   16 	ldx	_current_music
-   53E5 AF 62         [ 6]   17 	stx	2,s
+   53D1 BD 02 EE      [ 8]   15 	jsr	__Explosion_Snd
+   53D4 BE C9 B6      [ 6]   16 	ldx	_current_music
+   53D7 AF 62         [ 6]   17 	stx	2,s
                              18 	; ldx	2,s	; optimization 5
-   53E7 BD 02 CA      [ 8]   19 	jsr	__Init_Music_chk
-   53EA BD F1 92      [ 8]   20 	jsr	___Wait_Recal
-   53ED BD 02 C3      [ 8]   21 	jsr	__Do_Sound
-   53F0 32 64         [ 5]   22 	leas	4,s
-   53F2 39            [ 5]   23 	rts
+   53D9 BD 02 CA      [ 8]   19 	jsr	__Init_Music_chk
+   53DC BD F1 92      [ 8]   20 	jsr	___Wait_Recal
+   53DF BD 02 C3      [ 8]   21 	jsr	__Do_Sound
+   53E2 32 64         [ 5]   22 	leas	4,s
+   53E4 39            [ 5]   23 	rts
 ASxxxx Assembler V05.00  (Motorola 6809), page 1.
 Hexidecimal [16-Bits]
 

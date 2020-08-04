@@ -2358,15 +2358,7 @@ void menu_handle(void)
  }
  check_joysticks();
  check_buttons();
-
-
- if (button_1_3_pressed())
- {
-  player.money = 9999;
- }
-
-
-
+# 58 "source\\menu.c"
  if (button_1_1_pressed())
  {
 
