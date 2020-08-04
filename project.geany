@@ -28,22 +28,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=14
+current_page=6
 FILE_NAME_0=208;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower.h;0;4
 FILE_NAME_1=0;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cwave.c;0;4
 FILE_NAME_2=147;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer_lvl.h;0;4
 FILE_NAME_3=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower_lvl.h;0;4
-FILE_NAME_4=2002;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer.c;0;4
-FILE_NAME_5=209;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer.h;0;4
-FILE_NAME_6=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cmenu.h;0;4
-FILE_NAME_7=1186;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cmenu.c;0;4
-FILE_NAME_8=303;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower.c;0;4
-FILE_NAME_9=0;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower_costs.h;0;4
-FILE_NAME_10=211;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer_costs.h;0;4
-FILE_NAME_11=241;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cbullet.h;0;4
-FILE_NAME_12=1770;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cgame.c;0;4
-FILE_NAME_13=550;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cgame.h;0;4
-FILE_NAME_14=21694;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cwaves_data.h;0;4
+FILE_NAME_4=399;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cplayer.c;0;4
+FILE_NAME_5=3261;C;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Ctower.c;0;4
+FILE_NAME_6=547;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5CRushDefenseDefine.h;0;4
+FILE_NAME_7=35314;C++;0;EUTF-8;1;1;0;C%3A%5Crepo%5CVectrex%5CProjects%5CRushDefense%5Csource%5Cwaves_data.h;0;4
 
 [build-menu]
 NF_00_LB=_Make
