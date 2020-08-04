@@ -1,0 +1,20 @@
+﻿<Window x:Class="RushDefenseLVLDesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RushDefenseLVLDesign"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="512" Width="519">
+    <Grid>
+        <StackPanel Margin="0,0,0,36" >
+            <Label Content="Level Generator" HorizontalAlignment="Center"/>
+            <TextBox x:Name="Levels" Width="150" Height="30" Margin="5"/>
+            <Button Content="Generate" Width="150" Height="40" Click="Button_Click" Margin="5"/>
+        </StackPanel>
+        <Image Name="WB" HorizontalAlignment="Left" Height="250" VerticalAlignment="Bottom" Width="400" Margin="55,0,0,36" />
+        <Slider Minimum="0" Maximum="360" Name="Slider" Width="200" HorizontalAlignment="Center" Margin="155,445,156,0" VerticalAlignment="Top" ValueChanged="Slider_ValueChanged"/>
+    </Grid>
+
+   
+</Window>
