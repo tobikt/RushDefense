@@ -1,29 +1,41 @@
-Game Title
-RUSH DEFENSE
+Rush Defense
 
-Project Status
-Early implementation phase
+You can only win this game if you defend all Waves of enemy attacks.
 
-How To Play
+Each Wave can be divided into three phases, in each phase, up to 5 Enemies try to destroy your tower. Each Enemy that you or your tower destroy gives you money. After you alive on Wave you can Upgrade your Player or Tower.
 
-Rush the Enemy Waves up to the end.
-If you can reach the end level, and destroy the RUSH BOSS then you can call yourself !!! RUSH BOSS DESTROYER !!!
+Player Upgrades: 
+-> Player Level: 
 
--> This game is divided in waves each wave has up to three wave phases.
+	1: On Direction to Shoot Bulltes 
+	2: Two Directions to Shoot Bullets 
+	3: Tree Direction to Shoot Bullets 
+	
+-> Player Fire rate: 
 
--> In every phase enemy try to destoy your tower, but you and your tower defend this stupid enemys. 
-   As a reward you get money to level up your Gear.
+	1: Fire rate 1	
+	2: Fire rate 2
+	3: Fire rate 5
 
-	Joystick Left/Right	-> Rotate the player
-	Button 4		-> Shot bullets
+Tower Upgrades:
+->Tower Level:
 
--> After every completed wave you can level up your Gear (Player LVL, Player Fire Rate, Tower LVL, Tower Fire Rate)
+	1: Shoot in one Direction
+	2: Shoot in two Directions
+	3: Shoot in three Directions 
+	4: Shoot in four Directions 
+	
+Tower Fire rate:
 
-	Joystick Up and Down 	-> Navigation through the menu
-	Joystick Left		-> Leav the menu to rush the next wave
-	Joystick Right 		-> Level up the Selected Gear if you have enough money
-
-
-Author and Rank
-#Compile
-Developer
+	1: Fire rate 1
+	2: Fire rate 2
+	3: Fire rate 5
+	
+Controls:
+	
+	Joystick -> Rotate Player around the tower
+	Button 1 -> Close the menu
+	Button 2 -> Level up your Tower or Player stats
+	Button 3 -> - Not used -
+	Button 4 -> Shot
+	
